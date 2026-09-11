@@ -37,12 +37,11 @@
 
   // flash items
   $$('.item[data-sku]').forEach(el => {
-    $$('.sizes button', el).forEach(b => b.onclick = () => { $$('.sizes button', el).forEach(x => x.classList.remove('on')); b.classList.add('on'); });
     $('.add', el)?.addEventListener('click', () => {
       const sku = el.dataset.sku, name = el.dataset.name;
       const i = picks.findIndex(p => p.sku === sku);
       if (i > -1) { picks.splice(i, 1); }
-      else { picks.push({ sku, name, size: $('.sizes .on', el)?.textContent || '' }); openDrawer(); }
+      else { picks.push({ sku, name, size: el.dataset.size || '' }); openDrawer(); }
       save(); render(); syncButtons();
     });
   });

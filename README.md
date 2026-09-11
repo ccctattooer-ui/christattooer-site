@@ -15,7 +15,7 @@ npm run build      # writes the finished site to _site/
 | You want to change… | Edit this file |
 | --- | --- |
 | Name, shop, hours, Instagram, Square link, shop minimum, deposit | `src/_data/site.json` |
-| Flash: name, category, est. time, "from" price, sizes, available/claimed, notes | `src/_data/flash.json` (one entry per design, `FL-001` … `FL-071`) |
+| Flash: name, category, size, est. time, price, available/claimed, notes | `src/_data/flash.json` (one entry per design, `FL-001` … `FL-071`) |
 | Healed & recent work: title, placement, hours, style, notes, featured, hidden | `src/_data/work.json` (one entry per photo; `featured: true` puts it on the home page and stars it on /work/) |
 | Aftercare sheet | `src/aftercare.md` (plain Markdown) |
 | Bio / about page | `src/about.md` |
@@ -23,7 +23,7 @@ npm run build      # writes the finished site to _site/
 | Booking page copy and the three booking routes | `src/book.njk` |
 | Catalog look | `src/css/catalog.css` · ParlorOS look: `src/css/os.css` |
 
-Prices and hours are placeholders until you change them. `priceFrom` is a number (no `$`), `hours` is a number (`1.5`).
+Prices and hours are placeholders until you change them. `price` is a number (no `$`), `size` is text shown as-is (`"3 in"`), `hours` is a number (`1.5`); leave `hours` or `size` empty to hide that line.
 
 ### Adding photos
 

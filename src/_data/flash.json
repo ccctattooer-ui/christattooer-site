@@ -5,12 +5,8 @@
   "name": "Dotted head",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -20,12 +16,8 @@
   "name": "Demon with sword",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -35,12 +27,8 @@
   "name": "Green devil skull",
   "category": "Skulls & devils",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -49,13 +37,9 @@
   "file": "flash-04",
   "name": "Crown",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -65,12 +49,8 @@
   "name": "Caveman",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -79,13 +59,9 @@
   "file": "flash-06",
   "name": "Quilt star",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -95,12 +71,8 @@
   "name": "Flower & cross",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -110,12 +82,8 @@
   "name": "Leprechaun",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -125,12 +93,8 @@
   "name": "Rose (sketch)",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -140,12 +104,8 @@
   "name": "Eagle & sun",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -154,13 +114,9 @@
   "file": "flash-11",
   "name": "Dagger & heart",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -170,12 +126,8 @@
   "name": "Bat & rose",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -185,12 +137,8 @@
   "name": "Scorpion",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -200,12 +148,8 @@
   "name": "Beagle with radio",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -215,12 +159,8 @@
   "name": "Rose",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -230,12 +170,8 @@
   "name": "Girl with bob",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -245,12 +181,8 @@
   "name": "Little devil",
   "category": "Skulls & devils",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -260,12 +192,8 @@
   "name": "Roses (color)",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -274,13 +202,9 @@
   "file": "flash-19",
   "name": "Griffin",
   "category": "Animals",
-  "hours": 2.0,
-  "priceFrom": 200,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 2,
+  "price": 200,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -289,13 +213,9 @@
   "file": "flash-20",
   "name": "MOM cross",
   "category": "Lettering",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -304,13 +224,9 @@
   "file": "flash-21",
   "name": "Foo dog",
   "category": "Animals",
-  "hours": 2.0,
-  "priceFrom": 200,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 2,
+  "price": 200,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -320,12 +236,8 @@
   "name": "Sphinx",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -334,13 +246,9 @@
   "file": "flash-23",
   "name": "Spiral disc",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -350,12 +258,8 @@
   "name": "Mantis",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -365,12 +269,8 @@
   "name": "Dotted head II",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -379,13 +279,9 @@
   "file": "flash-26",
   "name": "Papa memorial",
   "category": "Lettering",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -395,12 +291,8 @@
   "name": "Flower cluster",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -409,13 +301,9 @@
   "file": "flash-28",
   "name": "All-seeing eye",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -425,12 +313,8 @@
   "name": "Snake",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -440,12 +324,8 @@
   "name": "Panther head",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -454,13 +334,9 @@
   "file": "flash-31",
   "name": "USA Beer Power",
   "category": "Lettering",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -469,13 +345,9 @@
   "file": "flash-32",
   "name": "Saturn",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -484,13 +356,9 @@
   "file": "flash-33",
   "name": "Hannya",
   "category": "Faces & characters",
-  "hours": 2.0,
-  "priceFrom": 200,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 2,
+  "price": 200,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -500,12 +368,8 @@
   "name": "Skull & crossbones",
   "category": "Skulls & devils",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -514,13 +378,9 @@
   "file": "flash-35",
   "name": "Crying eye cloud",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -530,12 +390,8 @@
   "name": "Boy",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -544,13 +400,9 @@
   "file": "flash-37",
   "name": "Triangle sigil",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -559,13 +411,9 @@
   "file": "flash-38",
   "name": "Filigree",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -574,13 +422,9 @@
   "file": "flash-39",
   "name": "Leaf & heart",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -589,13 +433,9 @@
   "file": "flash-40",
   "name": "Tribal swirl",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -605,12 +445,8 @@
   "name": "Rose & leaves",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -620,12 +456,8 @@
   "name": "Dog with flowers",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -635,12 +467,8 @@
   "name": "Moon & flowers",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -650,12 +478,8 @@
   "name": "Lizard",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -664,13 +488,9 @@
   "file": "flash-45",
   "name": "Dragon",
   "category": "Animals",
-  "hours": 2.0,
-  "priceFrom": 200,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 2,
+  "price": 200,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -680,12 +500,8 @@
   "name": "Skull",
   "category": "Skulls & devils",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -695,12 +511,8 @@
   "name": "Boop",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -709,13 +521,9 @@
   "file": "flash-48",
   "name": "Flame ornament",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -724,13 +532,9 @@
   "file": "flash-49",
   "name": "Fist",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -740,12 +544,8 @@
   "name": "Parrot",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -754,13 +554,9 @@
   "file": "flash-51",
   "name": "Ornate cross",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -769,13 +565,9 @@
   "file": "flash-52",
   "name": "Gorilla",
   "category": "Animals",
-  "hours": 2.0,
-  "priceFrom": 200,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 2,
+  "price": 200,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -784,13 +576,9 @@
   "file": "flash-53",
   "name": "Dagger & stars",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -800,12 +588,8 @@
   "name": "Seahorse",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -815,12 +599,8 @@
   "name": "Vine",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -830,12 +610,8 @@
   "name": "Curly lady",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -845,12 +621,8 @@
   "name": "Flame face",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -860,12 +632,8 @@
   "name": "Cat",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -875,12 +643,8 @@
   "name": "Rose II",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -889,13 +653,9 @@
   "file": "flash-60",
   "name": "Skyline",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -904,13 +664,9 @@
   "file": "flash-61",
   "name": "Castle & flag",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -920,12 +676,8 @@
   "name": "Gold flowers",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -935,12 +687,8 @@
   "name": "Merman",
   "category": "Faces & characters",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -950,12 +698,8 @@
   "name": "Deer",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -965,12 +709,8 @@
   "name": "Bat",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -979,13 +719,9 @@
   "file": "flash-66",
   "name": "Hannya II",
   "category": "Faces & characters",
-  "hours": 2.0,
-  "priceFrom": 200,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 2,
+  "price": 200,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -995,12 +731,8 @@
   "name": "Dolphin",
   "category": "Animals",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -1009,13 +741,9 @@
   "file": "flash-68",
   "name": "Lotus ornament",
   "category": "Symbols",
-  "hours": 1.0,
-  "priceFrom": 120,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 1,
+  "price": 120,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -1024,13 +752,9 @@
   "file": "flash-69",
   "name": "Lion",
   "category": "Animals",
-  "hours": 2.0,
-  "priceFrom": 200,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "hours": 2,
+  "price": 200,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -1040,12 +764,8 @@
   "name": "Mushrooms",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  },
@@ -1055,12 +775,8 @@
   "name": "Rose III",
   "category": "Flowers & plants",
   "hours": 1.5,
-  "priceFrom": 160,
-  "sizes": [
-   "2 in",
-   "3 in",
-   "4 in"
-  ],
+  "price": 160,
+  "size": "3 in",
   "available": true,
   "notes": ""
  }
