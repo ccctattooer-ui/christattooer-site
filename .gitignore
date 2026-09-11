@@ -3,10 +3,10 @@ _site/
 .cache/
 
 # Raw source photos stay on this machine; the web-ready copies live in assets/
-Tattoo_Images/
-Line_Drawing_Scans/
-Plant_Breeding_Images/
-Paintings/
+/Tattoo_Images/
+/Line_Drawing_Scans/
+/Plant_Breeding_Images/
+/Paintings/
 
 # Full-size flash cutouts are regenerated from the scans; the site ships assets/flash/web
 assets/flash/*.png
