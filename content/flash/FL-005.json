@@ -1,11 +1,11 @@
 {
   "sku": "FL-005",
-  "name": "Caveman",
+  "name": "Cavedude",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-05.webp",
-  "size": "3 in",
-  "hours": 1.5,
-  "price": 160,
+  "size": "5 in",
+  "hours": 2,
+  "price": 350,
   "available": true,
   "notes": ""
 }
