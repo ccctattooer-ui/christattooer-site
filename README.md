@@ -9,7 +9,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Admin section | What it changes | Where it lives |
 | --- | --- | --- |
 | Flash designs | every design: name, category, drawing, size, price, hours, Ready/Claimed, notes. "New" uploads a new design. | `content/flash/FL-###.json` + `assets/flash/web/` |
-| Price sheet (/admin/prices/) | one grid of every flash design with editable size, hours, price and Ready; per-row Save or Save-all commits the changed files in one commit | `netlify/functions/admin-flash.mjs`, `src/admin/prices/` |
+| Price sheet (/admin/prices/) | one grid of every flash design with editable size, hours, price and Ready; per-row Save or Save-all commits the changed files in one commit. Also holds the **Publish site** button. | `netlify/functions/admin-flash.mjs`, `admin-publish.mjs`, `src/admin/prices/` |
 | Healed & recent work | photos on /work/, titles, featured, hidden | `content/work/*.json` + `assets/tattoos/` |
 | Paintings | the collage board: one draggable list, each row = title, photo, kind (flash sheet / painting), hidden | `content/paintings.json` + `assets/paintings/` |
 | Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
@@ -21,7 +21,9 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Look & colors | brand colors for both looks, grid columns, collage tilt / tape / piece size | `src/_data/theme.json` |
 | Site settings | name, hours, books status, shop, Instagram, Square link, minimum, deposit | `src/_data/site.json` |
 
-Saving in the admin commits to GitHub; the live site updates about a minute later.
+Saving in the admin commits to GitHub but does **not** deploy. When you are done editing, open the Price sheet (button in the bottom-right corner of the admin) and click **Publish site**; the live site updates about a minute later.
+
+Why: Netlify's free plan gives 300 credits a month and every production deploy costs 15, so about 20 publishes a month. Publishing once per editing session instead of once per save keeps that comfortable. (`netlify.toml` sets `ignore = "exit 0"` so pushes never auto-build; the Publish button fires a build hook, which bypasses that.)
 
 Uploads are shrunk in the browser to 2000px WebP before they are committed. Thumbnails for every photo are generated at build time (`@11ty/eleventy-img`), so there are no thumbs folders to maintain.
 
@@ -32,6 +34,7 @@ The admin is [Sveltia CMS](https://sveltiacms.app/). It talks to the GitHub repo
 - `ADMIN_USER` — the username
 - `ADMIN_PASSWORD_SHA256` — SHA-256 of the password (`python -c "import hashlib;print(hashlib.sha256(b'...').hexdigest())"`)
 - `GITHUB_TOKEN` — a fine-grained GitHub token with Contents read/write on this repo only
+- `PUBLISH_HOOK` — the Netlify build hook URL that the Publish button fires
 
 ## Run it locally
 

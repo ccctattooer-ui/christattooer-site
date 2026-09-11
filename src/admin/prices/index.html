@@ -73,6 +73,7 @@
       <input type="search" id="q" placeholder="Filter by name, SKU, category">
       <span id="status"></span>
       <button class="primary" id="saveall" disabled>Save all changes</button>
+      <button id="publish" title="Push everything saved so far to the live site">Publish site</button>
       <a href="/admin/">← Full admin</a></header>
       <div class="grid">${rows.map((f) => `
       <div class="row" data-sku="${f.sku}" data-hay="${(f.sku + ' ' + f.name + ' ' + f.category).toLowerCase()}">
@@ -88,6 +89,18 @@
     $('#q').oninput = () => { const t = $('#q').value.trim().toLowerCase(); document.querySelectorAll('.row').forEach((el) => el.classList.toggle('hidden', !!t && !el.dataset.hay.includes(t))); };
     bind();
     $('#saveall').onclick = () => save([...document.querySelectorAll('.row.changed')]);
+    $('#publish').onclick = async () => {
+      if (dirty.size && !confirm(`${dirty.size} unsaved change(s) will NOT be included. Publish anyway?`)) return;
+      const b = $('#publish'); b.disabled = true; status('Publishing…');
+      try {
+        const r = await fetch('/admin/api/publish', { method: 'POST', headers: { authorization: 'Basic ' + auth } });
+        const out = await r.json();
+        if (r.status === 401) { try { sessionStorage.removeItem(KEY); } catch (e) {} return login(out.error); }
+        if (!r.ok) throw new Error(out.error || r.statusText);
+        status(out.message, 'ok');
+      } catch (e) { status('Publish failed: ' + e.message, 'err'); }
+      b.disabled = false;
+    };
   }
   function current(el) { return { sku: el.dataset.sku, size: $('[name=size]', el).value.trim(), hours: $('[name=hours]', el).value, price: $('[name=price]', el).value, available: $('[name=available]', el).checked }; }
   function refreshAll() { const b = $('#saveall'); b.disabled = !dirty.size; b.textContent = dirty.size ? `Save all changes (${dirty.size})` : 'Save all changes'; }
@@ -109,7 +122,7 @@
         const n = el.cloneNode(true); delete n.dataset.bound; el.replaceWith(n);
       });
       bind();
-      status(out.committed ? `Saved ${out.committed}. Live on the site in about a minute.` : out.message, 'ok');
+      status(out.committed ? `Saved ${out.committed}. Click Publish site when you want it live.` : out.message, 'ok');
     } catch (e) {
       status('Save failed: ' + e.message, 'err'); els.forEach((el) => $('.save', el).disabled = false);
     }

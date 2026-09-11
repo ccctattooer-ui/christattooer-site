@@ -1,6 +1,9 @@
 [build]
   command = "npm run build"
   publish = "_site"
+  # Pushes and admin saves only commit; nothing deploys until the "Publish site" button in the admin
+  # fires the build hook (build hooks bypass this). Keeps deploys, and Netlify credits, under control.
+  ignore = "exit 0"
 
 [build.environment]
   NODE_VERSION = "22"
