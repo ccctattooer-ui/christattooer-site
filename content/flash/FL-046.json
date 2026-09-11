@@ -3,9 +3,9 @@
   "name": "Skull",
   "category": "Skulls & devils",
   "image": "/assets/flash/web/flash-46.webp",
-  "size": "3 in",
+  "size": "4 in",
+  "price": 250,
   "hours": 1.5,
-  "price": 160,
   "available": true,
   "notes": ""
 }
