@@ -1,11 +1,11 @@
 {
   "sku": "FL-040",
-  "name": "Tribal swirl",
+  "name": "Tribal bird",
   "category": "Symbols",
   "image": "/assets/flash/web/flash-40.webp",
-  "size": "3 in",
-  "hours": 1,
-  "price": 120,
+  "size": "4 in",
+  "price": 250,
+  "hours": 1.5,
   "available": true,
   "notes": ""
 }
