@@ -40,11 +40,20 @@
     var v = document.getElementById('montage');
     function enter() { try { sessionStorage.setItem('ct-entered', '1'); } catch (e) {} location.href = '/flash/'; }
     document.getElementById('enter').addEventListener('click', function (e) { e.preventDefault(); enter(); });
-    var tv = document.getElementById('tv');
-    tv.addEventListener('click', enter);
+    var tv = document.getElementById('tv'), cap = document.querySelector('.screen .caption'), capEnter = cap ? cap.innerHTML : '';
+    var started = false;
+    function tryPlay() { if (!v) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if (v) {
+      v.addEventListener('playing', function () { started = true; if (cap) cap.innerHTML = capEnter; });
+      v.addEventListener('canplay', function () { if (!started) tryPlay(); });
+      document.addEventListener('visibilitychange', function () { if (!document.hidden && !started) tryPlay(); });
+      tryPlay();
+      // Autoplay blocked (iPhone Low Power Mode, data saver)? Ask for a tap on the set instead.
+      setTimeout(function () { if (!started && cap) cap.innerHTML = 'TAP TO TUNE IN <i>▮</i>'; }, 2500);
+    }
+    // A tap on the set starts the picture if it is not running yet; a tap on a running set enters.
+    tv.addEventListener('click', function () { if (v && !started && v.paused) { tryPlay(); return; } enter(); });
     tv.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enter(); } });
-    // iPhone Low Power Mode blocks autoplay until a touch; kick the video on the first one.
-    if (v) { var kick = function () { v.play().catch(function () {}); }; ['pointerdown', 'touchend', 'click', 'keydown'].forEach(function (t) { document.addEventListener(t, kick, { passive: true }); }); v.play().catch(function () {}); }
     var c = document.getElementById('clock'); if (c) { var t = function () { c.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }; t(); setInterval(t, 30000); }
     var msgs = {{ landing.bootMessages | dump | safe }}, i = 0, m = document.querySelector('.boot-msg');
     if (m && msgs.length) m.textContent = msgs[0];

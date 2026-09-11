@@ -30,9 +30,11 @@ EDIT = [
     ("IMG_8425.HEIC", 0, 2.4),          # plants
     ("IMG_5340.MOV", 0, 2.3),           # beach with the dog
     "static",
-    ("ninemagtv - ram7 lockwood.mp4", 2.0, 2.0),
-    ("zo3dby.mov", 4.0, 2.0),
-    ("My Movie 4.mov", 7.0, 2.0),
+    ("zo3dby.mov", 1.2, 3.2),                    # two quickscope eliminations
+    ("IMG_9413(1).mov", 2.4, 3.0),               # one shot, one kill
+    ("ninemagtv - ram7 lockwood.mp4", 11.6, 3.0), # the kill streak
+    ("zo3dby.mov", 5.4, 2.2),                    # two more scope kills
+    ("My Movie 4.mov", 7.0, 1.6),                # hand cam
     ("IMG_0410.HEIC", 0, 2.2),          # red mirror selfie
     "static",
 ]

@@ -11,7 +11,9 @@ body.intro{overflow:auto;min-height:100vh}
 .bezel{background:#1b1813;border:3px solid #0b0a08;border-radius:16px;padding:10px;box-shadow:inset 0 0 0 2px #2f2a21,inset 0 8px 20px rgba(0,0,0,.7)}
 .screen{position:relative;aspect-ratio:4/3;border-radius:7% / 9%;overflow:hidden;background:#050505;box-shadow:inset 0 0 70px rgba(0,0,0,.95),inset 0 0 4px rgba(255,255,255,.15);animation:tv-on .9s cubic-bezier(.2,.9,.3,1) both;transform-origin:center}
 @keyframes tv-on{0%{transform:scale(1,.004);filter:brightness(6)}55%{transform:scale(1,.004);filter:brightness(6)}70%{transform:scale(1.02,.6);filter:brightness(2)}100%{transform:none;filter:none}}
-.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.12) saturate(1.25) brightness(1.02);background:#000 center/cover no-repeat}
+.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.12) saturate(1.25) brightness(1.02);background:#000 center/cover no-repeat;pointer-events:none}
+/* iOS draws a big play glyph on a video that could not autoplay; the CRT caption handles that instead. */
+.screen video::-webkit-media-controls-start-playback-button,.screen video::-webkit-media-controls{display:none !important;-webkit-appearance:none;opacity:0}
 .screen .scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.32) 0 1px,transparent 1px 3px);pointer-events:none}
 .screen .rgb{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,40,40,.07) 0 1px,rgba(40,255,40,.06) 1px 2px,rgba(40,40,255,.07) 2px 3px);pointer-events:none;mix-blend-mode:screen}
 .screen .glare{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 18%,rgba(255,255,255,.16),transparent 42%),radial-gradient(ellipse at center,transparent 58%,rgba(0,0,0,.62) 100%);pointer-events:none}
