@@ -1,11 +1,11 @@
 {
   "sku": "FL-062",
-  "name": "Gold flowers",
+  "name": "flowers",
   "category": "Flowers & plants",
   "image": "/assets/flash/web/flash-62.webp",
   "size": "3 in",
-  "hours": 1.5,
   "price": 160,
+  "hours": 1.5,
   "available": true,
   "notes": ""
 }
