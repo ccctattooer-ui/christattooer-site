@@ -3,9 +3,9 @@
   "name": "Papa memorial",
   "category": "Lettering",
   "image": "/assets/flash/web/flash-26.webp",
-  "size": "3 in",
+  "size": "4 in",
   "hours": 1,
-  "price": 120,
-  "available": true,
-  "notes": ""
+  "price": 200,
+  "available": false,
+  "notes": "holler for some custom text!"
 }
