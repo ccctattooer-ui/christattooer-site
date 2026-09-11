@@ -3,9 +3,9 @@
   "name": "Griffin",
   "category": "Animals",
   "image": "/assets/flash/web/flash-19.webp",
-  "size": "3 in",
-  "hours": 2,
-  "price": 200,
+  "size": "6 in",
+  "price": 350,
+  "hours": 2.5,
   "available": true,
   "notes": ""
 }
