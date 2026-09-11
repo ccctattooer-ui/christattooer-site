@@ -3,9 +3,9 @@
   "name": "All-seeing eye",
   "category": "Symbols",
   "image": "/assets/flash/web/flash-28.webp",
-  "size": "3 in",
-  "hours": 1,
-  "price": 120,
-  "available": true,
+  "size": "4",
+  "price": 250,
+  "hours": 2,
+  "available": false,
   "notes": ""
 }
