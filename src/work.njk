@@ -9,8 +9,8 @@ description: Healed and recent tattoos by Chris at Tattoo Peace.
   <div class="wgrid">
     {%- for w in shown %}
     <button type="button" id="{{ w.file }}" class="{% if w.featured %}feat{% endif %}"
-      data-full="/assets/tattoos/{{ w.file }}.jpg" data-title="{{ w.title }}" data-placement="{{ w.placement }}" data-style="{{ w.style }}" data-hours="{{ w.hours }}" data-notes="{{ w.notes }}">
-      <img src="/assets/tattoos/thumbs/{{ w.file }}.jpg" alt="{{ w.title or 'Tattoo by Chris' }}" loading="lazy" width="384" height="480">
+      data-full="{{ w.image }}" data-title="{{ w.title }}" data-placement="{{ w.placement }}" data-style="{{ w.style }}" data-hours="{{ w.hours }}" data-notes="{{ w.notes }}">
+      <img src="{{ w.thumb }}" alt="{{ w.title or 'Tattoo by Chris' }}" loading="lazy" width="384" height="480">
       {%- if w.title %}<span class="cap">{{ w.title }}{% if w.placement %} · {{ w.placement }}{% endif %}</span>{% endif %}
     </button>
     {%- endfor %}

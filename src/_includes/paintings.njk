@@ -1,0 +1,32 @@
+<section class="win" id="w-readme" style="left:140px;top:70px;width:min(400px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>paintings.txt</b></div>
+  <div class="body txt">
+    <h1>{{ dept.name }}</h1>
+    <p>{{ dept.blurb }}</p>
+    <p class="status">Status: {{ dept.status }} · {{ paintings | length }} pieces on the board</p>
+    <p><a class="btn" href="#" data-open="w-collage">OPEN COLLAGE</a> <a class="btn ghost" href="/">BACK TO CATALOG</a></p>
+  </div>
+</section>
+
+<section class="win wide" id="w-collage" style="left:300px;top:96px;width:min(980px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>collage.exe ({{ paintings | length }})</b></div>
+  <div class="body board">
+    <div class="collage">
+      {%- for p in paintings %}
+      <button type="button" class="piece {{ p.kind }} {{ p.shape }} r{{ loop.index0 % 5 }}{% if p.kind == 'painting' and loop.index0 % 7 == 3 %} big{% endif %}"
+        data-full="{{ p.image }}" data-title="{{ p.title }}" data-kind="{{ 'Flash sheet' if p.kind == 'flash' else 'Painting' }}{% if p.year and p.kind != 'flash' %} · {{ p.year }}{% endif %}">
+        <img src="{{ p.thumb }}" alt="{{ p.title }}" loading="lazy" width="{{ p.w }}" height="{{ p.h }}">
+      </button>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="win" id="w-view" hidden style="left:220px;top:80px;width:min(760px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b id="view-name">viewer</b></div>
+  <div class="body view">
+    <img id="view-img" src="" alt="">
+    <div class="txt small" id="view-cap"></div>
+    <p><a class="btn ghost" href="https://instagram.com/{{ site.instagram }}">ASK ABOUT THIS ONE</a></p>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+{
+  "slug": "spacecraft",
+  "name": "SpaceCraft",
+  "icon": "/assets/plants/plant-007.jpg",
+  "blurb": "SpaceCraft is the plant breeding side of things: crosses, grow logs, and seed drops when they happen.",
+  "status": "Growing",
+  "images": [
+    {
+      "image": "/assets/plants/plant-001.jpg",
+      "caption": "Male 1"
+    },
+    {
+      "image": "/assets/plants/plant-002.jpg",
+      "caption": "Male 2"
+    },
+    {
+      "image": "/assets/plants/plant-003.jpg",
+      "caption": "Male 3"
+    },
+    {
+      "image": "/assets/plants/plant-004.jpg",
+      "caption": "Pinecake"
+    },
+    {
+      "image": "/assets/plants/plant-005.jpg",
+      "caption": "Pinecake II"
+    },
+    {
+      "image": "/assets/plants/plant-006.jpg",
+      "caption": "Skunk Ooze"
+    },
+    {
+      "image": "/assets/plants/plant-007.jpg",
+      "caption": "SpaceCraft"
+    }
+  ],
+  "order": 4
+}

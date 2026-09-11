@@ -1,0 +1,23 @@
+{
+  "howto": {
+    "show": true,
+    "heading": "How to order",
+    "steps": [
+      "Pick a flash design, or choose custom work.",
+      "Tell me where it goes.",
+      "Send the request. I reply with a quote and dates."
+    ]
+  },
+  "catalogHeading": "Flash — ready to tattoo",
+  "searchHint": "e.g. skull, rose, panther",
+  "custom": {
+    "show": true,
+    "title": "Your idea, drawn for you",
+    "button": "Request custom"
+  },
+  "recent": {
+    "show": true,
+    "heading": "Healed & recent work",
+    "count": 8
+  }
+}

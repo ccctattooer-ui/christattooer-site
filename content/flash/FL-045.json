@@ -1,0 +1,11 @@
+{
+  "sku": "FL-045",
+  "name": "Dragon",
+  "category": "Animals",
+  "image": "/assets/flash/web/flash-45.webp",
+  "size": "3 in",
+  "hours": 2,
+  "price": 200,
+  "available": true,
+  "notes": ""
+}

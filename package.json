@@ -9,6 +9,7 @@
     "images": "python tools/convert_images.py"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^7.0.0"
   }
 }

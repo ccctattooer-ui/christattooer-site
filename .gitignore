@@ -6,6 +6,7 @@ _site/
 Tattoo_Images/
 Line_Drawing_Scans/
 Plant_Breeding_Images/
+Paintings/
 
 # Full-size flash cutouts are regenerated from the scans; the site ships assets/flash/web
 assets/flash/*.png

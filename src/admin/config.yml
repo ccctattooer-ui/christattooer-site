@@ -1,0 +1,357 @@
+# Sveltia CMS config for christattooer.com. Log in at /admin/ (username + password).
+# Every save is a commit to the GitHub repo; Netlify rebuilds the site about a minute later.
+backend:
+  name: github
+  repo: ccctattooer-ui/christattooer-site
+  branch: main
+  base_url: https://christattooer.com
+  auth_endpoint: admin/auth
+
+site_url: https://christattooer.com
+display_url: https://christattooer.com
+logo_url: /assets/favicon.png
+
+# Default upload folder (used only by fields that don't set their own).
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+media_libraries:
+  default:
+    config:
+      max_file_size: 15728640
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2000
+          height: 2000
+        svg:
+          optimize: true
+
+collections:
+  # ---------------------------------------------------------------- catalog
+  - name: flash
+    label: Flash designs
+    label_singular: Flash design
+    description: One entry per design in the catalog. New designs need a SKU (FL-072, FL-073…), a drawing, a size and a price.
+    folder: content/flash
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{sku}}"
+    identifier_field: name
+    summary: "{{sku}} · {{name}} · {{size}} · ${{price}}"
+    sortable_fields: [sku, name, category, price]
+    media_folder: /assets/flash/web
+    public_folder: /assets/flash/web
+    fields:
+      - { label: SKU, name: sku, widget: string, pattern: ['^FL-\d{3}$', 'Use the form FL-072 (FL, dash, three digits).'], hint: Unique catalog number. Keep the format FL-###. }
+      - { label: Name, name: name, widget: string }
+      - { label: Category, name: category, widget: select, options: ['Faces & characters', 'Skulls & devils', 'Symbols', 'Flowers & plants', 'Animals', 'Lettering'] }
+      - { label: Drawing, name: image, widget: image, hint: A cutout with a transparent or white background looks best. Big files are shrunk automatically. }
+      - { label: Size, name: size, widget: string, hint: 'Shown exactly as typed, e.g. 3 in or 2.5 x 4 in.' }
+      - { label: Price, name: price, widget: number, value_type: int, min: 0, step: 5, hint: Dollars, no $ sign. }
+      - { label: Est. time (hours), name: hours, widget: number, value_type: float, min: 0, step: 0.5, required: false, hint: Leave blank to hide the time line. }
+      - { label: Available, name: available, widget: boolean, default: true, hint: Off marks it Claimed and disables the Add button. }
+      - { label: Notes, name: notes, widget: text, required: false, hint: One short line shown on the card. }
+
+  - name: work
+    label: Healed & recent work
+    label_singular: Photo
+    description: Photos on the Work page. Featured photos also show on the home page (first 8 by default) and get a star.
+    folder: content/work
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{uuid_short}}"
+    identifier_field: title
+    summary: "{{filename}} · {{title}}"
+    sortable_fields: [title, placement, featured, hidden]
+    media_folder: /assets/tattoos
+    public_folder: /assets/tattoos
+    fields:
+      - { label: Photo, name: image, widget: image, hint: Phone photos are shrunk automatically. }
+      - { label: Title, name: title, widget: string, required: false, hint: e.g. Panther head. Shows under the photo. }
+      - { label: Placement, name: placement, widget: string, required: false, hint: e.g. outer forearm }
+      - { label: Style, name: style, widget: string, required: false }
+      - { label: Hours, name: hours, widget: number, value_type: float, min: 0, step: 0.5, required: false }
+      - { label: Notes, name: notes, widget: text, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false, hint: Home page + starred on the Work page. }
+      - { label: Hidden, name: hidden, widget: boolean, default: false, required: false }
+      - { label: Original file, name: source, widget: hidden, required: false }
+
+  # ---------------------------------------------------------------- departments
+  - name: paintings
+    label: Paintings
+    label_singular: Painting
+    description: Pieces on the collage board in the Paintings department. Order runs top-left to bottom-right; mix kinds for the collage feel.
+    folder: content/paintings
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{order}} · {{title}} ({{kind}})"
+    sortable_fields: [order, title, kind, year]
+    media_folder: /assets/paintings
+    public_folder: /assets/paintings
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Photo, name: image, widget: image, hint: JPG or PNG. Phone photos are shrunk automatically. }
+      - { label: Kind, name: kind, widget: select, options: [{ label: Flash sheet, value: flash }, { label: Painting, value: painting }], default: painting }
+      - { label: Year, name: year, widget: string, required: false }
+      - { label: Order, name: order, widget: number, value_type: int, required: false, hint: Lower numbers come first. Leave blank to put it at the end. }
+      - { label: Hidden, name: hidden, widget: boolean, default: false, required: false }
+      - { label: Notes, name: notes, widget: text, required: false }
+
+  - name: videos
+    label: Game montages
+    label_singular: Video
+    description: YouTube videos in the Games department. The featured one plays first.
+    folder: content/videos
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{id}}"
+    identifier_field: title
+    summary: "{{order}} · {{title}} ({{game}})"
+    sortable_fields: [order, title, game, year]
+    fields:
+      - { label: YouTube video ID, name: id, widget: string, hint: 'The part after v= in the link, e.g. 6h6MYeb7vA0.' }
+      - { label: Title, name: title, widget: string }
+      - { label: Game, name: game, widget: string, hint: Used for the filter chips. Spell it the same way every time. }
+      - { label: Tag, name: tag, widget: string, required: false, hint: Character, mode, whatever. }
+      - { label: Year, name: year, widget: string, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false, hint: Plays first when the page opens. }
+      - { label: Order, name: order, widget: number, value_type: int, required: false }
+
+  - name: departments
+    label: Departments
+    label_singular: Department
+    description: The ParlorOS desktop icons and their windows (Paintings, Games, Store, SpaceCraft).
+    folder: content/departments
+    format: json
+    extension: json
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{order}} · {{name}} · {{status}}"
+    media_folder: /assets/plants
+    public_folder: /assets/plants
+    fields:
+      - { label: URL slug, name: slug, widget: string, hint: Do not change; it is the page address. }
+      - { label: Name, name: name, widget: string }
+      - { label: Icon, name: icon, widget: image, hint: Any picture; it is shrunk for the desktop icon. }
+      - { label: Blurb, name: blurb, widget: text }
+      - { label: Status, name: status, widget: string, hint: Shown in the window and the taskbar. }
+      - { label: Order, name: order, widget: number, value_type: int }
+      - label: Photos
+        name: images
+        widget: list
+        required: false
+        summary: "{{fields.caption}}"
+        hint: Only used by departments without their own window (SpaceCraft). Paintings and Games have their own sections above.
+        fields:
+          - { label: Photo, name: image, widget: image }
+          - { label: Caption, name: caption, widget: string }
+
+  # ---------------------------------------------------------------- pages & copy
+  - name: pages
+    label: Pages
+    files:
+      - name: about
+        label: About page
+        file: src/about.md
+        fields:
+          - { label: Layout, name: layout, widget: hidden, default: layouts/page.njk }
+          - { label: Address, name: permalink, widget: hidden, default: /about/ }
+          - { label: Tab title, name: title, widget: string }
+          - { label: Search description, name: description, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Opening line, name: lede, widget: text, required: false }
+          - { label: Show shop facts box, name: facts, widget: boolean, default: true }
+          - { label: Body, name: body, widget: markdown }
+      - name: aftercare
+        label: Aftercare page
+        file: src/aftercare.md
+        fields:
+          - { label: Layout, name: layout, widget: hidden, default: layouts/page.njk }
+          - { label: Address, name: permalink, widget: hidden, default: /aftercare/ }
+          - { label: Tab title, name: title, widget: string }
+          - { label: Search description, name: description, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Opening line, name: lede, widget: text, required: false }
+          - { label: Show shop facts box, name: facts, widget: boolean, default: false }
+          - { label: Body, name: body, widget: markdown }
+
+  - name: home
+    label: Home page
+    files:
+      - name: home
+        label: Home page sections
+        file: src/_data/home.json
+        format: json
+        fields:
+          - label: How-to-order box
+            name: howto
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Steps, name: steps, widget: list, field: { label: Step, name: step, widget: string }, hint: One line per step. Numbered automatically. }
+          - { label: Catalog heading, name: catalogHeading, widget: string }
+          - { label: Search box hint, name: searchHint, widget: string, hint: 'Shown after "Search 71 flash designs, "' }
+          - label: Custom work card
+            name: custom
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true }
+              - { label: Title, name: title, widget: string }
+              - { label: Button text, name: button, widget: string }
+          - label: Recent work strip
+            name: recent
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true }
+              - { label: Heading, name: heading, widget: string }
+              - { label: How many photos, name: count, widget: number, value_type: int, min: 0, max: 24 }
+
+  - name: booking
+    label: Booking page
+    files:
+      - name: booking
+        label: Booking page copy
+        file: src/_data/booking.json
+        format: json
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - label: The three routes
+            name: routes
+            widget: object
+            fields:
+              - label: Request form
+                name: request
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+                  - { label: Link text, name: link, widget: string }
+              - label: Square
+                name: square
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+                  - { label: Link text, name: link, widget: string }
+              - label: Instagram
+                name: instagram
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+                  - { label: Link text, name: link, widget: string }
+          - label: Request form
+            name: form
+            widget: object
+            fields:
+              - { label: '"What do you want?" placeholder', name: notesPlaceholder, widget: string }
+              - { label: Placement placeholder, name: placementPlaceholder, widget: string }
+              - { label: Size placeholder, name: sizePlaceholder, widget: string }
+              - { label: Days placeholder, name: daysPlaceholder, widget: string }
+              - { label: Reply-time note, name: replyNote, widget: string, hint: The deposit sentence is added after this automatically. }
+          - label: Thank-you page
+            name: thanks
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Text, name: text, widget: text }
+
+  # ---------------------------------------------------------------- look
+  - name: theme
+    label: Look & colors
+    files:
+      - name: theme
+        label: Colors, columns, collage
+        file: src/_data/theme.json
+        format: json
+        fields:
+          - label: Catalog (tattoo pages)
+            name: catalog
+            widget: object
+            fields:
+              - { label: Brand purple, name: stencil, widget: color, hint: Logo block, links, category highlight. }
+              - { label: Yellow, name: yellow, widget: color, hint: Search and Add buttons. }
+              - { label: Red, name: red, widget: color, hint: Booking button. }
+              - { label: Green, name: green, widget: color, hint: '"Ready" dot.' }
+              - { label: Ink, name: ink, widget: color, hint: Text and rules. }
+              - { label: Flash columns (desktop), name: columns, widget: number, value_type: int, min: 2, max: 6 }
+              - { label: Work-photo columns (desktop), name: workColumns, widget: number, value_type: int, min: 2, max: 8 }
+          - label: ParlorOS (other departments)
+            name: os
+            widget: object
+            fields:
+              - { label: Wallpaper, name: wall, widget: color }
+              - { label: Purple, name: stencil, widget: color }
+              - { label: Bone (window color), name: bone, widget: color }
+              - { label: Yellow, name: yellow, widget: color }
+              - { label: Red, name: red, widget: color }
+              - { label: Green, name: green, widget: color }
+          - label: Paintings collage
+            name: collage
+            widget: object
+            fields:
+              - { label: Tilt (degrees), name: tilt, widget: number, value_type: float, min: 0, max: 8, step: 0.5, hint: 0 = straight rows, 2 = a little crooked, 5 = messy desk. }
+              - { label: Tape strips, name: tape, widget: boolean, default: true }
+              - { label: Smallest piece width (px), name: columnWidth, widget: number, value_type: int, min: 100, max: 260, step: 10, hint: Smaller = more pieces per row. }
+
+  # ---------------------------------------------------------------- identity
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Identity, hours, pricing, links
+        file: src/_data/site.json
+        format: json
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Short name, name: shortName, widget: string }
+          - { label: Site title, name: title, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Catalog number, name: catalogNo, widget: string, hint: Shown in the top strip as CATALOG NO. }
+          - { label: Books status, name: booksStatus, widget: string, hint: e.g. Books open, Books closed, Waitlist. }
+          - { label: Hours (short), name: hoursShort, widget: string }
+          - { label: Hours (long), name: hoursLong, widget: string }
+          - label: Shop
+            name: shop
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: City, name: city, widget: string }
+              - { label: Area, name: area, widget: string }
+              - { label: Address, name: address, widget: string, required: false }
+              - { label: Map link, name: mapUrl, widget: string, required: false }
+          - { label: Instagram handle, name: instagram, widget: string }
+          - { label: Square booking link, name: squareBooking, widget: string }
+          - label: Pricing
+            name: pricing
+            widget: object
+            fields:
+              - { label: Shop minimum, name: shopMinimum, widget: number, value_type: int }
+              - { label: Deposit, name: deposit, widget: number, value_type: int }
+              - { label: Deposit note, name: depositNote, widget: text }
+              - { label: Pricing note, name: note, widget: text }
+          - { label: Domain, name: domain, widget: string, required: false }
+          - label: YouTube
+            name: youtube
+            widget: object
+            fields:
+              - { label: Channel name, name: name, widget: string }
+              - { label: Handle, name: handle, widget: string }
+              - { label: Channel ID, name: channelId, widget: string }
+          - { label: Twitch channel, name: twitch, widget: string }

@@ -26,7 +26,7 @@
     $$('.item[data-sku]').forEach(el => {
       const on = picks.some(p => p.sku === el.dataset.sku);
       const b = $('.add', el); if (!b) return;
-      b.classList.toggle('on', on); b.textContent = on ? 'Added ✓' : (el.dataset.sku === 'CU-000' ? 'Request custom' : 'Add to request');
+      b.classList.toggle('on', on); b.textContent = on ? 'Added ✓' : (el.dataset.sku === 'CU-000' ? (el.dataset.button || 'Request custom') : 'Add to request');
     });
   }
   function openDrawer() { if (drawer) { drawer.hidden = false; $('#d-name')?.focus({ preventScroll: true }); } }

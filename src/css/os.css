@@ -95,3 +95,23 @@ a{color:var(--stencil)}
 .txt.small{font-size:17px;margin-top:10px}
 @media (max-width:560px){.playlist{grid-template-columns:1fr;max-height:none}}
 #w-tube .body{max-height:min(84vh,900px)}
+
+/* paintings department: collage board + viewer */
+.win.wide .body{max-height:min(78vh,760px)}
+.board{background:#cfc7ae;background-image:radial-gradient(rgba(21,18,26,.12) 1px,transparent 1px);background-size:14px 14px;padding:18px 16px}
+.collage{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--colw,136px),1fr));grid-auto-rows:118px;grid-auto-flow:dense;gap:16px 14px}
+.piece{position:relative;border:0;padding:6px 6px 9px;background:#fff;box-shadow:3px 4px 0 rgba(21,18,26,.85);cursor:zoom-in;display:block;min-width:0;transition:transform .12s}
+.piece img{width:100%;height:100%;object-fit:cover;display:block;background:#fff}
+.piece.painting{background:var(--bone)}
+.piece.wide{grid-column:span 2;grid-row:span 2}
+.piece.tall{grid-row:span 2}
+.piece.big{grid-column:span 2;grid-row:span 2}
+.piece::before{content:"";display:var(--tape,block);position:absolute;top:-7px;left:50%;width:54px;height:16px;margin-left:-27px;background:rgba(240,194,46,.85);border:1px solid rgba(21,18,26,.25);transform:rotate(-3deg);z-index:2}
+.piece.r0{transform:rotate(calc(var(--tilt,2deg) * -1))}.piece.r1{transform:rotate(calc(var(--tilt,2deg) * .8))}.piece.r2{transform:rotate(calc(var(--tilt,2deg) * -.35))}.piece.r3{transform:rotate(calc(var(--tilt,2deg) * 1.1))}.piece.r4{transform:rotate(calc(var(--tilt,2deg) * .4))}
+.piece.r1::before,.piece.r3::before{transform:rotate(4deg);left:30%}
+.piece:hover,.piece:focus-visible{transform:rotate(0) scale(1.05);z-index:3;box-shadow:5px 6px 0 rgba(21,18,26,.85)}
+.view{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.view img{max-height:min(62vh,640px);width:auto;max-width:100%;border:2px solid var(--ink);background:#fff}
+.view .txt{margin:0}
+@media (max-width:760px){.collage{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:110px;gap:14px 12px}.board{padding:16px 12px}}
+@media (prefers-reduced-motion:reduce){.piece{transition:none}}

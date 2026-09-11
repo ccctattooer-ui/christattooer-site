@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Silkscreen&display=swap">
 <link rel="stylesheet" href="/css/catalog.css">
+<style>:root{--stencil:{{ theme.catalog.stencil }};--yellow:{{ theme.catalog.yellow }};--red:{{ theme.catalog.red }};--green:{{ theme.catalog.green }};--ink:{{ theme.catalog.ink }}}@media (min-width:1001px){.grid{grid-template-columns:repeat({{ theme.catalog.columns }},minmax(0,1fr))}.wgrid{grid-template-columns:repeat({{ theme.catalog.workColumns }},minmax(0,1fr))}}</style>
 </head>
 <body>
 <div class="topline">
@@ -20,7 +21,7 @@
 <header class="hdr">
   <a class="logo" href="/"><span class="sq">CT</span><span><b>{{ site.name | upper }}</b><small>Tattooer · {{ site.shop.city }} · @{{ site.instagram }}</small></span></a>
   <form class="search" role="search" action="/" onsubmit="return false">
-    <input id="q" type="search" placeholder="Search {{ flash | length }} flash designs, e.g. skull, rose, panther" aria-label="Search flash">
+    <input id="q" type="search" placeholder="Search {{ flash | length }} flash designs, {{ home.searchHint }}" aria-label="Search flash">
     <button type="button" id="qgo">Search</button>
   </form>
   <button class="req" id="reqbtn" type="button" aria-controls="drawer">Booking request<span class="n" id="cnt">0</span></button>

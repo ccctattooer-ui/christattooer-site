@@ -4,22 +4,22 @@ title: Book
 description: Three ways to book a tattoo with Chris at Tattoo Peace in Vancouver, WA.
 ---
 <main class="main" style="max-width:1240px;margin:0 auto">
-  <div class="bar"><h1>Book a tattoo</h1><span class="cnt">{{ site.hoursShort }} · other days by request</span></div>
+  <div class="bar"><h1>{{ booking.heading }}</h1><span class="cnt">{{ site.hoursShort }} · other days by request</span></div>
   <div class="routes">
     <div class="route primary">
-      <h2>Send a request</h2>
-      <p>Best for flash picks and custom ideas. Tell me what and where, attach references, and I'll reply with a quote and dates.</p>
-      <a class="go" href="#request">Fill out the request form ↓</a>
+      <h2>{{ booking.routes.request.title }}</h2>
+      <p>{{ booking.routes.request.text }}</p>
+      <a class="go" href="#request">{{ booking.routes.request.link }}</a>
     </div>
     <div class="route">
-      <h2>Book on Square</h2>
-      <p>Already know what you want and when? Grab a slot straight from the calendar. The deposit is paid there.</p>
-      <a class="go" href="{{ site.squareBooking }}">Open Square booking →</a>
+      <h2>{{ booking.routes.square.title }}</h2>
+      <p>{{ booking.routes.square.text }}</p>
+      <a class="go" href="{{ site.squareBooking }}">{{ booking.routes.square.link }}</a>
     </div>
     <div class="route">
-      <h2>DM on Instagram</h2>
-      <p>Quick questions, walk-in checks, or if forms aren't your thing. DMs are always welcome.</p>
-      <a class="go" href="https://instagram.com/{{ site.instagram }}">Message @{{ site.instagram }} →</a>
+      <h2>{{ booking.routes.instagram.title }}</h2>
+      <p>{{ booking.routes.instagram.text }}</p>
+      <a class="go" href="https://instagram.com/{{ site.instagram }}">{{ booking.routes.instagram.link }}</a>
     </div>
   </div>
 
@@ -35,17 +35,17 @@ description: Three ways to book a tattoo with Chris at Tattoo Peace in Vancouver
           <div><label for="b-name">Name</label><input id="b-name" name="name" required autocomplete="name"></div>
           <div><label for="b-contact">Email or Instagram</label><input id="b-contact" name="contact" required></div>
         </div>
-        <div><label for="b-notes">What do you want?</label><textarea id="b-notes" name="notes" placeholder="Flash you picked, or describe your idea" required></textarea></div>
+        <div><label for="b-notes">What do you want?</label><textarea id="b-notes" name="notes" placeholder="{{ booking.form.notesPlaceholder }}" required></textarea></div>
         <div class="two">
-          <div><label for="b-place">Placement</label><input id="b-place" name="placement" placeholder="outer forearm"></div>
-          <div><label for="b-size">Size</label><input id="b-size" name="size" placeholder="about 4 in"></div>
+          <div><label for="b-place">Placement</label><input id="b-place" name="placement" placeholder="{{ booking.form.placementPlaceholder }}"></div>
+          <div><label for="b-size">Size</label><input id="b-size" name="size" placeholder="{{ booking.form.sizePlaceholder }}"></div>
         </div>
         <div class="two">
           <div><label for="b-ref">Reference photos</label><input id="b-ref" name="reference" type="file" multiple accept="image/*"></div>
-          <div><label for="b-when">Days that work</label><input id="b-when" name="days" placeholder="Mondays, or any Tuesday in November"></div>
+          <div><label for="b-when">Days that work</label><input id="b-when" name="days" placeholder="{{ booking.form.daysPlaceholder }}"></div>
         </div>
         <button class="send" type="submit">Send request</button>
-        <p class="alt">I usually reply within a couple of days. A {{ site.pricing.deposit | money }} deposit locks the appointment. {{ site.pricing.depositNote }}</p>
+        <p class="alt">{{ booking.form.replyNote }} A {{ site.pricing.deposit | money }} deposit locks the appointment. {{ site.pricing.depositNote }}</p>
       </form>
     </div>
   </div>

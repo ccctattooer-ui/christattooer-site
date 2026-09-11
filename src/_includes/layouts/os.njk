@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@400;500;700&family=VT323&display=swap">
 <link rel="stylesheet" href="/css/os.css">
+<style>:root{--wall:{{ theme.os.wall }};--stencil:{{ theme.os.stencil }};--bone:{{ theme.os.bone }};--yellow:{{ theme.os.yellow }};--red:{{ theme.os.red }};--green:{{ theme.os.green }};--tilt:{{ theme.collage.tilt }}deg;--tape:{{ "block" if theme.collage.tape else "none" }};--colw:{{ theme.collage.columnWidth }}px}</style>
 </head>
 <body>
 <div class="wallpaper" aria-hidden="true"></div>
@@ -22,7 +23,7 @@
 
 <nav class="icons" aria-label="Departments">
   {%- for d in departments %}
-  <a class="icon{% if d.slug == dept.slug %} on{% endif %}" href="/{{ d.slug }}/"><div class="box"><img src="{{ d.icon }}" alt=""></div><span>{{ d.name }}</span></a>
+  <a class="icon{% if d.slug == dept.slug %} on{% endif %}" href="/{{ d.slug }}/"><div class="box"><img src="{{ d.iconSrc }}" alt=""></div><span>{{ d.name }}</span></a>
   {%- endfor %}
   <a class="icon" href="/"><div class="box"><img src="/assets/flash/web/flash-53.webp" alt=""></div><span>Tattoos</span></a>
   <a class="icon hot" href="/book/"><div class="box"><img src="/assets/flash/web/flash-28.webp" alt=""></div><span>BOOK NOW</span></a>

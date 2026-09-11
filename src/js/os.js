@@ -28,6 +28,19 @@
   clock(); setInterval(clock, 30000);
   if (mobile()) wins.slice(1).forEach(w => w.hidden = true);
   if (wins.length) focusWin(wins[0]);
+  window.ParlorOS = { openWin, closeWin };
+})();
+
+// Paintings department: click a collage piece to open it in the viewer window.
+(function () {
+  const v = document.getElementById('w-view'); if (!v) return;
+  const img = v.querySelector('#view-img'), cap = v.querySelector('#view-cap'), name = v.querySelector('#view-name');
+  document.querySelectorAll('.piece').forEach(b => b.addEventListener('click', () => {
+    img.src = b.dataset.full; img.alt = b.dataset.title;
+    name.textContent = (b.dataset.title || 'painting').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '.jpg';
+    cap.textContent = b.dataset.title + ' · ' + b.dataset.kind;
+    window.ParlorOS.openWin('w-view');
+  }));
 })();
 
 // Games department: playlist + game filter for the YouTube window.

@@ -1,0 +1,11 @@
+{
+  "sku": "FL-052",
+  "name": "Gorilla",
+  "category": "Animals",
+  "image": "/assets/flash/web/flash-52.webp",
+  "size": "3 in",
+  "hours": 2,
+  "price": 200,
+  "available": true,
+  "notes": ""
+}

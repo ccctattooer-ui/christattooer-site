@@ -1,4 +1,9 @@
 export default function (eleventyConfig) {
+  // /admin/ is the Sveltia CMS app: copied as-is, never rendered as a template.
+  eleventyConfig.ignores.add("src/admin/**");
+  eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
+  eleventyConfig.addPassthroughCopy({ "assets/paintings": "assets/paintings" });
+  eleventyConfig.addPassthroughCopy({ "assets/uploads": "assets/uploads" });
   // Web-ready images only. Raw photo folders (Tattoo_Images etc.) never ship.
   eleventyConfig.addPassthroughCopy({ "assets/tattoos": "assets/tattoos" });
   eleventyConfig.addPassthroughCopy({ "assets/flash/web": "assets/flash/web" });

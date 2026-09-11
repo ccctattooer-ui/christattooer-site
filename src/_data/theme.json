@@ -1,0 +1,24 @@
+{
+  "catalog": {
+    "stencil": "#4B2E9C",
+    "yellow": "#FFD21F",
+    "red": "#C8102E",
+    "green": "#1E8E3E",
+    "ink": "#141414",
+    "columns": 4,
+    "workColumns": 5
+  },
+  "os": {
+    "wall": "#3B2380",
+    "stencil": "#4B2E9C",
+    "bone": "#EFEAD9",
+    "yellow": "#F0C22E",
+    "red": "#D3322A",
+    "green": "#3BAA6E"
+  },
+  "collage": {
+    "tilt": 2,
+    "tape": true,
+    "columnWidth": 136
+  }
+}

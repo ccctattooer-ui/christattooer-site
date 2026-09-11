@@ -1,0 +1,11 @@
+{
+  "sku": "FL-060",
+  "name": "Skyline",
+  "category": "Symbols",
+  "image": "/assets/flash/web/flash-60.webp",
+  "size": "3 in",
+  "hours": 1,
+  "price": 120,
+  "available": true,
+  "notes": ""
+}

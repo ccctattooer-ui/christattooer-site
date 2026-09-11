@@ -1,6 +1,35 @@
 # Chris Tattooer — site
 
-Static site built with [Eleventy](https://www.11ty.dev/). Everything a visitor sees is generated from plain files you can edit. No database, no admin login: change a file, rebuild, deploy.
+Static site built with [Eleventy](https://www.11ty.dev/), hosted on Netlify at https://christattooer.com. Everything a visitor sees is generated from plain files in this repo. Edit them in the admin at **/admin/** (username + password) or straight in the files; either way the change is a commit and Netlify rebuilds the site.
+
+## Editing in the admin
+
+Go to https://christattooer.com/admin/ and log in. Sections:
+
+| Admin section | What it changes | Where it lives |
+| --- | --- | --- |
+| Flash designs | every design: name, category, drawing, size, price, hours, Ready/Claimed, notes. "New" uploads a new design. | `content/flash/FL-###.json` + `assets/flash/web/` |
+| Healed & recent work | photos on /work/, titles, featured, hidden | `content/work/*.json` + `assets/tattoos/` |
+| Paintings | the collage board in the Paintings department: title, photo, kind (flash sheet / painting), order, hidden | `content/paintings/*.json` + `assets/paintings/` |
+| Game montages | YouTube videos on /games/ | `content/videos/*.json` |
+| Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
+| Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
+| Home page | how-to box, headings, custom card, recent-work strip, on/off switches | `src/_data/home.json` |
+| Booking page | the three routes, form placeholders, thank-you page | `src/_data/booking.json` |
+| Look & colors | brand colors for both looks, grid columns, collage tilt / tape / piece size | `src/_data/theme.json` |
+| Site settings | name, hours, books status, shop, Instagram, Square link, minimum, deposit | `src/_data/site.json` |
+
+Saving in the admin commits to GitHub; the live site updates about a minute later.
+
+Uploads are shrunk in the browser to 2000px WebP before they are committed. Thumbnails for every photo are generated at build time (`@11ty/eleventy-img`), so there are no thumbs folders to maintain.
+
+## How the admin login works
+
+The admin is [Sveltia CMS](https://sveltiacms.app/). It talks to the GitHub repo, but you never see GitHub: `netlify/functions/admin-auth.mjs` shows a username/password form and, on success, hands the CMS a repo-scoped GitHub token. Three Netlify environment variables make it work:
+
+- `ADMIN_USER` — the username
+- `ADMIN_PASSWORD_SHA256` — SHA-256 of the password (`python -c "import hashlib;print(hashlib.sha256(b'...').hexdigest())"`)
+- `GITHUB_TOKEN` — a fine-grained GitHub token with Contents read/write on this repo only
 
 ## Run it locally
 
@@ -10,58 +39,38 @@ npm run dev        # http://localhost:8080, rebuilds as you edit
 npm run build      # writes the finished site to _site/
 ```
 
-## Where to edit things
+## Adding photos by hand (instead of the admin)
 
-| You want to change… | Edit this file |
-| --- | --- |
-| Name, shop, hours, Instagram, Square link, shop minimum, deposit | `src/_data/site.json` |
-| Flash: name, category, size, est. time, price, available/claimed, notes | `src/_data/flash.json` (one entry per design, `FL-001` … `FL-071`) |
-| Healed & recent work: title, placement, hours, style, notes, featured, hidden | `src/_data/work.json` (one entry per photo; `featured: true` puts it on the home page and stars it on /work/) |
-| Aftercare sheet | `src/aftercare.md` (plain Markdown) |
-| Bio / about page | `src/about.md` |
-| Other departments (Paintings, Games, Store, SpaceCraft): blurb, status, photos | `src/_data/departments.json` |
-| Booking page copy and the three booking routes | `src/book.njk` |
-| Catalog look | `src/css/catalog.css` · ParlorOS look: `src/css/os.css` |
-
-Prices and hours are placeholders until you change them. `price` is a number (no `$`), `size` is text shown as-is (`"3 in"`), `hours` is a number (`1.5`); leave `hours` or `size` empty to hide that line.
-
-### Adding photos
-
-1. Drop new phone photos (HEIC or JPG) into `Tattoo_Images/`, plant photos into `Plant_Breeding_Images/`, new scans into `Line_Drawing_Scans/`.
-2. Run `npm run images`. It regenerates `assets/tattoos/` (1600px + 480px thumbs) and `assets/plants/`.
-3. New tattoo photos get the next `tattoo-NNN` number. Add an entry for each in `src/_data/work.json` if you want a title or to feature it (untitled photos still show on /work/).
-
-The raw photo folders are ignored by git on purpose; only the web-sized `assets/` ship.
+1. Drop phone photos (HEIC or JPG) into `Tattoo_Images/`, paintings into `Paintings/`, plant photos into `Plant_Breeding_Images/`, scans into `Line_Drawing_Scans/`.
+2. Run `npm run images` (tattoos + plants) or `python tools/convert_paintings.py` (paintings). They write web-sized JPEGs into `assets/`.
+3. Add a JSON file per new photo in the matching `content/` folder (copy an existing one). The raw folders are ignored by git; only `assets/` ships.
 
 ## Booking
 
 Three routes, all on `/book/`:
 
-- **Request form** — posts to Netlify Forms (`name="tattoo-request"`). In the Netlify dashboard turn on email notifications for that form and they land in your inbox, attachments included.
-- **Square** — the link in `site.json` → `squareBooking`.
-- **Instagram DMs** — `site.json` → `instagram`.
+- **Request form** — posts to Netlify Forms (`name="tattoo-request"`); notifications go to your email.
+- **Square** — the link in Site settings.
+- **Instagram DMs**.
 
 Flash "Add to request" picks are remembered in the visitor's browser and included in the form as a `picks` field.
-
-## Deploy
-
-Push the repo to GitHub, connect it to Netlify (free tier), and it builds with `netlify.toml`. Add your `.net` domain under Site settings → Domain management; Netlify issues the HTTPS certificate automatically.
 
 ## Layout
 
 ```
+content/            one JSON file per flash design, work photo, painting, video, department
 src/
-  _data/          site.json, flash.json, work.json, departments.json
+  _data/            site.json, home.json, booking.json, theme.json + loaders (flash.js, work.js, …)
   _includes/layouts/
-    catalog.njk   white catalog frame (tattoo pages)
-    os.njk        ParlorOS desktop frame (other departments)
-  index.njk       flash catalog (home)
-  work.njk        all photos + lightbox
-  book.njk        booking
-  aftercare.md, about.md
-  department.njk  one ParlorOS page per entry in departments.json
-  css/ js/
-assets/           web-ready images (generated by tools/)
-tools/            image pipeline + mockup builder
-mockups/          the three original design-direction mockups
+    catalog.njk     white catalog frame (tattoo pages)
+    os.njk          ParlorOS desktop frame (other departments)
+    page.njk        About / Aftercare wrapper
+  admin/            Sveltia CMS (index.html + config.yml)
+  index.njk         flash catalog (home)
+  work.njk          all photos + lightbox
+  book.njk          booking
+  department.njk    one page per department (paintings collage, games, store, spacecraft)
+netlify/functions/  admin-auth.mjs (admin login)
+assets/             web-ready images that ship with the site
+tools/              image converters
 ```

@@ -1,0 +1,31 @@
+{
+  "heading": "Book a tattoo",
+  "routes": {
+    "request": {
+      "title": "Send a request",
+      "text": "Best for flash picks and custom ideas. Tell me what and where, attach references, and I'll reply with a quote and dates.",
+      "link": "Fill out the request form ↓"
+    },
+    "square": {
+      "title": "Book on Square",
+      "text": "Already know what you want and when? Grab a slot straight from the calendar. The deposit is paid there.",
+      "link": "Open Square booking →"
+    },
+    "instagram": {
+      "title": "DM on Instagram",
+      "text": "Quick questions, walk-in checks, or if forms aren't your thing. DMs are always welcome.",
+      "link": "Message me →"
+    }
+  },
+  "form": {
+    "notesPlaceholder": "Flash you picked, or describe your idea",
+    "placementPlaceholder": "outer forearm",
+    "sizePlaceholder": "about 4 in",
+    "daysPlaceholder": "Mondays, or any Tuesday in November",
+    "replyNote": "I usually reply within a couple of days."
+  },
+  "thanks": {
+    "heading": "Got it.",
+    "text": "Your request is in. I'll reply with a quote and available dates, usually within a couple of days."
+  }
+}

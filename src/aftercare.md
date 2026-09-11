@@ -1,15 +1,12 @@
 ---
-layout: layouts/catalog.njk
+layout: layouts/page.njk
 title: Aftercare
 description: How to take care of a fresh tattoo from Chris at Tattoo Peace.
 permalink: /aftercare/
+heading: Aftercare
+lede: "A tattoo is a wound for the first couple of weeks and a piece of art forever. Here's how to get it from one to the other. Placeholder text, edit it in the admin to make it yours."
+facts: false
 ---
-<main class="main prose" style="margin:0 auto">
-
-# Aftercare
-
-<p class="lede">A tattoo is a wound for the first couple of weeks and a piece of art forever. Here's how to get it from one to the other. Placeholder text: edit <code>src/aftercare.md</code> to make this yours.</p>
-
 ## The first night
 
 1. Leave the bandage on as long as I told you at the shop. If it's a clear second-skin bandage, that's usually 3 to 5 days.
@@ -37,5 +34,3 @@ Spreading redness, heat, pus, or a fever. If you're worried, message me, and if 
 Once it's fully healed, if something needs a touch-up, send me a photo. Small fixes on my work are free within the first few months.
 
 > Questions any time: [DM @christattooer](https://instagram.com/christattooer).
-
-</main>

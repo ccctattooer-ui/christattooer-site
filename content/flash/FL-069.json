@@ -1,0 +1,11 @@
+{
+  "sku": "FL-069",
+  "name": "Lion",
+  "category": "Animals",
+  "image": "/assets/flash/web/flash-69.webp",
+  "size": "3 in",
+  "hours": 2,
+  "price": 200,
+  "available": true,
+  "notes": ""
+}

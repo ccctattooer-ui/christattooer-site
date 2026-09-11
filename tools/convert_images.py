@@ -1,4 +1,4 @@
-"""Convert Tattoo_Images (HEIC/JPG) to web JPEGs in assets/tattoos (+thumbs), skipping any file whose
+"""Convert Tattoo_Images (HEIC/JPG) to web JPEGs in assets/tattoos (thumbnails are built by Eleventy at build time), skipping any file whose
 content also exists in Plant_Breeding_Images. Also converts plant photos to assets/plants.
 Prints an old->new name mapping when a previous _manifest.txt exists.
 """
@@ -12,9 +12,8 @@ def md5(p):
         for chunk in iter(lambda: f.read(1 << 20), b""): h.update(chunk)
     return h.hexdigest()
 def convert(src_dir, out_dir, prefix, skip_hashes=()):
-    thumbs = os.path.join(out_dir, "thumbs")
     if os.path.isdir(out_dir): shutil.rmtree(out_dir)
-    os.makedirs(thumbs)
+    os.makedirs(out_dir)
     files = sorted(f for f in os.listdir(src_dir) if f.lower().endswith((".heic", ".jpg", ".jpeg", ".png")))
     rows, skipped, n = [], [], 0
     for f in files:
@@ -24,8 +23,6 @@ def convert(src_dir, out_dir, prefix, skip_hashes=()):
         im = ImageOps.exif_transpose(Image.open(p)).convert("RGB")
         full = im.copy(); full.thumbnail((1600, 1600), Image.LANCZOS)
         full.save(os.path.join(out_dir, name), "JPEG", quality=85, optimize=True, progressive=True)
-        th = im.copy(); th.thumbnail((480, 480), Image.LANCZOS)
-        th.save(os.path.join(thumbs, name), "JPEG", quality=80, optimize=True)
         rows.append((name, f, f"{im.size[0]}x{im.size[1]}"))
     with open(os.path.join(out_dir, "_manifest.txt"), "w") as m:
         for r in rows: m.write("\t".join(r) + "\n")
