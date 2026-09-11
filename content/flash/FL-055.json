@@ -1,11 +1,11 @@
 {
   "sku": "FL-055",
-  "name": "Vine",
+  "name": "wicked rose",
   "category": "Flowers & plants",
   "image": "/assets/flash/web/flash-55.webp",
-  "size": "3 in",
-  "hours": 1.5,
-  "price": 160,
+  "size": "6 in",
+  "hours": 2,
+  "price": 300,
   "available": true,
   "notes": ""
 }
