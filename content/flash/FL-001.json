@@ -1,11 +1,11 @@
 {
   "sku": "FL-001",
-  "name": "Dotted head",
+  "name": "alien man head",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-01.webp",
-  "size": "3 in",
+  "size": "4",
+  "price": 200,
   "hours": 1.5,
-  "price": 160,
   "available": true,
   "notes": ""
 }
