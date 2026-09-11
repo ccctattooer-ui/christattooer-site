@@ -101,6 +101,7 @@ collections:
             name: pieces
             widget: list
             collapsed: true
+            thumbnail: image
             summary: "{{fields.title}} · {{fields.kind}}"
             fields:
               - { label: Title, name: title, widget: string }
