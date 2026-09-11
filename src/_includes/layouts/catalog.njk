@@ -52,7 +52,7 @@
 <aside class="drawer" id="drawer" aria-label="Booking request" hidden>
   <div class="pane-title"><button class="x" id="closed" type="button" aria-label="Close">×</button><b>book.exe</b></div>
   <div class="list" id="list"><div class="empty">Nothing added yet. Add flash from the catalog, or choose custom work.</div></div>
-  <form name="tattoo-request" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+  <form name="tattoo-request" method="POST" action="/api/book" enctype="multipart/form-data">
     <input type="hidden" name="form-name" value="tattoo-request">
     <input type="hidden" name="picks" id="picks">
     <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>

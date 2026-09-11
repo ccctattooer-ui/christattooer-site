@@ -27,7 +27,7 @@ description: Three ways to book a tattoo with Chris at Tattoo Peace in Vancouver
     <div class="pane-title"><span class="x" aria-hidden="true">×</span><b>request.form</b></div>
     <div class="pane-body">
       <p class="fine" style="font-size:14px;margin:0 0 12px"><b>Picked from the catalog</b><span id="picks-summary"></span></p>
-      <form class="bookform" name="tattoo-request" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+      <form class="bookform" name="tattoo-request" method="POST" action="/api/book" enctype="multipart/form-data">
         <input type="hidden" name="form-name" value="tattoo-request">
         <input type="hidden" name="picks" id="b-picks">
         <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>

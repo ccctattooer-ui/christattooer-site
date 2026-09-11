@@ -1,7 +1,12 @@
-// Username/password login for the /admin/ CMS (Sveltia). Speaks the same popup protocol as Netlify's
-// GitHub OAuth so the CMS never sees GitHub: on success it hands the CMS a repo-scoped GitHub token
-// stored in the GITHUB_TOKEN environment variable. Credentials live in ADMIN_USER + ADMIN_PASSWORD_SHA256.
-import { createHash, timingSafeEqual } from "node:crypto";
+// Username/password login for the /admin/ CMS (Sveltia), as a Cloudflare Pages Function at /admin/auth.
+// Speaks the same popup protocol as Netlify's GitHub OAuth so the CMS never sees GitHub: on success it
+// hands the CMS the repo-scoped GitHub token in the GITHUB_TOKEN secret.
+// Secrets: ADMIN_USER, ADMIN_PASSWORD_SHA256 (hex sha256 of the password), GITHUB_TOKEN.
+
+const enc = new TextEncoder();
+const sha256 = async (s) => new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(s)));
+const hex = (h) => new Uint8Array((h.match(/../g) || []).map((x) => parseInt(x, 16)));
+const same = (a, b) => { if (a.length !== b.length) return false; let d = 0; for (let i = 0; i < a.length; i++) d |= a[i] ^ b[i]; return d === 0; };
 
 const page = (body, status = 200) =>
   new Response(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -24,18 +29,15 @@ const form = (err = "") => page(`<form method="post">
   <button type="submit">Log in</button>
 </form>`, err ? 401 : 200);
 
-const sha256 = (s) => createHash("sha256").update(s, "utf8").digest();
-const same = (a, b) => a.length === b.length && timingSafeEqual(a, b);
-
-export default async (req) => {
-  const { ADMIN_USER, ADMIN_PASSWORD_SHA256, GITHUB_TOKEN } = process.env;
+export async function onRequest({ request, env }) {
+  const { ADMIN_USER, ADMIN_PASSWORD_SHA256, GITHUB_TOKEN } = env;
   if (!ADMIN_USER || !ADMIN_PASSWORD_SHA256 || !GITHUB_TOKEN) {
-    return page(`<form><h1>Admin not configured</h1><p>Set ADMIN_USER, ADMIN_PASSWORD_SHA256 and GITHUB_TOKEN in the Netlify environment.</p></form>`, 500);
+    return page(`<form><h1>Admin not configured</h1><p>Set ADMIN_USER, ADMIN_PASSWORD_SHA256 and GITHUB_TOKEN in the Cloudflare Pages project.</p></form>`, 500);
   }
-  if (req.method !== "POST") return form();
-  const data = await req.formData();
+  if (request.method !== "POST") return form();
+  const data = await request.formData();
   const user = String(data.get("username") || ""), pass = String(data.get("password") || "");
-  const ok = same(sha256(user), sha256(ADMIN_USER)) && same(sha256(pass), Buffer.from(ADMIN_PASSWORD_SHA256, "hex"));
+  const ok = same(await sha256(user), await sha256(ADMIN_USER)) && same(await sha256(pass), hex(ADMIN_PASSWORD_SHA256));
   if (!ok) { await new Promise((r) => setTimeout(r, 1500)); return form("Wrong username or password."); }
   const payload = JSON.stringify({ provider: "github", token: GITHUB_TOKEN });
   return page(`<form><h1>Logged in</h1><p>Handing you back to the admin…</p></form>
@@ -47,6 +49,4 @@ export default async (req) => {
     if (window.opener) window.opener.postMessage("authorizing:github", "*"); else document.querySelector("p").textContent = "Open this from the admin login button.";
   })();
 </script>`);
-};
-
-export const config = { path: "/admin/auth" };
+}

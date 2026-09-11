@@ -1,5 +1,5 @@
 # Sveltia CMS config for christattooer.com. Log in at /admin/ (username + password).
-# Every save is a commit to the GitHub repo; Netlify rebuilds the site about a minute later.
+# Every save is a commit to the GitHub repo; Cloudflare Pages rebuilds the site a minute or two later.
 backend:
   name: github
   repo: ccctattooer-ui/christattooer-site
