@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Price sheet · Chris Tattooer admin</title>
+<link rel="icon" href="/assets/favicon.png">
+<style>
+  :root{--ink:#15121A;--bone:#EFEAD9;--stencil:#4B2E9C;--yellow:#F0C22E;--red:#D3322A;--green:#3BAA6E;--rule:#d9d2bd}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font:15px/1.4 system-ui,sans-serif;padding-inline:16px;padding-block:0 40px}
+  header{position:sticky;top:0;background:#fff;border-bottom:3px solid var(--ink);padding:12px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;z-index:5}
+  header h1{font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 auto 0 0}
+  header a{color:var(--stencil);font-size:13px}
+  button{font:inherit;font-weight:700;padding:8px 14px;border:2px solid var(--ink);background:var(--bone);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+  button:disabled{opacity:.4;cursor:default;box-shadow:none}
+  button.primary{background:var(--stencil);color:#fff}
+  #status{font-size:13px;min-width:180px}
+  #status.ok{color:var(--green)} #status.err{color:var(--red)}
+  input[type=search]{font:inherit;padding:7px 10px;border:2px solid var(--ink);width:min(260px,100%)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:14px}
+  .row{border:2px solid var(--ink);background:#fff;padding:8px;display:grid;grid-template-columns:72px 1fr;gap:8px 10px;align-items:start}
+  .row.changed{background:#fff7d6;border-color:var(--stencil)}
+  .row.saved{background:#e9f7ee}
+  .row.hidden{display:none}
+  .row img{width:72px;height:72px;object-fit:contain;border:1px solid var(--rule);background:#fff;grid-row:span 3}
+  .row .name{font-weight:700;line-height:1.2}
+  .row .name small{display:block;font-weight:400;font-family:ui-monospace,monospace;font-size:11px;color:#5b5346}
+  .fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .fields label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#5b5346;display:block}
+  .fields input{width:100%;font:inherit;padding:5px 6px;border:2px solid var(--ink)}
+  .fields .money{position:relative}.fields .money::before{content:"$";position:absolute;left:7px;top:26px;font-size:13px}
+  .fields .money input{padding-left:18px}
+  .actions{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .actions label{font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer}
+  .actions button{padding:5px 12px;font-size:13px}
+  form.login{max-width:360px;margin:60px auto;background:var(--bone);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:22px 24px}
+  form.login label{display:block;font-size:13px;font-weight:700;margin:10px 0 4px}
+  form.login input{width:100%;font:inherit;padding:9px 10px;border:2px solid var(--ink);background:#fff}
+  form.login button{margin-top:16px;width:100%}
+  .err{background:var(--red);color:#fff;padding:8px 10px;font-size:13px;margin-bottom:8px}
+  @media (max-width:420px){.fields{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const app = $('#app');
+  const KEY = 'ct-admin-basic';
+  let auth = ''; try { auth = sessionStorage.getItem(KEY) || ''; } catch (e) {}
+  let rows = [], dirty = new Set();
+
+  function login(err) {
+    app.innerHTML = `<form class="login"><h1 style="font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px">Price sheet · Log in</h1>${err ? `<div class="err">${err}</div>` : ''}
+      <label for="u">Username</label><input id="u" autocomplete="username" required autofocus>
+      <label for="p">Password</label><input id="p" type="password" autocomplete="current-password" required>
+      <button class="primary" type="submit">Log in</button></form>`;
+    $('form').onsubmit = (e) => { e.preventDefault(); auth = btoa($('#u').value + ':' + $('#p').value); try { sessionStorage.setItem(KEY, auth); } catch (x) {} load(); };
+  }
+
+  async function load() {
+    app.innerHTML = '<p style="padding:40px 0">Loading designs…</p>';
+    const r = await fetch('/admin/data/flash.json', { cache: 'no-store' });
+    rows = await r.json();
+    render();
+  }
+
+  function render() {
+    app.innerHTML = `<header><h1>Price sheet · ${rows.length} designs</h1>
+      <input type="search" id="q" placeholder="Filter by name, SKU, category">
+      <span id="status"></span>
+      <button class="primary" id="saveall" disabled>Save all changes</button>
+      <a href="/admin/">← Full admin</a></header>
+      <div class="grid">${rows.map((f) => `
+      <div class="row" data-sku="${f.sku}" data-hay="${(f.sku + ' ' + f.name + ' ' + f.category).toLowerCase()}">
+        <img src="${f.image}" alt="">
+        <div class="name">${f.name}<small>${f.sku} · ${f.category}</small></div>
+        <div class="fields">
+          <div><label>Size</label><input name="size" value="${f.size ?? ''}" placeholder="3 in"></div>
+          <div><label>Hours</label><input name="hours" type="number" step="0.5" min="0" value="${f.hours ?? ''}"></div>
+          <div class="money"><label>Price</label><input name="price" type="number" step="5" min="0" value="${f.price ?? ''}"></div>
+        </div>
+        <div class="actions"><label><input type="checkbox" name="available" ${f.available ? 'checked' : ''}> Ready</label><button class="save" disabled>Save</button></div>
+      </div>`).join('')}</div>`;
+    $('#q').oninput = () => { const t = $('#q').value.trim().toLowerCase(); document.querySelectorAll('.row').forEach((el) => el.classList.toggle('hidden', !!t && !el.dataset.hay.includes(t))); };
+    bind();
+    $('#saveall').onclick = () => save([...document.querySelectorAll('.row.changed')]);
+  }
+  function current(el) { return { sku: el.dataset.sku, size: $('[name=size]', el).value.trim(), hours: $('[name=hours]', el).value, price: $('[name=price]', el).value, available: $('[name=available]', el).checked }; }
+  function refreshAll() { const b = $('#saveall'); b.disabled = !dirty.size; b.textContent = dirty.size ? `Save all changes (${dirty.size})` : 'Save all changes'; }
+  function status(msg, cls) { const s = $('#status'); s.textContent = msg; s.className = cls || ''; }
+
+  async function save(els) {
+    if (!els.length) return;
+    const changes = els.map(current);
+    status('Saving…'); els.forEach((el) => $('.save', el).disabled = true); $('#saveall').disabled = true;
+    try {
+      const r = await fetch('/admin/api/flash', { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Basic ' + auth }, body: JSON.stringify({ changes }) });
+      const out = await r.json();
+      if (r.status === 401) { try { sessionStorage.removeItem(KEY); } catch (e) {} return login(out.error); }
+      if (!r.ok) throw new Error(out.error || r.statusText);
+      els.forEach((el) => { el.classList.remove('changed'); el.classList.add('saved'); dirty.delete(el.dataset.sku); });
+      // the saved values become the new baseline: swap in fresh copies of the rows and re-bind them
+      els.forEach((el) => {
+        el.querySelectorAll('input').forEach((i) => i.type === 'checkbox' ? i.toggleAttribute('checked', i.checked) : i.setAttribute('value', i.value));
+        const n = el.cloneNode(true); delete n.dataset.bound; el.replaceWith(n);
+      });
+      bind();
+      status(out.committed ? `Saved ${out.committed}. Live on the site in about a minute.` : out.message, 'ok');
+    } catch (e) {
+      status('Save failed: ' + e.message, 'err'); els.forEach((el) => $('.save', el).disabled = false);
+    }
+    refreshAll();
+  }
+  // attach change tracking to every unbound row; the values at bind time are the baseline
+  function bind() {
+    document.querySelectorAll('.row').forEach((el) => {
+      if (el.dataset.bound === '1') return; el.dataset.bound = '1';
+      const orig = current(el);
+      el.addEventListener('input', () => {
+        const changed = JSON.stringify(current(el)) !== JSON.stringify(orig);
+        el.classList.toggle('changed', changed); el.classList.remove('saved');
+        changed ? dirty.add(el.dataset.sku) : dirty.delete(el.dataset.sku);
+        $('.save', el).disabled = !changed; refreshAll();
+      });
+      $('.save', el).onclick = () => save([el]);
+    });
+  }
+  window.addEventListener('beforeunload', (e) => { if (dirty.size) { e.preventDefault(); e.returnValue = ''; } });
+
+  auth ? load() : login();
+})();
+</script>
+</body>
+</html>

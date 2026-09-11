@@ -9,6 +9,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Admin section | What it changes | Where it lives |
 | --- | --- | --- |
 | Flash designs | every design: name, category, drawing, size, price, hours, Ready/Claimed, notes. "New" uploads a new design. | `content/flash/FL-###.json` + `assets/flash/web/` |
+| Price sheet (/admin/prices/) | one grid of every flash design with editable size, hours, price and Ready; per-row Save or Save-all commits the changed files in one commit | `netlify/functions/admin-flash.mjs`, `src/admin/prices/` |
 | Healed & recent work | photos on /work/, titles, featured, hidden | `content/work/*.json` + `assets/tattoos/` |
 | Paintings | the collage board: one draggable list, each row = title, photo, kind (flash sheet / painting), hidden | `content/paintings.json` + `assets/paintings/` |
 | Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
