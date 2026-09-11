@@ -2,8 +2,8 @@
   "slug": "games",
   "name": "Games",
   "icon": "/assets/flash/web/flash-32.webp",
-  "blurb": "Montages from the 9mag YouTube channel, the ninemagtv Twitch stream, and (soon) small games you can play right here on your phone.",
+  "blurb": "Highlights from my YouTube channel and my Twitch stream",
   "status": "Streaming",
-  "images": [],
-  "order": 2
+  "order": 2,
+  "images": []
 }
