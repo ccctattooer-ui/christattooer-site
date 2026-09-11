@@ -3,9 +3,9 @@
   "name": "Lizard",
   "category": "Animals",
   "image": "/assets/flash/web/flash-44.webp",
-  "size": "3 in",
+  "size": "4 in",
   "hours": 1.5,
-  "price": 160,
+  "price": 170,
   "available": true,
   "notes": ""
 }
