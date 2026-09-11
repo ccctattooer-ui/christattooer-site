@@ -8,6 +8,9 @@
 [functions]
   directory = "netlify/functions"
 
+[[plugins]]
+  package = "/netlify/plugins/thumb-cache"
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
