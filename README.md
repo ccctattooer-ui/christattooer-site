@@ -10,7 +10,8 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | --- | --- | --- |
 | Flash designs | every design: name, category, drawing, size, price, hours, Ready/Claimed, notes. "New" uploads a new design. | `content/flash/FL-###.json` + `assets/flash/web/` |
 | Healed & recent work | photos on /work/, titles, featured, hidden | `content/work/*.json` + `assets/tattoos/` |
-| Paintings | the collage board in the Paintings department: title, photo, kind (flash sheet / painting), order, hidden | `content/paintings/*.json` + `assets/paintings/` |
+| Paintings | the collage board in the Paintings department: title, photo, kind (flash sheet / painting), hidden | `content/paintings/*.json` + `assets/paintings/` |
+| Order (drag to sort) | drag-and-drop order of the collage, the flash catalog and the video playlist; anything not in a list goes last | `src/_data/order.json` |
 | Game montages | YouTube videos on /games/ | `content/videos/*.json` |
 | Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
 | Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
