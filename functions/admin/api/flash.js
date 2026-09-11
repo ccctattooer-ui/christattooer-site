@@ -1,5 +1,5 @@
-// Price sheet API at /admin/api/flash (Cloudflare Pages Function): bulk-edit size, hours, price and
-// Ready on flash designs. POST { changes: [{ sku, size, hours, price, available }] } with HTTP Basic
+// Quick-edit API at /admin/api/flash: bulk-edit name, category, size, hours, price, Ready and notes on
+// flash designs. POST { changes: [{ sku, name, category, size, hours, price, available, notes }] } with HTTP Basic
 // auth (the admin username/password) commits all changed content/flash/<SKU>.json files in ONE commit.
 // Secrets: ADMIN_USER, ADMIN_PASSWORD_SHA256, GITHUB_TOKEN. Optional vars: GITHUB_REPO, GITHUB_BRANCH.
 
@@ -17,7 +17,11 @@ async function authorized(request, env) {
   return same(await sha256(user), await sha256(env.ADMIN_USER)) && same(await sha256(pass), hex(env.ADMIN_PASSWORD_SHA256));
 }
 
+const CATEGORIES = ["Faces & characters", "Skulls & devils", "Symbols", "Flowers & plants", "Animals", "Lettering"];
 const clean = {
+  name: (v) => String(v ?? "").trim().slice(0, 80),
+  category: (v) => (CATEGORIES.includes(String(v)) ? String(v) : CATEGORIES[0]),
+  notes: (v) => String(v ?? "").trim().slice(0, 200),
   size: (v) => String(v ?? "").trim().slice(0, 40),
   hours: (v) => (v === "" || v == null ? "" : Math.max(0, Math.round(Number(v) * 4) / 4)),
   price: (v) => Math.max(0, Math.round(Number(v) || 0)),
@@ -47,7 +51,8 @@ export async function onRequestPost({ request, env }) {
       const cur = await gh(`/repos/${REPO}/contents/${path}?ref=${BRANCH}`);
       const before = fromB64(cur.content);
       const next = { ...JSON.parse(before) };
-      for (const k of ["size", "hours", "price", "available"]) if (k in c) next[k] = clean[k](c[k]);
+      for (const k of ["name", "category", "notes", "size", "hours", "price", "available"]) if (k in c) next[k] = clean[k](c[k]);
+      if (!next.name) return json({ error: `${sku} needs a name.` }, 400);
       const text = JSON.stringify(next, null, 2) + "\n";
       if (text.trim() !== before.trim()) files.push({ path, mode: "100644", type: "blob", content: text });
     }
@@ -57,7 +62,7 @@ export async function onRequestPost({ request, env }) {
     const commit = await gh(`/repos/${REPO}/git/commits/${head}`);
     const tree = await gh(`/repos/${REPO}/git/trees`, { method: "POST", body: JSON.stringify({ base_tree: commit.tree.sha, tree: files }) });
     const skus = files.map((f) => f.path.match(/FL-\d{3}/)[0]);
-    const newCommit = await gh(`/repos/${REPO}/git/commits`, { method: "POST", body: JSON.stringify({ message: `Price sheet: ${skus.join(", ")}`, tree: tree.sha, parents: [head] }) });
+    const newCommit = await gh(`/repos/${REPO}/git/commits`, { method: "POST", body: JSON.stringify({ message: `Quick edit: ${skus.join(", ")}`, tree: tree.sha, parents: [head] }) });
     await gh(`/repos/${REPO}/git/refs/heads/${BRANCH}`, { method: "PATCH", body: JSON.stringify({ sha: newCommit.sha }) });
     return json({ ok: true, committed: files.length, skus, commit: newCommit.sha });
   } catch (e) {

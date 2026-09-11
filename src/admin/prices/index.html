@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Price sheet · Chris Tattooer admin</title>
+<title>Flash quick edit · Chris Tattooer admin</title>
 <link rel="icon" href="/assets/favicon.png">
 <style>
   :root{--ink:#15121A;--bone:#EFEAD9;--stencil:#4B2E9C;--yellow:#F0C22E;--red:#D3322A;--green:#3BAA6E;--rule:#d9d2bd}
@@ -19,14 +19,18 @@
   #status{font-size:13px;min-width:180px}
   #status.ok{color:var(--green)} #status.err{color:var(--red)}
   input[type=search]{font:inherit;padding:7px 10px;border:2px solid var(--ink);width:min(260px,100%)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:14px}
-  .row{border:2px solid var(--ink);background:#fff;padding:8px;display:grid;grid-template-columns:72px 1fr;gap:8px 10px;align-items:start}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-top:14px}
+  .row{border:2px solid var(--ink);background:#fff;padding:8px;display:grid;grid-template-columns:84px 1fr;gap:6px 10px;align-items:start}
   .row.changed{background:#fff7d6;border-color:var(--stencil)}
   .row.saved{background:#e9f7ee}
   .row.hidden{display:none}
-  .row img{width:72px;height:72px;object-fit:contain;border:1px solid var(--rule);background:#fff;grid-row:span 3}
-  .row .name{font-weight:700;line-height:1.2}
-  .row .name small{display:block;font-weight:400;font-family:ui-monospace,monospace;font-size:11px;color:#5b5346}
+  .row img{width:84px;height:84px;object-fit:contain;border:1px solid var(--rule);background:#fff;grid-row:span 5}
+  .row .sku{font-family:ui-monospace,monospace;font-size:11px;color:#5b5346;display:flex;justify-content:space-between;align-items:center}
+  .row .sku a{color:var(--stencil);font-family:system-ui,sans-serif}
+  .top{display:grid;grid-template-columns:3fr 2fr;gap:6px}
+  .top input,.top select{width:100%;font:inherit;padding:5px 6px;border:2px solid var(--ink);background:#fff}
+  .top label,.notes label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#5b5346;display:block}
+  .notes input{width:100%;font:inherit;padding:5px 6px;border:2px solid var(--ink)}
   .fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
   .fields label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#5b5346;display:block}
   .fields input{width:100%;font:inherit;padding:5px 6px;border:2px solid var(--ink)}
@@ -48,13 +52,15 @@
 <script>
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
+  const CATS = ['Faces & characters', 'Skulls & devils', 'Symbols', 'Flowers & plants', 'Animals', 'Lettering'];
+  const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const app = $('#app');
   const KEY = 'ct-admin-basic';
   let auth = ''; try { auth = sessionStorage.getItem(KEY) || ''; } catch (e) {}
   let rows = [], dirty = new Set();
 
   function login(err) {
-    app.innerHTML = `<form class="login"><h1 style="font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px">Price sheet · Log in</h1>${err ? `<div class="err">${err}</div>` : ''}
+    app.innerHTML = `<form class="login"><h1 style="font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px">Flash quick edit · Log in</h1>${err ? `<div class="err">${err}</div>` : ''}
       <label for="u">Username</label><input id="u" autocomplete="username" required autofocus>
       <label for="p">Password</label><input id="p" type="password" autocomplete="current-password" required>
       <button class="primary" type="submit">Log in</button></form>`;
@@ -69,27 +75,33 @@
   }
 
   function render() {
-    app.innerHTML = `<header><h1>Price sheet · ${rows.length} designs</h1>
+    app.innerHTML = `<header><h1>Flash quick edit · ${rows.length} designs</h1>
       <input type="search" id="q" placeholder="Filter by name, SKU, category">
       <span id="status"></span>
       <button class="primary" id="saveall" disabled>Save all changes</button>
+      <a href="/admin/#/collections/flash/new" title="Upload a new drawing">+ New design</a>
       <a href="/admin/">← Full admin</a></header>
       <div class="grid">${rows.map((f) => `
-      <div class="row" data-sku="${f.sku}" data-hay="${(f.sku + ' ' + f.name + ' ' + f.category).toLowerCase()}">
+      <div class="row" data-sku="${f.sku}">
         <img src="${f.image}" alt="">
-        <div class="name">${f.name}<small>${f.sku} · ${f.category}</small></div>
+        <div class="sku"><span>${f.sku}</span><a href="/admin/#/collections/flash/entries/${f.sku}" title="Change the drawing or delete this design">drawing…</a></div>
+        <div class="top">
+          <div><label>Name</label><input name="name" value="${esc(f.name)}" maxlength="80"></div>
+          <div><label>Category</label><select name="category">${CATS.map((c) => `<option${c === f.category ? ' selected' : ''}>${c}</option>`).join('')}</select></div>
+        </div>
         <div class="fields">
           <div><label>Size</label><input name="size" value="${f.size ?? ''}" placeholder="3 in"></div>
           <div><label>Hours</label><input name="hours" type="number" step="0.5" min="0" value="${f.hours ?? ''}"></div>
           <div class="money"><label>Price</label><input name="price" type="number" step="5" min="0" value="${f.price ?? ''}"></div>
         </div>
+        <div class="notes"><label>Notes (one short line on the card)</label><input name="notes" value="${esc(f.notes)}" maxlength="200"></div>
         <div class="actions"><label><input type="checkbox" name="available" ${f.available ? 'checked' : ''}> Ready</label><button class="save" disabled>Save</button></div>
       </div>`).join('')}</div>`;
-    $('#q').oninput = () => { const t = $('#q').value.trim().toLowerCase(); document.querySelectorAll('.row').forEach((el) => el.classList.toggle('hidden', !!t && !el.dataset.hay.includes(t))); };
+    $('#q').oninput = () => { const t = $('#q').value.trim().toLowerCase(); document.querySelectorAll('.row').forEach((el) => { const hay = (el.dataset.sku + ' ' + $('[name=name]', el).value + ' ' + $('[name=category]', el).value).toLowerCase(); el.classList.toggle('hidden', !!t && !hay.includes(t)); }); };
     bind();
     $('#saveall').onclick = () => save([...document.querySelectorAll('.row.changed')]);
   }
-  function current(el) { return { sku: el.dataset.sku, size: $('[name=size]', el).value.trim(), hours: $('[name=hours]', el).value, price: $('[name=price]', el).value, available: $('[name=available]', el).checked }; }
+  function current(el) { return { sku: el.dataset.sku, name: $('[name=name]', el).value.trim(), category: $('[name=category]', el).value, notes: $('[name=notes]', el).value.trim(), size: $('[name=size]', el).value.trim(), hours: $('[name=hours]', el).value, price: $('[name=price]', el).value, available: $('[name=available]', el).checked }; }
   function refreshAll() { const b = $('#saveall'); b.disabled = !dirty.size; b.textContent = dirty.size ? `Save all changes (${dirty.size})` : 'Save all changes'; }
   function status(msg, cls) { const s = $('#status'); s.textContent = msg; s.className = cls || ''; }
 
@@ -106,6 +118,7 @@
       // the saved values become the new baseline: swap in fresh copies of the rows and re-bind them
       els.forEach((el) => {
         el.querySelectorAll('input').forEach((i) => i.type === 'checkbox' ? i.toggleAttribute('checked', i.checked) : i.setAttribute('value', i.value));
+        el.querySelectorAll('select').forEach((s) => [...s.options].forEach((o) => o.toggleAttribute('selected', o.selected)));
         const n = el.cloneNode(true); delete n.dataset.bound; el.replaceWith(n);
       });
       bind();
