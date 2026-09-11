@@ -1,11 +1,11 @@
 {
   "sku": "FL-038",
-  "name": "Filigree",
+  "name": "Tribal scorpion",
   "category": "Symbols",
   "image": "/assets/flash/web/flash-38.webp",
-  "size": "3 in",
-  "hours": 1,
-  "price": 120,
+  "size": "6 in",
+  "price": 300,
+  "hours": 2,
   "available": true,
-  "notes": ""
+  "notes": "Color blended in would be fun!"
 }
