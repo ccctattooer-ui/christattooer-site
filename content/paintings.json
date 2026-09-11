@@ -1,0 +1,412 @@
+{
+  "pieces": [
+    {
+      "title": "Flash sheet, 2024",
+      "image": "/assets/paintings/painting-002.jpg",
+      "kind": "flash",
+      "year": "2024",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Pattern study",
+      "image": "/assets/paintings/painting-001.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-003.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Lighthouse and saucer",
+      "image": "/assets/paintings/painting-007.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-004.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Mushroom I",
+      "image": "/assets/paintings/painting-011.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-005.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Mushroom in a vase",
+      "image": "/assets/paintings/painting-012.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet, 2024",
+      "image": "/assets/paintings/painting-006.jpg",
+      "kind": "flash",
+      "year": "2024",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Bottle on the mountain",
+      "image": "/assets/paintings/painting-013.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Mountain and ship (detail)",
+      "image": "/assets/paintings/painting-027.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Bottle (detail)",
+      "image": "/assets/paintings/painting-028.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet, 2024",
+      "image": "/assets/paintings/painting-008.jpg",
+      "kind": "flash",
+      "year": "2024",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-009.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Reaper",
+      "image": "/assets/paintings/painting-016.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-010.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Symbols",
+      "image": "/assets/paintings/painting-017.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-014.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Rainbow swirl",
+      "image": "/assets/paintings/painting-022.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-015.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flower (detail)",
+      "image": "/assets/paintings/painting-023.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-018.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Mushroom II",
+      "image": "/assets/paintings/painting-025.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-019.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet, 2024",
+      "image": "/assets/paintings/painting-020.jpg",
+      "kind": "flash",
+      "year": "2024",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Mushroom III",
+      "image": "/assets/paintings/painting-026.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet, 2024",
+      "image": "/assets/paintings/painting-021.jpg",
+      "kind": "flash",
+      "year": "2024",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-024.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-032.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Mountain (detail)",
+      "image": "/assets/paintings/painting-029.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-033.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-034.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Mushroom sheet",
+      "image": "/assets/paintings/painting-030.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet, 2025",
+      "image": "/assets/paintings/painting-038.jpg",
+      "kind": "flash",
+      "year": "2025",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Rose and snail",
+      "image": "/assets/paintings/painting-031.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-039.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Orbits",
+      "image": "/assets/paintings/painting-035.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-040.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Geometric I",
+      "image": "/assets/paintings/painting-036.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-041.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Geometric II",
+      "image": "/assets/paintings/painting-037.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet, 2025",
+      "image": "/assets/paintings/painting-044.jpg",
+      "kind": "flash",
+      "year": "2025",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-045.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Dotted head",
+      "image": "/assets/paintings/painting-042.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-046.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Pattern (detail)",
+      "image": "/assets/paintings/painting-043.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet",
+      "image": "/assets/paintings/painting-048.jpg",
+      "kind": "flash",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "The wall",
+      "image": "/assets/paintings/painting-047.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet, 2024",
+      "image": "/assets/paintings/painting-049.jpg",
+      "kind": "flash",
+      "year": "2024",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Portrait",
+      "image": "/assets/paintings/painting-051.jpg",
+      "kind": "painting",
+      "year": "",
+      "hidden": false,
+      "notes": ""
+    },
+    {
+      "title": "Flash sheet, 2024",
+      "image": "/assets/paintings/painting-050.jpg",
+      "kind": "flash",
+      "year": "2024",
+      "hidden": false,
+      "notes": ""
+    }
+  ]
+}

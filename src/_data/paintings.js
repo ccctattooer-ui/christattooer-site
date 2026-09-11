@@ -1,16 +1,10 @@
-// Paintings: one JSON file per piece in content/paintings (editable in /admin/). Order comes from order.json.
+// Paintings: content/paintings.json holds the collage pieces in board order (drag to sort in /admin/).
 // Thumbnails are generated here at build time with eleventy-img, so CMS uploads never need a thumbs folder.
 import fs from "node:fs";
-import path from "node:path";
 import Image from "@11ty/eleventy-img";
-import { byOrder } from "../_lib/order.js";
-const dir = path.resolve("content/paintings");
 export default async function () {
-  const rows = fs.readdirSync(dir).filter((f) => f.endsWith(".json"))
-    .map((f) => ({ ...JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")), _file: f }))
+  const rows = (JSON.parse(fs.readFileSync("content/paintings.json", "utf8")).pieces || [])
     .filter((p) => p.image && !p.hidden);
-  byOrder(rows, "paintings", (p) => p._file.replace(/\.json$/, ""), (a, b) => a._file.localeCompare(b._file)).forEach((p, i) => (p._i = i));
-  rows.sort((a, b) => a._i - b._i);
   for (const p of rows) {
     const local = "." + p.image;
     if (!fs.existsSync(local)) { p.missing = true; continue; }

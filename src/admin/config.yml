@@ -86,47 +86,51 @@ collections:
   # ---------------------------------------------------------------- departments
   - name: paintings
     label: Paintings
-    label_singular: Painting
-    description: Pieces on the collage board in the Paintings department. To change the order, use the Order screen (drag and drop).
-    folder: content/paintings
-    format: json
-    extension: json
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    identifier_field: title
-    summary: "{{title}} ({{kind}})"
-    sortable_fields: [title, kind, year]
+    description: The collage board in the Paintings department. Drag rows to reorder (top = top-left of the board); click a row to edit it; use the + button to add a piece.
     media_folder: /assets/paintings
     public_folder: /assets/paintings
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Photo, name: image, widget: image, hint: JPG or PNG. Phone photos are shrunk automatically. }
-      - { label: Kind, name: kind, widget: select, options: [{ label: Flash sheet, value: flash }, { label: Painting, value: painting }], default: painting }
-      - { label: Year, name: year, widget: string, required: false }
-      - { label: Hidden, name: hidden, widget: boolean, default: false, required: false }
-      - { label: Notes, name: notes, widget: text, required: false }
+    files:
+      - name: board
+        label: Collage board
+        file: content/paintings.json
+        format: json
+        media_folder: /assets/paintings
+        public_folder: /assets/paintings
+        fields:
+          - label: Pieces
+            name: pieces
+            widget: list
+            collapsed: true
+            summary: "{{fields.title}} · {{fields.kind}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Photo, name: image, widget: image, hint: JPG or PNG. Phone photos are shrunk automatically. }
+              - { label: Kind, name: kind, widget: select, options: [{ label: Flash sheet, value: flash }, { label: Painting, value: painting }], default: painting }
+              - { label: Year, name: year, widget: string, required: false }
+              - { label: Hidden, name: hidden, widget: boolean, default: false, required: false }
+              - { label: Notes, name: notes, widget: text, required: false }
 
   - name: videos
     label: Game montages
-    label_singular: Video
-    description: YouTube videos in the Games department. The featured one plays first. Playlist order is set on the Order screen.
-    folder: content/videos
-    format: json
-    extension: json
-    create: true
-    delete: true
-    slug: "{{id}}"
-    identifier_field: title
-    summary: "{{title}} ({{game}})"
-    sortable_fields: [title, game, year]
-    fields:
-      - { label: YouTube video ID, name: id, widget: string, hint: 'The part after v= in the link, e.g. 6h6MYeb7vA0.' }
-      - { label: Title, name: title, widget: string }
-      - { label: Game, name: game, widget: string, hint: Used for the filter chips. Spell it the same way every time. }
-      - { label: Tag, name: tag, widget: string, required: false, hint: Character, mode, whatever. }
-      - { label: Year, name: year, widget: string, required: false }
-      - { label: Featured, name: featured, widget: boolean, default: false, required: false, hint: Plays first when the page opens. }
+    description: The YouTube playlist in the Games department. Drag rows to reorder; the featured one plays first.
+    files:
+      - name: playlist
+        label: Playlist
+        file: content/videos.json
+        format: json
+        fields:
+          - label: Videos
+            name: videos
+            widget: list
+            collapsed: true
+            summary: "{{fields.title}} ({{fields.game}})"
+            fields:
+              - { label: YouTube video ID, name: id, widget: string, hint: 'The part after v= in the link, e.g. 6h6MYeb7vA0.' }
+              - { label: Title, name: title, widget: string }
+              - { label: Game, name: game, widget: string, hint: Used for the filter chips. Spell it the same way every time. }
+              - { label: Tag, name: tag, widget: string, required: false, hint: Character, mode, whatever. }
+              - { label: Year, name: year, widget: string, required: false }
+              - { label: Featured, name: featured, widget: boolean, default: false, required: false, hint: Plays first when the page opens. }
 
   - name: departments
     label: Departments
@@ -272,28 +276,18 @@ collections:
 
   # ---------------------------------------------------------------- ordering
   - name: ordering
-    label: Order (drag to sort)
+    label: Flash order (drag to sort)
     files:
       - name: order
-        label: Collage, catalog and playlist order
+        label: Flash catalog order
         file: src/_data/order.json
         format: json
         fields:
-          - label: Paintings collage
-            name: paintings
-            widget: list
-            hint: Drag the handle on the left to reorder. Top of the list = top-left of the board. Anything not listed shows up at the end.
-            field: { label: Piece, name: piece, widget: relation, collection: paintings, value_field: "{{slug}}", display_fields: ["{{title}} ({{kind}})"], search_fields: [title] }
           - label: Flash catalog
             name: flash
             widget: list
             hint: Drag to reorder the catalog. Anything not listed goes at the end in SKU order.
             field: { label: Design, name: design, widget: relation, collection: flash, value_field: "{{slug}}", display_fields: ["{{sku}} {{name}}"], search_fields: [sku, name] }
-          - label: Game montages playlist
-            name: videos
-            widget: list
-            hint: Drag to reorder the playlist.
-            field: { label: Video, name: video, widget: relation, collection: videos, value_field: "{{slug}}", display_fields: ["{{title}}"], search_fields: [title, game] }
 
   # ---------------------------------------------------------------- look
   - name: theme
