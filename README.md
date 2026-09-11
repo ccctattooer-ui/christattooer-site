@@ -1,6 +1,6 @@
 # Chris Tattooer — site
 
-Static site built with [Eleventy](https://www.11ty.dev/), hosted on Cloudflare Pages at https://christattooer.com (domain registered at Squarespace, DNS on Cloudflare). Everything a visitor sees is generated from plain files in this repo. Edit them in the admin at **/admin/** (username + password) or straight in the files; either way the change is a commit and Cloudflare rebuilds the site.
+Static site built with [Eleventy](https://www.11ty.dev/), hosted on Cloudflare (a Worker named `christattooer` serving the built site as static assets) at https://christattooer.com. Domain registered at Squarespace, DNS on Cloudflare. Everything a visitor sees is generated from plain files in this repo. Edit them in the admin at **/admin/** (username + password) or straight in the files; either way the change is a commit and Cloudflare rebuilds the site.
 
 ## Editing in the admin
 
@@ -21,13 +21,13 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Look & colors | brand colors for both looks, grid columns, collage tilt / tape / piece size | `src/_data/theme.json` |
 | Site settings | name, hours, books status, shop, Instagram, Square link, minimum, deposit | `src/_data/site.json` |
 
-Saving in the admin commits to GitHub; Cloudflare rebuilds and the live site updates a minute or two later. The free plan allows 500 builds a month.
+Saving in the admin commits to GitHub; Cloudflare Workers Builds rebuilds and the live site updates a minute or two later (free plan: 3,000 build minutes a month, plenty).
 
 Uploads are shrunk in the browser to 2000px WebP before they are committed. Thumbnails for every photo are generated at build time (`@11ty/eleventy-img`), so there are no thumbs folders to maintain.
 
 ## How the admin login works
 
-The admin is [Sveltia CMS](https://sveltiacms.app/). It talks to the GitHub repo, but you never see GitHub: `functions/admin/auth.js` shows a username/password form and, on success, hands the CMS a repo-scoped GitHub token. These secrets live in the Cloudflare Pages project (Settings → Variables and Secrets):
+The admin is [Sveltia CMS](https://sveltiacms.app/). It talks to the GitHub repo, but you never see GitHub: `functions/admin/auth.js` shows a username/password form and, on success, hands the CMS a repo-scoped GitHub token. These secrets live on the Worker (Cloudflare dashboard → Workers & Pages → christattooer → Settings → Variables and Secrets), or `npx wrangler secret put NAME --name christattooer`:
 
 - `ADMIN_USER` — the username
 - `ADMIN_PASSWORD_SHA256` — SHA-256 of the password (`python -c "import hashlib;print(hashlib.sha256(b'...').hexdigest())"`)
@@ -73,7 +73,9 @@ src/
   work.njk          all photos + lightbox
   book.njk          booking
   department.njk    one page per department (paintings collage, games, store, spacecraft)
-functions/          Cloudflare Pages Functions: admin/auth.js (login), admin/api/flash.js (price sheet), api/book.js (booking email)
+functions/          server routes: admin/auth.js (login), admin/api/flash.js (price sheet), api/book.js (booking email)
+worker/index.js     Worker entry: routes those three paths, serves everything else from _site
+wrangler.jsonc      Cloudflare Worker config (assets dir, build command)
 assets/             web-ready images that ship with the site
 tools/              image converters
 ```

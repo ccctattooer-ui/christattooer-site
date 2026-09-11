@@ -1,0 +1,17 @@
+// Cloudflare Worker config: serves the built site from _site as static assets and runs the three
+// small server routes in worker/index.js (admin login, price sheet API, booking email).
+// Cloudflare builds and deploys this on every push to main (Workers Builds, connected in the dashboard).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "christattooer",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-01",
+  "build": { "command": "npm run build" },
+  "assets": {
+    "directory": "./_site",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": true }
+}
