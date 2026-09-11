@@ -2,8 +2,8 @@
   "slug": "paintings",
   "name": "Paintings",
   "icon": "/assets/paintings/painting-036.jpg",
-  "blurb": "Flash sheets painted for the shop, plus the abstract stuff: mushrooms, mountains, patterns, whatever is drying on the desk. Originals and prints: ask.",
+  "blurb": "stuff i made- Originals and prints: ask.",
   "status": "Drying",
-  "images": [],
-  "order": 1
+  "order": 1,
+  "images": []
 }
