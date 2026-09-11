@@ -9,5 +9,20 @@
 </head>
 <body>
 <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+<script>
+  // Sveltia's stock login button says "Sign in with GitHub". Ours opens the username/password box
+  // (netlify/functions/admin-auth.mjs), so relabel it and hide the access-token option.
+  (function () {
+    var relabel = function () {
+      document.querySelectorAll('button, a').forEach(function (el) {
+        var t = (el.textContent || '').trim();
+        if (/sign in with github/i.test(t)) el.textContent = 'Log in';
+        else if (/access token/i.test(t)) el.style.display = 'none';
+      });
+    };
+    new MutationObserver(relabel).observe(document.documentElement, { childList: true, subtree: true });
+    relabel();
+  })();
+</script>
 </body>
 </html>
