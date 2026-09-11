@@ -14,7 +14,7 @@ import pillow_heif; pillow_heif.register_heif_opener()
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC, OUT = os.path.join(ROOT, "AboutMe"), os.path.join(ROOT, "assets", "intro")
 W, H, FPS = 480, 360, 24
-STATIC = 0.25  # seconds of snow between groups
+STATIC = 0.2  # seconds of snow between groups
 
 EDIT = [
     "static",
@@ -65,7 +65,8 @@ def frame_43(im):
     bg.paste(fg, ((W * 2 - fg.width) // 2, (H * 2 - fg.height) // 2)); return bg
 
 def seg_static(out, secs):
-    run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", f"nullsrc=s={W}x{H}:r={FPS}", "-vf", "geq=random(1)*255:128:128,format=yuv420p", "-t", str(secs), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", out])
+    # Coarse snow (quarter resolution, nearest-neighbour upscale): reads as static on screen, compresses ~10x smaller.
+    run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", f"nullsrc=s={W // 4}x{H // 4}:r={FPS}", "-vf", f"geq=random(1)*255:128:128,scale={W}:{H}:flags=neighbor,format=yuv420p", "-t", str(secs), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", out])
 
 def seg_photo(src, out, secs, tmp):
     png = os.path.join(tmp, hashlib.md5(src.encode()).hexdigest() + ".png"); frame_43(Image.open(src)).save(png)
