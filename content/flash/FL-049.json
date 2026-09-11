@@ -1,11 +1,11 @@
 {
   "sku": "FL-049",
-  "name": "Fist",
+  "name": "spiritual hand",
   "category": "Symbols",
   "image": "/assets/flash/web/flash-49.webp",
-  "size": "3 in",
-  "hours": 1,
-  "price": 120,
+  "size": "5 in",
+  "hours": 2,
+  "price": 280,
   "available": true,
   "notes": ""
 }
