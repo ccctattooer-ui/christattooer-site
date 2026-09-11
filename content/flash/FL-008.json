@@ -1,11 +1,11 @@
 {
   "sku": "FL-008",
-  "name": "Leprechaun",
+  "name": "club boy",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-08.webp",
   "size": "3 in",
+  "price": 180,
   "hours": 1.5,
-  "price": 160,
   "available": true,
   "notes": ""
 }
