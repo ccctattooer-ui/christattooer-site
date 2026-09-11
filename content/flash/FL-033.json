@@ -1,11 +1,11 @@
 {
   "sku": "FL-033",
-  "name": "Hannya",
+  "name": "mask",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-33.webp",
   "size": "3 in",
   "hours": 2,
-  "price": 200,
+  "price": 280,
   "available": true,
   "notes": ""
 }
