@@ -1,0 +1,37 @@
+---
+layout: layouts/os.njk
+pagination:
+  data: departments
+  size: 1
+  alias: dept
+permalink: "/{{ dept.slug }}/"
+eleventyComputed:
+  title: "{{ dept.name }}"
+  description: "{{ dept.blurb }}"
+---
+<section class="win" id="w-readme" style="left:140px;top:70px;width:min(460px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.slug }}.txt</b></div>
+  <div class="body txt">
+    <h1>{{ dept.name }}</h1>
+    <p>{{ dept.blurb }}</p>
+    <p class="status">Status: {{ dept.status }}</p>
+    {%- if dept.images.length %}
+    <p><a class="btn" href="#" data-open="w-gallery">OPEN PHOTOS</a> <a class="btn ghost" href="/">BACK TO CATALOG</a></p>
+    {%- else %}
+    <p><a class="btn" href="https://instagram.com/{{ site.instagram }}">ASK ON INSTAGRAM</a> <a class="btn ghost" href="/">BACK TO CATALOG</a></p>
+    {%- endif %}
+  </div>
+</section>
+
+{%- if dept.images.length %}
+<section class="win" id="w-gallery" style="left:520px;top:110px;width:min(620px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.name }} ({{ dept.images.length }})</b></div>
+  <div class="body">
+    <div class="gallery">
+      {%- for im in dept.images %}
+      <figure><a href="/assets/plants/{{ im.file }}.jpg"><img src="/assets/plants/thumbs/{{ im.file }}.jpg" alt="{{ im.caption }}" loading="lazy"></a><figcaption>{{ im.caption | slug }}.jpg</figcaption></figure>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}

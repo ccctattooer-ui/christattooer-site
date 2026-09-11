@@ -1,0 +1,26 @@
+{
+  "name": "Chris Columbus",
+  "shortName": "Chris",
+  "title": "Chris Tattooer",
+  "tagline": "Traditional tattoos at Tattoo Peace in Vancouver, WA",
+  "catalogNo": "26",
+  "booksStatus": "Books open",
+  "hoursShort": "Mon & Tue at Tattoo Peace",
+  "hoursLong": "Mondays and Tuesdays at Tattoo Peace. Other days by request.",
+  "shop": {
+    "name": "Tattoo Peace",
+    "city": "Vancouver, WA",
+    "area": "PDX metro, just north of Portland",
+    "address": "",
+    "mapUrl": ""
+  },
+  "instagram": "christattooer",
+  "squareBooking": "https://book.squareup.com/appointments/5vg3jny8xdry7n/location/LPE4AFPCNKD4G/services/K2ZAHN2TCKLP2ZX75X3YGZL6",
+  "pricing": {
+    "shopMinimum": 120,
+    "deposit": 50,
+    "depositNote": "The deposit holds your time and comes off the final price. 48 hours notice to reschedule.",
+    "note": "Flash is priced by size. Custom work is quoted after a quick consult."
+  },
+  "domain": ""
+}

@@ -1,0 +1,63 @@
+[
+ {
+  "slug": "paintings",
+  "name": "Paintings",
+  "icon": "/assets/flash/web/flash-69.webp",
+  "blurb": "Flash paintings, one-offs, and whatever is drying on the desk. Originals and prints will show up here.",
+  "status": "Coming soon",
+  "images": []
+ },
+ {
+  "slug": "games",
+  "name": "Games",
+  "icon": "/assets/flash/web/flash-32.webp",
+  "blurb": "Small things to poke at in your browser. The first one is in progress.",
+  "status": "In progress",
+  "images": []
+ },
+ {
+  "slug": "store",
+  "name": "Store",
+  "icon": "/assets/flash/web/flash-62.webp",
+  "blurb": "Prints, shirts, stickers, and the occasional painting. Until the shop opens, DM @christattooer for anything you see on the site.",
+  "status": "Opening later",
+  "images": []
+ },
+ {
+  "slug": "spacecraft",
+  "name": "SpaceCraft",
+  "icon": "/assets/plants/thumbs/plant-007.jpg",
+  "blurb": "SpaceCraft is the plant breeding side of things: crosses, grow logs, and seed drops when they happen.",
+  "status": "Growing",
+  "images": [
+   {
+    "file": "plant-001",
+    "caption": "Male 1"
+   },
+   {
+    "file": "plant-002",
+    "caption": "Male 2"
+   },
+   {
+    "file": "plant-003",
+    "caption": "Male 3"
+   },
+   {
+    "file": "plant-004",
+    "caption": "Pinecake"
+   },
+   {
+    "file": "plant-005",
+    "caption": "Pinecake II"
+   },
+   {
+    "file": "plant-006",
+    "caption": "Skunk Ooze"
+   },
+   {
+    "file": "plant-007",
+    "caption": "SpaceCraft"
+   }
+  ]
+ }
+]

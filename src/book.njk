@@ -1,0 +1,52 @@
+---
+layout: layouts/catalog.njk
+title: Book
+description: Three ways to book a tattoo with Chris at Tattoo Peace in Vancouver, WA.
+---
+<main class="main" style="max-width:1240px;margin:0 auto">
+  <div class="bar"><h1>Book a tattoo</h1><span class="cnt">{{ site.hoursShort }} · other days by request</span></div>
+  <div class="routes">
+    <div class="route primary">
+      <h2>Send a request</h2>
+      <p>Best for flash picks and custom ideas. Tell me what and where, attach references, and I'll reply with a quote and dates.</p>
+      <a class="go" href="#request">Fill out the request form ↓</a>
+    </div>
+    <div class="route">
+      <h2>Book on Square</h2>
+      <p>Already know what you want and when? Grab a slot straight from the calendar. The deposit is paid there.</p>
+      <a class="go" href="{{ site.squareBooking }}">Open Square booking →</a>
+    </div>
+    <div class="route">
+      <h2>DM on Instagram</h2>
+      <p>Quick questions, walk-in checks, or if forms aren't your thing. DMs are always welcome.</p>
+      <a class="go" href="https://instagram.com/{{ site.instagram }}">Message @{{ site.instagram }} →</a>
+    </div>
+  </div>
+
+  <div class="pane" id="request" style="max-width:760px">
+    <div class="pane-title"><span class="x" aria-hidden="true">×</span><b>request.form</b></div>
+    <div class="pane-body">
+      <p class="fine" style="font-size:14px;margin:0 0 12px"><b>Picked from the catalog</b><span id="picks-summary"></span></p>
+      <form class="bookform" name="tattoo-request" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="tattoo-request">
+        <input type="hidden" name="picks" id="b-picks">
+        <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+        <div class="two">
+          <div><label for="b-name">Name</label><input id="b-name" name="name" required autocomplete="name"></div>
+          <div><label for="b-contact">Email or Instagram</label><input id="b-contact" name="contact" required></div>
+        </div>
+        <div><label for="b-notes">What do you want?</label><textarea id="b-notes" name="notes" placeholder="Flash you picked, or describe your idea" required></textarea></div>
+        <div class="two">
+          <div><label for="b-place">Placement</label><input id="b-place" name="placement" placeholder="outer forearm"></div>
+          <div><label for="b-size">Size</label><input id="b-size" name="size" placeholder="about 4 in"></div>
+        </div>
+        <div class="two">
+          <div><label for="b-ref">Reference photos</label><input id="b-ref" name="reference" type="file" multiple accept="image/*"></div>
+          <div><label for="b-when">Days that work</label><input id="b-when" name="days" placeholder="Mondays, or any Tuesday in November"></div>
+        </div>
+        <button class="send" type="submit">Send request</button>
+        <p class="alt">I usually reply within a couple of days. A {{ site.pricing.deposit | money }} deposit locks the appointment. {{ site.pricing.depositNote }}</p>
+      </form>
+    </div>
+  </div>
+</main>

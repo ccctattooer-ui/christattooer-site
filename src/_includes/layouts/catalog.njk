@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
+<meta name="description" content="{{ description or site.tagline }}">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Silkscreen&display=swap">
+<link rel="stylesheet" href="/css/catalog.css">
+</head>
+<body>
+<div class="topline">
+  <span>Catalog No. {{ site.catalogNo }} · Flash &amp; custom tattoo · {{ site.shop.name }}, {{ site.shop.city }}</span>
+  <span>{{ site.hoursShort }} · {{ site.booksStatus }}</span>
+</div>
+
+<header class="hdr">
+  <a class="logo" href="/"><span class="sq">CT</span><span><b>{{ site.name | upper }}</b><small>Tattooer · {{ site.shop.city }} · @{{ site.instagram }}</small></span></a>
+  <form class="search" role="search" action="/" onsubmit="return false">
+    <input id="q" type="search" placeholder="Search {{ flash | length }} flash designs, e.g. skull, rose, panther" aria-label="Search flash">
+    <button type="button" id="qgo">Search</button>
+  </form>
+  <button class="req" id="reqbtn" type="button" aria-controls="drawer">Booking request<span class="n" id="cnt">0</span></button>
+</header>
+
+<nav class="menubar" aria-label="Site">
+  <a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Flash</a>
+  <a href="/work/" {% if page.url == "/work/" %}aria-current="page"{% endif %}>Work</a>
+  <a href="/book/" {% if page.url == "/book/" %}aria-current="page"{% endif %}>Book</a>
+  <a href="/aftercare/" {% if page.url == "/aftercare/" %}aria-current="page"{% endif %}>Aftercare</a>
+  <a href="/about/" {% if page.url == "/about/" %}aria-current="page"{% endif %}>About</a>
+  <span class="sep" aria-hidden="true"></span>
+  <span class="lbl">Other depts</span>
+  {%- for d in departments %}
+  <a class="dept" href="/{{ d.slug }}/"><img src="{{ d.icon }}" alt="">{{ d.name }}</a>
+  {%- endfor %}
+</nav>
+
+{{ content | safe }}
+
+<footer>
+  <div><b>Hours</b>{{ site.hoursLong }}</div>
+  <div><b>Deposits</b>{{ site.pricing.deposit | money }} deposit. {{ site.pricing.depositNote }}</div>
+  <div><b>Aftercare</b><a href="/aftercare/">Read the sheet</a>. Wash it, don't pick it, stay out of the sun.</div>
+  <div><b>Elsewhere</b><a href="https://instagram.com/{{ site.instagram }}">Instagram</a> · <a href="{{ site.squareBooking }}">Square booking</a> · <a href="/spacecraft/">SpaceCraft</a><br>© 2026 {{ site.name }} · {{ site.shop.name }}</div>
+</footer>
+
+<aside class="drawer" id="drawer" aria-label="Booking request" hidden>
+  <div class="pane-title"><button class="x" id="closed" type="button" aria-label="Close">×</button><b>book.exe</b></div>
+  <div class="list" id="list"><div class="empty">Nothing added yet. Add flash from the catalog, or choose custom work.</div></div>
+  <form name="tattoo-request" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+    <input type="hidden" name="form-name" value="tattoo-request">
+    <input type="hidden" name="picks" id="picks">
+    <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+    <div><label for="d-name">Name</label><input id="d-name" name="name" required></div>
+    <div><label for="d-contact">Email or Instagram</label><input id="d-contact" name="contact" required></div>
+    <div><label for="d-place">Placement</label><input id="d-place" name="placement" placeholder="outer forearm"></div>
+    <div><label for="d-notes">Notes or custom idea</label><textarea id="d-notes" name="notes"></textarea></div>
+    <div><label for="d-ref">Reference photos</label><input id="d-ref" name="reference" type="file" multiple accept="image/*"></div>
+    <div><label for="d-when">Days that work</label><input id="d-when" name="days" placeholder="Mondays, or any Tuesday in November"></div>
+    <button class="send" type="submit">Send request</button>
+    <p class="alt">Or <a href="{{ site.squareBooking }}">book directly on Square</a> · <a href="https://instagram.com/{{ site.instagram }}">DM @{{ site.instagram }}</a></p>
+  </form>
+</aside>
+
+<script src="/js/catalog.js"></script>
+</body>
+</html>

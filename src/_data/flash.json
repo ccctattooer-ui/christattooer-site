@@ -1,0 +1,1067 @@
+[
+ {
+  "sku": "FL-001",
+  "file": "flash-01",
+  "name": "Dotted head",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-002",
+  "file": "flash-02",
+  "name": "Demon with sword",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-003",
+  "file": "flash-03",
+  "name": "Green devil skull",
+  "category": "Skulls & devils",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-004",
+  "file": "flash-04",
+  "name": "Crown",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-005",
+  "file": "flash-05",
+  "name": "Caveman",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-006",
+  "file": "flash-06",
+  "name": "Quilt star",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-007",
+  "file": "flash-07",
+  "name": "Flower & cross",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-008",
+  "file": "flash-08",
+  "name": "Leprechaun",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-009",
+  "file": "flash-09",
+  "name": "Rose (sketch)",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-010",
+  "file": "flash-10",
+  "name": "Eagle & sun",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-011",
+  "file": "flash-11",
+  "name": "Dagger & heart",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-012",
+  "file": "flash-12",
+  "name": "Bat & rose",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-013",
+  "file": "flash-13",
+  "name": "Scorpion",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-014",
+  "file": "flash-14",
+  "name": "Beagle with radio",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-015",
+  "file": "flash-15",
+  "name": "Rose",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-016",
+  "file": "flash-16",
+  "name": "Girl with bob",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-017",
+  "file": "flash-17",
+  "name": "Little devil",
+  "category": "Skulls & devils",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-018",
+  "file": "flash-18",
+  "name": "Roses (color)",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-019",
+  "file": "flash-19",
+  "name": "Griffin",
+  "category": "Animals",
+  "hours": 2.0,
+  "priceFrom": 200,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-020",
+  "file": "flash-20",
+  "name": "MOM cross",
+  "category": "Lettering",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-021",
+  "file": "flash-21",
+  "name": "Foo dog",
+  "category": "Animals",
+  "hours": 2.0,
+  "priceFrom": 200,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-022",
+  "file": "flash-22",
+  "name": "Sphinx",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-023",
+  "file": "flash-23",
+  "name": "Spiral disc",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-024",
+  "file": "flash-24",
+  "name": "Mantis",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-025",
+  "file": "flash-25",
+  "name": "Dotted head II",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-026",
+  "file": "flash-26",
+  "name": "Papa memorial",
+  "category": "Lettering",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-027",
+  "file": "flash-27",
+  "name": "Flower cluster",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-028",
+  "file": "flash-28",
+  "name": "All-seeing eye",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-029",
+  "file": "flash-29",
+  "name": "Snake",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-030",
+  "file": "flash-30",
+  "name": "Panther head",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-031",
+  "file": "flash-31",
+  "name": "USA Beer Power",
+  "category": "Lettering",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-032",
+  "file": "flash-32",
+  "name": "Saturn",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-033",
+  "file": "flash-33",
+  "name": "Hannya",
+  "category": "Faces & characters",
+  "hours": 2.0,
+  "priceFrom": 200,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-034",
+  "file": "flash-34",
+  "name": "Skull & crossbones",
+  "category": "Skulls & devils",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-035",
+  "file": "flash-35",
+  "name": "Crying eye cloud",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-036",
+  "file": "flash-36",
+  "name": "Boy",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-037",
+  "file": "flash-37",
+  "name": "Triangle sigil",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-038",
+  "file": "flash-38",
+  "name": "Filigree",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-039",
+  "file": "flash-39",
+  "name": "Leaf & heart",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-040",
+  "file": "flash-40",
+  "name": "Tribal swirl",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-041",
+  "file": "flash-41",
+  "name": "Rose & leaves",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-042",
+  "file": "flash-42",
+  "name": "Dog with flowers",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-043",
+  "file": "flash-43",
+  "name": "Moon & flowers",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-044",
+  "file": "flash-44",
+  "name": "Lizard",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-045",
+  "file": "flash-45",
+  "name": "Dragon",
+  "category": "Animals",
+  "hours": 2.0,
+  "priceFrom": 200,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-046",
+  "file": "flash-46",
+  "name": "Skull",
+  "category": "Skulls & devils",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-047",
+  "file": "flash-47",
+  "name": "Boop",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-048",
+  "file": "flash-48",
+  "name": "Flame ornament",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-049",
+  "file": "flash-49",
+  "name": "Fist",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-050",
+  "file": "flash-50",
+  "name": "Parrot",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-051",
+  "file": "flash-51",
+  "name": "Ornate cross",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-052",
+  "file": "flash-52",
+  "name": "Gorilla",
+  "category": "Animals",
+  "hours": 2.0,
+  "priceFrom": 200,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-053",
+  "file": "flash-53",
+  "name": "Dagger & stars",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-054",
+  "file": "flash-54",
+  "name": "Seahorse",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-055",
+  "file": "flash-55",
+  "name": "Vine",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-056",
+  "file": "flash-56",
+  "name": "Curly lady",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-057",
+  "file": "flash-57",
+  "name": "Flame face",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-058",
+  "file": "flash-58",
+  "name": "Cat",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-059",
+  "file": "flash-59",
+  "name": "Rose II",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-060",
+  "file": "flash-60",
+  "name": "Skyline",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-061",
+  "file": "flash-61",
+  "name": "Castle & flag",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-062",
+  "file": "flash-62",
+  "name": "Gold flowers",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-063",
+  "file": "flash-63",
+  "name": "Merman",
+  "category": "Faces & characters",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-064",
+  "file": "flash-64",
+  "name": "Deer",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-065",
+  "file": "flash-65",
+  "name": "Bat",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-066",
+  "file": "flash-66",
+  "name": "Hannya II",
+  "category": "Faces & characters",
+  "hours": 2.0,
+  "priceFrom": 200,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-067",
+  "file": "flash-67",
+  "name": "Dolphin",
+  "category": "Animals",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-068",
+  "file": "flash-68",
+  "name": "Lotus ornament",
+  "category": "Symbols",
+  "hours": 1.0,
+  "priceFrom": 120,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-069",
+  "file": "flash-69",
+  "name": "Lion",
+  "category": "Animals",
+  "hours": 2.0,
+  "priceFrom": 200,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-070",
+  "file": "flash-70",
+  "name": "Mushrooms",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ },
+ {
+  "sku": "FL-071",
+  "file": "flash-71",
+  "name": "Rose III",
+  "category": "Flowers & plants",
+  "hours": 1.5,
+  "priceFrom": 160,
+  "sizes": [
+   "2 in",
+   "3 in",
+   "4 in"
+  ],
+  "available": true,
+  "notes": ""
+ }
+]

@@ -1,0 +1,206 @@
+<meta charset="utf-8">
+<title>Flash Catalog</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#141414; --rule:#D9D9D9; --rule-2:#8A8A8A; --soft:#F4F4F1; --stencil:#4B2E9C; --yellow:#FFD21F; --green:#1E8E3E; --red:#C8102E;
+  --disp:"Archivo Black",Impact,sans-serif; --body:"Archivo Narrow","Arial Narrow",Arial,sans-serif; --mono:"IBM Plex Mono",Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.35}
+a{color:var(--stencil)}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+.topline{background:var(--ink);color:#fff;font-size:12px;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;gap:12px;padding:6px 16px;flex-wrap:wrap}
+.hdr{display:flex;align-items:center;gap:16px;padding:14px 16px;border-bottom:3px solid var(--ink);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.logo .sq{width:44px;height:44px;background:var(--stencil);color:#fff;font-family:var(--disp);font-size:20px;display:grid;place-items:center}
+.logo b{font-family:var(--disp);font-size:18px;line-height:1;letter-spacing:.01em;display:block}
+.logo small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#555}
+.search{flex:1;min-width:200px;display:flex;border:2px solid var(--ink)}
+.search input{flex:1;border:0;font:inherit;font-size:16px;padding:8px 10px;min-width:0}
+.search input:focus{outline:none;background:#FFF8D6}
+.search button{border:0;background:var(--yellow);font-weight:700;padding:0 14px}
+.req{background:var(--red);color:#fff;border:2px solid var(--ink);padding:9px 14px;font-weight:700;white-space:nowrap}
+.req .n{background:#fff;color:var(--red);font-family:var(--mono);padding:0 6px;margin-left:6px}
+.req:focus-visible,.search input:focus-visible{outline:3px solid var(--yellow)}
+@media (max-width:640px){.hdr{gap:10px}.logo small{display:none}.search{order:3;flex-basis:100%}}
+
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:0;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.layout{grid-template-columns:minmax(0,1fr)}}
+.side,.main{min-width:0}
+.side{border-right:1px solid var(--rule);padding:16px 12px 16px 16px}
+.side h4{margin:0 0 6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#555}
+.cats{list-style:none;margin:0 0 18px;padding:0}
+.cats li{display:flex;justify-content:space-between;padding:6px 8px;border-left:3px solid transparent}
+.cats li.on{border-color:var(--stencil);background:var(--soft);font-weight:700}
+.cats li span{color:#777;font-family:var(--mono);font-size:12px}
+.cats a{color:var(--ink);text-decoration:none}
+@media (max-width:820px){.side{border:0;border-bottom:1px solid var(--rule);padding:10px 16px}.side h4{display:none}.cats{display:flex;overflow-x:auto;gap:6px;margin:0;padding-bottom:4px}.cats li{border:1px solid var(--ink);border-radius:0;white-space:nowrap;gap:6px;padding:5px 10px}.cats li.on{background:var(--ink);color:#fff}.cats li.on a{color:#fff}.side .fine{display:none}}
+.fine{font-size:12px;color:#555;line-height:1.4}
+.fine b{display:block;color:var(--ink)}
+
+.main{padding:16px}
+.howto{display:grid;grid-template-columns:auto 1fr 1fr 1fr;border:2px solid var(--ink);margin-bottom:18px}
+.howto .h{background:var(--ink);color:#fff;font-family:var(--disp);padding:10px;font-size:12px;letter-spacing:.06em;display:flex;align-items:center;writing-mode:vertical-rl;transform:rotate(180deg)}
+.howto .s{padding:10px 12px;border-left:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center}
+.howto .s b{display:block;font-family:var(--mono);color:var(--stencil);font-size:13px;margin-bottom:2px}
+@media (max-width:640px){.howto{grid-template-columns:1fr}.howto .h{writing-mode:horizontal-tb;transform:none;padding:8px 12px}.howto .s{border-left:0;border-top:1px solid var(--rule)}}
+
+.bar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 10px;flex-wrap:wrap}
+h2{font-family:var(--disp);font-size:22px;margin:0;letter-spacing:.01em}
+.bar .cnt{font-family:var(--mono);font-size:12px;color:#555}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-left:1px solid var(--ink);margin-bottom:28px}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+.item{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:10px;display:flex;flex-direction:column;gap:6px;position:relative}
+.item .art{aspect-ratio:1;position:relative;background:#fff;border:1px solid var(--rule);overflow:hidden}
+.item .art img{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);object-fit:contain}
+.item .sku{font-family:var(--mono);font-size:11px;color:#555;display:flex;justify-content:space-between}
+.item .sku i{font-style:normal;color:var(--green)}
+.item .sku i::before{content:"● "}
+.item h3{margin:0;font-size:15px;font-weight:700;line-height:1.2}
+.spec{font-size:12px;color:#444;display:grid;grid-template-columns:auto 1fr;gap:1px 8px}
+.spec dt{color:#777}.spec dd{margin:0;font-family:var(--mono)}
+.sizes{display:flex;gap:4px}
+.sizes button{border:1px solid var(--ink);background:#fff;font-family:var(--mono);font-size:11px;padding:3px 6px}
+.sizes button.on{background:var(--ink);color:#fff}
+.add{margin-top:auto;border:2px solid var(--ink);background:var(--yellow);font-weight:700;padding:7px;font-size:13px}
+.add.on{background:var(--green);color:#fff}
+.add:focus-visible{outline:3px solid var(--stencil);outline-offset:1px}
+.item.custom{background:var(--soft)}
+.item.custom .art{border:2px dashed var(--rule-2);background:transparent;font-family:var(--disp);font-size:28px;text-align:center;line-height:1;display:grid;place-items:center}
+
+.healed{border-top:1px solid var(--ink)}
+.hrow{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--rule)}
+.hrow img{width:64px;height:80px;object-fit:cover;border:1px solid var(--ink)}
+.hrow b{display:block}
+.hrow small{color:#555;font-family:var(--mono);font-size:11px}
+.hrow a{font-size:13px;font-weight:700;white-space:nowrap}
+.hlist{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin-bottom:28px}
+@media (max-width:640px){.hlist{grid-template-columns:1fr}}
+
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;border-left:3px solid var(--ink);transform:translateX(105%);transition:transform .25s;z-index:50;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:2px solid var(--ink);font-family:var(--disp)}
+.drawer .list{padding:8px 16px;font-size:14px;border-bottom:1px solid var(--rule)}
+.drawer .list div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dotted var(--rule)}
+.drawer .list .empty{color:#777;justify-content:flex-start}
+.drawer form{padding:12px 16px;overflow:auto;display:grid;gap:10px}
+label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:3px}
+input,textarea{width:100%;font:inherit;font-size:16px;border:1px solid var(--ink);padding:8px;background:#fff}
+input:focus,textarea:focus{outline:3px solid var(--yellow)}
+textarea{min-height:80px}
+.send{background:var(--red);color:#fff;border:2px solid var(--ink);padding:12px;font-weight:700;font-size:16px}
+.x{border:1px solid var(--ink);background:#fff;padding:4px 10px;font-family:var(--mono)}
+@media (max-width:640px){.drawer{top:auto;width:100vw;max-height:88vh;border-left:0;border-top:3px solid var(--ink);transform:translateY(105%)}.drawer.open{transform:none}}
+@media (prefers-reduced-motion:reduce){.drawer{transition:none}}
+
+footer{border-top:3px solid var(--ink);margin-top:10px;padding:16px;font-size:12px;color:#444;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1240px;margin-inline:auto}
+footer b{display:block;color:var(--ink);text-transform:uppercase;letter-spacing:.1em;font-size:11px;margin-bottom:4px}
+@media (max-width:820px){footer{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="topline"><span>Catalog No. 26 · Flash &amp; custom tattoo</span><span>Walk-ins Sat 12–6 · Books open through Dec</span></div>
+<div class="hdr">
+  <a class="logo" href="#"><span class="sq">CT</span><span><b>CHRIS TATTOO CO.</b><small>Your City, ST · est. whenever</small></span></a>
+  <div class="search"><input id="q" placeholder="Search 71 flash designs, e.g. skull, rose, panther" aria-label="Search flash"><button>Search</button></div>
+  <button class="req" id="reqbtn">Booking request<span class="n" id="cnt">0</span></button>
+</div>
+
+<div class="layout">
+  <aside class="side">
+    <h4>Browse flash</h4>
+    <ul class="cats">
+      <li class="on"><a href="#">All designs</a><span>71</span></li>
+      <li><a href="#">Skulls &amp; devils</a><span>12</span></li>
+      <li><a href="#">Animals</a><span>19</span></li>
+      <li><a href="#">Flowers &amp; plants</a><span>11</span></li>
+      <li><a href="#">Hands &amp; symbols</a><span>14</span></li>
+      <li><a href="#">Faces</a><span>9</span></li>
+      <li><a href="#">Lettering</a><span>6</span></li>
+      <li><a href="#">Custom work</a><span>∞</span></li>
+    </ul>
+    <p class="fine"><b>Also in the catalog</b><a href="#">Healed work</a> · <a href="#">Store</a> · <a href="#">Paintings</a> · <a href="#">Games</a> · <a href="#">SpaceCraft (plants)</a></p>
+    <p class="fine"><b>Pricing</b>Shop minimum $120. Flash priced by size. Custom quoted after consult. Deposit $50, applied to the tattoo.</p>
+  </aside>
+
+  <main class="main">
+    <div class="howto">
+      <div class="h">HOW TO ORDER</div>
+      <div class="s"><b>1</b>Pick a flash design or choose Custom work.</div>
+      <div class="s"><b>2</b>Choose a size and tell me where it goes.</div>
+      <div class="s"><b>3</b>Send the request. I reply with a quote and dates.</div>
+    </div>
+
+    <div class="bar"><h2>Flash — ready to tattoo</h2><span class="cnt">Showing 11 of 71 · sorted by newest</span></div>
+    <div class="grid" id="grid"></div>
+
+    <div class="bar"><h2>Healed &amp; recent work</h2><a href="#" style="font-size:13px;font-weight:700">All 224 photos →</a></div>
+    <div class="hlist healed">
+      <div class="hrow"><img src="../assets/tattoos/thumbs/tattoo-015.jpg" alt=""><div><b>Peonies</b><small>FOREARM · COLOR · 2 SESSIONS</small></div><a href="#">Book similar</a></div>
+      <div class="hrow"><img src="../assets/tattoos/thumbs/tattoo-134.jpg" alt=""><div><b>Eagle</b><small>FOREARM · COLOR · 3 HR</small></div><a href="#">Book similar</a></div>
+      <div class="hrow"><img src="../assets/tattoos/thumbs/tattoo-057.jpg" alt=""><div><b>Crown &amp; dagger</b><small>UPPER ARM · COLOR · 2.5 HR</small></div><a href="#">Book similar</a></div>
+      <div class="hrow"><img src="../assets/tattoos/thumbs/tattoo-203.jpg" alt=""><div><b>Panther head</b><small>CALF · BLACK &amp; COLOR · 2 HR</small></div><a href="#">Book similar</a></div>
+      <div class="hrow"><img src="../assets/tattoos/thumbs/tattoo-004.jpg" alt=""><div><b>Penguin</b><small>SHIN · COLOR · 1.5 HR</small></div><a href="#">Book similar</a></div>
+      <div class="hrow"><img src="../assets/tattoos/thumbs/tattoo-170.jpg" alt=""><div><b>Cat</b><small>THIGH · COLOR · 1.5 HR</small></div><a href="#">Book similar</a></div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div><b>Hours</b>Tue–Sat 12–7 by appointment.<br>Walk-ins Saturday 12–6.</div>
+  <div><b>Deposits</b>$50 holds your time and comes off the final price. 48 hr notice to reschedule.</div>
+  <div><b>Aftercare</b><a href="#">Read the sheet</a>. Wash it, don't pick it, stay out of the sun.</div>
+  <div><b>Elsewhere</b><a href="#">Instagram</a> · <a href="#">Store</a> · <a href="#">SpaceCraft</a><br>© 2026 Chris Tattoo Co.</div>
+</footer>
+
+<aside class="drawer" id="drawer" aria-label="Booking request">
+  <header><span>Booking request</span><button class="x" id="closed">close</button></header>
+  <div class="list" id="list"><div class="empty">Nothing added yet. Add flash or choose Custom work.</div></div>
+  <form onsubmit="event.preventDefault();alert('Mockup only: this would send your request.')">
+    <div><label for="c-name">Name</label><input id="c-name"></div>
+    <div><label for="c-contact">Email or Instagram</label><input id="c-contact"></div>
+    <div><label for="c-place">Placement</label><input id="c-place" placeholder="outer forearm"></div>
+    <div><label for="c-notes">Notes / custom idea</label><textarea id="c-notes"></textarea></div>
+    <div><label for="c-ref">Reference photos</label><input id="c-ref" type="file" multiple></div>
+    <button class="send" type="submit">Send request</button>
+  </form>
+</aside>
+
+<script>
+const FLASH=[
+ ['FL-034','Skull & bones','../assets/flash/flash-34.png','Skulls',1.0,140],
+ ['FL-033','Hannya','../assets/flash/flash-33.png','Faces',2.0,260],
+ ['FL-050','Parrot head','../assets/flash/flash-50.png','Animals',1.5,200],
+ ['FL-024','Mantis','../assets/flash/flash-24.png','Animals',1.5,180],
+ ['FL-058','Cat','../assets/flash/flash-58.png','Animals',1.0,140],
+ ['FL-043','Moon w/ flowers','../assets/flash/flash-43.png','Flowers',1.5,180],
+ ['FL-028','All-seeing eye','../assets/flash/flash-28.png','Symbols',1.5,180],
+ ['FL-069','Lion','../assets/flash/flash-69.png','Animals',2.5,320],
+ ['FL-053','Dagger & stars','../assets/flash/flash-53.png','Symbols',1.5,200],
+ ['FL-071','Rose','../assets/flash/flash-71.png','Flowers',1.5,180],
+ ['FL-045','Dragon','../assets/flash/flash-45.png','Animals',2.0,240],
+];
+const grid=document.getElementById('grid');const picked=new Map();
+FLASH.forEach(([sku,name,img,cat,hr,price])=>{
+  const el=document.createElement('div');el.className='item';
+  el.innerHTML=`<div class="art"><img src="${img}" alt=""></div>
+    <div class="sku"><span>${sku}</span><i>Ready</i></div><h3>${name}</h3>
+    <dl class="spec"><dt>Category</dt><dd>${cat}</dd><dt>Est. time</dt><dd>${hr} hr</dd><dt>From</dt><dd>$${price}</dd></dl>
+    <div class="sizes"><button class="on">2 in</button><button>3 in</button><button>4 in</button></div>
+    <button class="add">Add to request</button>`;
+  el.querySelectorAll('.sizes button').forEach(b=>b.onclick=()=>{el.querySelectorAll('.sizes button').forEach(x=>x.classList.remove('on'));b.classList.add('on');});
+  const add=el.querySelector('.add');
+  add.onclick=()=>{const size=el.querySelector('.sizes .on').textContent;if(picked.has(sku)){picked.delete(sku);add.className='add';add.textContent='Add to request';}else{picked.set(sku,`${name} · ${size}`);add.className='add on';add.textContent='Added ✓';openDrawer();}render();};
+  grid.appendChild(el);
+});
+const custom=document.createElement('div');custom.className='item custom';custom.innerHTML=`<div class="art">CUSTOM<br>WORK</div><div class="sku"><span>CU-000</span><i>Quoted</i></div><h3>Your idea, drawn for you</h3><dl class="spec"><dt>Consult</dt><dd>free</dd><dt>Min</dt><dd>$120</dd></dl><button class="add">Request custom</button>`;
+custom.querySelector('.add').onclick=()=>{picked.set('CU-000','Custom work · quote');render();openDrawer();};grid.appendChild(custom);
+function render(){document.getElementById('cnt').textContent=picked.size;const l=document.getElementById('list');l.innerHTML=picked.size?[...picked].map(([k,v])=>`<div><span>${v}</span><span class="mono">${k}</span></div>`).join(''):'<div class="empty">Nothing added yet. Add flash or choose Custom work.</div>';}
+const drawer=document.getElementById('drawer');function openDrawer(){drawer.classList.add('open');}
+document.getElementById('reqbtn').onclick=()=>drawer.classList.toggle('open');document.getElementById('closed').onclick=()=>drawer.classList.remove('open');
+</script>

@@ -1,0 +1,61 @@
+---
+layout: layouts/catalog.njk
+title: Flash & custom tattoo
+description: Pick a flash design or bring your own idea. Traditional tattoos by Chris at Tattoo Peace, Vancouver, WA.
+---
+{% set cats = flash | uniqueCats %}
+<div class="layout">
+  <aside class="side">
+    <h4>Browse flash</h4>
+    <ul class="cats">
+      <li class="on" data-cat="all">All designs<span>{{ flash | length }}</span></li>
+      {%- for c in cats %}
+      <li data-cat="{{ c }}">{{ c }}<span>{{ (flash | where("category", c)) | length }}</span></li>
+      {%- endfor %}
+    </ul>
+    <p class="fine"><b>Also in the catalog</b><a href="/work/">Healed &amp; recent work</a> · <a href="/book/">Book</a> · <a href="/aftercare/">Aftercare</a> · <a href="/about/">About</a></p>
+    <p class="fine"><b>Pricing</b>Shop minimum {{ site.pricing.shopMinimum | money }}. {{ site.pricing.note }} Deposit {{ site.pricing.deposit | money }}, applied to the tattoo.</p>
+    <p class="fine"><b>Hours</b>{{ site.hoursLong }}</p>
+  </aside>
+
+  <main class="main">
+    <div class="howto">
+      <div class="h">HOW TO ORDER</div>
+      <div class="s"><b>1</b>Pick a flash design, or choose custom work.</div>
+      <div class="s"><b>2</b>Choose a size and tell me where it goes.</div>
+      <div class="s"><b>3</b>Send the request. I reply with a quote and dates.</div>
+    </div>
+
+    <div class="bar"><h1>Flash — ready to tattoo</h1><span class="cnt">Showing <span id="shown">{{ flash | length }}</span> of {{ flash | length }}</span></div>
+    <div class="grid" id="grid">
+      {%- for f in flash %}
+      <div class="item" data-sku="{{ f.sku }}" data-name="{{ f.name }}" data-cat="{{ f.category }}">
+        <div class="art"><img src="/assets/flash/web/{{ f.file }}.webp" alt="{{ f.name }} flash design" loading="lazy" width="520" height="520"></div>
+        <div class="sku"><span>{{ f.sku }}</span>{% if f.available %}<i>Ready</i>{% else %}<i class="off">Claimed</i>{% endif %}</div>
+        <h3>{{ f.name }}</h3>
+        <dl class="spec"><dt>Category</dt><dd>{{ f.category }}</dd><dt>Est. time</dt><dd>{{ f.hours | hrs }}</dd><dt>From</dt><dd>{{ f.priceFrom | money }}</dd></dl>
+        {%- if f.notes %}<p class="fine" style="margin:0">{{ f.notes }}</p>{% endif %}
+        <div class="sizes">{% for s in f.sizes %}<button type="button"{% if loop.first %} class="on"{% endif %}>{{ s }}</button>{% endfor %}</div>
+        <button class="add" type="button"{% if not f.available %} disabled{% endif %}>Add to request</button>
+      </div>
+      {%- endfor %}
+      <div class="item custom" data-sku="CU-000" data-name="Custom work" data-cat="Custom">
+        <div class="art">CUSTOM<br>WORK</div>
+        <div class="sku"><span>CU-000</span><i>Quoted</i></div>
+        <h3>Your idea, drawn for you</h3>
+        <dl class="spec"><dt>Consult</dt><dd>free</dd><dt>Min</dt><dd>{{ site.pricing.shopMinimum | money }}</dd></dl>
+        <div class="sizes"></div>
+        <button class="add" type="button">Request custom</button>
+      </div>
+    </div>
+    <div class="nores" id="nores" hidden>Nothing matches that. Try another word, or <a href="/book/">request custom work</a>.</div>
+
+    {%- set featured = (work | visible | where("featured", true)) %}
+    <div class="bar"><h2>Healed &amp; recent work</h2><a href="/work/" style="font-size:13px;font-weight:700">All {{ (work | visible) | length }} photos →</a></div>
+    <div class="hlist">
+      {%- for w in featured %}{% if loop.index <= 8 %}
+      <a class="hrow" href="/work/#{{ w.file }}"><img src="/assets/tattoos/thumbs/{{ w.file }}.jpg" alt="{{ w.title }}" loading="lazy"><div><b>{{ w.title }}</b><small>{{ w.placement }}{% if w.style %} · {{ w.style }}{% endif %}{% if w.hours %} · {{ w.hours }} hr{% endif %}</small></div><em>View</em></a>
+      {%- endif %}{% endfor %}
+    </div>
+  </main>
+</div>

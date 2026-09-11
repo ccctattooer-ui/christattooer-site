@@ -1,0 +1,195 @@
+<meta charset="utf-8">
+<title>Flash Wall</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Sancreek&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&display=swap">
+<style>
+:root{
+  --paper:#F7F2E4; --ink:#1B1712; --stencil:#4B2E9C; --stencil-soft:#8A73CC;
+  --red:#D3322A; --yellow:#F0C22E; --green:#2F8F63; --tape:rgba(255,240,180,.55);
+  --serif:"Rye","Sancreek",Georgia,serif; --slab:"Sancreek","Rye",Georgia,serif;
+  --type:"Courier Prime","Courier New",monospace; --pixel:"VT323",monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--type);font-size:17px;line-height:1.45;overflow-x:hidden;
+  background-image:radial-gradient(rgba(75,46,156,.07) 1px,transparent 1px);background-size:14px 14px}
+a{color:var(--stencil)}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;position:relative;z-index:2}
+
+.ticker{background:var(--stencil);color:#fff;font-family:var(--pixel);font-size:22px;letter-spacing:.5px;overflow:hidden;white-space:nowrap;border-bottom:3px solid var(--ink);position:relative;z-index:3}
+.ticker span{display:inline-block;padding:6px 0;animation:tick 28s linear infinite}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker span{animation:none}.spark{display:none}}
+
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-block:18px 8px;flex-wrap:wrap}
+.name{font-family:var(--serif);font-size:clamp(40px,9vw,84px);line-height:.9;color:var(--ink);text-shadow:3px 3px 0 var(--stencil-soft);margin:0}
+.name small{display:block;font-family:var(--type);font-size:14px;letter-spacing:.2em;text-transform:uppercase;text-shadow:none;color:var(--stencil);margin-top:8px}
+.counter{font-family:var(--pixel);font-size:18px;text-align:right;color:var(--ink)}
+.counter b{display:inline-block;background:var(--ink);color:#8FF58F;padding:2px 6px;letter-spacing:3px;font-weight:400;border:2px inset #999}
+
+.wall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.wall img{position:absolute;width:var(--w,180px);opacity:.3;transform:rotate(var(--r,0deg))}
+@media (max-width:720px){.wall img{width:calc(var(--w,180px)*.6);opacity:.22}.wall img.desk{display:none}}
+
+.sheet{position:relative;background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:28px 20px 24px;margin-block:22px 34px;transform:rotate(-.6deg)}
+.sheet::before,.sheet::after{content:"";position:absolute;width:110px;height:28px;background:var(--tape);border:1px solid rgba(0,0,0,.08);top:-12px}
+.sheet::before{left:24px;transform:rotate(-6deg)}.sheet::after{right:24px;transform:rotate(5deg)}
+.sheet-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:18px;align-items:center}
+.sheet-grid>*{min-width:0}
+@media (max-width:720px){.sheet-grid{grid-template-columns:1fr}}
+.eyebrow{font-size:13px;letter-spacing:.25em;text-transform:uppercase;color:var(--red);margin:0 0 6px}
+.headline{font-family:var(--slab);font-size:clamp(44px,8.5vw,96px);line-height:.92;margin:0;color:var(--stencil);text-wrap:balance;display:block}
+.headline em{font-style:normal;color:var(--red)}
+.lede{margin:14px 0 18px;max-width:52ch}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;text-decoration:none;font-family:var(--serif);font-size:24px;padding:14px 22px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transform:rotate(-1deg);transition:transform .12s}
+.cta:hover,.cta:focus-visible{transform:rotate(0) translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);outline:3px dashed var(--stencil);outline-offset:3px}
+.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.alt{display:block;margin-top:12px;font-size:15px}
+.hero-art{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0}
+.hero-art img{border:2px solid var(--ink);background:#fff;aspect-ratio:4/5;object-fit:cover;width:100%;min-width:0}
+.hero-art img:nth-child(2){transform:rotate(3deg)}.hero-art img:nth-child(3){transform:rotate(-2deg)}
+@media (max-width:720px){.hero-art{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-block:0 40px;list-style:none;padding:0}
+@media (max-width:900px){.cards{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:480px){.cards{grid-template-columns:repeat(2,1fr);gap:12px}}
+.card{position:relative;background:#fff;border:2px solid var(--ink);padding:12px 10px 10px;text-align:center;text-decoration:none;color:var(--ink);display:block;transform:rotate(var(--r,0deg));box-shadow:3px 3px 0 var(--stencil-soft);transition:transform .15s}
+.card:hover,.card:focus-visible{transform:rotate(0) scale(1.04);z-index:2;outline:none;box-shadow:5px 5px 0 var(--stencil)}
+.card::before{content:"";position:absolute;left:50%;top:-9px;width:14px;height:14px;border-radius:50%;background:var(--red);border:2px solid var(--ink);transform:translateX(-50%)}
+.card img{height:64px;width:auto;margin:6px auto 8px}
+.card b{font-family:var(--serif);font-size:17px;letter-spacing:.04em;display:block}
+.card i{font-style:normal;font-size:12px;color:#6b6257}
+
+h2{font-family:var(--serif);font-size:clamp(26px,4vw,38px);margin:0 0 14px;color:var(--ink);display:flex;align-items:center;gap:14px}
+h2::after{content:"";flex:1;height:0;border-top:3px dotted var(--stencil-soft)}
+h2 a{font-family:var(--type);font-size:15px;font-weight:700}
+
+.polas{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 18px;margin-bottom:46px}
+@media (max-width:900px){.polas{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.polas{grid-template-columns:repeat(2,1fr);gap:16px 12px}}
+.pola{background:#fff;border:1px solid #d8d0bd;padding:8px 8px 26px;box-shadow:2px 3px 0 rgba(0,0,0,.18);transform:rotate(var(--r,0deg));position:relative;transition:transform .15s;margin:0}
+.pola:hover{transform:rotate(0) scale(1.05);z-index:3}
+.pola img{aspect-ratio:4/5;object-fit:cover;width:100%;border:1px solid #ccc}
+.pola span{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:13px;color:#5a5248}
+
+.form{position:relative;background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--stencil);padding:22px 18px 18px;margin-bottom:46px;max-width:760px}
+.form h3{font-family:var(--serif);font-size:24px;margin:0 0 4px;letter-spacing:.02em}
+.form p.note{margin:0 0 16px;font-size:14px;color:#5a5248}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+label{display:block;font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px;color:var(--stencil)}
+.f{margin-bottom:14px}
+input,textarea{width:100%;font:inherit;font-size:16px;border:0;border-bottom:2px solid var(--ink);background:transparent;padding:8px 2px;color:var(--ink)}
+textarea{border:2px solid var(--ink);min-height:96px;padding:8px}
+input:focus,textarea:focus{outline:none;background:#F5F1FF;border-color:var(--stencil)}
+.stamp{display:inline-block;font-family:var(--serif);color:var(--red);border:3px double var(--red);padding:2px 10px;transform:rotate(-8deg);font-size:14px;letter-spacing:.1em;position:absolute;right:18px;top:12px;opacity:.85}
+.send{font-family:var(--serif);font-size:20px;background:var(--stencil);color:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:12px 22px;cursor:pointer}
+.send:hover{background:var(--red)}
+.send:focus-visible{outline:3px dashed var(--stencil);outline-offset:3px}
+
+footer{border-top:3px solid var(--ink);padding-block:20px 34px;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:space-between;font-size:14px}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.b88{width:88px;height:31px;border:1px solid var(--ink);font-family:var(--pixel);font-size:15px;line-height:29px;text-align:center;background:#111;color:#fff}
+.b88.y{background:var(--yellow);color:var(--ink)}.b88.p{background:var(--stencil)}.b88.g{background:var(--green)}.b88.r{background:var(--red)}
+.spark{position:fixed;pointer-events:none;width:8px;height:8px;background:var(--stencil);z-index:50;animation:pop .6s forwards}
+@keyframes pop{to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
+</style>
+
+<div class="ticker" aria-hidden="true"><span>★ BOOKS OPEN OCT–DEC ★ WALK-INS SATURDAYS 12–6 ★ FLASH IS ALWAYS AVAILABLE ★ NEW SPACECRAFT DROP SOON ★ BOOKS OPEN OCT–DEC ★ WALK-INS SATURDAYS 12–6 ★ FLASH IS ALWAYS AVAILABLE ★ NEW SPACECRAFT DROP SOON ★&nbsp;</span></div>
+
+<div class="wall" aria-hidden="true">
+  <img src="../assets/flash/flash-33.png" style="--w:230px;--r:-8deg;left:-40px;top:120px" alt="">
+  <img src="../assets/flash/flash-19.png" style="--w:210px;--r:6deg;right:-30px;top:90px" alt="">
+  <img src="../assets/flash/flash-50.png" style="--w:200px;--r:-4deg;left:4%;top:56%" class="desk" alt="">
+  <img src="../assets/flash/flash-45.png" style="--w:220px;--r:9deg;right:2%;top:48%" alt="">
+  <img src="../assets/flash/flash-24.png" style="--w:180px;--r:-12deg;left:30%;top:78%" class="desk" alt="">
+  <img src="../assets/flash/flash-35.png" style="--w:190px;--r:5deg;right:26%;top:82%" alt="">
+  <img src="../assets/flash/flash-04.png" style="--w:170px;--r:-3deg;left:44%;top:6%" class="desk" alt="">
+  <img src="../assets/flash/flash-69.png" style="--w:200px;--r:4deg;left:-20px;top:88%" alt="">
+</div>
+
+<div class="wrap">
+  <header>
+    <h1 class="name">CHRIS<small>Tattooer · Traditional &amp; custom · Your City, ST</small></h1>
+    <div class="counter">you are visitor <b>004219</b><br><a href="#">@yourhandle</a> on IG</div>
+  </header>
+
+  <section class="sheet">
+    <div class="sheet-grid">
+      <div>
+        <p class="eyebrow">Now booking · walk-ins Sat</p>
+        <h2 class="headline">GET <em>TATTOOED</em> BY ME</h2>
+        <p class="lede">Bold lines, solid color, stuff that still looks good in thirty years. Pick a flash piece off the wall or bring an idea and we'll draw it up.</p>
+        <a class="cta" href="#book">BOOK A TATTOO →</a>
+        <a class="alt" href="#">or just DM me on Instagram</a>
+      </div>
+      <div class="hero-art">
+        <img src="../assets/tattoos/thumbs/tattoo-004.jpg" alt="Traditional penguin tattoo">
+        <img src="../assets/tattoos/thumbs/tattoo-057.jpg" alt="Crown and dagger tattoo">
+        <img src="../assets/tattoos/thumbs/tattoo-114.jpg" alt="Sun face tattoo">
+        <img src="../assets/tattoos/thumbs/tattoo-203.jpg" alt="Panther tattoo">
+      </div>
+    </div>
+  </section>
+
+  <ul class="cards">
+    <li><a class="card" href="#" style="--r:-2deg"><img src="../assets/flash/flash-34.png" alt=""><b>TATTOOS</b><i>healed &amp; fresh</i></a></li>
+    <li><a class="card" href="#" style="--r:1.5deg"><img src="../assets/flash/flash-53.png" alt=""><b>FLASH</b><i>71 ready to go</i></a></li>
+    <li><a class="card" href="#book" style="--r:-1deg"><img src="../assets/flash/flash-49.png" alt=""><b>BOOK</b><i>request a spot</i></a></li>
+    <li><a class="card" href="#" style="--r:2deg"><img src="../assets/flash/flash-62.png" alt=""><b>STORE</b><i>prints · shirts</i></a></li>
+    <li><a class="card" href="#" style="--r:-2.5deg"><img src="../assets/flash/flash-28.png" alt=""><b>PAINTINGS</b><i>&amp; games</i></a></li>
+    <li><a class="card" href="#" style="--r:1deg"><img src="../assets/flash/flash-70.png" alt=""><b>SPACECRAFT</b><i>plant breeding</i></a></li>
+  </ul>
+
+  <h2>Recent work <a href="#">see all 200+ →</a></h2>
+  <div class="polas">
+    <figure class="pola" style="--r:-2deg"><img src="../assets/tattoos/thumbs/tattoo-015.jpg" alt="Peonies"><span>peonies · forearm</span></figure>
+    <figure class="pola" style="--r:1.5deg"><img src="../assets/tattoos/thumbs/tattoo-050.jpg" alt="Boba Fett"><span>fett · calf</span></figure>
+    <figure class="pola" style="--r:-1deg"><img src="../assets/tattoos/thumbs/tattoo-134.jpg" alt="Eagle"><span>eagle · forearm</span></figure>
+    <figure class="pola" style="--r:2.5deg"><img src="../assets/tattoos/thumbs/tattoo-158.jpg" alt="Reaper"><span>reaper · bicep</span></figure>
+    <figure class="pola" style="--r:1deg"><img src="../assets/tattoos/thumbs/tattoo-069.jpg" alt="Skull and roses"><span>skull &amp; roses</span></figure>
+    <figure class="pola" style="--r:-2deg"><img src="../assets/tattoos/thumbs/tattoo-170.jpg" alt="Cat"><span>cat · thigh</span></figure>
+    <figure class="pola" style="--r:2deg"><img src="../assets/tattoos/thumbs/tattoo-185.jpg" alt="Goldfish"><span>goldfish · forearm</span></figure>
+    <figure class="pola" style="--r:-1.5deg"><img src="../assets/tattoos/thumbs/tattoo-209.jpg" alt="Owl skull"><span>owl skull · knee</span></figure>
+  </div>
+
+  <h2 id="book">Book a tattoo</h2>
+  <form class="form" onsubmit="event.preventDefault();alert('Mockup only: this would send your request.')">
+    <span class="stamp">FORM 01-B</span>
+    <h3>Tattoo request</h3>
+    <p class="note">Fill this out and I'll get back to you within a couple days with a quote and available dates. A deposit locks the appointment.</p>
+    <div class="row">
+      <div class="f"><label for="a-name">Name</label><input id="a-name" placeholder="your name"></div>
+      <div class="f"><label for="a-contact">Email or IG</label><input id="a-contact" placeholder="@handle or email"></div>
+    </div>
+    <div class="f"><label for="a-idea">What do you want?</label><textarea id="a-idea" placeholder="flash #34 skull &amp; bones, or describe your idea"></textarea></div>
+    <div class="row">
+      <div class="f"><label for="a-place">Placement</label><input id="a-place" placeholder="outer forearm"></div>
+      <div class="f"><label for="a-size">Size (inches)</label><input id="a-size" placeholder="about 4in"></div>
+    </div>
+    <div class="row">
+      <div class="f"><label for="a-ref">Reference photos</label><input id="a-ref" type="file" multiple></div>
+      <div class="f"><label for="a-when">Days that work</label><input id="a-when" placeholder="weekends, or after Oct 10"></div>
+    </div>
+    <button class="send" type="submit">SEND REQUEST</button>
+  </form>
+
+  <footer>
+    <div>© 2026 · hand-built, no templates · <a href="#">sign the guestbook</a></div>
+    <div class="badges" aria-hidden="true">
+      <span class="b88">NETSCAPE</span><span class="b88 p">FLASH OK</span><span class="b88 y">88×31</span><span class="b88 g">SPACECRAFT</span><span class="b88 r">BOOK NOW</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+if (matchMedia('(hover:hover) and (pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+  let last = 0;
+  addEventListener('pointermove', e => {
+    if (e.timeStamp - last < 45) return; last = e.timeStamp;
+    const s = document.createElement('span'); s.className = 'spark';
+    s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
+    s.style.setProperty('--dx', (Math.random()*40-20) + 'px'); s.style.setProperty('--dy', (Math.random()*40+10) + 'px');
+    document.body.appendChild(s); setTimeout(() => s.remove(), 650);
+  });
+}
+</script>

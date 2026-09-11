@@ -1,0 +1,207 @@
+<meta charset="utf-8">
+<title>ParlorOS</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@400;500;700&family=VT323&display=swap">
+<style>
+:root{
+  --wall:#3B2380; --bone:#EFEAD9; --ink:#15121A; --stencil:#4B2E9C; --red:#D3322A; --yellow:#F0C22E; --green:#3BAA6E;
+  --title:"Silkscreen",monospace; --ui:"Pixelify Sans","Chicago",sans-serif; --txt:"VT323",monospace;
+  --bar:44px; --task:48px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--wall);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.4;overflow:hidden;position:relative}
+.wallpaper{position:fixed;inset:0;background:rgba(255,255,255,.14);pointer-events:none;
+  -webkit-mask-image:url(../assets/flash/flash-33.png),url(../assets/flash/flash-19.png),url(../assets/flash/flash-45.png),url(../assets/flash/flash-04.png),url(../assets/flash/flash-50.png);
+  mask-image:url(../assets/flash/flash-33.png),url(../assets/flash/flash-19.png),url(../assets/flash/flash-45.png),url(../assets/flash/flash-04.png),url(../assets/flash/flash-50.png);
+  -webkit-mask-size:170px,150px,180px,130px,160px;mask-size:170px,150px,180px,130px,160px;
+  -webkit-mask-repeat:repeat;mask-repeat:repeat;
+  -webkit-mask-position:0 0,240px 160px,120px 380px,420px 60px,300px 540px;mask-position:0 0,240px 160px,120px 380px,420px 60px,300px 540px}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer}
+
+.menubar{position:fixed;top:0;left:0;right:0;height:var(--bar);background:var(--bone);border-bottom:3px solid var(--ink);display:flex;align-items:center;gap:18px;padding-inline:14px;z-index:1000;font-family:var(--title);font-size:12px}
+.menubar .logo{font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px}
+.menubar .logo i{display:inline-block;width:18px;height:18px;background:var(--stencil);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.menubar .m{opacity:.85}
+.menubar .right{margin-left:auto;display:flex;gap:14px;align-items:center}
+.menubar .live{width:9px;height:9px;background:var(--green);border:2px solid var(--ink);display:inline-block;margin-right:6px}
+@media (max-width:760px){.menubar .m{display:none}.menubar .right span.ig{display:none}}
+
+.icons{position:fixed;top:calc(var(--bar) + 16px);left:14px;display:grid;grid-template-columns:1fr;gap:12px;z-index:1}
+.icon{width:84px;background:none;border:0;color:#fff;text-align:center;padding:4px;font-family:var(--title);font-size:10px;line-height:1.3}
+.icon .box{width:56px;height:56px;margin:0 auto 6px;background:var(--bone);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;padding:5px;transition:transform .1s}
+.icon .box img{max-height:100%;width:auto}
+.icon:hover .box,.icon:focus-visible .box{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.icon:focus-visible{outline:2px dashed var(--yellow);outline-offset:2px}
+.icon.hot .box{background:var(--red);animation:blink 1.2s steps(2) infinite}
+.icon.hot .box img{filter:brightness(0) invert(1)}
+@keyframes blink{50%{background:var(--yellow)}}
+.icon span{display:block;background:rgba(21,18,26,.85);padding:2px 3px;margin-inline:-2px}
+@media (max-width:760px){.icons{left:0;right:0;grid-template-columns:repeat(4,1fr);gap:8px;padding-inline:8px;justify-items:center}.icon{width:78px}}
+@media (prefers-reduced-motion:reduce){.icon.hot .box{animation:none}}
+
+.win{position:absolute;background:var(--bone);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);width:min(520px,calc(100vw - 32px));display:flex;flex-direction:column;z-index:10}
+.win[hidden]{display:none}
+.win .title{font-family:var(--title);font-size:12px;height:30px;display:flex;align-items:center;gap:10px;padding-inline:8px;border-bottom:3px solid var(--ink);cursor:grab;user-select:none;touch-action:none;
+  background:repeating-linear-gradient(0deg,var(--bone) 0 2px,#c9c2ad 2px 4px)}
+.win.active .title{background:repeating-linear-gradient(0deg,var(--stencil) 0 2px,#6b4fc4 2px 4px);color:#fff}
+.win .title b{background:inherit;padding-inline:8px;flex:1;text-align:center;font-weight:400}
+.win.active .title b{color:#fff}
+.win .x{width:18px;height:18px;border:2px solid currentColor;background:var(--bone);color:var(--ink);padding:0;line-height:1;font-size:12px;font-family:var(--title)}
+.win .body{padding:14px;overflow:auto;max-height:min(70vh,560px)}
+@media (max-width:760px){
+  .win{position:fixed !important;left:8px !important;top:calc(var(--bar) + 214px) !important;right:8px;bottom:calc(var(--task) + 8px);width:auto !important;box-shadow:4px 4px 0 var(--ink)}
+  .win:not(.active){display:none}
+  .win .body{max-height:none;flex:1}
+  .win .title{cursor:default}
+}
+
+.txt{font-family:var(--txt);font-size:21px;line-height:1.25}
+.txt h1{font-family:var(--title);font-size:18px;margin:0 0 10px;color:var(--stencil)}
+.txt p{margin:0 0 12px;max-width:52ch}
+.btn{display:inline-block;background:var(--red);color:#fff;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:8px 14px;font-family:var(--title);font-size:12px;text-decoration:none}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.ghost{background:var(--bone);color:var(--ink)}
+.btn:focus-visible{outline:3px dashed var(--stencil);outline-offset:2px}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gallery img{aspect-ratio:4/5;object-fit:cover;width:100%;border:2px solid var(--ink);background:#fff}
+@media (max-width:420px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gallery figure{margin:0}
+.gallery figcaption{font-family:var(--title);font-size:9px;margin-top:4px;opacity:.75}
+
+.flash{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:420px){.flash{grid-template-columns:repeat(2,1fr)}}
+.fl{background:#fff;border:2px solid var(--ink);padding:8px;text-align:center}
+.fl img{height:84px;width:auto;margin:0 auto 6px}
+.fl b{display:block;font-family:var(--title);font-size:9px;margin-bottom:6px;min-height:22px}
+.fl button{width:100%;border:2px solid var(--ink);background:var(--yellow);font-family:var(--title);font-size:9px;padding:5px 2px}
+.fl button.on{background:var(--green);color:#fff}
+
+form .f{margin-bottom:12px}
+label{display:block;font-family:var(--title);font-size:10px;margin-bottom:4px;color:var(--stencil)}
+input,textarea{width:100%;font-family:var(--txt);font-size:20px;border:3px solid var(--ink);background:#fff;padding:6px 8px;color:var(--ink)}
+input:focus,textarea:focus{outline:3px solid var(--yellow)}
+textarea{min-height:88px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.row{grid-template-columns:1fr}}
+
+.taskbar{position:fixed;left:0;right:0;bottom:0;height:var(--task);background:var(--bone);border-top:3px solid var(--ink);display:flex;align-items:center;gap:8px;padding-inline:8px;z-index:1000;overflow-x:auto}
+.start{font-family:var(--title);font-size:12px;font-weight:700;background:var(--stencil);color:#fff;border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);padding:6px 10px;white-space:nowrap;display:flex;align-items:center;gap:8px}.start::before{content:'';width:12px;height:12px;background:var(--yellow);border:2px solid var(--ink)}
+.tb{font-family:var(--title);font-size:10px;background:var(--bone);border:2px solid var(--ink);padding:6px 10px;white-space:nowrap}
+.tb.active{background:#fff;box-shadow:inset 2px 2px 0 rgba(0,0,0,.25)}
+.taskbar .clock{margin-left:auto;font-family:var(--title);font-size:11px;white-space:nowrap;padding-inline:6px}
+.badge{display:inline-block;background:var(--red);color:#fff;border-radius:0;padding:0 5px;margin-left:6px;font-size:10px}
+</style>
+
+<div class="wallpaper" aria-hidden="true"></div>
+
+<div class="menubar">
+  <div class="logo"><i></i>ParlorOS</div>
+  <span class="m">File</span><span class="m">Edit</span><span class="m">View</span><span class="m">Book</span>
+  <div class="right"><span><i class="live"></i>BOOKS OPEN</span><span class="ig">@yourhandle</span><span id="clock">12:00</span></div>
+</div>
+
+<div class="icons">
+  <button class="icon" data-open="w-welcome"><div class="box"><img src="../assets/flash/flash-49.png" alt=""></div><span>readme.txt</span></button>
+  <button class="icon" data-open="w-work"><div class="box"><img src="../assets/flash/flash-15.png" alt=""></div><span>Tattoos</span></button>
+  <button class="icon" data-open="w-flash"><div class="box"><img src="../assets/flash/flash-53.png" alt=""></div><span>Flash</span></button>
+  <button class="icon hot" data-open="w-book"><div class="box"><img src="../assets/flash/flash-28.png" alt=""></div><span>BOOK NOW</span></button>
+  <button class="icon" data-open="w-store"><div class="box"><img src="../assets/flash/flash-62.png" alt=""></div><span>Store</span></button>
+  <button class="icon" data-open="w-art"><div class="box"><img src="../assets/flash/flash-69.png" alt=""></div><span>Paintings</span></button>
+  <button class="icon" data-open="w-games"><div class="box"><img src="../assets/flash/flash-32.png" alt=""></div><span>Games</span></button>
+  <button class="icon" data-open="w-space"><div class="box"><img src="../assets/flash/flash-70.png" alt=""></div><span>SpaceCraft</span></button>
+</div>
+
+<section class="win" id="w-welcome" style="left:140px;top:70px;width:min(460px,calc(100vw - 32px))">
+  <div class="title"><button class="x" aria-label="Close">×</button><b>readme.txt</b></div>
+  <div class="body txt">
+    <h1>Hi, I'm Chris.</h1>
+    <p>I tattoo traditional: bold lines, solid color, made to last. Based in Your City, ST. Books are open through December.</p>
+    <p>Pick something off the Flash wall or bring your own idea. Deposits hold your spot.</p>
+    <p><a class="btn" href="#" data-open="w-book">BOOK A TATTOO</a> &nbsp; <a class="btn ghost" href="#" data-open="w-work">SEE WORK</a></p>
+  </div>
+</section>
+
+<section class="win" id="w-work" style="left:520px;top:110px;width:min(600px,calc(100vw - 32px))">
+  <div class="title"><button class="x" aria-label="Close">×</button><b>Tattoos (218)</b></div>
+  <div class="body">
+    <div class="gallery">
+      <figure><img src="../assets/tattoos/thumbs/tattoo-004.jpg" alt="Penguin"><figcaption>penguin.jpg</figcaption></figure>
+      <figure><img src="../assets/tattoos/thumbs/tattoo-015.jpg" alt="Peonies"><figcaption>peonies.jpg</figcaption></figure>
+      <figure><img src="../assets/tattoos/thumbs/tattoo-050.jpg" alt="Boba Fett"><figcaption>fett.jpg</figcaption></figure>
+      <figure><img src="../assets/tattoos/thumbs/tattoo-057.jpg" alt="Crown dagger"><figcaption>crown_dagger.jpg</figcaption></figure>
+      <figure><img src="../assets/tattoos/thumbs/tattoo-114.jpg" alt="Sun"><figcaption>sun.jpg</figcaption></figure>
+      <figure><img src="../assets/tattoos/thumbs/tattoo-134.jpg" alt="Eagle"><figcaption>eagle.jpg</figcaption></figure>
+      <figure><img src="../assets/tattoos/thumbs/tattoo-158.jpg" alt="Reaper"><figcaption>reaper.jpg</figcaption></figure>
+      <figure><img src="../assets/tattoos/thumbs/tattoo-170.jpg" alt="Cat"><figcaption>cat.jpg</figcaption></figure>
+      <figure><img src="../assets/tattoos/thumbs/tattoo-203.jpg" alt="Panther"><figcaption>panther.jpg</figcaption></figure>
+    </div>
+    <p style="margin:12px 0 0"><a class="btn ghost" href="#">LOAD MORE</a></p>
+  </div>
+</section>
+
+<section class="win" id="w-flash" hidden style="left:200px;top:160px;width:min(560px,calc(100vw - 32px))">
+  <div class="title"><button class="x" aria-label="Close">×</button><b>Flash: claim a design</b></div>
+  <div class="body">
+    <p class="txt" style="margin:0 0 10px">Flash is drawn and ready. Claim one and it drops straight into your booking request.</p>
+    <div class="flash">
+      <div class="fl"><img src="../assets/flash/flash-34.png" alt=""><b>SKULL &amp; BONES</b><button data-claim="Skull &amp; bones">CLAIM</button></div>
+      <div class="fl"><img src="../assets/flash/flash-33.png" alt=""><b>HANNYA</b><button data-claim="Hannya">CLAIM</button></div>
+      <div class="fl"><img src="../assets/flash/flash-50.png" alt=""><b>PARROT</b><button data-claim="Parrot">CLAIM</button></div>
+      <div class="fl"><img src="../assets/flash/flash-24.png" alt=""><b>MANTIS</b><button data-claim="Mantis">CLAIM</button></div>
+      <div class="fl"><img src="../assets/flash/flash-58.png" alt=""><b>CAT</b><button data-claim="Cat">CLAIM</button></div>
+      <div class="fl"><img src="../assets/flash/flash-43.png" alt=""><b>MOON</b><button data-claim="Moon">CLAIM</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="win" id="w-book" hidden style="left:320px;top:60px;width:min(480px,calc(100vw - 32px))">
+  <div class="title"><button class="x" aria-label="Close">×</button><b>book.exe</b></div>
+  <div class="body">
+    <form onsubmit="event.preventDefault();alert('Mockup only: this would send your request.')">
+      <div class="row">
+        <div class="f"><label for="b-name">Name</label><input id="b-name"></div>
+        <div class="f"><label for="b-contact">Email or IG</label><input id="b-contact"></div>
+      </div>
+      <div class="f"><label for="b-idea">Idea / flash</label><textarea id="b-idea" placeholder="describe it, or claim flash and it lands here"></textarea></div>
+      <div class="row">
+        <div class="f"><label for="b-place">Placement</label><input id="b-place" placeholder="outer forearm"></div>
+        <div class="f"><label for="b-size">Size</label><input id="b-size" placeholder="~4 in"></div>
+      </div>
+      <div class="f"><label for="b-ref">Reference photos</label><input id="b-ref" type="file" multiple></div>
+      <button class="btn" type="submit">SEND REQUEST</button>
+    </form>
+  </div>
+</section>
+
+<section class="win" id="w-store" hidden style="left:260px;top:120px"><div class="title"><button class="x" aria-label="Close">×</button><b>Store</b></div><div class="body txt"><h1>Store</h1><p>Prints, shirts, and the occasional painting. Coming soon.</p></div></section>
+<section class="win" id="w-art" hidden style="left:280px;top:140px"><div class="title"><button class="x" aria-label="Close">×</button><b>Paintings</b></div><div class="body txt"><h1>Paintings</h1><p>Flash paintings and whatever else is on the desk.</p></div></section>
+<section class="win" id="w-games" hidden style="left:300px;top:160px"><div class="title"><button class="x" aria-label="Close">×</button><b>Games</b></div><div class="body txt"><h1>Games</h1><p>Small things to poke at. First one soon.</p></div></section>
+<section class="win" id="w-space" hidden style="left:320px;top:180px"><div class="title"><button class="x" aria-label="Close">×</button><b>SpaceCraft</b></div><div class="body txt"><h1>SpaceCraft</h1><p>Plant breeding side project. Seed drops, grow logs, weird crosses.</p></div></section>
+
+<div class="taskbar">
+  <button class="start">CHRIS</button>
+  <div id="tasks" style="display:flex;gap:6px"></div>
+  <span class="clock" id="claims">0 claimed</span>
+</div>
+
+<script>
+const wins=[...document.querySelectorAll('.win')];let z=10;const mobile=()=>matchMedia('(max-width:760px)').matches;
+function focusWin(w){z++;w.style.zIndex=z;wins.forEach(x=>x.classList.toggle('active',x===w));tasks();}
+function openWin(id){const w=document.getElementById(id);w.hidden=false;focusWin(w);}
+function closeWin(w){w.hidden=true;const o=wins.filter(x=>!x.hidden);if(o.length)focusWin(o[o.length-1]);else tasks();}
+function tasks(){const t=document.getElementById('tasks');t.innerHTML='';wins.filter(w=>!w.hidden).forEach(w=>{const b=document.createElement('button');b.className='tb'+(w.classList.contains('active')?' active':'');b.textContent=w.querySelector('.title b').textContent.split(/[:(]/)[0].trim();b.onclick=()=>focusWin(w);t.appendChild(b);});}
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openWin(b.dataset.open);}));
+wins.forEach(w=>{w.addEventListener('pointerdown',()=>{if(!w.classList.contains('active'))focusWin(w);},true);w.querySelector('.x').onclick=()=>closeWin(w);
+  const t=w.querySelector('.title');let sx,sy,ox,oy,drag=false;
+  t.addEventListener('pointerdown',e=>{if(mobile()||e.target.classList.contains('x'))return;drag=true;sx=e.clientX;sy=e.clientY;ox=w.offsetLeft;oy=w.offsetTop;t.setPointerCapture(e.pointerId);});
+  t.addEventListener('pointermove',e=>{if(!drag)return;w.style.left=Math.max(0,ox+e.clientX-sx)+'px';w.style.top=Math.max(44,oy+e.clientY-sy)+'px';});
+  t.addEventListener('pointerup',()=>drag=false);});
+let claimed=[];document.querySelectorAll('[data-claim]').forEach(b=>b.onclick=()=>{const n=b.dataset.claim;b.classList.toggle('on');b.textContent=b.classList.contains('on')?'CLAIMED':'CLAIM';claimed=b.classList.contains('on')?[...claimed,n]:claimed.filter(x=>x!==n);document.getElementById('claims').textContent=claimed.length+' claimed';document.getElementById('b-idea').value=claimed.length?'Flash: '+claimed.join(', '):'';});
+function clock(){const d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});}clock();setInterval(clock,30000);
+// initial state: two windows open on desktop, just readme on mobile
+if(mobile()){document.getElementById('w-work').hidden=true;}
+focusWin(document.getElementById('w-welcome'));
+</script>

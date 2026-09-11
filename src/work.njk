@@ -1,0 +1,24 @@
+---
+layout: layouts/catalog.njk
+title: Work
+description: Healed and recent tattoos by Chris at Tattoo Peace.
+---
+{% set shown = work | visible | featuredFirst %}
+<main class="main" style="max-width:1240px;margin:0 auto">
+  <div class="bar"><h1>Healed &amp; recent work</h1><span class="cnt">{{ shown | length }} photos · ★ = detailed</span></div>
+  <div class="wgrid">
+    {%- for w in shown %}
+    <button type="button" id="{{ w.file }}" class="{% if w.featured %}feat{% endif %}"
+      data-full="/assets/tattoos/{{ w.file }}.jpg" data-title="{{ w.title }}" data-placement="{{ w.placement }}" data-style="{{ w.style }}" data-hours="{{ w.hours }}" data-notes="{{ w.notes }}">
+      <img src="/assets/tattoos/thumbs/{{ w.file }}.jpg" alt="{{ w.title or 'Tattoo by Chris' }}" loading="lazy" width="384" height="480">
+      {%- if w.title %}<span class="cap">{{ w.title }}{% if w.placement %} · {{ w.placement }}{% endif %}</span>{% endif %}
+    </button>
+    {%- endfor %}
+  </div>
+</main>
+
+<dialog class="lb" id="lb">
+  <div class="pane-title"><button class="x" id="lb-close" type="button" aria-label="Close">×</button><b>work.jpg</b></div>
+  <img id="lb-img" src="" alt="">
+  <div class="meta"><div><b id="lb-title"></b><br><small id="lb-meta"></small><div id="lb-notes"></div></div><a href="/book/">Book something like this →</a></div>
+</dialog>
