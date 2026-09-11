@@ -1,11 +1,11 @@
 {
   "sku": "FL-064",
-  "name": "Deer",
+  "name": "bambi",
   "category": "Animals",
   "image": "/assets/flash/web/flash-64.webp",
-  "size": "3 in",
+  "size": "4 in",
+  "price": 200,
   "hours": 1.5,
-  "price": 160,
   "available": true,
-  "notes": ""
+  "notes": "cute"
 }
