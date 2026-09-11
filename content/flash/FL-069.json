@@ -1,11 +1,11 @@
 {
   "sku": "FL-069",
-  "name": "Lion",
+  "name": "Lion (roar)",
   "category": "Animals",
   "image": "/assets/flash/web/flash-69.webp",
-  "size": "3 in",
-  "hours": 2,
-  "price": 200,
+  "size": "6 in",
+  "hours": 2.5,
+  "price": 400,
   "available": true,
-  "notes": ""
+  "notes": "roar"
 }
