@@ -1,11 +1,11 @@
 {
   "sku": "FL-021",
-  "name": "Foo dog",
+  "name": "Monkey",
   "category": "Animals",
   "image": "/assets/flash/web/flash-21.webp",
   "size": "3 in",
+  "price": 250,
   "hours": 2,
-  "price": 200,
   "available": true,
   "notes": ""
 }
