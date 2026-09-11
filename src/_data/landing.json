@@ -1,13 +1,18 @@
 {
   "enabled": true,
-  "channel": "420",
+  "channel": "69420",
   "screenLabel": "Chris Tattooer",
   "kicker": "Tattoo Peace · Vancouver, WA",
-  "welcome": "Welcome to my digital parlor. Flash, healed work, paintings, games and a plant lab, all on one channel.",
-  "caption": "Tap to enter",
-  "button": "Enter the shop",
+  "welcome": "Welcome to my digital parlor. Flash, healed work, paintings, gaming montages, plant breeding, and shit to buy!!",
+  "caption": "* TAP TO ENTER *",
+  "button": "enter the parlor",
   "plate": "Chris Tattooer · Tube-O-Vision",
-  "footer": "",
+  "footer": "super dank and digital",
   "taskbarLabel": "welcome.tv",
-  "bootMessages": ["booting…", "loading flash…", "warming up the tube…", "ready."]
+  "bootMessages": [
+    "booting…",
+    "loading flash…",
+    "warming up the tube…",
+    "ready."
+  ]
 }
