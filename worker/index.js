@@ -8,7 +8,9 @@ const routes = { "/admin/auth": auth, "/admin/api/flash": flash, "/api/book": bo
 
 export default {
   async fetch(request, env, ctx) {
-    const path = new URL(request.url).pathname.replace(/\/+$/, "");
+    const url = new URL(request.url);
+    if (url.hostname.startsWith("www.")) { url.hostname = url.hostname.slice(4); return Response.redirect(url.toString(), 301); }
+    const path = url.pathname.replace(/\/+$/, "");
     const mod = routes[path];
     if (mod) {
       const m = request.method;
