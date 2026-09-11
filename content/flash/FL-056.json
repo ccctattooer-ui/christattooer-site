@@ -1,11 +1,11 @@
 {
   "sku": "FL-056",
-  "name": "Curly lady",
+  "name": "butterfly heart face",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-56.webp",
-  "size": "3 in",
+  "size": "5 in",
+  "price": 250,
   "hours": 1.5,
-  "price": 160,
   "available": true,
   "notes": ""
 }
