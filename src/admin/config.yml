@@ -361,7 +361,7 @@ collections:
           - { label: Short name, name: shortName, widget: string }
           - { label: Site title, name: title, widget: string }
           - { label: Tagline, name: tagline, widget: string }
-          - { label: Catalog number, name: catalogNo, widget: string, hint: Shown in the top strip as CATALOG NO. }
+          - { label: Top strip label, name: catalogLabel, widget: string, hint: The first words in the black strip above the catalog, e.g. Online catalog. }
           - { label: Books status, name: booksStatus, widget: string, hint: e.g. Books open, Books closed, Waitlist. }
           - { label: Hours (short), name: hoursShort, widget: string }
           - { label: Hours (long), name: hoursLong, widget: string }
