@@ -3,9 +3,9 @@
   "name": "flowers",
   "category": "Flowers & plants",
   "image": "/assets/flash/web/flash-62.webp",
-  "size": "3 in",
-  "price": 160,
-  "hours": 1.5,
+  "size": "5 in",
+  "price": 250,
+  "hours": 2,
   "available": true,
   "notes": ""
 }
