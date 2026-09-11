@@ -21,6 +21,8 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Look & colors | brand colors for both looks, grid columns, collage tilt / tape / piece size | `src/_data/theme.json` |
 | Site settings | name, hours, books status, shop, Instagram, Square link, minimum, deposit | `src/_data/site.json` |
 
+The landing page (`/`) is the ParlorOS "TV" intro; the flash catalog lives at `/flash/`. The intro montage is built by `python tools/build_intro.py` from the clips and photos in `AboutMe/` (raw, not in git): edit the cut list at the top of that script, run it, commit `assets/intro/`. Visitors who already clicked through in the current browser session skip straight to `/flash/`.
+
 Saving in the admin commits to GitHub; Cloudflare Workers Builds rebuilds and the live site updates a minute or two later (free plan: 3,000 build minutes a month, plenty).
 
 Uploads are shrunk in the browser to 2000px WebP before they are committed. Thumbnails for every photo are generated at build time (`@11ty/eleventy-img`), so there are no thumbs folders to maintain.
@@ -69,7 +71,8 @@ src/
     os.njk          ParlorOS desktop frame (other departments)
     page.njk        About / Aftercare wrapper
   admin/            Sveltia CMS (index.html + config.yml)
-  index.njk         flash catalog (home)
+  intro.njk         landing page (CRT TV + montage) at /
+  index.njk         flash catalog at /flash/
   work.njk          all photos + lightbox
   book.njk          booking
   department.njk    one page per department (paintings collage, games, store, spacecraft)

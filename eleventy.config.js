@@ -4,6 +4,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "assets/paintings": "assets/paintings" });
   eleventyConfig.addPassthroughCopy({ "assets/uploads": "assets/uploads" });
+  eleventyConfig.addPassthroughCopy({ "assets/intro": "assets/intro" });
   // Cloudflare reads _headers from the output folder (cache + noindex rules).
   eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers" });
   // Web-ready images only. Raw photo folders (Tattoo_Images etc.) never ship.

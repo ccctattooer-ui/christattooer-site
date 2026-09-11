@@ -1,0 +1,32 @@
+---
+layout: layouts/intro.njk
+title: Welcome
+description: Chris Columbus, traditional tattooer at Tattoo Peace in Vancouver, WA. Flash, healed work, paintings, games and more.
+permalink: /
+eleventyExcludeFromCollections: true
+---
+<main class="boot">
+  <p class="welcome"><b>{{ site.shop.name | upper }} · {{ site.shop.city | upper }}</b>Welcome to the parlor. Flash, healed work, paintings, games and a plant lab, all on one channel.</p>
+
+  <div class="tv" id="tv" role="button" tabindex="0" aria-label="Enter the site">
+    <div class="cabinet">
+      <div class="bezel">
+        <div class="screen">
+          <video id="montage" autoplay muted loop playsinline preload="auto" poster="/assets/intro/poster.jpg" aria-label="Short montage from the shop">
+            <source src="/assets/intro/montage.mp4" type="video/mp4">
+          </video>
+          <div class="scan"></div><div class="rgb"></div><div class="glare"></div><div class="flicker"></div>
+          <div class="osd"><b>CH {{ site.catalogNo }}</b>{{ site.title | upper }}</div>
+          <div class="caption">TAP TO ENTER <i>▮</i></div>
+        </div>
+      </div>
+      <div class="panel">
+        <span class="brand">{{ site.title | upper }} · TUBE-O-VISION</span>
+        <div class="knobs"><span class="knob"></span><span class="knob"></span><span class="led"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <a class="power" href="/flash/" id="enter"><i></i>ENTER THE SHOP</a>
+  <p class="skip">{{ site.hoursShort | upper }} · {{ site.booksStatus | upper }}</p>
+</main>

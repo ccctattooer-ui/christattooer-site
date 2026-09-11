@@ -1,0 +1,40 @@
+/* Landing page: a CRT television on the ParlorOS desktop. Loaded after os.css. */
+body.intro{overflow:auto;min-height:100vh}
+.boot{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding-inline:16px;padding-block:calc(var(--bar) + 18px) calc(var(--task) + 18px);position:relative;z-index:1;box-sizing:border-box}
+.boot-msg{opacity:.7;font-weight:400}
+
+.welcome{font-family:var(--txt);font-size:clamp(19px,4.6vw,27px);line-height:1.15;color:#fff;text-align:center;text-shadow:2px 2px 0 var(--ink);max-width:34ch;margin:0}
+.welcome b{font-family:var(--title);font-size:clamp(10px,2.8vw,13px);display:block;margin-bottom:8px;color:var(--yellow);letter-spacing:.12em}
+
+.tv{width:min(92vw,600px);cursor:pointer;filter:drop-shadow(8px 10px 0 rgba(21,18,26,.85));outline-offset:6px}
+.cabinet{background:linear-gradient(135deg,#8a5427,#5e3616 38%,#75461f 68%,#4b2a10);border:4px solid var(--ink);border-radius:20px;padding:16px 16px 8px;box-shadow:inset 0 0 0 3px #a9784a,inset 0 0 44px rgba(0,0,0,.6)}
+.bezel{background:#1b1813;border:3px solid #0b0a08;border-radius:16px;padding:10px;box-shadow:inset 0 0 0 2px #2f2a21,inset 0 8px 20px rgba(0,0,0,.7)}
+.screen{position:relative;aspect-ratio:4/3;border-radius:7% / 9%;overflow:hidden;background:#050505;box-shadow:inset 0 0 70px rgba(0,0,0,.95),inset 0 0 4px rgba(255,255,255,.15);animation:tv-on .9s cubic-bezier(.2,.9,.3,1) both;transform-origin:center}
+@keyframes tv-on{0%{transform:scale(1,.004);filter:brightness(6)}55%{transform:scale(1,.004);filter:brightness(6)}70%{transform:scale(1.02,.6);filter:brightness(2)}100%{transform:none;filter:none}}
+.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.12) saturate(1.25) brightness(1.02);background:#000 center/cover no-repeat}
+.screen .scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.32) 0 1px,transparent 1px 3px);pointer-events:none}
+.screen .rgb{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,40,40,.07) 0 1px,rgba(40,255,40,.06) 1px 2px,rgba(40,40,255,.07) 2px 3px);pointer-events:none;mix-blend-mode:screen}
+.screen .glare{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 18%,rgba(255,255,255,.16),transparent 42%),radial-gradient(ellipse at center,transparent 58%,rgba(0,0,0,.62) 100%);pointer-events:none}
+.screen .flicker{position:absolute;inset:0;background:#fff;opacity:0;animation:flick 5s steps(1) infinite;pointer-events:none;mix-blend-mode:overlay}
+@keyframes flick{0%,95%,100%{opacity:0}96%{opacity:.07}97%{opacity:0}98.5%{opacity:.05}}
+.screen .osd{position:absolute;left:5%;top:5%;font-family:var(--txt);font-size:clamp(15px,3.2vw,22px);line-height:1;color:#9cff9c;text-shadow:0 0 6px #3f3,1px 1px 0 #030;letter-spacing:.05em}
+.screen .osd b{display:block;font-size:1.15em;margin-bottom:2px}
+.screen .caption{position:absolute;left:0;right:0;bottom:6%;text-align:center;font-family:var(--title);font-size:clamp(9px,2.3vw,13px);color:#fff;text-shadow:2px 2px 0 #000,0 0 10px rgba(255,255,255,.5);letter-spacing:.08em}
+.screen .caption i{font-style:normal;animation:blinkc 1s steps(2) infinite}
+@keyframes blinkc{50%{opacity:0}}
+
+.panel{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 6px 4px;color:#eadcc0;font-family:var(--title);font-size:9px;letter-spacing:.14em;text-shadow:1px 1px 0 #000}
+.knobs{display:flex;gap:10px;align-items:center}
+.knob{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#d2bd97,#5c4426);border:2px solid #0b0a08;box-shadow:2px 2px 0 rgba(0,0,0,.6);position:relative}
+.knob::after{content:"";position:absolute;left:50%;top:2px;width:2px;height:8px;background:#0b0a08;margin-left:-1px}
+.knob:nth-child(2){transform:rotate(60deg)}
+.led{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);animation:blinkc 2s steps(2) infinite}
+
+.power{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:12px 18px;font-family:var(--title);font-size:13px;text-decoration:none;animation:pulse 1.4s ease-in-out infinite;cursor:pointer}
+.power i{width:11px;height:11px;border-radius:50%;background:var(--yellow);border:2px solid var(--ink);box-shadow:0 0 8px var(--yellow)}
+.power:hover,.power:focus-visible{background:var(--stencil)}
+@keyframes pulse{50%{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}}
+.skip{font-family:var(--title);font-size:9px;color:#fff;opacity:.75;margin:0;letter-spacing:.1em;text-align:center}
+
+@media (max-width:760px){.welcome b{letter-spacing:.06em;font-size:9px}.boot{padding-block:calc(var(--bar) + 14px) calc(var(--task) + 14px);gap:12px}.tv{filter:drop-shadow(5px 6px 0 rgba(21,18,26,.85))}.cabinet{padding:10px 10px 6px;border-radius:14px}.bezel{padding:6px;border-radius:10px}}
+@media (prefers-reduced-motion:reduce){.power,.screen .flicker,.screen .caption i,.led{animation:none}.screen{animation:none}}

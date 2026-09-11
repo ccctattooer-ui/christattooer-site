@@ -19,7 +19,7 @@
 </div>
 
 <header class="hdr">
-  <a class="logo" href="/"><span class="sq">CT</span><span><b>{{ site.name | upper }}</b><small>Tattooer · {{ site.shop.city }} · @{{ site.instagram }}</small></span></a>
+  <a class="logo" href="/flash/"><span class="sq">CT</span><span><b>{{ site.name | upper }}</b><small>Tattooer · {{ site.shop.city }} · @{{ site.instagram }}</small></span></a>
   <form class="search" role="search" action="/" onsubmit="return false">
     <input id="q" type="search" placeholder="Search {{ flash | length }} flash designs, {{ home.searchHint }}" aria-label="Search flash">
     <button type="button" id="qgo">Search</button>
@@ -28,7 +28,7 @@
 </header>
 
 <nav class="menubar" aria-label="Site">
-  <a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Flash</a>
+  <a href="/flash/" {% if page.url == "/flash/" %}aria-current="page"{% endif %}>Flash</a>
   <a href="/work/" {% if page.url == "/work/" %}aria-current="page"{% endif %}>Work</a>
   <a href="/book/" {% if page.url == "/book/" %}aria-current="page"{% endif %}>Book</a>
   <a href="/aftercare/" {% if page.url == "/aftercare/" %}aria-current="page"{% endif %}>Aftercare</a>

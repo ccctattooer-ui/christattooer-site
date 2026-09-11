@@ -17,7 +17,7 @@
 
 <div class="menubar">
   <a class="logo" href="/"><i></i>ParlorOS</a>
-  <a class="m" href="/">Catalog</a><a class="m" href="/work/">Work</a><a class="m" href="/book/">Book</a>
+  <a class="m" href="/flash/">Catalog</a><a class="m" href="/work/">Work</a><a class="m" href="/book/">Book</a>
   <div class="right"><span><i class="live"></i>{{ site.booksStatus | upper }}</span><a class="ig" href="https://instagram.com/{{ site.instagram }}">@{{ site.instagram }}</a><span id="clock"></span></div>
 </div>
 
@@ -25,7 +25,7 @@
   {%- for d in departments %}
   <a class="icon{% if d.slug == dept.slug %} on{% endif %}" href="/{{ d.slug }}/"><div class="box"><img src="{{ d.iconSrc }}" alt=""></div><span>{{ d.name }}</span></a>
   {%- endfor %}
-  <a class="icon" href="/"><div class="box"><img src="/assets/flash/web/flash-53.webp" alt=""></div><span>Tattoos</span></a>
+  <a class="icon" href="/flash/"><div class="box"><img src="/assets/flash/web/flash-53.webp" alt=""></div><span>Tattoos</span></a>
   <a class="icon hot" href="/book/"><div class="box"><img src="/assets/flash/web/flash-28.webp" alt=""></div><span>BOOK NOW</span></a>
 </nav>
 

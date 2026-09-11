@@ -17,9 +17,9 @@ eleventyComputed:
     <p>{{ dept.blurb }}</p>
     <p class="status">Status: {{ dept.status }}</p>
     {%- if dept.images.length %}
-    <p><a class="btn" href="#" data-open="w-gallery">OPEN PHOTOS</a> <a class="btn ghost" href="/">BACK TO CATALOG</a></p>
+    <p><a class="btn" href="#" data-open="w-gallery">OPEN PHOTOS</a> <a class="btn ghost" href="/flash/">BACK TO CATALOG</a></p>
     {%- else %}
-    <p><a class="btn" href="https://instagram.com/{{ site.instagram }}">ASK ON INSTAGRAM</a> <a class="btn ghost" href="/">BACK TO CATALOG</a></p>
+    <p><a class="btn" href="https://instagram.com/{{ site.instagram }}">ASK ON INSTAGRAM</a> <a class="btn ghost" href="/flash/">BACK TO CATALOG</a></p>
     {%- endif %}
   </div>
 </section>
