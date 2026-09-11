@@ -29,3 +29,21 @@
   if (mobile()) wins.slice(1).forEach(w => w.hidden = true);
   if (wins.length) focusWin(wins[0]);
 })();
+
+// Games department: playlist + game filter for the YouTube window.
+(function () {
+  const yt = document.getElementById('yt'); if (!yt) return;
+  const items = [...document.querySelectorAll('.playlist li')];
+  document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(x => x.classList.remove('on')); c.classList.add('on');
+    items.forEach(li => li.hidden = c.dataset.game !== 'all' && li.dataset.game !== c.dataset.game);
+  }));
+  document.querySelectorAll('[data-video]').forEach(b => b.addEventListener('click', () => {
+    yt.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.video + '?rel=0&modestbranding=1&autoplay=1';
+    yt.title = b.dataset.title;
+    document.getElementById('yt-title').textContent = b.dataset.title;
+    document.getElementById('yt-meta').textContent = b.dataset.meta;
+    document.querySelectorAll('[data-video]').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelector('.tube').scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+})();

@@ -1,0 +1,53 @@
+{%- set games = videos | uniqueGames %}
+{%- set first = videos | where("featured", true) | first or videos[0] %}
+<section class="win" id="w-tube" style="left:120px;top:64px;width:min(760px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>montages.exe ({{ videos | length }})</b></div>
+  <div class="body tube">
+    <div class="player">
+      <iframe id="yt" src="https://www.youtube-nocookie.com/embed/{{ first.id }}?rel=0&modestbranding=1" title="{{ first.title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="nowplaying"><b id="yt-title">{{ first.title }}</b><span id="yt-meta">{{ first.game }}{% if first.tag %} · {{ first.tag }}{% endif %} · {{ first.year }}</span></div>
+    <div class="chips" role="tablist" aria-label="Filter by game">
+      <button type="button" class="chip on" data-game="all">All</button>
+      {%- for g in games %}<button type="button" class="chip" data-game="{{ g }}">{{ g }}<span>{{ (videos | where("game", g)) | length }}</span></button>{% endfor %}
+    </div>
+    <ul class="playlist">
+      {%- for v in videos %}
+      <li data-game="{{ v.game }}"><button type="button" data-video="{{ v.id }}" data-title="{{ v.title }}" data-meta="{{ v.game }}{% if v.tag %} · {{ v.tag }}{% endif %} · {{ v.year }}"{% if v.id == first.id %} class="on"{% endif %}>
+        <img src="https://i.ytimg.com/vi/{{ v.id }}/mqdefault.jpg" alt="" loading="lazy" width="120" height="68">
+        <span class="lbl"><span class="t">{{ v.title }}</span><span class="g">{{ v.game }}{% if v.tag %} · {{ v.tag }}{% endif %}</span></span>
+      </button></li>
+      {%- endfor %}
+    </ul>
+    <p class="txt small">More on <a href="https://www.youtube.com/@{{ site.youtube.handle }}">YouTube @{{ site.youtube.handle }}</a>.</p>
+  </div>
+</section>
+
+<section class="win" id="w-twitch" style="left:560px;top:120px;width:min(520px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>twitch.tv/{{ site.twitch }}</b></div>
+  <div class="body">
+    <div class="player twitch">
+      <iframe src="https://player.twitch.tv/?channel={{ site.twitch }}&parent=christattooer.com&parent=www.christattooer.com&parent=localhost&muted=true&autoplay=false" title="Twitch stream" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="txt small">Live sometimes. <a href="https://www.twitch.tv/{{ site.twitch }}">Follow {{ site.twitch }} on Twitch</a> to get pinged.</p>
+  </div>
+</section>
+
+<section class="win" id="w-games" hidden style="left:200px;top:200px;width:min(440px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>games</b></div>
+  <div class="body txt">
+    <h1>Browser games</h1>
+    <p>Small games that work on your phone are on the way. This window will fill up as they ship.</p>
+    <p><a class="btn ghost" href="/">BACK TO CATALOG</a></p>
+  </div>
+</section>
+
+<section class="win" id="w-readme" hidden style="left:240px;top:240px;width:min(440px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>games.txt</b></div>
+  <div class="body txt">
+    <h1>{{ dept.name }}</h1>
+    <p>{{ dept.blurb }}</p>
+    <p class="status">Status: {{ dept.status }}</p>
+    <p><a class="btn" href="#" data-open="w-tube">MONTAGES</a> <a class="btn" href="#" data-open="w-twitch">TWITCH</a> <a class="btn ghost" href="#" data-open="w-games">GAMES</a></p>
+  </div>
+</section>

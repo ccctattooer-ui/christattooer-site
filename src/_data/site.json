@@ -22,5 +22,11 @@
     "depositNote": "The deposit holds your time and comes off the final price. 48 hours notice to reschedule.",
     "note": "Flash is priced by size. Custom work is quoted after a quick consult."
   },
-  "domain": ""
+  "domain": "",
+  "youtube": {
+    "name": "9mag",
+    "handle": "9mag848",
+    "channelId": "UCMBw0Q6cXyLR5IRo9Fd-f_w"
+  },
+  "twitch": "ninemagtv"
 }

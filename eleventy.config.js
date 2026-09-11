@@ -12,6 +12,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("visible", (arr) => arr.filter((x) => !x.hidden));
   eleventyConfig.addFilter("featuredFirst", (arr) => [...arr].sort((a, b) => (b.featured === true) - (a.featured === true)));
   eleventyConfig.addFilter("uniqueCats", (arr) => [...new Set(arr.map((x) => x.category))]);
+  eleventyConfig.addFilter("uniqueGames", (arr) => [...new Set(arr.map((x) => x.game))]);
   eleventyConfig.addFilter("where", (arr, key, val) => arr.filter((x) => x[key] === val));
   eleventyConfig.addFilter("slug", (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""));
 
