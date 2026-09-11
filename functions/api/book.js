@@ -1,4 +1,4 @@
-// Booking request form handler at /api/book (Cloudflare Pages Function). Replaces Netlify Forms.
+// Booking request form handler at /api/book (Cloudflare Worker route).
 // Takes the multipart POST from /book/ (and the catalog drawer), emails it through Resend with the
 // reference photos attached, then sends the visitor to /thanks/.
 // Secrets: RESEND_API_KEY, BOOKING_TO (your email). Optional: BOOKING_FROM (default onboarding@resend.dev).

@@ -1,5 +1,5 @@
 // Username/password login for the /admin/ CMS (Sveltia), as a Cloudflare Pages Function at /admin/auth.
-// Speaks the same popup protocol as Netlify's GitHub OAuth so the CMS never sees GitHub: on success it
+// Speaks the same popup protocol as a GitHub OAuth client so the CMS never sees GitHub: on success it
 // hands the CMS the repo-scoped GitHub token in the GITHUB_TOKEN secret.
 // Secrets: ADMIN_USER, ADMIN_PASSWORD_SHA256 (hex sha256 of the password), GITHUB_TOKEN.
 

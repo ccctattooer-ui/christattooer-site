@@ -14,6 +14,5 @@ assets/flash/*.png
 .DS_Store
 Thumbs.db
 
-# Local Netlify / Cloudflare folders
-.netlify
+# Local Cloudflare folder
 .wrangler

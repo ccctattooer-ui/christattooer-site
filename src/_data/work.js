@@ -7,11 +7,11 @@ export default async function () {
   const rows = fs.readdirSync(dir).filter((f) => f.endsWith(".json"))
     .map((f) => ({ ...JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")), file: f.replace(/\.json$/, "") }))
     .filter((w) => w.image).sort((a, b) => a.file.localeCompare(b.file, "en", { numeric: true }));
-  for (const w of rows) {
+  await Promise.all(rows.map(async (w) => {
     const local = "." + w.image;
-    if (!fs.existsSync(local)) { w.missing = true; continue; }
+    if (!fs.existsSync(local)) { w.missing = true; return; }
     const m = await Image(local, { widths: [480], formats: ["jpeg"], outputDir: "_site/assets/thumbs", urlPath: "/assets/thumbs", sharpJpegOptions: { quality: 80 } });
     w.thumb = m.jpeg[0].url;
-  }
+  }));
   return rows.filter((w) => !w.missing);
 }
