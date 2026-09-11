@@ -11,6 +11,7 @@
 
   function render() {
     const cnt = $('#cnt'); if (cnt) cnt.textContent = picks.length;
+    document.body.classList.toggle('has-picks', picks.length > 0);
     const list = $('#list');
     if (list) {
       list.innerHTML = picks.length
