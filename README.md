@@ -17,6 +17,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
 | Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
 | Home page | how-to box, headings, custom card, recent-work strip, on/off switches | `src/_data/home.json` |
+| Landing page (TV) | channel number, screen label, welcome text, captions, button, boot messages, on/off | `src/_data/landing.json` |
 | Booking page | the three routes, form placeholders, thank-you page | `src/_data/booking.json` |
 | Look & colors | brand colors for both looks, grid columns, collage tilt / tape / piece size | `src/_data/theme.json` |
 | Site settings | name, hours, books status, shop, Instagram, Square link, minimum, deposit | `src/_data/site.json` |

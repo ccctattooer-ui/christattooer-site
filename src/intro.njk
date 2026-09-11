@@ -6,7 +6,7 @@ permalink: /
 eleventyExcludeFromCollections: true
 ---
 <main class="boot">
-  <p class="welcome"><b>{{ site.shop.name | upper }} · {{ site.shop.city | upper }}</b>Welcome to my digital parlor. Flash, healed work, paintings, games and a plant lab, all on one channel.</p>
+  <p class="welcome"><b>{{ landing.kicker | upper }}</b>{{ landing.welcome }}</p>
 
   <div class="tv" id="tv" role="button" tabindex="0" aria-label="Enter the site">
     <div class="cabinet">
@@ -16,17 +16,17 @@ eleventyExcludeFromCollections: true
             <source src="/assets/intro/montage.mp4" type="video/mp4">
           </video>
           <div class="scan"></div><div class="rgb"></div><div class="glare"></div><div class="flicker"></div>
-          <div class="osd"><b>CH {{ site.catalogNo }}</b>{{ site.title | upper }}</div>
-          <div class="caption">TAP TO ENTER <i>▮</i></div>
+          <div class="osd"><b>CH {{ landing.channel }}</b>{{ landing.screenLabel | upper }}</div>
+          <div class="caption">{{ landing.caption | upper }} <i>▮</i></div>
         </div>
       </div>
       <div class="panel">
-        <span class="brand">{{ site.title | upper }} · TUBE-O-VISION</span>
+        <span class="brand">{{ landing.plate | upper }}</span>
         <div class="knobs"><span class="knob"></span><span class="knob"></span><span class="led"></span></div>
       </div>
     </div>
   </div>
 
-  <a class="power" href="/flash/" id="enter"><i></i>ENTER THE SHOP</a>
-  <p class="skip">{{ site.hoursShort | upper }} · {{ site.booksStatus | upper }}</p>
+  <a class="power" href="/flash/" id="enter"><i></i>{{ landing.button | upper }}</a>
+  <p class="skip">{{ (landing.footer or (site.hoursShort + " · " + site.booksStatus)) | upper }}</p>
 </main>

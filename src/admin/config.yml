@@ -225,6 +225,26 @@ collections:
               - { label: Heading, name: heading, widget: string }
               - { label: How many photos, name: count, widget: number, value_type: int, min: 0, max: 24 }
 
+  - name: landing
+    label: Landing page (TV)
+    files:
+      - name: landing
+        label: Landing page text
+        file: src/_data/landing.json
+        format: json
+        fields:
+          - { label: Show the landing page, name: enabled, widget: boolean, default: true, hint: Off sends visitors straight to the flash catalog. }
+          - { label: Channel number, name: channel, widget: string, hint: 'Shown on the screen as CH …' }
+          - { label: Screen label, name: screenLabel, widget: string, hint: The green text under the channel number. }
+          - { label: Yellow line above the welcome, name: kicker, widget: string }
+          - { label: Welcome text, name: welcome, widget: text }
+          - { label: Blinking caption on the screen, name: caption, widget: string }
+          - { label: Button text, name: button, widget: string }
+          - { label: Plate under the screen, name: plate, widget: string }
+          - { label: Small line under the button, name: footer, widget: string, required: false, hint: Leave blank to show your hours and books status. }
+          - { label: Taskbar label, name: taskbarLabel, widget: string }
+          - { label: Boot messages, name: bootMessages, widget: list, field: { label: Message, name: message, widget: string }, hint: Cycle in the top bar, about one per second. }
+
   - name: booking
     label: Booking page
     files:

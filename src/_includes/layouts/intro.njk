@@ -6,8 +6,10 @@
 <title>{{ title }} · {{ site.title }}</title>
 <meta name="description" content="{{ description or site.tagline }}">
 <link rel="icon" href="/assets/favicon.png">
+{% if not landing.enabled %}<meta http-equiv="refresh" content="0; url=/flash/">{% endif %}
 <script>
-  // Seen the intro already this visit? Straight to the catalog.
+  // Intro switched off in the admin, or already seen this visit? Straight to the catalog.
+  {% if not landing.enabled %}location.replace('/flash/');{% endif %}
   try { if (sessionStorage.getItem('ct-entered')) location.replace('/flash/'); } catch (e) {}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +32,7 @@
 
 <div class="taskbar">
   <a class="start" href="/flash/">{{ site.shortName | upper }}</a>
-  <div id="tasks"><span class="tb active">welcome.tv</span></div>
+  <div id="tasks"><span class="tb active">{{ landing.taskbarLabel }}</span></div>
   <span class="clock">{{ site.hoursShort | upper }}</span>
 </div>
 <script>
@@ -44,7 +46,8 @@
     // iPhone Low Power Mode blocks autoplay until a touch; kick the video on the first one.
     if (v) { var kick = function () { v.play().catch(function () {}); }; ['pointerdown', 'touchend', 'click', 'keydown'].forEach(function (t) { document.addEventListener(t, kick, { passive: true }); }); v.play().catch(function () {}); }
     var c = document.getElementById('clock'); if (c) { var t = function () { c.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }; t(); setInterval(t, 30000); }
-    var msgs = ['booting…', 'loading flash…', 'warming up the tube…', 'ready.'], i = 0, m = document.querySelector('.boot-msg');
+    var msgs = {{ landing.bootMessages | dump | safe }}, i = 0, m = document.querySelector('.boot-msg');
+    if (m && msgs.length) m.textContent = msgs[0];
     setInterval(function () { if (m && i < msgs.length - 1) m.textContent = msgs[++i]; }, 900);
   })();
 </script>

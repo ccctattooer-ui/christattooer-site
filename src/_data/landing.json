@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "channel": "420",
+  "screenLabel": "Chris Tattooer",
+  "kicker": "Tattoo Peace · Vancouver, WA",
+  "welcome": "Welcome to my digital parlor. Flash, healed work, paintings, games and a plant lab, all on one channel.",
+  "caption": "Tap to enter",
+  "button": "Enter the shop",
+  "plate": "Chris Tattooer · Tube-O-Vision",
+  "footer": "",
+  "taskbarLabel": "welcome.tv",
+  "bootMessages": ["booting…", "loading flash…", "warming up the tube…", "ready."]
+}
