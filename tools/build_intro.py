@@ -21,20 +21,26 @@ EDIT = [
     ("IMG_6136.heic", 0, 2.6),          # wave hello
     ("IMG_8543.mov", 2.0, 2.4),         # tattooing, close
     ("IMG_6782.MOV", 0.8, 2.4),         # drawings on the desk
+    "static",
+    ("zo3dby.mov", 1.2, 3.2),           # two quickscope eliminations
+    "static",
     ("IMG_8202.MOV", 0.3, 2.2),         # the shop chair
     ("IMG_6228(1).MOV", 3.0, 2.6),      # head tattoo
-    "static",
     ("s841.jpg", 0, 2.6),               # black and white at work
+    "static",
+    ("IMG_9413(1).mov", 2.4, 3.0),      # one shot, one kill
+    "static",
     ("IMG_8566.MOV", 1.0, 2.6),         # fresh tattoo, wipe
     ("IMG_8545.mov", 7.0, 2.6),         # wide shop shot
+    "static",
+    ("ninemagtv - ram7 lockwood.mp4", 11.6, 3.0),  # the kill streak
+    "static",
     ("IMG_8425.HEIC", 0, 2.4),          # plants
     ("IMG_5340.MOV", 0, 2.3),           # beach with the dog
     "static",
-    ("zo3dby.mov", 1.2, 3.2),                    # two quickscope eliminations
-    ("IMG_9413(1).mov", 2.4, 3.0),               # one shot, one kill
-    ("ninemagtv - ram7 lockwood.mp4", 11.6, 3.0), # the kill streak
-    ("zo3dby.mov", 5.4, 2.2),                    # two more scope kills
-    ("My Movie 4.mov", 7.0, 1.6),                # hand cam
+    ("zo3dby.mov", 5.4, 2.2),           # two more scope kills
+    ("My Movie 4.mov", 7.0, 1.6),       # hand cam
+    "static",
     ("IMG_0410.HEIC", 0, 2.2),          # red mirror selfie
     "static",
 ]
