@@ -17,3 +17,6 @@ Thumbs.db
 
 # Local Cloudflare folder
 .wrangler
+
+# Local secrets for `wrangler dev`. Never commit this.
+.dev.vars
