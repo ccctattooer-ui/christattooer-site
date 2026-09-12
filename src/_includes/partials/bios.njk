@@ -35,20 +35,25 @@
     box.hidden = false;
     document.body.classList.add('booting');
 
+    // One dial sets the pace: a row lands every lineMs, a plain line in half that, and the
+    // finished screen holds for about four rows before it clears.
+    var STEP = Math.max(10, Number({{ eggs.bios.lineMs | dump | safe }}) || 85);
+    var FADE = Math.round(STEP * 2.5);   // scales with the dial, so halving the speed halves the lot
     var i = 0, timer;
     function pad(l, v) { var dots = Math.max(3, 30 - l.length); return l + ' ' + new Array(dots).join('.') + ' ' + v; }
     function step() {
-      if (i >= LINES.length) { timer = setTimeout(done, 650); return; }
+      if (i >= LINES.length) { timer = setTimeout(done, STEP * 4); return; }
       var row = LINES[i++];
       out.textContent += (row.t !== undefined ? row.t : pad(row.l, row.v)) + '\n';
-      timer = setTimeout(step, row.t !== undefined ? 90 : 170);
+      timer = setTimeout(step, row.t !== undefined ? Math.round(STEP / 2) : STEP);
     }
     function done() {
       clearTimeout(timer);
       try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      box.style.transitionDuration = FADE + 'ms';
       box.classList.add('out');
       document.body.classList.remove('booting');
-      setTimeout(function () { box.remove(); }, 420);
+      setTimeout(function () { box.remove(); }, FADE);
       window.removeEventListener('keydown', done);
       box.removeEventListener('click', done);
     }

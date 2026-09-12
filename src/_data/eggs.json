@@ -35,6 +35,7 @@
   "bios": {
     "show": true,
     "title": "ParlorOS BIOS v1.9.2",
+    "lineMs": 85,
     "rows": [
       "Detecting machines|2 FOUND",
       "Flash catalog|{flash} DESIGNS",

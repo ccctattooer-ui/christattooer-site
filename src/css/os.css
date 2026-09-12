@@ -390,7 +390,7 @@ body:has(.newsbar) .win{margin-top:26px}
 body.booting{overflow:hidden}
 .bios{position:fixed;inset:0;z-index:5000;background:#07070c;color:#c8ffd4;padding:28px 22px;
   font-family:var(--txt);font-size:clamp(15px,2.1vw,21px);line-height:1.35;overflow:hidden;cursor:pointer;
-  transition:opacity .4s}
+  transition:opacity .2s}
 .bios[hidden]{display:none}
 .bios.out{opacity:0;pointer-events:none}
 .bios pre{margin:0;white-space:pre-wrap;font-family:inherit;font-size:inherit}

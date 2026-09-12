@@ -537,6 +537,7 @@ collections:
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: A fake computer start-up screen before the TV, counting up everything on the site. Shown once per visitor, ever, and any key skips it. }
               - { label: Title line, name: title, widget: string }
+              - { label: Speed (ms per line), name: lineMs, widget: number, value_type: int, min: 20, max: 400, step: 5, hint: How long each line takes to appear. Lower is faster — 85 is brisk, 170 is the old leisurely pace. }
               - label: Lines it counts up
                 name: rows
                 widget: list
