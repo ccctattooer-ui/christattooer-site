@@ -1,7 +1,7 @@
 {
   "slug": "games",
   "name": "Games",
-  "icon": "/assets/flash/web/flash-32.webp",
+  "icon": "/assets/icons/games-128.png",
   "blurb": "Highlights from my YouTube channel and my Twitch stream",
   "status": "Streaming",
   "order": 2,

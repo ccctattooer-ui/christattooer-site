@@ -36,7 +36,7 @@ button{font:inherit;cursor:pointer}
 .menubar a:hover{background:var(--stencil);color:#fff}
 .menubar .sep{width:2px;height:22px;background:var(--ink);margin:0 8px;flex:none}
 .menubar .lbl{color:#6a6357;padding-right:6px}
-.menubar .dept img{width:16px;height:16px;object-fit:contain;background:#fff;border:1px solid var(--ink)}
+.menubar .dept img{width:16px;height:16px;object-fit:contain;background:#fff;border:1px solid var(--ink);image-rendering:pixelated}
 
 /* ---- catalog layout ---- */
 .layout{display:grid;grid-template-columns:220px minmax(0,1fr);max-width:1240px;margin:0 auto}

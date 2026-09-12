@@ -138,6 +138,23 @@ Then paste the id the first command prints into the commented block in `wrangler
 
 For local work, `--local` instead of `--remote` sets up the copy `npx wrangler dev` uses.
 
+## Icons
+
+The artwork comes off two sheets Chris generated, kept in `docs/icon-sheets/` — in the repo, but
+out of `assets/` so their 4.6 MB never ships. `python tools/split_icons.py <out>` cuts them into
+individual transparent PNGs: background is flooded in from the sheet border so the whites *inside*
+an icon (the skull, the calendar, the folded shirts) survive, and each caption is clipped off.
+The cell boxes in that script were measured off those exact files, so a regenerated sheet means
+re-checking the numbers.
+
+Sheet 1 is the working set — bold and high contrast, which is why it holds up shrunk to 56px and
+16px. Sheet 2 is the same subjects in a holographic palette; it goes muddy small, so it is only
+used for stickers, where the art is shown big.
+
+Each icon ships at two sizes: `-128.png` for the 56px desktop icons and `-32.png` for the 16px
+menubar strip. Both are rendered with `image-rendering: pixelated` so the downscale stays crisp.
+Departments point at their own `-128.png` in the admin, and the menubar swaps in the `-32` for it.
+
 ## How the admin login works
 
 The admin is [Sveltia CMS](https://sveltiacms.app/). It talks to the GitHub repo, but you never see GitHub: `functions/admin/auth.js` shows a username/password form and, on success, hands the CMS a repo-scoped GitHub token. These secrets live on the Worker (Cloudflare dashboard → Workers & Pages → christattooer → Settings → Variables and Secrets), or `npx wrangler secret put NAME --name christattooer`:

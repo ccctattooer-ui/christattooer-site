@@ -29,11 +29,11 @@ a{color:var(--stencil)}
 .icons{position:fixed;top:calc(var(--bar) + 16px);left:14px;display:grid;grid-template-columns:1fr;gap:12px;z-index:1}
 .icon{width:84px;min-width:0;text-decoration:none;color:#fff;text-align:center;padding:4px;font-family:var(--title);font-size:10px;line-height:1.3;display:block}
 .icon .box{width:56px;height:56px;margin:0 auto 6px;background:var(--bone);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;padding:5px;transition:transform .1s;overflow:hidden}
-.icon .box img{width:100%;height:100%;object-fit:contain}
+.icon .box img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
 .icon:hover .box{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
 .icon.on .box{background:var(--yellow)}
 .icon.hot .box{background:var(--red);animation:blink 1.2s steps(2) infinite}
-.icon.hot .box img{filter:brightness(0) invert(1)}
+/* the booking icon is real artwork now, so it keeps its own colours */
 @keyframes blink{50%{background:var(--yellow)}}
 .icon span{display:block;background:rgba(21,18,26,.85);padding:2px 3px;margin-inline:-2px;overflow:hidden;text-overflow:ellipsis}
 @media (max-width:760px){
@@ -290,11 +290,11 @@ svg.sky{display:block;user-select:none}
 :root[data-tod="dusk"] .wallpaper::after{background-color:rgba(240,110,40,.17)}
 :root[data-tod="night"] .wallpaper::after{background-color:rgba(0,0,20,.34)}
 
-/* the tattoo machine pointer, desktop only so it never fights a touchscreen */
+/* the tattoo machine pointer, desktop only so it never fights a touchscreen.
+   Turned 180 degrees from the sheet, so the needle tip is the pixel that actually clicks. */
 @media (pointer:fine){
-  :root[data-egg-cursor] body,
-  body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg shape-rendering='crispEdges'%3E%3Cpath d='M3 3h9v2H3z' fill='%2315121A'/%3E%3Cpath d='M5 5h5v7H5z' fill='%234B2E9C' stroke='%2315121A'/%3E%3Cpath d='M7 12h1v10H7z' fill='%2315121A'/%3E%3Cpath d='M6 21h3v3H6z' fill='%23D3322A'/%3E%3Cpath d='M10 6h6v2h-6z' fill='%2315121A'/%3E%3C/g%3E%3C/svg%3E") 7 2, auto}
-  body a,body button,body .icon,body .piece,body .rrow,body .node{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg shape-rendering='crispEdges'%3E%3Cpath d='M3 3h9v2H3z' fill='%2315121A'/%3E%3Cpath d='M5 5h5v7H5z' fill='%23F0C22E' stroke='%2315121A'/%3E%3Cpath d='M7 12h1v10H7z' fill='%2315121A'/%3E%3Cpath d='M6 21h3v3H6z' fill='%233BAA6E'/%3E%3Cpath d='M10 6h6v2h-6z' fill='%2315121A'/%3E%3C/g%3E%3C/svg%3E") 7 2, pointer}
+  body{cursor:url("/assets/icons/cursor-machine-32.png") 2 2, auto}
+  body a,body button,body .icon,body .piece,body .rrow,body .node{cursor:url("/assets/icons/cursor-machine-24.png") 2 2, pointer}
 }
 
 /* flash screensaver */
@@ -322,7 +322,7 @@ body.konami .menubar,body.konami .taskbar{background:#ffe9a8}
   opacity:0;transform:translateY(10px);transition:opacity .26s,transform .26s}
 .helper.in{opacity:1;transform:none}
 .helper[hidden]{display:none}
-.helper-skull{width:52px;height:56px;flex:none;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.45))}
+.helper-skull{width:58px;height:58px;flex:none;object-fit:contain;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.45))}
 .helper-bubble{background:var(--bone);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
   padding:10px 11px;position:relative;min-width:0}
 .helper-bubble::after{content:"";position:absolute;right:-9px;bottom:14px;width:0;height:0;

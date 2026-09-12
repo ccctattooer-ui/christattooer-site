@@ -15,7 +15,7 @@ export default async function () {
     .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")))
     .filter((d) => d.slug && d.name).sort((a, b) => (Number(a.order) || 99) - (Number(b.order) || 99));
   for (const d of rows) {
-    d.iconSrc = (d.icon && (await small(d.icon, 160))) || d.icon;
+    d.iconSrc = (d.icon && (await small(d.icon, 128))) || d.icon;
     d.images = await Promise.all((d.images || []).filter((im) => im.image).map(async (im) => ({ ...im, thumb: (await small(im.image, 480)) || im.image })));
   }
   return rows;

@@ -1,7 +1,7 @@
 {
   "slug": "spacecraft",
   "name": "SpaceCraft",
-  "icon": "/assets/plants/plant-007.jpg",
+  "icon": "/assets/icons/spacecraft-128.png",
   "blurb": "SpaceCraft is the plant breeding side of things: crosses, grow logs, and seed drops when they happen.",
   "status": "Growing",
   "order": 4,
