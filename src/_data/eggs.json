@@ -26,5 +26,14 @@
   "news": {
     "show": true,
     "text": "BOOKS OPEN ★ MONDAYS & TUESDAYS AT TATTOO PEACE ★ DM @CHRISTATTOOER TO GET ON THE LIST"
+  },
+  "wheel": {
+    "show": true,
+    "segments": 10,
+    "label": "CAN'T DECIDE? SPIN THE WHEEL"
+  },
+  "paint": {
+    "show": true,
+    "label": "…or draw it instead"
   }
 }

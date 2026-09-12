@@ -79,6 +79,16 @@ What's in there now:
 | Clock wallpaper | Warms the desktop at dawn and dusk, darkens it after midnight. Only ever a tint *over* the colour in Look & colors, so your palette still wins. |
 | View-source note | An ASCII skull and a hello in the page source. Invisible on the page. |
 | Shop news ticker | A scrolling strip across the top of every page. Empty the text in the admin and the strip disappears. |
+| Spin the wheel | A button above the flash catalog opens a prize wheel of your designs. Claimed ones are left out, and it reshuffles between spins so everything can still come up. |
+| Sketch pad | A fold-away drawing pad on the booking form. |
+
+### The wheel and the sketch pad
+
+Both live on the pages that earn money, so both are deliberately out of the way: the wheel is behind a button and opens in a dialog, and the pad is folded shut until someone opens it. Neither loads anywhere else — `wheel.js` ships only with `/flash/` and `pad.js` only with `/book/`.
+
+The wheel reads the flash cards already on the page rather than shipping its own copy of the catalog, skips anything marked Claimed, and **ADD IT TO MY REQUEST presses the matching card's own button** — so the booking drawer behaves exactly as it always does, with no second code path to keep in step.
+
+The sketch pad hands its drawing to a hidden file input named `reference`, the same name the photo picker uses. Since `functions/api/book.js` loops over every field with that name, the drawing arrives as just another attachment and **the booking handler needed no changes at all**. A pad nobody drew on attaches nothing.
 
 ### The shop helper
 
@@ -153,6 +163,8 @@ src/
                                 helper.njk (the skull), news.njk (the ticker),
                                 sticker-spot.njk (one hidden sticker)
   stickers.njk      the sticker sheet and the printable coupon at /stickers/
+  js/wheel.js       the prize wheel, loaded by /flash/ only
+  js/pad.js         the sketch pad, loaded by /book/ only
   js/eggs.js        every easter egg, switched in the admin (src/_data/eggs.json)
   work.njk          all photos + lightbox
   book.njk          booking

@@ -36,6 +36,28 @@ description: Three ways to book a tattoo with Chris at Tattoo Peace in Vancouver
           <div><label for="b-contact">Email or Instagram</label><input id="b-contact" name="contact" required></div>
         </div>
         <div><label for="b-notes">What do you want?</label><textarea id="b-notes" name="notes" placeholder="{{ booking.form.notesPlaceholder }}" required></textarea></div>
+        {%- if eggs.paint.show %}
+        {#- Optional sketch pad, folded away so it never bulks out the form. The finished PNG goes
+            into the hidden input below, which is named "reference" like the photo picker, so the
+            booking handler picks it up as just another attachment. -#}
+        <details class="pad-wrap">
+          <summary>{{ eggs.paint.label }}</summary>
+          <p class="pad-lead">Can't put it in words? Scribble it. It arrives with your request as a picture — rough is completely fine, that's what it's for.</p>
+          <div class="pad-rig">
+            <div class="pad-tools">
+              <button class="pad-tool on" type="button" data-tool="pen" aria-pressed="true" title="Pencil">✎</button>
+              <button class="pad-tool" type="button" data-tool="brush" aria-pressed="false" title="Brush">●</button>
+              <button class="pad-tool" type="button" data-tool="eraser" aria-pressed="false" title="Eraser">▢</button>
+              <div class="pad-cols" id="pad-colours"></div>
+              <button class="pad-btn" type="button" id="pad-undo" disabled title="Undo">↶</button>
+              <button class="pad-btn" type="button" id="pad-clear" title="Start again">✕</button>
+            </div>
+            <canvas id="pad" width="640" height="440" aria-label="Sketch pad: draw your tattoo idea"></canvas>
+          </div>
+          <input type="file" name="reference" id="b-sketch" class="hp" tabindex="-1" aria-hidden="true">
+          <p class="pad-note fine" id="pad-note">Nothing drawn yet — the pad is optional.</p>
+        </details>
+        {%- endif %}
         <div class="two">
           <div><label for="b-place">Placement</label><input id="b-place" name="placement" placeholder="{{ booking.form.placementPlaceholder }}"></div>
           <div><label for="b-size">Size</label><input id="b-size" name="size" placeholder="{{ booking.form.sizePlaceholder }}"></div>
@@ -50,3 +72,6 @@ description: Three ways to book a tattoo with Chris at Tattoo Peace in Vancouver
     </div>
   </div>
 </main>
+{%- if eggs.paint.show %}
+<script src="/js/pad.js" defer></script>
+{%- endif %}

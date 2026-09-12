@@ -323,3 +323,56 @@ body.has-picks .helper{bottom:78px}
 }
 .coupon .cmin{font-size:14px;color:#333;margin:-8px 0 14px}
 .coupon .cmin b{font-weight:700;color:var(--ink)}
+
+/* ================= spin the wheel ================= */
+.spin-open{background:var(--red);color:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  font-family:var(--pixel);font-size:9px;padding:8px 11px;letter-spacing:.04em}
+.spin-open:hover{background:var(--stencil)}
+@media (max-width:640px){.bar .spin-open{flex-basis:100%;text-align:center;padding:11px;font-size:10px}}
+dialog.wheelbox{border:3px solid var(--ink);padding:0;background:#fff;max-width:min(94vw,430px);
+  box-shadow:7px 7px 0 rgba(20,20,20,.4)}
+dialog.wheelbox::backdrop{background:rgba(20,20,20,.82)}
+.wheel-body{padding:16px}
+.wheel-intro{font-size:14px;color:#555;margin:0 0 12px;text-align:center}
+.wheel-stage{position:relative;width:min(260px,68vw);margin:0 auto 12px}
+.wheel-stage svg{display:block;width:100%;height:auto}
+.wheel-needle{position:absolute;top:-7px;left:50%;margin-left:-9px;width:18px;height:22px;z-index:2;
+  background:var(--red);border:2px solid var(--ink);clip-path:polygon(50% 100%,0 0,100% 0)}
+.spin-go{display:block;width:100%;background:var(--yellow);border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);font-weight:700;font-size:16px;padding:12px;margin-bottom:12px}
+.spin-go:hover{background:var(--red);color:#fff}
+.wheel-out{min-height:112px;border:2px dashed var(--rule-2);padding:11px}
+.wheel-idle{margin:0;font-size:14px;color:#666;text-align:center}
+.won{display:flex;gap:12px;align-items:flex-start}
+.won-art{width:88px;flex:none;border:2px solid var(--ink);background:#fff;padding:5px}
+.won-art img{width:100%;height:auto;display:block}
+.won-txt{min-width:0;flex:1}
+.won-k{font-family:var(--pixel);font-size:8px;color:var(--stencil);margin:0 0 3px;letter-spacing:.1em}
+.won-txt h3{font-family:var(--disp);font-size:17px;margin:0 0 4px;line-height:1.1;text-wrap:balance}
+.won-spec{font-family:var(--mono);font-size:12px;color:#555;margin:0 0 9px}
+.won-spec b{color:var(--ink)}
+.won-add{display:block;width:100%;background:var(--green);color:#fff;border:2px solid var(--ink);
+  box-shadow:2px 2px 0 var(--ink);font-weight:700;padding:9px;font-size:14px;margin-bottom:5px}
+.won-again{display:block;width:100%;background:none;border:0;color:#777;text-decoration:underline;
+  font-size:12px;padding:2px}
+
+/* ================= the sketch pad ================= */
+.pad-wrap{border:2px solid var(--ink);background:var(--soft)}
+.pad-wrap summary{font-weight:700;padding:10px 12px;cursor:pointer;font-size:15px;
+  background:var(--bone);border-bottom:2px solid transparent}
+.pad-wrap[open] summary{border-bottom-color:var(--ink)}
+.pad-wrap summary:hover{background:var(--yellow)}
+.pad-lead{font-size:13px;color:#555;margin:0;padding:10px 12px 0}
+.pad-rig{padding:10px 12px}
+.pad-tools{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:8px}
+.pad-tool,.pad-btn{width:32px;height:32px;border:2px solid var(--ink);background:#fff;padding:0;
+  display:grid;place-items:center;font-size:15px;line-height:1}
+.pad-tool.on{background:var(--stencil);color:#fff}
+.pad-btn:disabled{opacity:.4;cursor:default}
+.pad-cols{display:flex;gap:4px;margin-inline:4px}
+.pad-col{width:26px;height:26px;border:2px solid var(--ink);padding:0}
+.pad-col.on{outline:3px solid var(--yellow);outline-offset:1px}
+#pad{display:block;width:100%;height:auto;border:2px solid var(--ink);background:#fff;
+  touch-action:none;cursor:crosshair}
+.pad-note{padding:0 12px 11px;margin:0}
+@media (max-width:520px){.pad-tool,.pad-btn{width:38px;height:38px}.pad-col{width:32px;height:32px}}

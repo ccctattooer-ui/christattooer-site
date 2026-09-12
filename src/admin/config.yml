@@ -476,6 +476,19 @@ collections:
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: 'Up up down down left right left right B A turns the walls gold.' }
               - { label: Message, name: message, widget: string, hint: The little note that pops up when someone gets it right. }
+          - label: Spin the wheel (flash catalog)
+            name: wheel
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: A button above the catalog opens a prize wheel of your designs. Claimed ones are left out automatically. }
+              - { label: Button text, name: label, widget: string }
+              - { label: Slices on the wheel, name: segments, widget: number, value_type: int, min: 4, max: 12, hint: It reshuffles between spins, so every design can still come up. }
+          - label: Sketch pad (booking page)
+            name: paint
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: A fold-away drawing pad on the booking form. Whatever they draw arrives with the request as a picture, alongside any reference photos. }
+              - { label: Fold-away label, name: label, widget: string }
           - label: Shop news ticker
             name: news
             widget: object
