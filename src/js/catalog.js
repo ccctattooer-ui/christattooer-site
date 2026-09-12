@@ -53,14 +53,16 @@
   let cat = 'all';
   function applyFilter() {
     const term = (q?.value || '').trim().toLowerCase();
-    let shown = 0;
+    let shown = 0, flashShown = 0;
     items.forEach(el => {
       const okCat = cat === 'all' || el.dataset.cat === cat;
       const hay = (el.dataset.name + ' ' + el.dataset.sku + ' ' + el.dataset.cat).toLowerCase();
       const okQ = !term || hay.includes(term);
-      el.hidden = !(okCat && okQ); if (!el.hidden) shown++;
+      el.hidden = !(okCat && okQ);
+      if (!el.hidden) { shown++; if (el.dataset.sku !== 'CU-000') flashShown++; }
     });
-    const count = $('#shown'); if (count) count.textContent = shown;
+    // The count is "of N flash designs", so the custom card doesn't count towards it.
+    const count = $('#shown'); if (count) count.textContent = flashShown;
     const nores = $('#nores'); if (nores) nores.hidden = shown > 0;
   }
   $$('.cats li[data-cat]').forEach(li => li.addEventListener('click', () => {
@@ -68,7 +70,7 @@
   }));
   if (q) {
     if (items.length) { q.addEventListener('input', applyFilter); $('#qgo')?.addEventListener('click', applyFilter); }
-    else { const go = () => { location.href = '/?q=' + encodeURIComponent(q.value); }; $('#qgo')?.addEventListener('click', go); q.addEventListener('keydown', e => { if (e.key === 'Enter') go(); }); }
+    else { const go = () => { location.href = '/flash/?q=' + encodeURIComponent(q.value); }; $('#qgo')?.addEventListener('click', go); q.addEventListener('keydown', e => { if (e.key === 'Enter') go(); }); }
     const pre = new URLSearchParams(location.search).get('q'); if (pre && items.length) { q.value = pre; applyFilter(); }
   }
 

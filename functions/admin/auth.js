@@ -45,7 +45,9 @@ export async function onRequest({ request, env }) {
   (function () {
     var msg = "authorization:github:success:" + ${JSON.stringify(payload)};
     function send(origin) { window.opener && window.opener.postMessage(msg, origin); }
-    window.addEventListener("message", function (e) { if (e.data === "authorizing:github") { send(e.origin); setTimeout(function () { window.close(); }, 300); } });
+    // Only ever hand the token back to the admin on this same origin. Without this check any page
+    // that managed to open this one could ask for it and get a repo-write GitHub token.
+    window.addEventListener("message", function (e) { if (e.origin !== window.location.origin) return; if (e.data === "authorizing:github") { send(e.origin); setTimeout(function () { window.close(); }, 300); } });
     if (window.opener) window.opener.postMessage("authorizing:github", "*"); else document.querySelector("p").textContent = "Open this from the admin login button.";
   })();
 </script>`);
