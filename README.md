@@ -41,7 +41,7 @@ Uploads are shrunk in the browser to 2000px WebP before they are committed. Thum
 
 ## The SpaceCraft department
 
-`/spacecraft/` opens on **bred-in-house.exe**: a card for each of the 51 crosses, filterable by run or flagship. The star chart is one click away rather than the first thing seen, because on its own it reads as a library of other people's genetics — 174 of the 225 plants on it are outside stock, kept so every cross can be traced back to a landrace. The chart's **MINE ONLY** button pushes those into the background.
+`/spacecraft/` opens on **bred-in-house.exe**: the complete roster of all 51 crosses, numbered 01–51 and grouped by the run that made them, with each run headed by the male that carried it. Flagships sort to the top of their run. Filter by run or flagship, or search by name, parent or smell. The star chart is one click away rather than the first thing seen, because on its own it reads as a library of other people's genetics — 174 of the 225 plants on it are outside stock, kept so every cross can be traced back to a landrace. The chart's **MINE ONLY** button pushes those into the background.
 
 Tapping any plant opens a tabbed readout:
 
@@ -50,7 +50,9 @@ Tapping any plant opens a tabbed readout:
 - **THE RUN** — the male that carried the run, the dates, and the sister crosses made alongside it (SpaceCraft crosses only).
 - **WHAT IT MADE** — what the plant went on to parent, and how far downstream it reaches.
 
-Outside plants get the same readout minus the run tab, and are labelled as outside genetics. A cross with no photo gets a generated star mark instead, so the board stays even.
+Outside plants get the same readout minus the run tab, and are labelled as outside genetics.
+
+The roster reads off `content/genetics/*.json`, so a new cross appears as soon as its file exists. Two fields are worth filling in for every cross, because the list shows them: **terps** (the line under each name — 24 of the 51 have one so far) and **status** (the pill on the right: released, testing, seeding, stock, new, unreleased).
 
 ## How the admin login works
 
