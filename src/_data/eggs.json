@@ -12,7 +12,12 @@
     "message": "CHEAT MODE: the walls turned gold. Nice one."
   },
   "badges": {
-    "show": true
+    "show": true,
+    "own": "CHRIS|TATTOOER",
+    "books": "",
+    "space": "SPACECRAFT|GENETICS",
+    "eyes": "BEST VIEWED|WITH EYES",
+    "made": ""
   },
   "cursor": {
     "show": true
@@ -30,11 +35,23 @@
   "wheel": {
     "show": true,
     "segments": 10,
-    "label": "CAN'T DECIDE? SPIN THE WHEEL"
+    "label": "CAN'T DECIDE? SPIN THE WHEEL",
+    "intro": "Shops have been doing this forever. Give it a spin and take what you get.",
+    "spinButton": "SPIN IT",
+    "idle": "The needle is at the top. Whatever it lands on is yours.",
+    "spinning": "Spinning…",
+    "kicker": "THE WHEEL SAYS",
+    "addButton": "ADD IT TO MY REQUEST",
+    "again": "spin again",
+    "allClaimed": "Every design is claimed just now. Ask about custom work instead."
   },
   "paint": {
     "show": true,
-    "label": "…or draw it instead"
+    "label": "…or draw it instead",
+    "lead": "Can't put it in words? Scribble it. It arrives with your request as a picture — rough is completely fine, that's what it's for.",
+    "empty": "Nothing drawn yet — the pad is optional.",
+    "attached": "Drawing attached. It'll come through with your request.",
+    "unsupported": "Your browser can't attach the drawing. Describe it above instead."
   },
   "counter": {
     "show": true,
@@ -42,7 +59,19 @@
   },
   "bios": {
     "show": true,
-    "title": "ParlorOS BIOS v1.9.2"
+    "title": "ParlorOS BIOS v1.9.2",
+    "rows": [
+      "Detecting machines|2 FOUND",
+      "Flash catalog|{flash} DESIGNS",
+      "Healed work|{work} PHOTOS",
+      "Paint board|{paintings} PIECES",
+      "SpaceCraft genetics|{crosses} CROSSES",
+      "Game montages|{videos} CLIPS",
+      "Mounting departments|OK",
+      "Booking|{books}"
+    ],
+    "signoff": "Tube-O-Vision ready.",
+    "skip": "press any key to continue"
   },
   "sparkles": {
     "show": true

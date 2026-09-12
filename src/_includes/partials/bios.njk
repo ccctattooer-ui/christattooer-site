@@ -5,25 +5,25 @@
 {%- set workCount = (work | visible) | length %}
 <div class="bios" id="bios" hidden>
   <pre id="bios-text" aria-live="polite"></pre>
-  <p class="bios-skip">press any key to continue</p>
+  <p class="bios-skip">{{ eggs.bios.skip }}</p>
 </div>
 <script>
   (function () {
-    var LINES = [
-      { t: {{ eggs.bios.title | dump | safe }} },
-      { t: {{ (site.shop.name + " · " + site.shop.city) | dump | safe }} },
-      { t: "" },
-      { l: "Detecting machines",      v: "2 FOUND" },
-      { l: "Flash catalog",           v: "{{ flash | length }} DESIGNS" },
-      { l: "Healed work",             v: "{{ workCount }} PHOTOS" },
-      { l: "Paint board",             v: "{{ paintings | length }} PIECES" },
-      { l: "SpaceCraft genetics",     v: "{{ (genetics | whereNot('scrapped', true) | where('kind','spacecraft')) | length }} CROSSES" },
-      { l: "Game montages",           v: "{{ videos | length }} CLIPS" },
-      { l: "Mounting departments",    v: "OK" },
-      { l: "Booking",                 v: {{ site.booksStatus | upper | dump | safe }} },
-      { t: "" },
-      { t: "Tube-O-Vision ready." }
-    ];
+    var COUNTS = {
+      flash: "{{ flash | length }}", work: "{{ workCount }}", paintings: "{{ paintings | length }}",
+      crosses: "{{ (genetics | whereNot('scrapped', true) | where('kind','spacecraft')) | length }}",
+      videos: "{{ videos | length }}", books: {{ site.booksStatus | upper | dump | safe }}
+    };
+    var ROWS = {{ eggs.bios.rows | dump | safe }};
+    var LINES = [{ t: {{ eggs.bios.title | dump | safe }} },
+                 { t: {{ (site.shop.name + " · " + site.shop.city) | dump | safe }} },
+                 { t: "" }];
+    ROWS.forEach(function (row) {
+      var bits = String(row).split("|");
+      var value = (bits[1] || "").replace(/[{](\w+)[}]/g, function (_, k) { return COUNTS[k] || ""; });
+      LINES.push({ l: bits[0], v: value });
+    });
+    LINES.push({ t: "" }, { t: {{ eggs.bios.signoff | dump | safe }} });
     var KEY = 'ct-booted';
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     var seen = true;

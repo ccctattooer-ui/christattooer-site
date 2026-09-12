@@ -1,0 +1,12 @@
+{
+  "heading": "Nothing at that address",
+  "lede": "The page you were after has moved or never existed. No harm done.",
+  "intro": "Try one of these instead:",
+  "links": [
+    { "label": "The flash catalog — every design that's ready to tattoo", "url": "/flash/" },
+    { "label": "Healed & recent work", "url": "/work/" },
+    { "label": "Book a tattoo", "url": "/book/" },
+    { "label": "Aftercare sheet", "url": "/aftercare/" }
+  ],
+  "outro": "Still stuck? DM me."
+}

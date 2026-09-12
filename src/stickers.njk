@@ -6,11 +6,11 @@ permalink: /stickers/
 ---
 <main class="main" style="max-width:860px;margin:0 auto">
   <div class="bar">
-    <h1>The sticker hunt</h1>
+    <h1>{{ stickers.heading }}</h1>
     <span class="cnt"><span id="stick-count">0</span> of {{ stickers.items | length }} found</span>
   </div>
 
-  <p class="lede" style="max-width:62ch;margin:0 0 18px">Six stickers are hidden around this site, one in each department. They're small and they don't blink at you. Find all six and there's {{ coupon.amount | money }} off a tattoo in it for you.</p>
+  <p class="lede" style="max-width:62ch;margin:0 0 18px">{{ stickers.lede | replace("{amount}", coupon.amount | money) }}</p>
 
   <div class="sheet" id="sheet">
     {%- for s in stickers.items %}
@@ -65,13 +65,13 @@ permalink: /stickers/
           <button class="btn-print" type="button" id="print-coupon">PRINT IT</button>
           <a class="btn-book" href="/book/">BOOK SOMETHING →</a>
         </p>
-        <p class="fine" style="margin:10px 0 0">Nothing here is stored anywhere but your own browser, so print it or screenshot it. Clearing your browsing data clears your stickers too.</p>
+        <p class="fine" style="margin:10px 0 0">{{ stickers.note }}</p>
       </div>
     </div>
   </section>
   {%- endif %}
 
   <p class="fine" id="stick-reset-wrap" style="margin:18px 0 0">
-    <button type="button" id="stick-reset" class="reset-link">Start the hunt over</button>
+    <button type="button" id="stick-reset" class="reset-link">{{ stickers.reset }}</button>
   </p>
 </main>

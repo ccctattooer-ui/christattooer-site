@@ -9,6 +9,8 @@
   var EGGS = window.EGGS || {};
   var on = function (k) { return EGGS[k] && EGGS[k].show; };
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var W = EGGS.wheel || {};
+  var esc = function (t) { return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
 
 // ---------------------------------------------------------------- spin the wheel
 // Reads the flash cards already rendered on /flash/, so it ships no extra data. ADD TO REQUEST
@@ -78,13 +80,13 @@ if (on("wheel") && wbox) {
       '<div class="won">' +
         (item.img ? '<span class="won-art"><img src="' + item.img + '" alt=""></span>' : "") +
         '<div class="won-txt">' +
-          '<p class="won-k">THE WHEEL SAYS</p>' +
+          '<p class="won-k">' + esc(W.kicker || "THE WHEEL SAYS") + "</p>" +
           "<h3>" + item.name.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</h3>" +
           '<p class="won-spec"><b>' + item.sku + "</b>" +
             (item.size ? " · " + item.size : "") +
             (item.price ? " · $" + item.price : "") + "</p>" +
-          '<button class="won-add" type="button">ADD IT TO MY REQUEST</button>' +
-          '<button class="won-again" type="button">spin again</button>' +
+          '<button class="won-add" type="button">' + esc(W.addButton || "ADD TO MY REQUEST") + "</button>" +
+          '<button class="won-again" type="button">' + esc(W.again || "spin again") + "</button>" +
         "</div>" +
       "</div>";
     out.querySelector(".won-add").addEventListener("click", function () {
@@ -98,19 +100,19 @@ if (on("wheel") && wbox) {
 
   function go() {
     if (spinning) return;
-    if (!draw()) { out.innerHTML = '<p class="wheel-idle">Every design is claimed just now. Ask about custom work instead.</p>'; return; }
+    if (!draw()) { out.innerHTML = '<p class="wheel-idle">' + esc(W.allClaimed || "Nothing free just now.") + "</p>"; return; }
     spinning = true;
     var n = board.length, pick = Math.floor(Math.random() * n);
     turn += 360 * 4 + (360 - (pick + 0.5) * (360 / n)) - (turn % 360);
     svg.style.transition = reduce ? "none" : "transform 2.7s cubic-bezier(.17,.89,.15,1)";
     svg.style.transform = "rotate(" + turn + "deg)";
-    out.innerHTML = '<p class="wheel-idle">Spinning…</p>';
+    out.innerHTML = '<p class="wheel-idle">' + esc(W.spinning || "Spinning…") + "</p>";
     setTimeout(function () { spinning = false; land(board[pick]); }, reduce ? 30 : 2750);
   }
 
   document.getElementById("spin-open").addEventListener("click", function () {
     draw();
-    out.innerHTML = '<p class="wheel-idle">The needle is at the top. Whatever it lands on is yours.</p>';
+    out.innerHTML = '<p class="wheel-idle">' + esc(W.idle || "") + "</p>";
     wbox.showModal();
   });
   document.getElementById("wheel-close").addEventListener("click", function () { wbox.close(); });

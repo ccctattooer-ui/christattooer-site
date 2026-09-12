@@ -1,5 +1,13 @@
 {
   "show": true,
+  "heading": "The sticker hunt",
+  "lede": "Six stickers are hidden around this site, one in each department. They're small and they don't blink at you. Find all six and there's something in it for you.",
+  "note": "Nothing here is stored anywhere but your own browser, so print it or screenshot it. Clearing your browsing data clears your stickers too.",
+  "reset": "Start the hunt over",
+  "resetConfirm": "Clear all six stickers and start the hunt again?",
+  "toastFound": "STICKER FOUND",
+  "toastAll": "ALL SIX FOUND. GO AND GET YOUR COUPON",
+  "footerLabel": "Six hidden on this site",
   "items": [
     {
       "id": "flash",

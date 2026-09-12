@@ -132,9 +132,11 @@
           var toast = document.createElement("div");
           toast.className = "egg-toast";
           toast.setAttribute("role", "status");
-          toast.innerHTML = n === ids.length
-            ? 'ALL SIX FOUND. <a href="/stickers/">GO AND GET YOUR COUPON</a>'
-            : 'STICKER FOUND &middot; ' + n + " OF " + ids.length + ' &middot; <a href="/stickers/">SEE THE SHEET</a>';
+          var words = n === ids.length
+            ? (ST.toastAll || "ALL SIX FOUND")
+            : (ST.toastFound || "STICKER FOUND") + " · " + n + " OF " + ids.length;
+          toast.innerHTML = words.replace(/&/g, "&amp;").replace(/</g, "&lt;") +
+            ' &middot; <a href="/stickers/">SEE THE SHEET</a>';
           document.body.appendChild(toast);
           setTimeout(function () { toast.remove(); }, 6000);
         });
@@ -182,7 +184,7 @@
 
         var reset = document.getElementById("stick-reset");
         if (reset) reset.addEventListener("click", function () {
-          if (!window.confirm("Clear all six stickers and start the hunt again?")) return;
+          if (!window.confirm(ST.resetConfirm || "Clear all the stickers and start again?")) return;
           write({}); paintSheet(); paintTally({});
         });
       }

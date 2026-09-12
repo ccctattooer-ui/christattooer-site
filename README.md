@@ -20,6 +20,8 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Shop helper | the skull that pops up: whether it shows, where, how long it waits, and every line it says | `src/_data/helper.json` |
 | Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
 | Scrapped crosses (the bin) | the wording around the recycle bin on the SpaceCraft desktop | `src/_data/bin.json` |
+| SpaceCraft wording | the writing around the plant section: intro, footnote, roster heading, chart hint, button labels | `src/_data/spacecraftWords.json` |
+| Wrong address page | the 404 page: heading, opening line, and where to send people | `src/_data/notFound.json` |
 | Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |
 | Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
 | Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
@@ -157,6 +159,24 @@ Every window on the site carries a 16px icon at the left of its title bar, the w
 Each icon ships at two sizes: `-128.png` for the 56px desktop icons and `-32.png` for the 16px
 menubar strip. Both are rendered with `image-rendering: pixelated` so the downscale stays crisp.
 Departments point at their own `-128.png` in the admin, and the menubar swaps in the `-32` for it.
+
+## Everything visitors read is editable
+
+There is no user-facing copy left hardcoded in a template or a script. If a visitor can read it,
+it is in a JSON file under `src/_data/` and has a field in the admin — the wheel's intro and its
+result kicker, the sketch pad's notes, the sticker toasts, the guestbook's replies, the boot
+screen's lines, the 88x31 button text, the 404 page and the SpaceCraft writing.
+
+A few fields take **tokens**, so numbers can never drift out of step with the site:
+
+| Token | Fills in with | Used in |
+| --- | --- | --- |
+| `{amount}` `{min}` `{days}` | the coupon's amount, minimum and length | coupon small print, sticker page intro |
+| `{flash}` `{work}` `{paintings}` `{crosses}` `{videos}` `{books}` | the live counts | the boot screen's lines |
+| `{outside}` `{n}` `{runs}` | outside plants, crosses, runs | the SpaceCraft wording |
+
+Two more conventions worth knowing: a `|` in the 88x31 button text becomes a line break, and
+leaving the Books or Made-in button empty falls back to Site settings so they never go stale.
 
 ## How the admin login works
 

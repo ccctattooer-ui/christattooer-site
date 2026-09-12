@@ -7,12 +7,14 @@
 </div>
 {%- endif %}
 {%- if eggs.badges.show %}
+{#- A "|" in any of these becomes a line break. Leave one empty and it falls back to the shop
+    details from Site settings, so the buttons never go stale when the shop details change. -#}
 <div class="b31wall" aria-label="Web buttons">
-  <span class="b31 b-own"><b>CHRIS</b>TATTOOER</span>
-  <a class="b31 b-books" href="/book/"><i>{{ site.booksStatus | upper }}</i></a>
-  <a class="b31 b-space" href="/spacecraft/"><b>SPACECRAFT</b>GENETICS</a>
-  <span class="b31 b-eyes">BEST VIEWED<br>WITH EYES</span>
-  <span class="b31 b-made">MADE IN<br>{{ site.shop.locality | upper }} {{ site.shop.region | upper }}</span>
+  <span class="b31 b-own">{{ eggs.badges.own | replace("|", "<br>") | safe }}</span>
+  <a class="b31 b-books" href="/book/"><i>{{ (eggs.badges.books or site.booksStatus) | upper }}</i></a>
+  <a class="b31 b-space" href="/spacecraft/">{{ eggs.badges.space | replace("|", "<br>") | safe }}</a>
+  <span class="b31 b-eyes">{{ eggs.badges.eyes | replace("|", "<br>") | safe }}</span>
+  <span class="b31 b-made">{{ (eggs.badges.made or ("MADE IN|" + site.shop.locality + " " + site.shop.region)) | upper | replace("|", "<br>") | safe }}</span>
 </div>
 {%- endif %}
 {% include "partials/webring.njk" %}

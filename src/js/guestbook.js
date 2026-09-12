@@ -8,7 +8,8 @@
   var status = document.getElementById("gb-status");
   var send = document.getElementById("gb-send");
   var count = document.getElementById("gb-count");
-  var CLOSED = (window.GUESTBOOK && window.GUESTBOOK.closed) || "The guestbook isn't open yet.";
+  var G = window.GUESTBOOK || {};
+  var CLOSED = G.closed || "The guestbook isn't open yet.";
 
   var esc = function (s) {
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -24,7 +25,7 @@
 
   function paint(entries) {
     if (!entries.length) {
-      list.innerHTML = '<p class="fine">Nobody has signed it yet. Be the first.</p>';
+      list.innerHTML = '<p class="fine">' + esc(G.empty || "Nobody has signed it yet.") + "</p>";
       if (count) count.textContent = "";
       return;
     }
@@ -53,7 +54,7 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var msg = document.getElementById("gb-msg").value.trim();
-    if (msg.length < 2) { status.textContent = "Write something first."; return; }
+    if (msg.length < 2) { status.textContent = G.writeFirst || "Write something first."; return; }
     send.disabled = true;
     status.textContent = "Sending…";
     fetch("/api/guestbook", {
@@ -69,16 +70,16 @@
       .then(function (res) {
         if (res.d.ok) {
           form.reset();
-          status.textContent = "Thanks — Chris will read it before it goes up.";
+          status.textContent = G.thanks || "Thanks — it will be read before it goes up.";
         } else if (res.s === 429) {
-          status.textContent = "You've already signed recently. Give it an hour.";
+          status.textContent = G.tooSoon || "You have already signed recently.";
         } else if (res.d.reason === "no-db") {
           status.textContent = CLOSED;
         } else {
-          status.textContent = "That didn't send. Try again in a moment.";
+          status.textContent = G.failed || "That didn't send. Try again in a moment.";
         }
       })
-      .catch(function () { status.textContent = "That didn't send. Try again in a moment."; })
+      .catch(function () { status.textContent = G.failed || "That didn't send. Try again in a moment."; })
       .then(function () { send.disabled = false; });
   });
 })();

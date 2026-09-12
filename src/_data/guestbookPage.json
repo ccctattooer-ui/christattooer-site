@@ -4,5 +4,10 @@
   "blurb": "Welcome to my guest book. Sign away! Healed work, first tattoos, plant questions, or just say hello.",
   "placeholder": "the swallow healed perfect, thank you",
   "note": "Nothing appears until Chris has read it. Be nice.",
-  "closed": "The guestbook isn't open yet — check back soon."
+  "closed": "The guestbook isn't open yet — check back soon.",
+  "thanks": "Thanks — Chris will read it before it goes up.",
+  "tooSoon": "You've already signed recently. Give it an hour.",
+  "failed": "That didn't send. Try again in a moment.",
+  "writeFirst": "Write something first.",
+  "empty": "Nobody has signed it yet. Be the first."
 }

@@ -11,10 +11,10 @@
   <div class="body txt">
     <h1>{{ dept.name }}</h1>
     <p>{{ dept.blurb }}</p>
-    <p class="tally"><b>{{ sc | length }}</b> crosses made here<b>{{ flags | length }}</b> flagships<b>{{ runs.runs | length }}</b> runs</p>
-    <p class="status">Every cross below was bred by hand in a tent. The other {{ outside }} plants on the star chart are the outside genetics they came from — mapped so you can see where each one leads back to.</p>
-    <p><a class="btn" href="#" data-open="w-bred">WHAT I'VE MADE</a> <a class="btn ghost" href="#" data-open="w-chart">STAR CHART</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">PHOTOS</a>{% endif %}{% if binned.length and bin.show %} <a class="btn ghost" href="#" data-open="w-bin">{{ bin.button }} ({{ binned | length }})</a>{% endif %}</p>
-    <p class="status">Not a company. Seeds are never sold. Small batch, organic, one-time chucks. 100 to 2,000 seeds of each line in the vault.</p>
+    <p class="tally"><b>{{ sc | length }}</b>{{ spacecraftWords.tally }}<b>{{ flags | length }}</b>flagships<b>{{ runs.runs | length }}</b>runs</p>
+    <p class="status">{{ spacecraftWords.intro | replace("{outside}", outside) }}</p>
+    <p><a class="btn" href="#" data-open="w-bred">{{ spacecraftWords.buttonMade }}</a> <a class="btn ghost" href="#" data-open="w-chart">{{ spacecraftWords.buttonChart }}</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">{{ spacecraftWords.buttonPhotos }}</a>{% endif %}{% if binned.length and bin.show %} <a class="btn ghost" href="#" data-open="w-bin">{{ bin.button }} ({{ binned | length }})</a>{% endif %}</p>
+    <p class="status">{{ spacecraftWords.footnote }}</p>
 {% set spotId = "spacecraft" %}{% include "partials/sticker-spot.njk" %}
   </div>
 </section>
@@ -23,8 +23,8 @@
   <div class="title"><img class="wico" src="/assets/icons/win-roster-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>bred-in-house.exe ({{ sc | length }})</b></div>
   <div class="body bred">
     <div class="bred-head">
-      <p class="big"><b>{{ sc | length }}</b> crosses made here, across {{ runs.runs | length }} runs</p>
-      <p>The complete list. One pollen donor per run, chosen out of a pack and put over every mother in the tent. Tap any name for the full readout.</p>
+      <p class="big"><b>{{ sc | length }}</b>{{ spacecraftWords.rosterHeading | replace("{runs}", runs.runs | length) }}</p>
+      <p>{{ spacecraftWords.rosterLede }}</p>
     </div>
     <div class="bred-tools">
       <div class="chips" id="bred-runs" role="tablist" aria-label="Filter by run">
@@ -34,7 +34,7 @@
         <button type="button" class="chip" data-run="{{ r.n }}">Run {{ r.n }} · {{ r.name }}<span>{{ (sc | where("run", r.n)) | length }}</span></button>
         {%- endfor %}
       </div>
-      <input id="bred-q" type="search" placeholder="Search a name, a parent, a smell" aria-label="Search the crosses">
+      <input id="bred-q" type="search" placeholder="{{ spacecraftWords.searchPlaceholder }}" aria-label="Search the crosses">
     </div>
     <div class="roster" id="bred-list"></div>
     <p class="bred-none" id="bred-none" hidden>Nothing matches that.</p>
@@ -49,7 +49,7 @@
       <span class="chart-tools"><button type="button" id="chart-mine" aria-pressed="false">MINE ONLY</button><button type="button" id="chart-fit">FIT</button><button type="button" id="chart-zoom-in">+</button><button type="button" id="chart-zoom-out">−</button></span>
     </div>
     <div class="chart" id="chart" aria-label="Lineage star chart: drag to pan, pinch or scroll to zoom, tap a plant for its dossier"></div>
-    <p class="chart-hint">Drag to pan · pinch or scroll to zoom · tap a plant to light up its family. Time runs left to right. <span class="m-line">Gold line = mother</span> · <span class="f-line">blue line = father</span>.</p>
+    <p class="chart-hint">{{ spacecraftWords.chartHint }} <span class="m-line">Gold line = mother</span> · <span class="f-line">blue line = father</span>.</p>
   </div>
 </section>
 

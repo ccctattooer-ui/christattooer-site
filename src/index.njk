@@ -74,14 +74,14 @@ permalink: /flash/
 <dialog class="wheelbox" id="wheelbox" aria-label="Spin the wheel for a flash design">
   <div class="pane-title"><img class="pico" src="/assets/icons/win-arcade-32.png" alt="" width="32" height="32"><button class="x" id="wheel-close" type="button" aria-label="Close">×</button><b>wheel.exe</b></div>
   <div class="wheel-body">
-    <p class="wheel-intro">Shops have been doing this forever. Give it a spin and take what you get.</p>
+    <p class="wheel-intro">{{ eggs.wheel.intro }}</p>
     <div class="wheel-stage">
       <span class="wheel-needle" aria-hidden="true"></span>
       <svg id="wheel-svg" viewBox="0 0 200 200" role="img" aria-label="Prize wheel of flash designs"></svg>
     </div>
-    <button class="spin-go" type="button" id="spin-go">SPIN IT</button>
+    <button class="spin-go" type="button" id="spin-go">{{ eggs.wheel.spinButton }}</button>
     <div class="wheel-out" id="wheel-out" aria-live="polite">
-      <p class="wheel-idle">The needle is at the top. Whatever it lands on is yours.</p>
+      <p class="wheel-idle">{{ eggs.wheel.idle }}</p>
     </div>
   </div>
 </dialog>

@@ -11,6 +11,7 @@
   if (!cv) return;
   var ctx = cv.getContext("2d", { willReadFrequently: true });
   var slot = document.getElementById("b-sketch");
+  var WORDS = ((window.EGGS || {}).paint || {});
   var COLS = ["#141414", "#C8102E", "#FFD21F", "#1E8E3E", "#4B2E9C", "#8FD6FF"];
   var WID = { pen: 3, brush: 10, eraser: 22 };
   var tool = "pen", colour = COLS[0], drawing = false, dirty = false;
@@ -125,11 +126,11 @@
     if (!slot) return;
     if (!dirty) {
       slot.value = "";                                  // nothing drawn: attach nothing
-      if (note) note.textContent = "Nothing drawn yet — the pad is optional.";
+      if (note) note.textContent = WORDS.empty || "Nothing drawn yet.";
       return;
     }
     if (!cv.toBlob || typeof DataTransfer === "undefined") {
-      if (note) note.textContent = "Your browser can't attach the drawing. Describe it above instead.";
+      if (note) note.textContent = WORDS.unsupported || "Your browser can't attach the drawing.";
       return;
     }
     cv.toBlob(function (blob) {
@@ -139,9 +140,9 @@
         var dt = new DataTransfer();
         dt.items.add(file);
         slot.files = dt.files;
-        if (note) note.textContent = "Drawing attached (" + Math.round(blob.size / 1024) + " KB). It'll come through with your request.";
+        if (note) note.textContent = (WORDS.attached || "Drawing attached.") + " (" + Math.round(blob.size / 1024) + " KB)";
       } catch (e) {
-        if (note) note.textContent = "Your browser can't attach the drawing. Describe it above instead.";
+        if (note) note.textContent = WORDS.unsupported || "Your browser can't attach the drawing.";
       }
     }, "image/png");
   }

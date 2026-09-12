@@ -1,0 +1,12 @@
+{
+  "tally": "crosses made here",
+  "intro": "Every cross below was bred by hand in a tent. The other {outside} plants on the star chart are the outside genetics they came from — mapped so you can see where each one leads back to.",
+  "footnote": "Not a company. Seeds are never sold. Small batch, organic, one-time chucks. 100 to 2,000 seeds of each line in the vault.",
+  "rosterHeading": "crosses made here, across {runs} runs",
+  "rosterLede": "The complete list. One pollen donor per run, chosen out of a pack and put over every mother in the tent. Tap any name for the full readout.",
+  "chartHint": "Drag to pan · pinch or scroll to zoom · tap a plant to light up its family. Time runs left to right.",
+  "buttonMade": "WHAT I'VE MADE",
+  "buttonChart": "STAR CHART",
+  "buttonPhotos": "PHOTOS",
+  "searchPlaceholder": "Search a name, a parent, a smell"
+}

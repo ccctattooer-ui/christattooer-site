@@ -395,6 +395,11 @@ collections:
           - { label: Box placeholder, name: placeholder, widget: string }
           - { label: Note under the button, name: note, widget: string }
           - { label: When it is not connected yet, name: closed, widget: string, hint: Shown while the guestbook database has not been set up. }
+          - { label: After someone signs, name: thanks, widget: string }
+          - { label: If they sign again too soon, name: tooSoon, widget: string }
+          - { label: If it fails to send, name: failed, widget: string }
+          - { label: If they leave it blank, name: writeFirst, widget: string }
+          - { label: When nobody has signed yet, name: empty, widget: string }
 
   # -------------------------------------------------------------- sticker hunt
   - name: hunt
@@ -407,6 +412,14 @@ collections:
         format: json
         fields:
           - { label: Run the hunt, name: show, widget: boolean, default: true, hint: Turn this off and the stickers, the footer tally and the coupon all disappear. }
+          - { label: Page heading, name: heading, widget: string }
+          - { label: Page intro, name: lede, widget: text, hint: 'Write {amount} and the coupon amount is filled in.' }
+          - { label: Note under the coupon, name: note, widget: text }
+          - { label: Start-over link, name: reset, widget: string }
+          - { label: Start-over question, name: resetConfirm, widget: string, hint: The are-you-sure box before it wipes their progress. }
+          - { label: Found-one message, name: toastFound, widget: string, hint: The count is added after it. }
+          - { label: Found-them-all message, name: toastAll, widget: string }
+          - { label: Footer link text, name: footerLabel, widget: string }
           - label: Stickers
             name: items
             widget: list
@@ -498,20 +511,42 @@ collections:
             widget: object
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: A button above the catalog opens a prize wheel of your designs. Claimed ones are left out automatically. }
-              - { label: Button text, name: label, widget: string }
+              - { label: Button text, name: label, widget: string, hint: The button above the catalog that opens the wheel. }
               - { label: Slices on the wheel, name: segments, widget: number, value_type: int, min: 4, max: 12, hint: It reshuffles between spins, so every design can still come up. }
+              - { label: Intro line, name: intro, widget: text }
+              - { label: Spin button, name: spinButton, widget: string }
+              - { label: Before the first spin, name: idle, widget: text }
+              - { label: While it spins, name: spinning, widget: string }
+              - { label: Result kicker, name: kicker, widget: string, hint: The small line above the design it lands on. }
+              - { label: Add button, name: addButton, widget: string }
+              - { label: Spin again link, name: again, widget: string }
+              - { label: If everything is claimed, name: allClaimed, widget: text }
           - label: Sketch pad (booking page)
             name: paint
             widget: object
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: A fold-away drawing pad on the booking form. Whatever they draw arrives with the request as a picture, alongside any reference photos. }
               - { label: Fold-away label, name: label, widget: string }
+              - { label: Intro line, name: lead, widget: text }
+              - { label: Before anything is drawn, name: empty, widget: string }
+              - { label: Once a drawing is attached, name: attached, widget: string, hint: The file size is added after this. }
+              - { label: If the browser cannot attach it, name: unsupported, widget: string }
           - label: Boot screen on first visit
             name: bios
             widget: object
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: A fake computer start-up screen before the TV, counting up everything on the site. Shown once per visitor, ever, and any key skips it. }
               - { label: Title line, name: title, widget: string }
+              - label: Lines it counts up
+                name: rows
+                widget: list
+                field: { label: Line, name: row, widget: string }
+                hint: >-
+                  One per line, written as "Label|Value". Put {flash} {work} {paintings}
+                  {crosses} {videos} or {books} in the value and the real number is filled in,
+                  so these never go stale.
+              - { label: Sign-off, name: signoff, widget: string }
+              - { label: Skip prompt, name: skip, widget: string }
           - label: Sparkle trail
             name: sparkles
             widget: object
@@ -543,6 +578,11 @@ collections:
             widget: object
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: The strip of 88x31 buttons, including your own for other people to link to. }
+              - { label: Your own button, name: own, widget: string, hint: 'A | makes a line break, e.g. CHRIS|TATTOOER.' }
+              - { label: Books button, name: books, widget: string, required: false, hint: Leave empty to use the Books status from Site settings. }
+              - { label: SpaceCraft button, name: space, widget: string }
+              - { label: Best viewed button, name: eyes, widget: string }
+              - { label: Made in button, name: made, widget: string, required: false, hint: Leave empty to use the town from Site settings. }
           - label: Tattoo machine pointer
             name: cursor
             widget: object
@@ -558,6 +598,51 @@ collections:
             widget: object
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: An ASCII skull and a hello for anyone who views the source. Invisible on the page itself. }
+
+  # ------------------------------------------------------- wrong-address page
+  - name: notfound
+    label: Wrong address page
+    files:
+      - name: notfound
+        label: What people see at a bad link
+        description: The page shown when someone follows a link that no longer exists.
+        file: src/_data/notFound.json
+        format: json
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Opening line, name: lede, widget: text }
+          - { label: Before the list, name: intro, widget: string }
+          - label: Where to send them
+            name: links
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - { label: Text, name: label, widget: string }
+              - { label: Address, name: url, widget: string }
+          - { label: Closing line, name: outro, widget: string, hint: Your Instagram handle is added after this. }
+
+  # ------------------------------------------------------ spacecraft wording
+  - name: spacecraftwords
+    label: SpaceCraft wording
+    files:
+      - name: spacecraftwords
+        label: The words on the SpaceCraft desktop
+        description: >-
+          The writing around the plant breeding section. The plants themselves are under
+          SpaceCraft genetics, the runs under Breeding runs, and the bin under Scrapped crosses.
+        file: src/_data/spacecraftWords.json
+        format: json
+        fields:
+          - { label: Next to the big number, name: tally, widget: string, hint: 'Reads as "51 <this> 9 flagships 6 runs".' }
+          - { label: Intro, name: intro, widget: text, hint: 'Write {outside} and the number of outside plants is filled in.' }
+          - { label: Footnote, name: footnote, widget: text, hint: The small print at the bottom of the readme window. }
+          - { label: Roster heading, name: rosterHeading, widget: string, hint: 'Follows the big number. Write {runs} for the number of runs.' }
+          - { label: Roster intro, name: rosterLede, widget: text }
+          - { label: Star chart hint, name: chartHint, widget: text, hint: The line under the chart. The gold and blue key is added after it. }
+          - { label: Roster button, name: buttonMade, widget: string }
+          - { label: Chart button, name: buttonChart, widget: string }
+          - { label: Photos button, name: buttonPhotos, widget: string }
+          - { label: Roster search box, name: searchPlaceholder, widget: string }
 
   # -------------------------------------------------------------- recycle bin
   - name: bin

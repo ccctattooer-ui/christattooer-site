@@ -42,7 +42,7 @@ description: Three ways to book a tattoo with Chris at Tattoo Peace in Vancouver
             booking handler picks it up as just another attachment. -#}
         <details class="pad-wrap">
           <summary>{{ eggs.paint.label }}</summary>
-          <p class="pad-lead">Can't put it in words? Scribble it. It arrives with your request as a picture — rough is completely fine, that's what it's for.</p>
+          <p class="pad-lead">{{ eggs.paint.lead }}</p>
           <div class="pad-rig">
             <div class="pad-tools">
               <button class="pad-tool on" type="button" data-tool="pen" aria-pressed="true" title="Pencil">✎</button>
@@ -55,7 +55,7 @@ description: Three ways to book a tattoo with Chris at Tattoo Peace in Vancouver
             <canvas id="pad" width="640" height="440" aria-label="Sketch pad: draw your tattoo idea"></canvas>
           </div>
           <input type="file" name="reference" id="b-sketch" class="hp" tabindex="-1" aria-hidden="true">
-          <p class="pad-note fine" id="pad-note">Nothing drawn yet — the pad is optional.</p>
+          <p class="pad-note fine" id="pad-note">{{ eggs.paint.empty }}</p>
         </details>
         {%- endif %}
         <div class="two">

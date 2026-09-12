@@ -56,7 +56,7 @@
   <div><b>Aftercare</b><a href="/aftercare/">Read the sheet</a>. Wash it, don't pick it, stay out of the sun.</div>
   <div><b>Elsewhere</b><a href="https://instagram.com/{{ site.instagram }}">Instagram</a> · <a href="{{ site.squareBooking }}">Square booking</a> · <a href="/spacecraft/">SpaceCraft</a><br>© 2026 {{ site.name }} · {{ site.shop.name }}</div>
   {%- if stickers.show %}
-  <div><b>Sticker hunt</b><a href="/stickers/">Six hidden on this site</a> · found <span id="stick-tally">0 of 6</span></div>
+  <div><b>Sticker hunt</b><a href="/stickers/">{{ stickers.footerLabel }}</a> · found <span id="stick-tally">0 of {{ stickers.items | length }}</span></div>
   {%- endif %}
   {%- if guestbookPage.show %}
   <div><b>Guestbook</b><a href="/guestbook/">Sign it</a> · an old-fashioned website deserves one</div>
