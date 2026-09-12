@@ -12,7 +12,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Quick edit (/admin/prices/) | one grid of every flash design with editable name, category, size, hours, price, Ready and notes; per-row Save or Save-all commits the changed files in one commit. New drawings and deletions still happen in Flash designs. | `functions/admin/api/flash.js`, `src/admin/prices/` |
 | Healed & recent work | photos on /work/, titles, featured, hidden | `content/work/*.json` + `assets/tattoos/` |
 | Paintings | the collage board: one draggable list, each row = title, photo, kind (flash sheet / painting), hidden | `content/paintings.json` + `assets/paintings/` |
-| Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
+| Game montages | the YouTube playlist in the Gamer Zone, one draggable list | `content/videos.json` |
 | Flash order (drag to sort) | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
 | SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
 | Guestbook page | the wording on /guestbook/ (entries themselves are approved at /admin/guestbook/) | `src/_data/guestbookPage.json` |
@@ -20,6 +20,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Shop helper | the skull that pops up: whether it shows, where, how long it waits, and every line it says | `src/_data/helper.json` |
 | Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
 | Scrapped crosses (the bin) | the wording around the recycle bin on the SpaceCraft desktop | `src/_data/bin.json` |
+| Gamer Zone wording | the writing around the games section: window names, buttons, the arcade blurb | `src/_data/gamesWords.json` |
 | SpaceCraft wording | the writing around the plant section: intro, footnote, roster heading, chart hint, button labels | `src/_data/spacecraftWords.json` |
 | Wrong address page | the 404 page: heading, opening line, and where to send people | `src/_data/notFound.json` |
 | Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |

@@ -1,0 +1,15 @@
+{
+  "windowMontages": "montages.exe",
+  "windowArcade": "arcade.exe",
+  "windowReadme": "gamerzone.txt",
+  "filterAll": "All",
+  "buttonMontages": "MONTAGES",
+  "buttonTwitch": "TWITCH",
+  "buttonArcade": "ARCADE",
+  "youtubeLine": "More on YouTube",
+  "twitchLine": "Live sometimes.",
+  "twitchFollow": "Follow on Twitch to get pinged.",
+  "arcadeHeading": "Browser games",
+  "arcadeBlurb": "Small games that work on your phone are on the way. This window will fill up as they ship.",
+  "backButton": "BACK TO CATALOG"
+}

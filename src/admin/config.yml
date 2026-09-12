@@ -621,6 +621,32 @@ collections:
               - { label: Address, name: url, widget: string }
           - { label: Closing line, name: outro, widget: string, hint: Your Instagram handle is added after this. }
 
+  # ----------------------------------------------------------- gamer zone words
+  - name: gameswords
+    label: Gamer Zone wording
+    files:
+      - name: gameswords
+        label: The words on the Gamer Zone desktop
+        description: >-
+          The writing around the games section. The clips themselves are under Game montages, and
+          the department's name, blurb and status are under Departments.
+        file: src/_data/gamesWords.json
+        format: json
+        fields:
+          - { label: Montages window name, name: windowMontages, widget: string, hint: The title along the top of the video window. The count is added automatically. }
+          - { label: Arcade window name, name: windowArcade, widget: string }
+          - { label: Readme window name, name: windowReadme, widget: string }
+          - { label: "\"All\" filter button", name: filterAll, widget: string }
+          - { label: Montages button, name: buttonMontages, widget: string }
+          - { label: Twitch button, name: buttonTwitch, widget: string }
+          - { label: Arcade button, name: buttonArcade, widget: string }
+          - { label: Back-to-catalog button, name: backButton, widget: string }
+          - { label: YouTube line, name: youtubeLine, widget: string, hint: Your handle is added after this as a link. }
+          - { label: Twitch line, name: twitchLine, widget: string }
+          - { label: Twitch link text, name: twitchFollow, widget: string }
+          - { label: Arcade heading, name: arcadeHeading, widget: string }
+          - { label: Arcade blurb, name: arcadeBlurb, widget: text }
+
   # ------------------------------------------------------ spacecraft wording
   - name: spacecraftwords
     label: SpaceCraft wording
