@@ -15,6 +15,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
 | Flash order (drag to sort) | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
 | SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
+| Shop helper | the skull that pops up: whether it shows, where, how long it waits, and every line it says | `src/_data/helper.json` |
 | Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
 | Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |
 | Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
@@ -76,6 +77,17 @@ What's in there now:
 | Machine pointer | A tattoo machine as the mouse pointer, rotary on links. Mouse only. |
 | Clock wallpaper | Warms the desktop at dawn and dusk, darkens it after midnight. Only ever a tint *over* the colour in Look & colors, so your palette still wins. |
 | View-source note | An ASCII skull and a hello in the page source. Invisible on the page. |
+| Shop news ticker | A scrolling strip across the top of every page. Empty the text in the admin and the strip disappears. |
+
+### The shop helper
+
+A skull turns up in the corner after a quiet moment with one line from **Shop helper**. Press *another* to hear the rest, or *go away* — and go away means it. That's remembered in the visitor's browser for good, because the fastest way to make a mascot hateful is to let it come back. Escape closes it for now without remembering.
+
+It shows on the desktop pages only by default, which keeps the booking pages clear; "Where it turns up" can move it to the catalog side or everywhere.
+
+### Scrapped crosses
+
+Any plant in **SpaceCraft genetics** can be ticked **Scrapped**, with a one-line reason. A scrapped plant leaves the roster and the star chart, stops counting towards the total, and turns up in the **recycle.bin** window on the SpaceCraft desktop instead — so "51 crosses made here" stays true while the ones that didn't work out are still on show. Three are in there now, out of the breeding log.
 
 ## How the admin login works
 
@@ -126,7 +138,8 @@ src/
   404.njk           the page a wrong address lands on
   sitemap.njk       /sitemap.xml, robots.njk -> /robots.txt
   _includes/partials/meta.njk   canonical + share-preview tags + LocalBusiness JSON-LD
-  _includes/partials/           signature.njk (view-source note), badges.njk (footer buttons)
+  _includes/partials/           signature.njk (view-source note), badges.njk (footer buttons),
+                                helper.njk (the skull), news.njk (the ticker)
   js/eggs.js        every easter egg, switched in the admin (src/_data/eggs.json)
   work.njk          all photos + lightbox
   book.njk          booking

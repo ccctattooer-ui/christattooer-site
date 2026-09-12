@@ -1,0 +1,34 @@
+{#- The shop helper: a skull that turns up once with something to say, then goes away for good.
+    Everything about it — whether it shows, how long it waits, and every line it says — is in
+    Shop helper in the admin (src/_data/helper.json). Starts hidden; eggs.js brings it in. -#}
+{%- set showHere = helper.where == "both" or helper.where == surface %}
+{%- if helper.show and helper.lines.length and showHere %}
+<aside class="helper" id="helper" hidden aria-live="polite">
+  <div class="helper-bubble">
+    <p id="helper-line">{{ helper.lines[0] }}</p>
+    <div class="helper-acts">
+      <button type="button" id="helper-next">ANOTHER</button>
+      <button type="button" id="helper-go">GO AWAY</button>
+    </div>
+  </div>
+  <svg class="helper-skull" viewBox="0 0 48 52" role="img" aria-label="A small skull">
+    <g shape-rendering="crispEdges" stroke="#15121A" stroke-width="2">
+      {#- cranium -#}
+      <path d="M10 8h28v22H10z" fill="#EFEAD9" stroke="none"/>
+      <path d="M8 12h4v16H8zM36 12h4v16h-4z" fill="#EFEAD9" stroke="none"/>
+      <path d="M12 6h24v4H12z" fill="#EFEAD9" stroke="none"/>
+      <path d="M12 4h24M10 6h2M36 6h2M8 10h2M38 10h2M6 12h2M40 12h2M6 12v16M42 12v16M8 28h2M38 28h2" fill="none"/>
+      {#- eye sockets -#}
+      <path d="M14 14h8v9h-8z" fill="#15121A" stroke="none"/>
+      <path d="M26 14h8v9h-8z" fill="#15121A" stroke="none"/>
+      {#- nose -#}
+      <path d="M22 25h4v4h-4z" fill="#15121A" stroke="none"/>
+      {#- jaw and teeth -#}
+      <path d="M14 30h20v10H14z" fill="#EFEAD9" stroke="none"/>
+      <path d="M14 30v10h20V30M12 30h2M34 30h2" fill="none"/>
+      <path d="M18 32v8M24 32v8M30 32v8M14 36h20" fill="none" stroke-width="2"/>
+      <path d="M10 30h28" fill="none"/>
+    </g>
+  </svg>
+</aside>
+{%- endif %}

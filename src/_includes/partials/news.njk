@@ -1,0 +1,8 @@
+{#- Shop news ticker. Text comes from Fun stuff in the admin; leave it blank and the whole strip
+    disappears. Duplicated once inside so the scroll has no gap. -#}
+{%- if eggs.news.show and eggs.news.text | trim %}
+<div class="newsbar" role="complementary" aria-label="Shop news">
+  <b>NEWS</b>
+  <div class="newsbar-track"><span>{{ eggs.news.text }} &nbsp;&#9733;&nbsp; {{ eggs.news.text }} &nbsp;&#9733;&nbsp; </span></div>
+</div>
+{%- endif %}

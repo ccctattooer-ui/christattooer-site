@@ -1,0 +1,19 @@
+{
+  "breeder": "SpaceCraft",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "scrapped",
+  "terps": "",
+  "source": "",
+  "seedfinder": "",
+  "image": "",
+  "scrapped": true,
+  "id": "s-dot-x-lime-bubble",
+  "name": "S. Dot × Lime Bubble",
+  "kind": "spacecraft",
+  "mother": "",
+  "father": "lime-bubble",
+  "notes": "S. Dot is Archive's Sour Dubb × Orange Tahoe. Seeded alongside the rest of the Run 2 roster.",
+  "scrapNote": "Made too few seeds to carry on with."
+}

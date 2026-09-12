@@ -1,0 +1,14 @@
+{
+  "show": true,
+  "where": "desktop",
+  "delaySeconds": 14,
+  "returns": false,
+  "lines": [
+    "It looks like you're trying to book a tattoo!",
+    "Psst. There are 71 designs in the flash catalog and they're all ready to go.",
+    "Don't pick it. I mean it. Don't pick it.",
+    "Books are open. I'm just saying.",
+    "There's a whole plant breeding operation behind that star icon, if you're into that.",
+    "Everything on this site was drawn by hand. Including me."
+  ]
+}

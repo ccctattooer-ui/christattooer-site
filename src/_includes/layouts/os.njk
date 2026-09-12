@@ -16,6 +16,7 @@
 </head>
 <body>
 {% include "partials/signature.njk" %}
+{% include "partials/news.njk" %}
 <div class="wallpaper" aria-hidden="true"></div>
 
 <div class="menubar">
@@ -34,12 +35,14 @@
 
 {{ content | safe }}
 
+{% set surface = "desktop" %}
+{% include "partials/helper.njk" %}
 <div class="taskbar">
   <a class="start" href="/">{{ site.shortName | upper }}</a>
   <div id="tasks"></div>
   <span class="clock">{{ dept.status | upper }}</span>
 </div>
-<script>window.EGGS = {{ eggs | dump | safe }}; window.EGGS_FLASH = {{ flash | spread(7, "image") | dump | safe }};</script>
+<script>window.EGGS = {{ eggs | dump | safe }}; window.HELPER = {{ helper | dump | safe }}; window.EGGS_FLASH = {{ flash | spread(7, "image") | dump | safe }};</script>
 <script src="/js/os.js"></script>
 <script src="/js/eggs.js" defer></script>
 </body>

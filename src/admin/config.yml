@@ -160,6 +160,8 @@ collections:
       - { label: Notes, name: notes, widget: text, required: false }
       - { label: Source note, name: source, widget: string, required: false }
       - { label: Seedfinder link, name: seedfinder, widget: string, required: false }
+      - { label: Scrapped, name: scrapped, widget: boolean, default: false, required: false, hint: Tick this and the plant leaves the roster and the star chart and moves into the Recycle Bin instead. It stops counting towards your total. }
+      - { label: Why it was scrapped, name: scrapNote, widget: string, required: false, hint: One line, shown in red in the bin. e.g. Made too few seeds to carry on with. }
       - { label: Photo, name: image, widget: image, required: false, media_folder: /assets/plants, public_folder: /assets/plants, hint: Shown in the plant's dossier on the star chart. }
 
   - name: departments
@@ -377,6 +379,34 @@ collections:
               - { label: Tape strips, name: tape, widget: boolean, default: true }
               - { label: Smallest piece width (px), name: columnWidth, widget: number, value_type: int, min: 100, max: 260, step: 10, hint: Smaller = more pieces per row. }
 
+  # --------------------------------------------------------------- shop helper
+  - name: helper
+    label: Shop helper
+    files:
+      - name: helper
+        label: The skull that pops up
+        description: The little skull that turns up in the corner with something to say. Once someone tells it to go away it never comes back for them, so keep the lines worth reading.
+        file: src/_data/helper.json
+        format: json
+        fields:
+          - { label: Show the helper, name: show, widget: boolean, default: true }
+          - label: Where it turns up
+            name: where
+            widget: select
+            default: desktop
+            options:
+              - { label: Desktop pages only (Store, Games, Paintings, SpaceCraft), value: desktop }
+              - { label: Catalog pages only (Flash, Work, Book, About), value: catalog }
+              - { label: Everywhere, value: both }
+            hint: Desktop only is the safe choice — it keeps the booking pages clear.
+          - { label: Wait before it appears (seconds), name: delaySeconds, widget: number, value_type: int, min: 2, max: 120, hint: Long enough that it does not jump out at someone the moment they arrive. }
+          - { label: Comes back on every visit, name: returns, widget: boolean, default: false, hint: "Off means: once someone dismisses it, they never see it again. Leave it off unless you want to annoy people." }
+          - label: Things it says
+            name: lines
+            widget: list
+            field: { label: Line, name: line, widget: string }
+            hint: One is picked at random, and ANOTHER moves through the rest. Drag to reorder.
+
   # ---------------------------------------------------------------- fun stuff
   - name: eggs
     label: Fun stuff
@@ -405,6 +435,12 @@ collections:
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: 'Up up down down left right left right B A turns the walls gold.' }
               - { label: Message, name: message, widget: string, hint: The little note that pops up when someone gets it right. }
+          - label: Shop news ticker
+            name: news
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: A scrolling strip across the top of every page. }
+              - { label: News text, name: text, widget: string, required: false, hint: Leave this empty and the whole strip disappears. Caps read best. }
           - label: Web buttons in the footer
             name: badges
             widget: object

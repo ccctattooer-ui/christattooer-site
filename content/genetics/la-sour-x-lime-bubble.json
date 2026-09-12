@@ -1,0 +1,19 @@
+{
+  "breeder": "SpaceCraft",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "scrapped",
+  "terps": "",
+  "source": "",
+  "seedfinder": "",
+  "image": "",
+  "scrapped": true,
+  "id": "la-sour-x-lime-bubble",
+  "name": "“LA Sour” × Lime Bubble",
+  "kind": "spacecraft",
+  "mother": "notsos-headband",
+  "father": "lime-bubble",
+  "notes": "Made from a vintage cut going by “LA Sour” on the Run 2 roster.",
+  "scrapNote": "The cut turned out to be Notso's Headband, so this was Slimeline all along — the same cross twice under two names."
+}

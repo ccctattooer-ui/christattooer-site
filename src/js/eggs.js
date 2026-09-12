@@ -45,6 +45,39 @@
     });
   }
 
+  // ---------------------------------------------------------------- the shop helper
+  // A skull that turns up once with something to say. Dismiss it and it is gone for good, because
+  // the fastest way to make a mascot hateful is to let it come back. Lines come from the admin.
+  var H = window.HELPER || {};
+  var hEl = document.getElementById("helper");
+  if (hEl && H.show && (H.lines || []).length) {
+    var KEY = "ct-helper-dismissed";
+    var dismissed = false;
+    try { dismissed = !!localStorage.getItem(KEY); } catch (e) {}
+    // "returns: false" means once per visitor, ever. Turn it on and it comes back each visit.
+    if (!(dismissed && !H.returns)) {
+      var lines = H.lines.slice();
+      var i = Math.floor(Math.random() * lines.length);
+      var lineEl = document.getElementById("helper-line");
+      var show = function () {
+        lineEl.textContent = lines[i % lines.length];
+        hEl.hidden = false;
+        hEl.classList.add("in");
+      };
+      var bye = function (remember) {
+        hEl.classList.remove("in");
+        setTimeout(function () { hEl.hidden = true; }, reduce ? 0 : 260);
+        if (remember) { try { localStorage.setItem(KEY, "1"); } catch (e) {} }
+      };
+      document.getElementById("helper-next").addEventListener("click", function () {
+        i++; lineEl.textContent = lines[i % lines.length];
+      });
+      document.getElementById("helper-go").addEventListener("click", function () { bye(true); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !hEl.hidden) bye(false); });
+      setTimeout(show, Math.max(2, Number(H.delaySeconds) || 14) * 1000);
+    }
+  }
+
   // ---------------------------------------------------------------- flash screensaver
   // Sixty seconds of nothing happening on a ParlorOS desktop and the drawings start bouncing.
   // Any key, click, touch or mouse move puts it away again.

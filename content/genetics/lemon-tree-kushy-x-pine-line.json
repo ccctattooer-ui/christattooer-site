@@ -1,0 +1,19 @@
+{
+  "breeder": "SpaceCraft",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "scrapped",
+  "terps": "",
+  "source": "",
+  "seedfinder": "",
+  "image": "",
+  "scrapped": true,
+  "id": "lemon-tree-kushy-x-pine-line",
+  "name": "Lemon Tree Kushy × pine line",
+  "kind": "spacecraft",
+  "mother": "lemon-tree-kushy",
+  "father": "pine-line",
+  "notes": "One of the Run 5 pine-line crosses, on a flagship mother.",
+  "scrapNote": "Scrapped before it went anywhere."
+}

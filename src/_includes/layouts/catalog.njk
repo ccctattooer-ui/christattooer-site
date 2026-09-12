@@ -43,8 +43,11 @@
   {%- endfor %}
 </nav>
 
+{% include "partials/news.njk" %}
 {{ content | safe }}
 
+{% set surface = "catalog" %}
+{% include "partials/helper.njk" %}
 <footer>
   <div><b>Hours</b>{{ site.hoursLong }}</div>
   <div><b>Deposits</b>{{ site.pricing.deposit | money }} deposit. {{ site.pricing.depositNote }}</div>
@@ -71,7 +74,7 @@
   </form>
 </aside>
 
-<script>window.EGGS = {{ eggs | dump | safe }};</script>
+<script>window.EGGS = {{ eggs | dump | safe }}; window.HELPER = {{ helper | dump | safe }};</script>
 <script src="/js/catalog.js"></script>
 <script src="/js/eggs.js" defer></script>
 </body>

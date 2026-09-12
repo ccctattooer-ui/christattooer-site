@@ -22,6 +22,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("uniqueCats", (arr) => [...new Set(arr.map((x) => x.category))]);
   eleventyConfig.addFilter("uniqueGames", (arr) => [...new Set(arr.map((x) => x.game))]);
   eleventyConfig.addFilter("where", (arr, key, val) => arr.filter((x) => x[key] === val));
+  eleventyConfig.addFilter("whereNot", (arr, key, val) => arr.filter((x) => x[key] !== val));
   // N items spread evenly across a list, so the screensaver gets a varied handful of drawings
   // without every ParlorOS page shipping all 71 image paths.
   eleventyConfig.addFilter("spread", (arr, n, key) => {

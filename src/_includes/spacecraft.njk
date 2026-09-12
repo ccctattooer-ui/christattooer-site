@@ -1,6 +1,11 @@
-{%- set sc = genetics | where("kind", "spacecraft") %}
-{%- set flags = genetics | where("flagship", true) %}
-{%- set outside = (genetics | length) - (sc | length) %}
+{#- Scrapped crosses live only in the recycle bin: they are kept out of the chart, the roster and
+    every count, so "51 crosses made here" stays true. Tick "Scrapped" on a plant in the admin and
+    it moves from the roster to the bin. -#}
+{%- set live = genetics | whereNot("scrapped", true) %}
+{%- set binned = genetics | where("scrapped", true) %}
+{%- set sc = live | where("kind", "spacecraft") %}
+{%- set flags = live | where("flagship", true) %}
+{%- set outside = (live | length) - (sc | length) %}
 <section class="win" id="w-readme" style="left:110px;top:64px;width:min(460px,calc(100vw - 32px))">
   <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.slug }}.txt</b></div>
   <div class="body txt">
@@ -8,7 +13,7 @@
     <p>{{ dept.blurb }}</p>
     <p class="tally"><b>{{ sc | length }}</b> crosses made here<b>{{ flags | length }}</b> flagships<b>{{ runs.runs | length }}</b> runs</p>
     <p class="status">Every cross below was bred by hand in a tent. The other {{ outside }} plants on the star chart are the outside genetics they came from — mapped so you can see where each one leads back to.</p>
-    <p><a class="btn" href="#" data-open="w-bred">WHAT I'VE MADE</a> <a class="btn ghost" href="#" data-open="w-chart">STAR CHART</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">PHOTOS</a>{% endif %}</p>
+    <p><a class="btn" href="#" data-open="w-bred">WHAT I'VE MADE</a> <a class="btn ghost" href="#" data-open="w-chart">STAR CHART</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">PHOTOS</a>{% endif %}{% if binned.length %} <a class="btn ghost" href="#" data-open="w-bin">RECYCLE BIN ({{ binned | length }})</a>{% endif %}</p>
     <p class="status">Not a company. Seeds are never sold. Small batch, organic, one-time chucks. 100 to 2,000 seeds of each line in the vault.</p>
   </div>
 </section>
@@ -61,6 +66,33 @@
   <div class="body dossier" id="dossier"></div>
 </section>
 
+{%- if binned.length %}
+<section class="win" id="w-bin" hidden style="left:200px;top:180px;width:min(520px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>recycle.bin ({{ binned | length }})</b></div>
+  <div class="body bin">
+    <div class="bin-head">
+      <svg viewBox="0 0 48 48" role="img" aria-label="Recycle bin">
+        <path d="M12 14h24l-3 30H15z" fill="#b9b0d6" stroke="var(--ink)" stroke-width="2"/>
+        <path d="M9 10h30v4H9z" fill="#7a7263" stroke="var(--ink)" stroke-width="2"/>
+        <path d="M20 7h8v3h-8z" fill="#7a7263" stroke="var(--ink)" stroke-width="2"/>
+        <path d="M19 20v18M24 20v18M29 20v18" stroke="var(--ink)" stroke-width="2"/>
+      </svg>
+      <p>The ones that didn't make it. Kept here because the failures say as much about a line as the keepers do — none of these count towards the {{ sc | length }}.</p>
+    </div>
+    <ul class="binlist">
+      {%- for n in binned %}
+      <li>
+        <b>{{ n.name }}</b>
+        <small>{% if n.run %}Run {{ n.run }}{% if n.year %} · {{ n.year }}{% endif %}{% elif n.year %}{{ n.year }}{% endif %}</small>
+        {%- if n.scrapNote %}<em>{{ n.scrapNote }}</em>{% endif %}
+        {%- if n.notes %}<span>{{ n.notes }}</span>{% endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
 {%- if dept.images.length %}
 <section class="win" id="w-gallery" hidden style="left:420px;top:120px;width:min(620px,calc(100vw - 32px))">
   <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.name }} photos ({{ dept.images.length }})</b></div>
@@ -74,5 +106,5 @@
 </section>
 {%- endif %}
 
-<script>window.GENETICS = {{ genetics | dump | safe }}; window.RUNS = {{ runs.runs | dump | safe }};</script>
+<script>window.GENETICS = {{ live | dump | safe }}; window.RUNS = {{ runs.runs | dump | safe }};</script>
 <script src="/js/starchart.js" defer></script>
