@@ -9,8 +9,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "content", "genetics"); os.makedirs(OUT, exist_ok=True)
 
 N = []
-def add(id, name, kind, breeder="", mother="", father="", run=0, year="", flagship=False, status="", terps="", notes="", source="", seedfinder=""):
-    N.append(dict(id=id, name=name, kind=kind, breeder=breeder, mother=mother, father=father, run=run, year=str(year), flagship=flagship, status=status, terps=terps, notes=notes, source=source, seedfinder=seedfinder))
+def add(id, name, kind, breeder="", mother="", father="", run=0, year="", flagship=False, status="", terps="", notes="", source="", seedfinder="", image=""):
+    N.append(dict(id=id, name=name, kind=kind, breeder=breeder, mother=mother, father=father, run=run, year=str(year), flagship=flagship, status=status, terps=terps, notes=notes, source=source, seedfinder=seedfinder, image=image))
 
 SC = "SpaceCraft"
 # ------------------------------------------------------------------ outside parents (immediate)
@@ -128,6 +128,10 @@ def link(id, mother="", father="", **fields):
     if father: n["father"] = father
     n.update(fields)
 import genetics_ancestors; genetics_ancestors.extend(add, link)
+
+# ------------------------------------------------------------------ photos (assets/plants, see tools/convert_plants.py)
+for pid, img in [("pine-line", "plant-001.jpg"), ("pinecake", "plant-004.jpg"), ("skunk-ooze", "plant-006.jpg"), ("blueberry-cupcake", "plant-008.jpg"), ("charcuterie", "plant-009.jpg"), ("chem-pop", "plant-011.jpg"), ("crepe-krush", "plant-012.jpg"), ("janet-kush", "plant-013.jpg"), ("pure-krush", "plant-014.jpg"), ("tropical-slushee", "plant-015.jpg")]:
+    link(pid, image="/assets/plants/" + img)
 
 ids = {n["id"] for n in N}
 for f in os.listdir(OUT):

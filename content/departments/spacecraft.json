@@ -33,6 +33,38 @@
     {
       "image": "/assets/plants/plant-007.jpg",
       "caption": "SpaceCraft logo"
+    },
+    {
+      "image": "/assets/plants/plant-008.jpg",
+      "caption": "Blueberry Cupcake"
+    },
+    {
+      "image": "/assets/plants/plant-009.jpg",
+      "caption": "Charcuterie #2"
+    },
+    {
+      "image": "/assets/plants/plant-010.jpg",
+      "caption": "Chem Pop"
+    },
+    {
+      "image": "/assets/plants/plant-011.jpg",
+      "caption": "Chem Pop in flower"
+    },
+    {
+      "image": "/assets/plants/plant-012.jpg",
+      "caption": "Crepe Krush"
+    },
+    {
+      "image": "/assets/plants/plant-013.jpg",
+      "caption": "Janet Kush"
+    },
+    {
+      "image": "/assets/plants/plant-014.jpg",
+      "caption": "Pure Krush, seeded"
+    },
+    {
+      "image": "/assets/plants/plant-015.jpg",
+      "caption": "Tropical Slushee"
     }
   ]
 }

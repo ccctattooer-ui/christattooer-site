@@ -160,6 +160,7 @@ collections:
       - { label: Notes, name: notes, widget: text, required: false }
       - { label: Source note, name: source, widget: string, required: false }
       - { label: Seedfinder link, name: seedfinder, widget: string, required: false }
+      - { label: Photo, name: image, widget: image, required: false, media_folder: /assets/plants, public_folder: /assets/plants, hint: Shown in the plant's dossier on the star chart. }
 
   - name: departments
     label: Departments

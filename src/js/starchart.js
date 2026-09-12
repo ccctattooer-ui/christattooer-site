@@ -123,6 +123,7 @@
     const parents = [n.mother && `<dt>Mother</dt><dd>${link(n.mother)}</dd>`, n.father && `<dt>Father</dt><dd>${link(n.father)}</dd>`].filter(Boolean).join('');
     const children = kids.get(id).map(link).join(', ');
     d.innerHTML = `
+      ${n.thumb ? `<a class="photo" href="${esc(n.image)}" target="_blank" rel="noopener"><img src="${esc(n.thumb)}" alt="${esc(n.name)}" loading="lazy"></a>` : ''}
       <h1>${esc(n.name)}${n.flagship ? ' <span class="badge flag">FLAGSHIP</span>' : ''}</h1>
       <p class="kind">${esc(KIND[n.kind] || n.kind)}${n.breeder && n.breeder !== 'SpaceCraft' ? ' · ' + esc(n.breeder) : ''}${n.run ? ' · ' + esc(RUNS[n.run] || 'Run ' + n.run) : (n.year ? ' · ' + esc(n.year) : '')}${n.status ? ' · ' + esc(n.status) : ''}</p>
       <dl class="kv">${parents}${children ? `<dt>Children</dt><dd>${children}</dd>` : ''}${n.terps ? `<dt>Terps</dt><dd>${esc(n.terps)}</dd>` : ''}</dl>
