@@ -1,0 +1,16 @@
+{
+  "id": "splooze-x-pine",
+  "name": "Splooze × pine line",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "splooze",
+  "father": "pine-line",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "unnamed",
+  "terps": "",
+  "notes": "Third-generation SpaceCraft.",
+  "source": "",
+  "seedfinder": ""
+}

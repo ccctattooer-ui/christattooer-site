@@ -1,0 +1,16 @@
+{
+  "id": "banapinap-black-x-gk",
+  "name": "BanaPinAp Black × Gushy Kush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "banapinap-black",
+  "father": "gushy-kush",
+  "run": 3,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "wild berry and gas, very strong nose",
+  "notes": "Reminded Chris of Charcuterie but gassier; a line to hunt again.",
+  "source": "",
+  "seedfinder": ""
+}

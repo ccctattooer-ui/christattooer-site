@@ -1,0 +1,16 @@
+{
+  "id": "skunk-ooze",
+  "name": "Skunk Ooze (Skooze)",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "skunk-venom",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": true,
+  "status": "released",
+  "terps": "deep floral chem fuel; a sour citrus-cleaner fuel pheno",
+  "notes": "Three phenos: a green-bell-pepper dud, a sour citrus cleaner keeper, and the holy-grail floral chem fuel with insane resin. “Some of the strongest, tastiest, stickiest smoke I've ever had.” Mother of Splooze.",
+  "source": "",
+  "seedfinder": ""
+}

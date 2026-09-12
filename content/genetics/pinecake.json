@@ -1,0 +1,16 @@
+{
+  "id": "pinecake",
+  "name": "Pinecake",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "blueberry-cupcake",
+  "father": "pine-line",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "testing",
+  "terps": "blueberry pie with sinister funk",
+  "notes": "Tester at week 7: big yielder, fast finisher like mom. “Really, really impressed.”",
+  "source": "",
+  "seedfinder": ""
+}

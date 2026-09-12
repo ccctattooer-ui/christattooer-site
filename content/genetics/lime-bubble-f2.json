@@ -1,0 +1,16 @@
+{
+  "id": "lime-bubble-f2",
+  "name": "Lime Bubble F2",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "lime-bubble",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "stock",
+  "terps": "Irish Spring soap, citrus",
+  "notes": "A few q-tipped lowers on the female Lime Bubbles.",
+  "source": "",
+  "seedfinder": ""
+}

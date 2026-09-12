@@ -1,0 +1,16 @@
+{
+  "id": "crepe-krush",
+  "name": "Crepe Krush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "pure-krush",
+  "father": "charcuterie",
+  "run": 1,
+  "year": "2024",
+  "flagship": false,
+  "status": "released",
+  "terps": "woody incense, marshmallow, creamy kush",
+  "notes": "Progeny carry the paddle leaves.",
+  "source": "",
+  "seedfinder": ""
+}

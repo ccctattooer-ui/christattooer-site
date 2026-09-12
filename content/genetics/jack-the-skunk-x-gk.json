@@ -1,0 +1,16 @@
+{
+  "id": "jack-the-skunk-x-gk",
+  "name": "Jack the Skunk × Gushy Kush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "jack-the-skunk",
+  "father": "gushy-kush",
+  "run": 3,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "sour rotten fruit, Blue Dream with a funky twist",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

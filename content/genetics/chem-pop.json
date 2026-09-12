@@ -1,0 +1,16 @@
+{
+  "id": "chem-pop",
+  "name": "Chem Pop",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "chem-4",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": true,
+  "status": "released",
+  "terps": "deep tasty chem",
+  "notes": "Sleeper of the run: crazy frost, big nuggy yield, consistent across phenos. About 50 seeds left; reproduction planned.",
+  "source": "",
+  "seedfinder": ""
+}

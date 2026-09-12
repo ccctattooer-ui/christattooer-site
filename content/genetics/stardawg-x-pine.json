@@ -1,0 +1,16 @@
+{
+  "id": "stardawg-x-pine",
+  "name": "Stardawg × pine line",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "stardawg-corey",
+  "father": "pine-line",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "unnamed",
+  "terps": "",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

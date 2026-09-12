@@ -1,0 +1,16 @@
+{
+  "id": "jerry-bears",
+  "name": "Jerry Bears",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "albert-walker",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": true,
+  "status": "released",
+  "terps": "orange gummy candy (keeper pheno)",
+  "notes": "The orange gummy candy pheno sits on the 2026 mother roster.",
+  "source": "",
+  "seedfinder": ""
+}

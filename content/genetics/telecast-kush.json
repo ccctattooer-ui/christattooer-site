@@ -1,0 +1,16 @@
+{
+  "id": "telecast-kush",
+  "name": "Telecast Kush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "tahoe-og-bagseed",
+  "father": "charcuterie",
+  "run": 1,
+  "year": "2024",
+  "flagship": false,
+  "status": "released",
+  "terps": "",
+  "notes": "Others report sticky buds with a foul-rot back end; some phenos keep mom's Jurassic leaves.",
+  "source": "",
+  "seedfinder": ""
+}

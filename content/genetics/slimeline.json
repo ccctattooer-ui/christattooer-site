@@ -1,0 +1,16 @@
+{
+  "id": "slimeline",
+  "name": "Slimeline",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "notsos-headband",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

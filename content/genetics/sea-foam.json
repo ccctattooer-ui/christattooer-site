@@ -1,0 +1,16 @@
+{
+  "id": "sea-foam",
+  "name": "Sea Foam",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "blue-dream",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "",
+  "notes": "A tester reports Blue Dream looks in the dried flower.",
+  "source": "",
+  "seedfinder": ""
+}

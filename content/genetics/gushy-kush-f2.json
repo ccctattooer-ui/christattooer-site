@@ -1,0 +1,16 @@
+{
+  "id": "gushy-kush-f2",
+  "name": "Gushy Kush F2",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "gushy-kush",
+  "father": "gushy-kush",
+  "run": 3,
+  "year": "2025",
+  "flagship": false,
+  "status": "stock",
+  "terps": "sweet/sour bouquet, rancid gaminess, gasoline, syrup",
+  "notes": "Open-pollination increase of Soiltech's line; breeder pucks went back to him.",
+  "source": "",
+  "seedfinder": ""
+}

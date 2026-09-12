@@ -1,0 +1,16 @@
+{
+  "id": "mbm-x-gk",
+  "name": "Milky Blueberry Milk × Gushy Kush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "milky-blueberry-milk",
+  "father": "gushy-kush",
+  "run": 3,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "lemon soda, pepper",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

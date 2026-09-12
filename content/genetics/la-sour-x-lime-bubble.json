@@ -1,0 +1,16 @@
+{
+  "id": "la-sour-x-lime-bubble",
+  "name": "LA Sour × Lime Bubble",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "la-sour",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "unknown",
+  "terps": "",
+  "notes": "Seeded in Run 2 but never seen as a pack. Name and fate to confirm.",
+  "source": "",
+  "seedfinder": ""
+}

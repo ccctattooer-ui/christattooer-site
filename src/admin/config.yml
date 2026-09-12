@@ -133,6 +133,34 @@ collections:
               - { label: Year, name: year, widget: string, required: false }
               - { label: Featured, name: featured, widget: boolean, default: false, required: false, hint: Plays first when the page opens. }
 
+  - name: genetics
+    label: SpaceCraft genetics
+    label_singular: Plant
+    description: Every plant on the star chart. Add a cross and pick its mother and father from the list; generations are worked out automatically.
+    folder: content/genetics
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}} · {{kind}}"
+    sortable_fields: [name, kind, run, flagship]
+    fields:
+      - { label: Name, name: name, widget: string, hint: "Use ♂ / ♀ in the name if it helps, e.g. Charcuterie ♂." }
+      - { label: Kind, name: kind, widget: select, options: [{ label: SpaceCraft cross, value: spacecraft }, { label: Clone-only cut, value: cut }, { label: Seed line, value: seedline }, { label: Homebrew line (someone else's), value: homebrew }, { label: Landrace, value: landrace }, { label: Bagseed, value: bagseed }, { label: Unknown, value: unknown }], default: spacecraft }
+      - { label: Breeder / source, name: breeder, widget: string, required: false }
+      - { label: Mother, name: mother, widget: relation, collection: genetics, value_field: "{{slug}}", display_fields: ["{{name}}"], search_fields: [name], required: false }
+      - { label: Father, name: father, widget: relation, collection: genetics, value_field: "{{slug}}", display_fields: ["{{name}}"], search_fields: [name], required: false, hint: For an F2 pick the same line as both parents. }
+      - { label: Run, name: run, widget: select, options: [{ label: none (outside plant), value: 0 }, { label: "1 · Charcuterie 2024", value: 1 }, { label: "2 · Lime Bubble 2025", value: 2 }, { label: "3 · Gushy Kush 2025", value: 3 }, { label: "4 · side chucks 2025", value: 4 }, { label: "5 · pine line 2026", value: 5 }], default: 0 }
+      - { label: Year, name: year, widget: string, required: false }
+      - { label: Flagship, name: flagship, widget: boolean, default: false, required: false, hint: A SpaceCraft line you bred with again. Shows as a gold star. }
+      - { label: Status, name: status, widget: string, required: false, hint: "released, unreleased, testing, stock, unnamed, unknown…" }
+      - { label: Terps, name: terps, widget: string, required: false }
+      - { label: Notes, name: notes, widget: text, required: false }
+      - { label: Source note, name: source, widget: string, required: false }
+      - { label: Seedfinder link, name: seedfinder, widget: string, required: false }
+
   - name: departments
     label: Departments
     label_singular: Department

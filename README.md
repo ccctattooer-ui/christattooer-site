@@ -14,6 +14,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Paintings | the collage board: one draggable list, each row = title, photo, kind (flash sheet / painting), hidden | `content/paintings.json` + `assets/paintings/` |
 | Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
 | Flash order (drag to sort) | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
+| SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
 | Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
 | Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
 | Home page | how-to box, headings, custom card, recent-work strip, on/off switches | `src/_data/home.json` |

@@ -1,0 +1,16 @@
+{
+  "id": "disco-bubble",
+  "name": "Disco Bubble",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "glitter-bomb",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "floral blueberry with Lime Bubble sour",
+  "notes": "Tester leaned Glitter Bomb; cured and pressed well overseas.",
+  "source": "",
+  "seedfinder": ""
+}

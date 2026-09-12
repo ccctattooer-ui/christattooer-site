@@ -1,0 +1,16 @@
+{
+  "id": "corndog-walker-x-gk",
+  "name": "Corndog Walker × Gushy Kush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "corndog-walker",
+  "father": "gushy-kush",
+  "run": 3,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "turkey gravy and cracked pepper",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

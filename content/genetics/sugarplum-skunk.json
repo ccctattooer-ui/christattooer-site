@@ -1,0 +1,16 @@
+{
+  "id": "sugarplum-skunk",
+  "name": "Sugarplum Skunk",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "island-sweet-skunk",
+  "father": "charcuterie",
+  "run": 1,
+  "year": "2024",
+  "flagship": true,
+  "status": "released",
+  "terps": "sour carbonated citrus, floral menthol, greasy; zooming hang-glider high",
+  "notes": "Finishes in 8.5 weeks. Ran on a rec facility R&D table. Males from this line sired Splooze, Not-So-Plum-Skunk and the CuCu crosses.",
+  "source": "",
+  "seedfinder": ""
+}

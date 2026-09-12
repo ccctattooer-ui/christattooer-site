@@ -1,0 +1,16 @@
+{
+  "id": "lemon-tree-kushy",
+  "name": "Lemon Tree Kushy",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "lemon-tree",
+  "father": "tpk-pk-x-gk",
+  "run": 4,
+  "year": "2025",
+  "flagship": true,
+  "status": "released",
+  "terps": "",
+  "notes": "Lemon Tree hit with the orange-spice Pure Pink Gushy male. Seed of the 2026 Citrus Throwdown stud hunt; on the 2026 mother roster.",
+  "source": "",
+  "seedfinder": ""
+}

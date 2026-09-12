@@ -122,3 +122,50 @@ a{color:var(--stencil)}
 .view .txt{margin:0}
 @media (max-width:760px){.collage{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:110px;gap:14px 12px}.board{padding:16px 12px}}
 @media (prefers-reduced-motion:reduce){.piece{transition:none}}
+
+/* spacecraft department: star chart, vault list, dossier */
+.space{padding:0;display:flex;flex-direction:column;background:#0d0a1c}
+.chart-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px;background:var(--bone);border-bottom:2px solid var(--ink);font-family:var(--title);font-size:9px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 8px;vertical-align:-1px;border:1px solid var(--ink)}
+.legend i:first-child{margin-left:0}
+.legend .k-sc{background:#c4b3ff}.legend .k-flag{background:#F0C22E;border-radius:0;transform:rotate(45deg)}.legend .k-cut{background:#6fd3c8}.legend .k-anc{background:#8b8a9a}
+.chart-tools button{font-family:var(--title);font-size:10px;background:#fff;border:2px solid var(--ink);padding:3px 8px;margin-left:4px;cursor:pointer}
+.chart{height:min(62vh,560px);touch-action:none;cursor:grab;overflow:hidden}
+.chart:active{cursor:grabbing}
+.chart-hint{margin:0;padding:6px 10px;font-family:var(--txt);font-size:16px;color:#cfc8e8;background:#160f2e;border-top:2px solid var(--ink)}
+svg.sky{display:block;user-select:none}
+.sky .stars circle{fill:#fff}
+.sky .col{font-family:var(--title);font-size:11px;fill:#a89fd4;letter-spacing:.12em}
+.sky .edge{fill:none;stroke-width:1.4;opacity:.55}
+.sky .edge.mother{stroke:#F0C22E}.sky .edge.father{stroke:#8fd6ff}
+.sky .edge.on{opacity:1;stroke-width:2.4}.sky .edge.dim{opacity:.12}
+.sky .node{cursor:pointer;outline:none}
+.sky .node .glyph{stroke:#0d0a1c;stroke-width:1.5}
+.sky .k-spacecraft .glyph{fill:#c4b3ff}.sky .k-spacecraft .ring{fill:none;stroke:#c4b3ff;stroke-width:1.5;opacity:.8}
+.sky .k-cut .glyph,.sky .k-seedline .glyph,.sky .k-homebrew .glyph{fill:#6fd3c8}
+.sky .k-landrace .glyph,.sky .k-bagseed .glyph,.sky .k-unknown .glyph{fill:#8b8a9a}
+.sky .node.flag .glyph{fill:#F0C22E;filter:drop-shadow(0 0 4px #F0C22E)}
+.sky .lbl{font-family:var(--txt);font-size:15px;fill:#f2eefc;paint-order:stroke;stroke:#0d0a1c;stroke-width:3px}
+.sky .node.dim{opacity:.22}.sky .node.sel .glyph{stroke:#fff;stroke-width:3}.sky .node.sel .lbl{fill:#F0C22E}
+.sky .node.anc .lbl{fill:#ffe9a8}.sky .node.des .lbl{fill:#c9ecff}
+.sky .node:focus-visible .glyph{stroke:#F0C22E;stroke-width:3}
+.vault-tools{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.vault-tools input[type=search]{flex:1;min-width:160px;font:inherit;font-family:var(--txt);font-size:19px;padding:5px 8px;border:2px solid var(--ink);background:#fff}
+.vault-tools label{font-family:var(--title);font-size:9px;display:flex;align-items:center;gap:6px}
+.vault h2{font-family:var(--title);font-size:10px;color:var(--stencil);margin:10px 0 4px;letter-spacing:.08em}
+.vault .row{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--ink);padding:6px 8px;margin-bottom:4px;font-family:var(--txt);cursor:pointer}
+.vault .row b{display:block;font-size:19px;line-height:1.1;font-weight:400}
+.vault .row small{display:block;font-size:15px;color:#5b5346}
+.vault .row.flag b::after{content:" ✦";color:#b8900d}
+.vault .row.sel,.vault .row:hover{background:var(--yellow)}
+.dossier{font-family:var(--txt);font-size:19px;line-height:1.25}
+.dossier h1{font-family:var(--title);font-size:15px;margin:0 0 6px;color:var(--stencil)}
+.dossier .badge{display:inline-block;font-size:9px;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);padding:1px 6px;margin-left:6px;vertical-align:middle}
+.dossier .kind{font-family:var(--title);font-size:9px;color:#5b5346;margin:0 0 10px}
+.dossier .kv{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:0 0 10px}
+.dossier dt{font-family:var(--title);font-size:9px;color:#5b5346;padding-top:4px}
+.dossier dd{margin:0}
+.dossier p{margin:0 0 10px}
+.dossier .acts{margin:6px 0 0}
+@media (max-width:760px){.chart{height:calc(100vh - var(--bar) - 92px - var(--task) - 10px - 33px - 92px)}.sky .lbl{font-size:17px}}
+.chart-hint .m-line{color:#F0C22E}.chart-hint .f-line{color:#8fd6ff}

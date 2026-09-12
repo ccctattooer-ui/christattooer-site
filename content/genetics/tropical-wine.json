@@ -1,0 +1,16 @@
+{
+  "id": "tropical-wine",
+  "name": "Tropical Wine",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "tropical-slushee",
+  "father": "charcuterie",
+  "run": 1,
+  "year": "2024",
+  "flagship": false,
+  "status": "released",
+  "terps": "grape lemonade soda and gas",
+  "notes": "Easy, non-fussy grower; green and purple phenos; yields well.",
+  "source": "",
+  "seedfinder": ""
+}

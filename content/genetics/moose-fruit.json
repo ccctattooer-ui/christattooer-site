@@ -1,0 +1,16 @@
+{
+  "id": "moose-fruit",
+  "name": "Moose Fruit",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "rickys-hashplant",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

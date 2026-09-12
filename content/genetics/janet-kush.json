@@ -1,0 +1,16 @@
+{
+  "id": "janet-kush",
+  "name": "Janet Kush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "kush-crasher",
+  "father": "pine-line",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "testing",
+  "terps": "strong kushy fuel",
+  "notes": "One of the frostiest plants grown here; medium sturdy build; wash or squish candidate.",
+  "source": "",
+  "seedfinder": ""
+}

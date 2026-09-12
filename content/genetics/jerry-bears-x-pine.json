@@ -1,0 +1,16 @@
+{
+  "id": "jerry-bears-x-pine",
+  "name": "Jerry Bears × pine line",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "jerry-bears",
+  "father": "pine-line",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "unnamed",
+  "terps": "",
+  "notes": "From the orange gummy candy pheno.",
+  "source": "",
+  "seedfinder": ""
+}

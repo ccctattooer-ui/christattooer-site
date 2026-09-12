@@ -1,0 +1,16 @@
+{
+  "id": "lime-divine",
+  "name": "Lime Divine",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "the-eucharist",
+  "father": "lime-bubble",
+  "run": 2,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "",
+  "notes": "First second-generation SpaceCraft cross, from The Eucharist #2.",
+  "source": "",
+  "seedfinder": ""
+}

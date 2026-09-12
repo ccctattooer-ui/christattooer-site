@@ -1,0 +1,16 @@
+{
+  "id": "pine-line",
+  "name": "Pine line (Flagship Project #1)",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "mutant-communion",
+  "father": "charcuterie",
+  "run": 1,
+  "year": "2024",
+  "flagship": true,
+  "status": "unreleased",
+  "terps": "pine needle, cedar resin, menthol, wet moss",
+  "notes": "Made quietly and never handed out. Two seeded testers came out dead-on pine needles. Two spade-leaf F1 males from this line carried Run 5; F2 made 2026 to hunt the mutant male.",
+  "source": "",
+  "seedfinder": ""
+}

@@ -1,0 +1,16 @@
+{
+  "id": "marrakesh-x-pine",
+  "name": "Marrakesh × pine line",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "marrakesh",
+  "father": "pine-line",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "unnamed",
+  "terps": "",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

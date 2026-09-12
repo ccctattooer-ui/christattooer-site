@@ -1,0 +1,16 @@
+{
+  "id": "pine-line-f2",
+  "name": "Pine line F2",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "pine-line",
+  "father": "pine-line",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "stock",
+  "terps": "grape candy and lemon pine; earthy incense pine",
+  "notes": "Two stand-in females; where the mutant male will be found if it exists.",
+  "source": "",
+  "seedfinder": ""
+}

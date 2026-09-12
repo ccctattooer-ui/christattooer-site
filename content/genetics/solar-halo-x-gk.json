@@ -1,0 +1,16 @@
+{
+  "id": "solar-halo-x-gk",
+  "name": "Solar Halo × Gushy Kush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "solar-halo",
+  "father": "gushy-kush",
+  "run": 3,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "wild tropical: afgoo with a pineapple-juice twist",
+  "notes": "One of the two standouts of the run.",
+  "source": "",
+  "seedfinder": ""
+}

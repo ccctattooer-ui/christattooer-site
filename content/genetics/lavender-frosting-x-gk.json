@@ -1,0 +1,16 @@
+{
+  "id": "lavender-frosting-x-gk",
+  "name": "Lavender Frosting × Gushy Kush",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "lavender-frosting",
+  "father": "gushy-kush",
+  "run": 3,
+  "year": "2025",
+  "flagship": false,
+  "status": "released",
+  "terps": "lavender dryer sheets and sugar sticks",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

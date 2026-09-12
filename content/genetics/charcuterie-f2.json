@@ -1,0 +1,16 @@
+{
+  "id": "charcuterie-f2",
+  "name": "Charcuterie F2",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "charcuterie-4",
+  "father": "charcuterie",
+  "run": 1,
+  "year": "2024",
+  "flagship": false,
+  "status": "stock",
+  "terps": "",
+  "notes": "Breeding stock; a flip went into each box set.",
+  "source": "",
+  "seedfinder": ""
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ajs-sour-diesel-x-pine",
+  "name": "AJ's Sour Diesel × pine line",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "ajs-sour-diesel",
+  "father": "pine-line",
+  "run": 5,
+  "year": "2026",
+  "flagship": false,
+  "status": "unnamed",
+  "terps": "",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}
