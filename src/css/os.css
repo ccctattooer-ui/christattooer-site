@@ -141,7 +141,13 @@ svg.sky{display:block;user-select:none}
 .sky .edge.on{opacity:1;stroke-width:2.4}.sky .edge.dim{opacity:.12}
 .sky .node{cursor:pointer;outline:none}
 .sky .node .glyph{stroke:#0d0a1c;stroke-width:1.5}
-.sky .k-spacecraft .glyph{fill:#c4b3ff}.sky .k-spacecraft .ring{fill:none;stroke:#c4b3ff;stroke-width:1.5;opacity:.8}
+.sky .k-spacecraft .glyph{fill:#c4b3ff;filter:drop-shadow(0 0 5px rgba(196,179,255,.85))}.sky .k-spacecraft .ring{fill:none;stroke:#c4b3ff;stroke-width:1.6;opacity:.85}
+.sky .node.mine .lbl{fill:#fff;font-size:16px}
+/* MINE ONLY: push the outside library right back so only the crosses read */
+.sky.mine-only .node:not(.mine){opacity:.13}
+.sky.mine-only .node:not(.mine) .lbl{display:none}
+.sky.mine-only .edge{opacity:.13}
+.chart-tools button.on{background:var(--yellow);box-shadow:inset 2px 2px 0 rgba(0,0,0,.2)}
 .sky .k-cut .glyph,.sky .k-seedline .glyph,.sky .k-homebrew .glyph{fill:#6fd3c8}
 .sky .k-landrace .glyph,.sky .k-bagseed .glyph,.sky .k-unknown .glyph{fill:#8b8a9a}
 .sky .node.flag .glyph{fill:#F0C22E;filter:drop-shadow(0 0 4px #F0C22E)}
@@ -171,3 +177,95 @@ svg.sky{display:block;user-select:none}
 .chart-hint .m-line{color:#F0C22E}.chart-hint .f-line{color:#8fd6ff}
 .dossier .photo{display:block;margin:0 0 10px}
 .dossier .photo img{width:100%;max-height:260px;object-fit:cover;border:2px solid var(--ink);background:#fff}
+
+/* ---- spacecraft: the roster of everything bred in house ---- */
+.bred{background:#f3efe2;padding:0}
+.bred-head{padding:12px 14px 10px;background:var(--bone);border-bottom:3px solid var(--ink)}
+.bred-head .big{font-family:var(--title);font-size:11px;color:#5b5346;margin:0 0 4px;display:flex;align-items:baseline;gap:8px;letter-spacing:.04em}
+.bred-head .big b{font-family:var(--txt);font-size:34px;line-height:.9;color:var(--stencil)}
+.bred-head p{font-family:var(--txt);font-size:18px;line-height:1.2;margin:0;max-width:62ch}
+.bred-tools{display:flex;flex-direction:column;gap:8px;padding:10px 14px;border-bottom:2px solid var(--ink);background:var(--bone);position:sticky;top:0;z-index:2}
+.bred-tools input[type=search]{font:inherit;font-family:var(--txt);font-size:19px;padding:5px 8px;border:2px solid var(--ink);background:#fff;width:100%}
+
+.roster{padding:0 0 4px}
+.rgroup{border-bottom:3px solid var(--ink)}
+.rhead{display:grid;grid-template-columns:1fr auto;gap:0 10px;padding:9px 14px 8px;background:#e7dfc8;border-bottom:2px solid var(--ink)}
+.rhead b{font-family:var(--title);font-size:11px;color:var(--stencil);letter-spacing:.05em}
+.rhead i{font-family:var(--title);font-size:10px;font-style:normal;background:var(--ink);color:var(--bone);padding:2px 7px;align-self:start}
+.rhead span{grid-column:1/-1;font-family:var(--txt);font-size:17px;line-height:1.15;color:#5b5346;margin-top:2px}
+
+.rrow{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:start;gap:0 10px;width:100%;text-align:left;
+  background:#fff;border:0;border-bottom:1px solid #ddd5bf;padding:8px 14px 9px;font-family:var(--txt);cursor:pointer}
+.rrow:last-child{border-bottom:0}
+.rrow:hover,.rrow:focus-visible{background:var(--yellow)}
+.rrow.sel{background:var(--yellow);box-shadow:inset 4px 0 0 var(--stencil)}
+.rrow.flag{background:#fffbef}
+.rrow.flag:hover,.rrow.flag.sel{background:var(--yellow)}
+.rrow .num{font-family:var(--title);font-size:10px;color:#a79c82;padding-top:5px}
+.rrow .rmain{min-width:0}
+.rrow .rn{display:block;font-size:21px;line-height:1.05;color:var(--ink)}
+.rrow .rn em{font-style:normal;color:#b8900d;margin-left:5px;font-size:16px}
+.rrow.flag .rn{font-weight:700}
+.rrow .rp{display:block;font-family:var(--title);font-size:8.5px;color:#6b6352;line-height:1.5;margin-top:3px}
+.rrow .rp i{font-style:normal;color:var(--stencil)}
+.rrow .rt{display:block;font-size:16px;line-height:1.15;color:#4a4335;margin-top:2px;
+  overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.rrow .rs{font-family:var(--title);font-size:8px;border:2px solid var(--ink);background:var(--bone);padding:2px 6px;white-space:nowrap;margin-top:3px}
+.rrow .rs.s-released{background:#c8e6c9}.rrow .rs.s-unreleased{background:#e0dcef}
+.rrow .rs.s-testing,.rrow .rs.s-seeding{background:#ffe9a8}.rrow .rs.s-new{background:#cfe8f5}
+.bred-none{font-family:var(--txt);font-size:19px;padding:14px;margin:0}
+@media (max-width:560px){
+  .rrow{grid-template-columns:26px minmax(0,1fr);padding:8px 10px 9px}
+  .rrow .rs{grid-column:2;justify-self:start;margin-top:5px}
+  .rrow .rn{font-size:19px}
+  .rhead,.bred-head,.bred-tools{padding-inline:10px}
+  .bred-head .big b{font-size:28px}
+}
+
+/* ---- spacecraft: the tabbed readout ---- */
+.dossier-tabs{display:flex;gap:0;background:var(--bone);border-bottom:3px solid var(--ink);overflow-x:auto}
+.dtab{font-family:var(--title);font-size:9px;background:transparent;border:0;border-right:2px solid var(--ink);padding:9px 11px;white-space:nowrap;color:#5b5346;cursor:pointer}
+.dtab.on{background:#fff;color:var(--stencil);box-shadow:inset 0 -3px 0 var(--red)}
+.dtab:hover{background:var(--stencil);color:#fff}
+.dossier h2{font-family:var(--title);font-size:10px;color:var(--stencil);margin:14px 0 4px;letter-spacing:.06em}
+.dossier .badge.mine{background:#c4b3ff}
+.dossier .outside-note{font-family:var(--title);font-size:9px;line-height:1.5;background:#e7e3f5;border-left:4px solid #8b8a9a;padding:6px 8px;margin:0 0 10px;color:#3d3750}
+.dossier .unknown{color:#8a8375;font-style:italic}
+.dossier .notes{background:var(--bone);border-left:4px solid var(--stencil);padding:7px 9px}
+.dossier .dates{font-family:var(--title);font-size:9px;color:#5b5346;line-height:1.6}
+.dossier .small{font-size:17px;line-height:1.25;margin:0 0 8px}
+.dossier.is-mine h1{color:var(--stencil)}
+.dossier.is-outside h1{color:#4a4657}
+
+/* terp chips */
+.terp-chips{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}
+.terp{font-family:var(--title);font-size:9px;background:#fff;border:2px solid var(--ink);padding:5px 8px;cursor:pointer;text-align:left}
+.terp:hover{background:var(--yellow)}
+.terp.on{background:var(--stencil);color:#fff}
+.terp-hits{font-size:17px;line-height:1.35;margin:0}
+#terp-out{min-height:2em}
+
+/* lineage tree */
+.tree ul{list-style:none;margin:0 0 0 6px;padding:0 0 0 12px;border-left:2px dotted #b5ad98}
+.tree>ul{margin-left:0;padding-left:0;border:0}
+.tree li{padding:3px 0;line-height:1.2}
+.tree li>ul{display:none}
+.tree li.open>ul{display:block}
+.tree li.mine>.sym,.tree li.mine>a{color:var(--stencil);font-weight:700}
+.tree .ex{font-family:var(--title);font-size:11px;background:var(--bone);border:2px solid var(--ink);width:20px;height:20px;padding:0;margin-right:5px;cursor:pointer;vertical-align:1px}
+.tree .ex.leaf{background:transparent;border:0;color:#b5ad98;cursor:default}
+.tree .sym{font-size:16px;margin-right:3px;color:#7a7263}
+.tree small{display:block;margin-left:28px;font-family:var(--title);font-size:8px;color:#7a7263}
+
+/* what it made */
+.kidlist{list-style:none;margin:0;padding:0}
+.kidlist li{padding:6px 0;border-bottom:1px dotted #c6bea8;line-height:1.2}
+.kidlist li.mine{border-left:4px solid var(--stencil);padding-left:8px}
+.kidlist small{display:block;font-family:var(--title);font-size:8px;color:#7a7263;margin-top:2px}
+.kidlist em{display:block;font-style:normal;font-size:16px;color:#3d3730;margin-top:2px}
+
+/* the tally line on the readme window */
+.tally{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--title);font-size:9px;color:#5b5346;align-items:baseline}
+.tally b{font-family:var(--txt);font-size:26px;color:var(--stencil);margin-right:4px;line-height:1}
+/* the readout gains a tab strip, so its body gets that much less room on a phone */
+@media (max-width:760px){#w-dossier .body{max-height:calc(100vh - var(--bar) - 92px - var(--task) - 10px - 33px - 37px)}}

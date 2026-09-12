@@ -1,22 +1,46 @@
 {%- set sc = genetics | where("kind", "spacecraft") %}
 {%- set flags = genetics | where("flagship", true) %}
-<section class="win" id="w-readme" style="left:120px;top:64px;width:min(440px,calc(100vw - 32px))">
+{%- set outside = (genetics | length) - (sc | length) %}
+<section class="win" id="w-readme" style="left:110px;top:64px;width:min(460px,calc(100vw - 32px))">
   <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.slug }}.txt</b></div>
   <div class="body txt">
     <h1>{{ dept.name }}</h1>
     <p>{{ dept.blurb }}</p>
-    <p class="status">Status: {{ dept.status }} · {{ sc | length }} crosses · {{ flags | length }} flagships · {{ genetics | length }} plants on the chart</p>
-    <p><a class="btn" href="#" data-open="w-chart">OPEN STAR CHART</a> <a class="btn ghost" href="#" data-open="w-vault">VAULT LIST</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">PHOTOS</a>{% endif %}</p>
+    <p class="tally"><b>{{ sc | length }}</b> crosses made here<b>{{ flags | length }}</b> flagships<b>{{ runs.runs | length }}</b> runs</p>
+    <p class="status">Every cross below was bred by hand in a tent. The other {{ outside }} plants on the star chart are the outside genetics they came from — mapped so you can see where each one leads back to.</p>
+    <p><a class="btn" href="#" data-open="w-bred">WHAT I'VE MADE</a> <a class="btn ghost" href="#" data-open="w-chart">STAR CHART</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">PHOTOS</a>{% endif %}</p>
     <p class="status">Not a company. Seeds are never sold. Small batch, organic, one-time chucks. 100 to 2,000 seeds of each line in the vault.</p>
   </div>
 </section>
 
-<section class="win wide" id="w-chart" style="left:300px;top:88px;width:min(1040px,calc(100vw - 32px))">
+<section class="win wide" id="w-bred" style="left:250px;top:84px;width:min(1000px,calc(100vw - 32px))">
+  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>bred-in-house.exe ({{ sc | length }})</b></div>
+  <div class="body bred">
+    <div class="bred-head">
+      <p class="big"><b>{{ sc | length }}</b> crosses made here, across {{ runs.runs | length }} runs</p>
+      <p>The complete list. One pollen donor per run, chosen out of a pack and put over every mother in the tent. Tap any name for the full readout.</p>
+    </div>
+    <div class="bred-tools">
+      <div class="chips" id="bred-runs" role="tablist" aria-label="Filter by run">
+        <button type="button" class="chip on" data-run="all">All<span>{{ sc | length }}</span></button>
+        <button type="button" class="chip" data-run="flag">★ Flagships<span>{{ flags | length }}</span></button>
+        {%- for r in runs.runs %}
+        <button type="button" class="chip" data-run="{{ r.n }}">Run {{ r.n }} · {{ r.name }}<span>{{ (sc | where("run", r.n)) | length }}</span></button>
+        {%- endfor %}
+      </div>
+      <input id="bred-q" type="search" placeholder="Search a name, a parent, a smell" aria-label="Search the crosses">
+    </div>
+    <div class="roster" id="bred-list"></div>
+    <p class="bred-none" id="bred-none" hidden>Nothing matches that.</p>
+  </div>
+</section>
+
+<section class="win wide" id="w-chart" hidden style="left:300px;top:88px;width:min(1040px,calc(100vw - 32px))">
   <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>starchart.exe</b></div>
   <div class="body space">
     <div class="chart-bar">
-      <span class="legend"><i class="k-sc"></i>SpaceCraft cross <i class="k-flag"></i>flagship <i class="k-cut"></i>cut / seed line <i class="k-anc"></i>ancestor</span>
-      <span class="chart-tools"><button type="button" id="chart-fit">FIT</button><button type="button" id="chart-zoom-in">+</button><button type="button" id="chart-zoom-out">−</button></span>
+      <span class="legend"><i class="k-sc"></i>made here <i class="k-flag"></i>flagship <i class="k-cut"></i>cut / seed line <i class="k-anc"></i>ancestor</span>
+      <span class="chart-tools"><button type="button" id="chart-mine" aria-pressed="false">MINE ONLY</button><button type="button" id="chart-fit">FIT</button><button type="button" id="chart-zoom-in">+</button><button type="button" id="chart-zoom-out">−</button></span>
     </div>
     <div class="chart" id="chart" aria-label="Lineage star chart: drag to pan, pinch or scroll to zoom, tap a plant for its dossier"></div>
     <p class="chart-hint">Drag to pan · pinch or scroll to zoom · tap a plant to light up its family. Time runs left to right. <span class="m-line">Gold line = mother</span> · <span class="f-line">blue line = father</span>.</p>
@@ -31,8 +55,9 @@
   </div>
 </section>
 
-<section class="win" id="w-dossier" hidden style="left:560px;top:150px;width:min(460px,calc(100vw - 32px))">
+<section class="win" id="w-dossier" hidden style="left:540px;top:130px;width:min(520px,calc(100vw - 32px))">
   <div class="title"><button class="x" type="button" aria-label="Close">×</button><b id="dossier-name">dossier.txt</b></div>
+  <div class="dossier-tabs" id="dossier-tabs" role="tablist" aria-label="Readout sections"></div>
   <div class="body dossier" id="dossier"></div>
 </section>
 
@@ -49,5 +74,5 @@
 </section>
 {%- endif %}
 
-<script>window.GENETICS = {{ genetics | dump | safe }};</script>
+<script>window.GENETICS = {{ genetics | dump | safe }}; window.RUNS = {{ runs.runs | dump | safe }};</script>
 <script src="/js/starchart.js" defer></script>

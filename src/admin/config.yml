@@ -377,6 +377,31 @@ collections:
               - { label: Tape strips, name: tape, widget: boolean, default: true }
               - { label: Smallest piece width (px), name: columnWidth, widget: number, value_type: int, min: 100, max: 260, step: 10, hint: Smaller = more pieces per row. }
 
+  # ------------------------------------------------------------ breeding runs
+  - name: runs
+    label: Breeding runs
+    files:
+      - name: runs
+        label: The six runs
+        description: One entry per run. This is what the "THE RUN" tab on each cross reads, and what names the filters on the bred-in-house board.
+        file: src/_data/runs.json
+        format: json
+        fields:
+          - label: Runs
+            name: runs
+            widget: list
+            label_singular: Run
+            summary: 'Run {{fields.n}} · {{fields.name}} · {{fields.season}}'
+            fields:
+              - { label: Run number, name: n, widget: number, value_type: int, min: 1, hint: Must match the Run picked on each plant. }
+              - { label: Short name, name: name, widget: string, hint: 'The male that carried it, e.g. Lime Bubble.' }
+              - { label: When, name: season, widget: string, hint: 'e.g. Jan–Mar 2025.' }
+              - { label: Year, name: year, widget: string }
+              - { label: Pollen donor, name: donor, widget: string, hint: 'The male, with the breeder in brackets.' }
+              - { label: About the male, name: donorNote, widget: text, required: false, hint: What it was, why it was picked, what it threw. }
+              - { label: Dates, name: dates, widget: text, required: false, hint: 'Flip, pollen, chop, pack — the line of dates under the story.' }
+              - { label: The story, name: story, widget: text, required: false, hint: One or two lines on what this run was. }
+
   # ---------------------------------------------------------------- identity
   - name: settings
     label: Site settings
@@ -403,6 +428,10 @@ collections:
               - { label: Area, name: area, widget: string }
               - { label: Address, name: address, widget: string, required: false }
               - { label: Map link, name: mapUrl, widget: string, required: false }
+              - { label: Street, name: street, widget: string, required: false, hint: 'Used by Google to place the shop on the map, e.g. 1009 W Fourth Plain Blvd.' }
+              - { label: Town, name: locality, widget: string, required: false, hint: 'Just the town, e.g. Vancouver.' }
+              - { label: State, name: region, widget: string, required: false, hint: 'Two letters, e.g. WA.' }
+              - { label: ZIP code, name: postalCode, widget: string, required: false, hint: Helps Google show the shop in local results. }
           - { label: Instagram handle, name: instagram, widget: string }
           - { label: Square booking link, name: squareBooking, widget: string }
           - label: Pricing
@@ -413,7 +442,16 @@ collections:
               - { label: Deposit, name: deposit, widget: number, value_type: int }
               - { label: Deposit note, name: depositNote, widget: text }
               - { label: Pricing note, name: note, widget: text }
-          - { label: Domain, name: domain, widget: string, required: false }
+          - { label: Domain, name: domain, widget: string, required: false, hint: 'The full address of the site, e.g. https://christattooer.com. Needed for share previews and Google.' }
+          - { label: Share picture, name: ogImage, widget: image, required: false, hint: The photo shown when someone shares a link to the site on Instagram, in a DM or on Facebook. }
+          - { label: Share picture description, name: ogImageAlt, widget: string, required: false, hint: One line describing that photo, read aloud by screen readers. }
+          - label: Opening hours (for Google)
+            name: openingHours
+            widget: list
+            required: false
+            summary: '{{fields.hours}}'
+            hint: 'One line per day you are in, in the form Mo 12:00-19:00. Leave the list empty rather than guessing — whatever is here can show up in Google.'
+            field: { label: Day and times, name: hours, widget: string }
           - label: YouTube
             name: youtube
             widget: object

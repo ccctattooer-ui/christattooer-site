@@ -15,19 +15,42 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
 | Flash order (drag to sort) | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
 | SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
+| Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |
 | Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
 | Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
 | Home page | how-to box, headings, custom card, recent-work strip, on/off switches | `src/_data/home.json` |
 | Landing page (TV) | channel number, screen label, welcome text, captions, button, boot messages, on/off | `src/_data/landing.json` |
 | Booking page | the three routes, form placeholders, thank-you page | `src/_data/booking.json` |
 | Look & colors | brand colors for both looks, grid columns, collage tilt / tape / piece size | `src/_data/theme.json` |
-| Site settings | name, hours, books status, shop, Instagram, Square link, minimum, deposit | `src/_data/site.json` |
+| Site settings | name, hours, books status, shop address, Instagram, Square link, minimum, deposit, the share picture and the Google opening hours | `src/_data/site.json` |
 
 The landing page (`/`) is the ParlorOS "TV" intro; the flash catalog lives at `/flash/`. The intro montage is built by `python tools/build_intro.py` from the clips and photos in `AboutMe/` (raw, not in git): edit the cut list at the top of that script, run it, commit `assets/intro/`. Visitors who already clicked through in the current browser session skip straight to `/flash/`.
 
 Saving in the admin commits to GitHub; Cloudflare Workers Builds rebuilds and the live site updates a minute or two later (free plan: 3,000 build minutes a month, plenty).
 
+## Being found and being shared
+
+Two things run off **Site settings** and are worth keeping filled in:
+
+- **Share picture** — when anyone posts a link to the site on Instagram, in a DM or on Facebook, this is the photo that shows in the preview. A 1200px copy is generated at build time (`src/_data/og.js`), so just pick a good photo; no need to size it.
+- **Domain, shop address and opening hours** — these become a `TattooParlor` record in the page source (`src/_data/schema.js`) that tells Google there is a tattoo shop at that address, which is what local "tattoo shop near me" searches read. Blank fields are left out rather than guessed: opening hours start empty on purpose, because whatever is typed there can end up shown in Google.
+
+`/sitemap.xml` and `/robots.txt` are generated from the pages that exist, so new departments are listed automatically.
+
 Uploads are shrunk in the browser to 2000px WebP before they are committed. Thumbnails for every photo are generated at build time (`@11ty/eleventy-img`), so there are no thumbs folders to maintain.
+
+## The SpaceCraft department
+
+`/spacecraft/` opens on **bred-in-house.exe**: a card for each of the 51 crosses, filterable by run or flagship. The star chart is one click away rather than the first thing seen, because on its own it reads as a library of other people's genetics — 174 of the 225 plants on it are outside stock, kept so every cross can be traced back to a landrace. The chart's **MINE ONLY** button pushes those into the background.
+
+Tapping any plant opens a tabbed readout:
+
+- **DOSSIER** — photo, parents, status, and the smells split into chips; tap one to find everything else on the chart that shares it.
+- **LINEAGE** — the ancestry tree, one branch opened at a time, down to the landraces.
+- **THE RUN** — the male that carried the run, the dates, and the sister crosses made alongside it (SpaceCraft crosses only).
+- **WHAT IT MADE** — what the plant went on to parent, and how far downstream it reaches.
+
+Outside plants get the same readout minus the run tab, and are labelled as outside genetics. A cross with no photo gets a generated star mark instead, so the board stays even.
 
 ## How the admin login works
 
@@ -75,6 +98,9 @@ src/
   admin/            Sveltia CMS (index.html + config.yml)
   intro.njk         landing page (CRT TV + montage) at /
   index.njk         flash catalog at /flash/
+  404.njk           the page a wrong address lands on
+  sitemap.njk       /sitemap.xml, robots.njk -> /robots.txt
+  _includes/partials/meta.njk   canonical + share-preview tags + LocalBusiness JSON-LD
   work.njk          all photos + lightbox
   book.njk          booking
   department.njk    one page per department (paintings collage, games, store, spacecraft)
