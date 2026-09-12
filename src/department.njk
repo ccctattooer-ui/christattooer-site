@@ -4,6 +4,8 @@ pagination:
   data: departments
   size: 1
   alias: dept
+  # Every department page, not just the first, so they all reach the sitemap.
+  addAllPagesToCollections: true
 permalink: "/{{ dept.slug }}/"
 eleventyComputed:
   title: "{{ dept.name }}"

@@ -6,6 +6,7 @@
 <title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
 <meta name="description" content="{{ description or site.tagline }}">
 <link rel="icon" href="/assets/favicon.png">
+{% include "partials/meta.njk" %}
 <meta name="theme-color" content="#141414">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

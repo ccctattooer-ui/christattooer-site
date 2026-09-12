@@ -12,7 +12,11 @@
     "city": "Vancouver, WA",
     "area": "PDX metro, just north of Portland",
     "address": "1009 W Fourth Plain Blvd, Vancouver WA",
-    "mapUrl": ""
+    "mapUrl": "",
+    "street": "1009 W Fourth Plain Blvd",
+    "locality": "Vancouver",
+    "region": "WA",
+    "postalCode": ""
   },
   "instagram": "christattooer",
   "squareBooking": "https://book.squareup.com/appointments/5vg3jny8xdry7n/location/LPE4AFPCNKD4G/services/K2ZAHN2TCKLP2ZX75X3YGZL6",
@@ -22,11 +26,14 @@
     "depositNote": "The deposit holds your time and comes off the final price. 48 hours notice to reschedule.",
     "note": "Each flash design is listed at its size and price. Custom work is quoted after a quick consult."
   },
-  "domain": "",
+  "domain": "https://christattooer.com",
   "youtube": {
     "name": "9mag",
     "handle": "9mag848",
     "channelId": "UCMBw0Q6cXyLR5IRo9Fd-f_w"
   },
-  "twitch": "ninemagtv"
+  "twitch": "ninemagtv",
+  "ogImage": "/assets/tattoos/tattoo-004.jpg",
+  "ogImageAlt": "Traditional tattoo by Chris Columbus at Tattoo Peace, Vancouver WA",
+  "openingHours": []
 }

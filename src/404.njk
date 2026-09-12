@@ -1,0 +1,24 @@
+---
+layout: layouts/catalog.njk
+title: Page not found
+description: That page isn't here. Head back to the flash catalog.
+permalink: /404.html
+eleventyExcludeFromCollections: true
+---
+<main class="main" style="max-width:760px;margin:0 auto">
+  <div class="pane">
+    <div class="pane-title"><span class="x" aria-hidden="true">×</span><b>404.txt</b></div>
+    <div class="pane-body prose">
+      <h1>Nothing at that address</h1>
+      <p class="lede">The page you were after has moved or never existed. No harm done.</p>
+      <p>Try one of these instead:</p>
+      <ul>
+        <li><a href="/flash/">The flash catalog</a> — every design that's ready to tattoo</li>
+        <li><a href="/work/">Healed &amp; recent work</a></li>
+        <li><a href="/book/">Book a tattoo</a></li>
+        <li><a href="/aftercare/">Aftercare sheet</a></li>
+      </ul>
+      <p>Still stuck? <a href="https://instagram.com/{{ site.instagram }}">DM @{{ site.instagram }}</a>.</p>
+    </div>
+  </div>
+</main>

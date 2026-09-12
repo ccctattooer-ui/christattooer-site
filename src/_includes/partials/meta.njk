@@ -1,0 +1,25 @@
+{#- Canonical URL, social-share card and LocalBusiness JSON-LD. Included from all three layouts
+    (catalog, ParlorOS, intro) so every page gets a proper preview when the link is shared.
+    Absolute URLs need site.domain from Site settings; without it the tags fall back to relative. -#}
+{%- set base = (site.domain or "") | trim %}
+{%- set here = base + page.url if base else page.url %}
+{%- set ogTitle = title or site.title %}
+{%- set ogDesc = description or site.tagline %}
+<link rel="canonical" href="{{ here }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="{{ ogTitle }}">
+<meta property="og:description" content="{{ ogDesc }}">
+<meta property="og:url" content="{{ here }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ ogTitle }}">
+<meta name="twitter:description" content="{{ ogDesc }}">
+{%- if og %}
+<meta property="og:image" content="{{ base + og.url if base else og.url }}">
+<meta property="og:image:width" content="{{ og.width }}">
+<meta property="og:image:height" content="{{ og.height }}">
+<meta property="og:image:alt" content="{{ og.alt }}">
+<meta name="twitter:image" content="{{ base + og.url if base else og.url }}">
+{%- endif %}
+<script type="application/ld+json">{{ schema | dump | safe }}</script>

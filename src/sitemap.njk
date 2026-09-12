@@ -1,0 +1,16 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{#- The landing page is kept out of collections, so it is listed by hand. /thanks/ and /404.html are
+    dead ends for a visitor and are left out on purpose. -#}
+{%- set base = (site.domain or "") | trim %}
+  <url><loc>{{ base }}/</loc></url>
+{%- for p in collections.all %}
+{%- if p.url and p.url != "/" and "/admin/" not in p.url and "/thanks/" not in p.url and ".html" not in p.url %}
+  <url><loc>{{ base + p.url }}</loc></url>
+{%- endif %}
+{%- endfor %}
+</urlset>
