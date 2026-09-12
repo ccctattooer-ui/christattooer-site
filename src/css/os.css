@@ -290,11 +290,12 @@ svg.sky{display:block;user-select:none}
 :root[data-tod="dusk"] .wallpaper::after{background-color:rgba(240,110,40,.17)}
 :root[data-tod="night"] .wallpaper::after{background-color:rgba(0,0,20,.34)}
 
-/* the tattoo machine pointer, desktop only so it never fights a touchscreen.
-   Turned 180 degrees from the sheet, so the needle tip is the pixel that actually clicks. */
+/* The tattoo machine pointer, desktop only so it never fights a touchscreen.
+   Kept the way it is drawn — frame and coils up top, grip and needle down to the right — and the
+   hotspot sits on the needle tip instead, so the machine points at what you are clicking. */
 @media (pointer:fine){
-  body{cursor:url("/assets/icons/cursor-machine-32.png") 2 2, auto}
-  body a,body button,body .icon,body .piece,body .rrow,body .node{cursor:url("/assets/icons/cursor-machine-24.png") 2 2, pointer}
+  body{cursor:url("/assets/icons/cursor-machine-32.png") 29 29, auto}
+  body a,body button,body .icon,body .piece,body .rrow,body .node{cursor:url("/assets/icons/cursor-machine-24.png") 22 22, pointer}
 }
 
 /* flash screensaver */
