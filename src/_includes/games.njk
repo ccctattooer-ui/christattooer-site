@@ -1,7 +1,7 @@
 {%- set games = videos | uniqueGames %}
 {%- set first = videos | where("featured", true) | first or videos[0] %}
 <section class="win" id="w-tube" style="left:120px;top:64px;width:min(760px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>montages.exe ({{ videos | length }})</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-video-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>montages.exe ({{ videos | length }})</b></div>
   <div class="body tube">
     <div class="player">
       <iframe id="yt" src="https://www.youtube-nocookie.com/embed/{{ first.id }}?rel=0&modestbranding=1" title="{{ first.title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
@@ -25,7 +25,7 @@
 </section>
 
 <section class="win" id="w-twitch" style="left:560px;top:120px;width:min(520px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>twitch.tv/{{ site.twitch }}</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-video-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>twitch.tv/{{ site.twitch }}</b></div>
   <div class="body">
     <div class="player twitch">
       <iframe src="https://player.twitch.tv/?channel={{ site.twitch }}&parent=christattooer.com&parent=www.christattooer.com&parent=christattooer.pages.dev&parent=localhost&muted=true&autoplay=false" title="Twitch stream" allowfullscreen loading="lazy"></iframe>
@@ -35,7 +35,7 @@
 </section>
 
 <section class="win" id="w-games" hidden style="left:200px;top:200px;width:min(440px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>games</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-arcade-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>games</b></div>
   <div class="body txt">
     <h1>Browser games</h1>
     <p>Small games that work on your phone are on the way. This window will fill up as they ship.</p>
@@ -44,7 +44,7 @@
 </section>
 
 <section class="win" id="w-readme" hidden style="left:240px;top:240px;width:min(440px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>games.txt</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-txt-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>games.txt</b></div>
   <div class="body txt">
     <h1>{{ dept.name }}</h1>
     <p>{{ dept.blurb }}</p>

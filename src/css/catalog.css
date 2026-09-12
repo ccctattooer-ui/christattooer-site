@@ -421,3 +421,7 @@ dialog.wheelbox::backdrop{background:rgba(20,20,20,.82)}
   text-decoration:none;background:#fff}
 .ring-nav a:hover{background:var(--yellow)}
 @media (prefers-reduced-motion:reduce){.spark{display:none}}
+
+/* matching icon on the catalog-side window panes */
+.pane-title .pico,.drawer .pane-title .pico,dialog .pane-title .pico{width:16px;height:16px;flex:none;
+  image-rendering:pixelated;margin-right:-4px}

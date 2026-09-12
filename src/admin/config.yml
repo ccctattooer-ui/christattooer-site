@@ -559,6 +559,26 @@ collections:
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: An ASCII skull and a hello for anyone who views the source. Invisible on the page itself. }
 
+  # -------------------------------------------------------------- recycle bin
+  - name: bin
+    label: Scrapped crosses (the bin)
+    files:
+      - name: bin
+        label: The recycle bin on the SpaceCraft desktop
+        description: >-
+          The window holding the crosses that did not work out. Which plants appear in it is set
+          per plant — tick "Scrapped" on any plant under SpaceCraft genetics and it moves out of
+          the roster and the star chart and into here, with the reason you give. This page is the
+          wording around them.
+        file: src/_data/bin.json
+        format: json
+        fields:
+          - { label: Show the bin, name: show, widget: boolean, default: true, hint: Turn this off and the bin button and window disappear. Scrapped plants stay out of the roster either way. }
+          - { label: Button text, name: button, widget: string, hint: On the SpaceCraft readme window. The count is added automatically. }
+          - { label: Window name, name: window, widget: string, hint: The title along the top of the window, e.g. recycle.bin }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro, name: blurb, widget: text, hint: The line under the heading, next to the bin. }
+
   # ------------------------------------------------------------ breeding runs
   - name: runs
     label: Breeding runs

@@ -1,5 +1,5 @@
 <section class="win" id="w-readme" style="left:140px;top:70px;width:min(400px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>paintings.txt</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-txt-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>paintings.txt</b></div>
   <div class="body txt">
     <h1>{{ dept.name }}</h1>
     <p>{{ dept.blurb }}</p>
@@ -9,7 +9,7 @@
 </section>
 
 <section class="win wide" id="w-collage" style="left:300px;top:96px;width:min(980px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>collage.exe ({{ paintings | length }})</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-gallery-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>collage.exe ({{ paintings | length }})</b></div>
   <div class="body board">
 {% set spotId = "paintings" %}{% include "partials/sticker-spot.njk" %}
     <div class="collage">
@@ -24,7 +24,7 @@
 </section>
 
 <section class="win" id="w-view" hidden style="left:220px;top:80px;width:min(760px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b id="view-name">viewer</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-gallery-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b id="view-name">viewer</b></div>
   <div class="body view">
     <img id="view-img" src="" alt="">
     <div class="txt small" id="view-cap"></div>

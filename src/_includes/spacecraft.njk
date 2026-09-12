@@ -7,20 +7,20 @@
 {%- set flags = live | where("flagship", true) %}
 {%- set outside = (live | length) - (sc | length) %}
 <section class="win" id="w-readme" style="left:110px;top:64px;width:min(460px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.slug }}.txt</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-txt-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.slug }}.txt</b></div>
   <div class="body txt">
     <h1>{{ dept.name }}</h1>
     <p>{{ dept.blurb }}</p>
     <p class="tally"><b>{{ sc | length }}</b> crosses made here<b>{{ flags | length }}</b> flagships<b>{{ runs.runs | length }}</b> runs</p>
     <p class="status">Every cross below was bred by hand in a tent. The other {{ outside }} plants on the star chart are the outside genetics they came from — mapped so you can see where each one leads back to.</p>
-    <p><a class="btn" href="#" data-open="w-bred">WHAT I'VE MADE</a> <a class="btn ghost" href="#" data-open="w-chart">STAR CHART</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">PHOTOS</a>{% endif %}{% if binned.length %} <a class="btn ghost" href="#" data-open="w-bin">RECYCLE BIN ({{ binned | length }})</a>{% endif %}</p>
+    <p><a class="btn" href="#" data-open="w-bred">WHAT I'VE MADE</a> <a class="btn ghost" href="#" data-open="w-chart">STAR CHART</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">PHOTOS</a>{% endif %}{% if binned.length and bin.show %} <a class="btn ghost" href="#" data-open="w-bin">{{ bin.button }} ({{ binned | length }})</a>{% endif %}</p>
     <p class="status">Not a company. Seeds are never sold. Small batch, organic, one-time chucks. 100 to 2,000 seeds of each line in the vault.</p>
 {% set spotId = "spacecraft" %}{% include "partials/sticker-spot.njk" %}
   </div>
 </section>
 
 <section class="win wide" id="w-bred" style="left:250px;top:84px;width:min(1000px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>bred-in-house.exe ({{ sc | length }})</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-roster-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>bred-in-house.exe ({{ sc | length }})</b></div>
   <div class="body bred">
     <div class="bred-head">
       <p class="big"><b>{{ sc | length }}</b> crosses made here, across {{ runs.runs | length }} runs</p>
@@ -42,7 +42,7 @@
 </section>
 
 <section class="win wide" id="w-chart" hidden style="left:300px;top:88px;width:min(1040px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>starchart.exe</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-chart-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>starchart.exe</b></div>
   <div class="body space">
     <div class="chart-bar">
       <span class="legend"><i class="k-sc"></i>made here <i class="k-flag"></i>flagship <i class="k-cut"></i>cut / seed line <i class="k-anc"></i>ancestor</span>
@@ -54,7 +54,7 @@
 </section>
 
 <section class="win" id="w-vault" hidden style="left:180px;top:140px;width:min(560px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>vault.txt ({{ sc | length }})</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-txt-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>vault.txt ({{ sc | length }})</b></div>
   <div class="body">
     <div class="vault-tools"><input id="vault-q" type="search" placeholder="Search plants, parents, terps" aria-label="Search the vault"><label><input type="checkbox" id="vault-flag"> flagships only</label></div>
     <div class="vault" id="vault"></div>
@@ -62,14 +62,14 @@
 </section>
 
 <section class="win" id="w-dossier" hidden style="left:540px;top:130px;width:min(520px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b id="dossier-name">dossier.txt</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-dossier-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b id="dossier-name">dossier.txt</b></div>
   <div class="dossier-tabs" id="dossier-tabs" role="tablist" aria-label="Readout sections"></div>
   <div class="body dossier" id="dossier"></div>
 </section>
 
-{%- if binned.length %}
+{%- if binned.length and bin.show %}
 <section class="win" id="w-bin" hidden style="left:200px;top:180px;width:min(520px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>recycle.bin ({{ binned | length }})</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-bin-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>{{ bin.window }} ({{ binned | length }})</b></div>
   <div class="body bin">
     <div class="bin-head">
       <svg viewBox="0 0 48 48" role="img" aria-label="Recycle bin">
@@ -78,7 +78,7 @@
         <path d="M20 7h8v3h-8z" fill="#7a7263" stroke="var(--ink)" stroke-width="2"/>
         <path d="M19 20v18M24 20v18M29 20v18" stroke="var(--ink)" stroke-width="2"/>
       </svg>
-      <p>The ones that didn't make it. Kept here because the failures say as much about a line as the keepers do — none of these count towards the {{ sc | length }}.</p>
+      <p><b>{{ bin.heading }}</b><br>{{ bin.blurb }}</p>
     </div>
     <ul class="binlist">
       {%- for n in binned %}
@@ -96,7 +96,7 @@
 
 {%- if dept.images.length %}
 <section class="win" id="w-gallery" hidden style="left:420px;top:120px;width:min(620px,calc(100vw - 32px))">
-  <div class="title"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.name }} photos ({{ dept.images.length }})</b></div>
+  <div class="title"><img class="wico" src="/assets/icons/win-gallery-32.png" alt="" width="32" height="32"><button class="x" type="button" aria-label="Close">×</button><b>{{ dept.name }} photos ({{ dept.images.length }})</b></div>
   <div class="body">
     <div class="gallery">
       {%- for im in dept.images %}

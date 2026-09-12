@@ -407,3 +407,8 @@ body.booting{overflow:hidden}
 .taskbar .tidy:hover{background:var(--yellow)}
 
 @media (prefers-reduced-motion:reduce){.bios-skip{animation:none}.bios{transition:none}}
+
+/* the little icon at the left of a window title bar, the way Windows 95 did it */
+.win .title .wico{width:16px;height:16px;flex:none;image-rendering:pixelated;
+  margin-right:-4px;filter:drop-shadow(0 1px 0 rgba(0,0,0,.35))}
+@media (max-width:560px){.win .title .wico{width:14px;height:14px}}

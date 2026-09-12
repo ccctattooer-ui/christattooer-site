@@ -19,6 +19,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Sticker hunt & coupon | the six hidden stickers (name, hiding place, hint, colour, artwork) and the coupon (amount, minimum, how long it lasts, small print) | `src/_data/stickers.json`, `src/_data/coupon.json` |
 | Shop helper | the skull that pops up: whether it shows, where, how long it waits, and every line it says | `src/_data/helper.json` |
 | Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
+| Scrapped crosses (the bin) | the wording around the recycle bin on the SpaceCraft desktop | `src/_data/bin.json` |
 | Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |
 | Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
 | Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
@@ -113,7 +114,7 @@ Each sticker's artwork is a 256×256 PNG in `assets/icons/`. Leave the Artwork f
 
 ### Scrapped crosses
 
-Any plant in **SpaceCraft genetics** can be ticked **Scrapped**, with a one-line reason. A scrapped plant leaves the roster and the star chart, stops counting towards the total, and turns up in the **recycle.bin** window on the SpaceCraft desktop instead — so "51 crosses made here" stays true while the ones that didn't work out are still on show. Three are in there now, out of the breeding log.
+Any plant in **SpaceCraft genetics** can be ticked **Scrapped**, with a one-line reason. The wording around the bin — its button, window name, heading and intro — is under **Scrapped crosses (the bin)**. A scrapped plant leaves the roster and the star chart, stops counting towards the total, and turns up in the **recycle.bin** window on the SpaceCraft desktop instead — so "51 crosses made here" stays true while the ones that didn't work out are still on show. Three are in there now, out of the breeding log.
 
 ## The guestbook and the visitor counter
 
@@ -150,6 +151,8 @@ re-checking the numbers.
 Sheet 1 is the working set — bold and high contrast, which is why it holds up shrunk to 56px and
 16px. Sheet 2 is the same subjects in a holographic palette; it goes muddy small, so it is only
 used for stickers, where the art is shown big.
+
+Every window on the site carries a 16px icon at the left of its title bar, the way Windows 95 did — `win-txt`, `win-chart`, `win-roster`, `win-dossier`, `win-gallery`, `win-bin`, `win-video`, `win-form` and `win-arcade`, all off the small grid on sheet 1.
 
 Each icon ships at two sizes: `-128.png` for the 56px desktop icons and `-32.png` for the 16px
 menubar strip. Both are rendered with `image-rendering: pixelated` so the downscale stays crisp.
