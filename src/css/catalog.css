@@ -247,3 +247,79 @@ body.konami .topline{background:#6b5410}
 body.has-picks .helper{bottom:78px}
 @media (max-width:640px){.helper{right:8px;left:8px;max-width:none}.helper-skull{width:42px;height:46px}}
 @media (prefers-reduced-motion:reduce){.helper{transition:none}.newsbar-track span{animation:none;padding-left:0}}
+
+/* ================= the sticker hunt ================= */
+/* a hidden spot: quiet until you look right at it, but always a real button */
+.sticker-spot{position:absolute;width:26px;height:26px;padding:0;border:0;background:none;
+  color:var(--spot,var(--stencil));font-size:18px;line-height:1;opacity:.22;
+  transition:opacity .15s,transform .15s;z-index:5}
+.sticker-spot:hover,.sticker-spot:focus-visible{opacity:1;transform:scale(1.25) rotate(-8deg)}
+.sticker-spot.got{opacity:1;color:var(--green);cursor:default}
+.sticker-spot.got::after{content:"";position:absolute;inset:-3px;border:2px solid var(--green);border-radius:50%}
+.side{position:relative}
+.side .sticker-spot{right:6px;bottom:8px}
+.main>.bar{position:relative}
+.main>.bar .sticker-spot{right:-4px;bottom:-6px}
+
+/* the sheet */
+.sheet{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:0 0 24px}
+.slot{margin:0;display:flex;flex-direction:column;gap:7px}
+.slot .peel{aspect-ratio:1;border:2px dashed var(--rule-2);background:var(--soft);
+  display:grid;place-items:center;overflow:hidden;position:relative}
+.slot .peel img{width:100%;height:100%;object-fit:contain;padding:8px;filter:grayscale(1);opacity:.18}
+.slot .stand{font-family:var(--pixel);font-size:34px;color:var(--rule-2)}
+.slot.got .peel{border:3px solid #fff;border-style:solid;background:var(--spot,var(--bone));
+  box-shadow:3px 3px 0 var(--ink)}
+.slot.got .peel img{filter:none;opacity:1}
+.slot.got .stand{color:var(--ink);text-shadow:2px 2px 0 rgba(255,255,255,.6)}
+.slot figcaption{font-size:13px;line-height:1.25}
+.slot .got,.slot .found{display:none}
+.slot .notyet{color:#999;font-family:var(--mono);letter-spacing:.14em}
+.slot.got .got{display:block;font-size:14px}
+.slot.got .found{display:block;color:var(--green);font-family:var(--mono);font-size:11px;text-transform:uppercase}
+.slot.got .notyet,.slot.got .hint{display:none}
+.slot .hint{display:block;color:#666;margin-top:2px}
+
+/* the coupon */
+.reward[hidden]{display:none}
+.coupon{display:flex;border:3px solid var(--ink);background:#fffdf4;position:relative;
+  box-shadow:5px 5px 0 var(--ink)}
+.coupon-edge{width:26px;flex:none;background:var(--ink);
+  background-image:radial-gradient(circle at 50% 14px,#fffdf4 5px,transparent 5px);
+  background-size:26px 28px;background-repeat:repeat-y}
+.coupon-main{padding:18px 20px;flex:1;min-width:0}
+.coupon .ck{font-family:var(--pixel);font-size:10px;letter-spacing:.14em;color:var(--stencil);margin:0 0 8px}
+.coupon .camt{font-family:var(--disp);font-size:clamp(44px,12vw,72px);line-height:.86;margin:0 0 4px;
+  color:var(--red);display:flex;align-items:baseline;gap:10px}
+.coupon .camt span{font-size:.32em;color:var(--ink);letter-spacing:.06em}
+.coupon .chead{font-family:var(--disp);font-size:19px;margin:0 0 2px;text-wrap:balance}
+.coupon .csub{font-size:15px;color:#555;margin:0 0 14px}
+.coupon .cmeta{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;margin:0 0 14px;
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:10px 0}
+.coupon .cmeta dt{font-family:var(--pixel);font-size:9px;color:#666;padding-top:3px}
+.coupon .cmeta dd{margin:0;font-family:var(--mono);font-size:14px;font-weight:600}
+.coupon .cterms{margin:0 0 12px;padding-left:18px;font-size:12.5px;color:#444;line-height:1.45}
+.coupon .cfoot{font-family:var(--mono);font-size:10.5px;color:#666;margin:0;
+  border-top:1px dotted var(--rule-2);padding-top:8px}
+.row-acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 0}
+.btn-print{background:var(--green);color:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  font-weight:700;padding:11px 18px;font-size:15px}
+.btn-book{background:var(--yellow);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  font-weight:700;padding:11px 18px;font-size:15px;text-decoration:none}
+.reset-link{background:none;border:0;padding:0;color:#777;text-decoration:underline;font-size:12px}
+
+/* printing: the coupon and nothing else */
+@media print{
+  body{background:#fff}
+  .topline,.hdr,.menubar,.newsbar,footer,.helper,.drawer,.bar,.lede,.sheet,
+  .row-acts,#stick-reset-wrap,.pane-title,.fine{display:none !important}
+  .pane{border:0;box-shadow:none;margin:0}
+  .pane-body{padding:0}
+  .coupon{box-shadow:none;border:3px solid #000;page-break-inside:avoid}
+  .coupon .camt{color:#000}
+  .coupon-edge{background:#000;background-image:radial-gradient(circle at 50% 14px,#fff 5px,transparent 5px);
+    background-size:26px 28px;background-repeat:repeat-y}
+  main{max-width:none !important;margin:0 !important}
+}
+.coupon .cmin{font-size:14px;color:#333;margin:-8px 0 14px}
+.coupon .cmin b{font-weight:700;color:var(--ink)}

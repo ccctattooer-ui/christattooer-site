@@ -6,6 +6,7 @@ description: Healed and recent tattoos by Chris at Tattoo Peace.
 {% set shown = work | visible | featuredFirst %}
 <main class="main" style="max-width:1240px;margin:0 auto">
   <div class="bar"><h1>Healed &amp; recent work</h1><span class="cnt">{{ shown | length }} photos · ★ = detailed</span></div>
+{% set spotId = "work" %}{% include "partials/sticker-spot.njk" %}
   <div class="wgrid">
     {%- for w in shown %}
     <button type="button" id="{{ w.file }}" class="{% if w.featured %}feat{% endif %}"

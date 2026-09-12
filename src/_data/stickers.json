@@ -1,0 +1,53 @@
+{
+  "show": true,
+  "items": [
+    {
+      "id": "flash",
+      "name": "Flash Hound",
+      "where": "/flash/",
+      "hint": "Somewhere in the small print beside the catalog.",
+      "colour": "#D3322A",
+      "image": ""
+    },
+    {
+      "id": "work",
+      "name": "Healed & Sealed",
+      "where": "/work/",
+      "hint": "Down by the photo count on the work page.",
+      "colour": "#3BAA6E",
+      "image": ""
+    },
+    {
+      "id": "paintings",
+      "name": "Wet Paint",
+      "where": "/paintings/",
+      "hint": "Pinned on the collage board with the paintings.",
+      "colour": "#F0C22E",
+      "image": ""
+    },
+    {
+      "id": "games",
+      "name": "One More Round",
+      "where": "/games/",
+      "hint": "Tucked in near the playlist.",
+      "colour": "#8FD6FF",
+      "image": ""
+    },
+    {
+      "id": "spacecraft",
+      "name": "Deep Space Skunk",
+      "where": "/spacecraft/",
+      "hint": "On the SpaceCraft desktop, near the readout.",
+      "colour": "#b9b0d6",
+      "image": ""
+    },
+    {
+      "id": "store",
+      "name": "Closed For Business",
+      "where": "/store/",
+      "hint": "Behind the roadworks on the store page.",
+      "colour": "#4B2E9C",
+      "image": ""
+    }
+  ]
+}

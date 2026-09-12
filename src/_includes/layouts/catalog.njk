@@ -53,6 +53,9 @@
   <div><b>Deposits</b>{{ site.pricing.deposit | money }} deposit. {{ site.pricing.depositNote }}</div>
   <div><b>Aftercare</b><a href="/aftercare/">Read the sheet</a>. Wash it, don't pick it, stay out of the sun.</div>
   <div><b>Elsewhere</b><a href="https://instagram.com/{{ site.instagram }}">Instagram</a> · <a href="{{ site.squareBooking }}">Square booking</a> · <a href="/spacecraft/">SpaceCraft</a><br>© 2026 {{ site.name }} · {{ site.shop.name }}</div>
+  {%- if stickers.show %}
+  <div><b>Sticker hunt</b><a href="/stickers/">Six hidden on this site</a> · found <span id="stick-tally">0 of 6</span></div>
+  {%- endif %}
   {% include "partials/badges.njk" %}
 </footer>
 
@@ -74,7 +77,7 @@
   </form>
 </aside>
 
-<script>window.EGGS = {{ eggs | dump | safe }}; window.HELPER = {{ helper | dump | safe }};</script>
+<script>window.EGGS = {{ eggs | dump | safe }}; window.HELPER = {{ helper | dump | safe }}; window.STICKERS = {{ stickers | dump | safe }}; window.COUPON = {{ coupon | dump | safe }};</script>
 <script src="/js/catalog.js"></script>
 <script src="/js/eggs.js" defer></script>
 </body>

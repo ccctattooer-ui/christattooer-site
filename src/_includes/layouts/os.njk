@@ -42,7 +42,7 @@
   <div id="tasks"></div>
   <span class="clock">{{ dept.status | upper }}</span>
 </div>
-<script>window.EGGS = {{ eggs | dump | safe }}; window.HELPER = {{ helper | dump | safe }}; window.EGGS_FLASH = {{ flash | spread(7, "image") | dump | safe }};</script>
+<script>window.EGGS = {{ eggs | dump | safe }}; window.HELPER = {{ helper | dump | safe }}; window.STICKERS = {{ stickers | dump | safe }}; window.COUPON = {{ coupon | dump | safe }}; window.EGGS_FLASH = {{ flash | spread(7, "image") | dump | safe }};</script>
 <script src="/js/os.js"></script>
 <script src="/js/eggs.js" defer></script>
 </body>

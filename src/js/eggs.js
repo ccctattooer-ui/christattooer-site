@@ -78,6 +78,109 @@
     }
   }
 
+  // ---------------------------------------------------------------- the sticker hunt
+  // Six stickers hidden one per department. Progress lives in this visitor's browser only — there is
+  // no server in this, by design: Chris would rather a hundred people print the coupon than lock it
+  // down. Find all six and the coupon page fills in, stamped with the day it was earned.
+  var ST = window.STICKERS || {};
+  var CO = window.COUPON || {};
+  if (ST.show && (ST.items || []).length) {
+    var SKEY = "ct-stickers";
+    var ids = ST.items.map(function (s) { return s.id; });
+
+    var read = function () {
+      try {
+        var v = JSON.parse(localStorage.getItem(SKEY) || "{}");
+        if (!v || typeof v !== "object") return {};
+        return v;
+      } catch (e) { return {}; }
+    };
+    var write = function (v) { try { localStorage.setItem(SKEY, JSON.stringify(v)); } catch (e) {} };
+    var countOf = function (v) { return ids.filter(function (i) { return v[i]; }).length; };
+
+    // ---- the footer tally, on every page
+    var tally = document.getElementById("stick-tally");
+    var paintTally = function (v) {
+      if (tally) tally.textContent = countOf(v) + " of " + ids.length;
+    };
+
+    // ---- finding one
+    var found = read();
+    paintTally(found);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-sticker]"), function (spot) {
+      var id = spot.dataset.sticker;
+      if (found[id]) spot.classList.add("got");
+      spot.addEventListener("click", function () {
+        var now = read();
+        if (!now[id]) {
+          now[id] = Date.now();
+          // the first time all six are in, remember when, so the coupon's clock starts then
+          if (countOf(now) === ids.length && !now._done) now._done = Date.now();
+          write(now);
+        }
+        found = now;
+        spot.classList.add("got");
+        paintTally(now);
+        var n = countOf(now);
+        var toast = document.createElement("div");
+        toast.className = "egg-toast";
+        toast.setAttribute("role", "status");
+        toast.innerHTML = n === ids.length
+          ? 'ALL SIX FOUND. <a href="/stickers/">GO AND GET YOUR COUPON</a>'
+          : 'STICKER FOUND &middot; ' + n + " OF " + ids.length + ' &middot; <a href="/stickers/">SEE THE SHEET</a>';
+        document.body.appendChild(toast);
+        setTimeout(function () { toast.remove(); }, 6000);
+      });
+    });
+
+    // ---- the sheet page
+    var sheet = document.getElementById("sheet");
+    if (sheet) {
+      var reward = document.getElementById("reward");
+      var paintSheet = function () {
+        var v = read(), n = countOf(v);
+        var cnt = document.getElementById("stick-count");
+        if (cnt) cnt.textContent = n;
+        Array.prototype.forEach.call(sheet.querySelectorAll("[data-slot]"), function (slot) {
+          slot.classList.toggle("got", !!v[slot.dataset.slot]);
+        });
+        if (!reward) return;
+        var all = n === ids.length;
+        reward.hidden = !all;
+        if (all) stampCoupon(v._done || Date.now());
+      };
+
+      // A code that carries its own issue date, so the 90 days can be read straight off the paper.
+      var stampCoupon = function (when) {
+        var d = new Date(when);
+        var days = Math.max(1, Number(CO.expiryDays) || 90);
+        var ends = new Date(when + days * 864e5);
+        var two = function (x) { return String(x).padStart(2, "0"); };
+        var stamp = String(d.getFullYear()).slice(2) + two(d.getMonth() + 1) + two(d.getDate());
+        var salt = Math.abs(Math.floor(when / 1000) % 46656).toString(36).toUpperCase();
+        while (salt.length < 3) salt = "0" + salt;
+        var fmt = function (x) {
+          return x.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+        };
+        var set = function (id, txt) { var el = document.getElementById(id); if (el) el.textContent = txt; };
+        set("c-code", "CT" + (CO.amount || 50) + "-" + stamp + "-" + salt);
+        set("c-issued", fmt(d));
+        set("c-expires", fmt(ends));
+      };
+
+      paintSheet();
+
+      var printBtn = document.getElementById("print-coupon");
+      if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+
+      var reset = document.getElementById("stick-reset");
+      if (reset) reset.addEventListener("click", function () {
+        if (!window.confirm("Clear all six stickers and start the hunt again?")) return;
+        write({}); paintSheet(); paintTally({});
+      });
+    }
+  }
+
   // ---------------------------------------------------------------- flash screensaver
   // Sixty seconds of nothing happening on a ParlorOS desktop and the drawings start bouncing.
   // Any key, click, touch or mouse move puts it away again.

@@ -15,6 +15,7 @@
     <p class="status">Every cross below was bred by hand in a tent. The other {{ outside }} plants on the star chart are the outside genetics they came from — mapped so you can see where each one leads back to.</p>
     <p><a class="btn" href="#" data-open="w-bred">WHAT I'VE MADE</a> <a class="btn ghost" href="#" data-open="w-chart">STAR CHART</a>{% if dept.images.length %} <a class="btn ghost" href="#" data-open="w-gallery">PHOTOS</a>{% endif %}{% if binned.length %} <a class="btn ghost" href="#" data-open="w-bin">RECYCLE BIN ({{ binned | length }})</a>{% endif %}</p>
     <p class="status">Not a company. Seeds are never sold. Small batch, organic, one-time chucks. 100 to 2,000 seeds of each line in the vault.</p>
+{% set spotId = "spacecraft" %}{% include "partials/sticker-spot.njk" %}
   </div>
 </section>
 

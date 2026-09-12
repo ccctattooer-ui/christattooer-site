@@ -15,6 +15,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
 | Flash order (drag to sort) | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
 | SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
+| Sticker hunt & coupon | the six hidden stickers (name, hiding place, hint, colour, artwork) and the coupon (amount, minimum, how long it lasts, small print) | `src/_data/stickers.json`, `src/_data/coupon.json` |
 | Shop helper | the skull that pops up: whether it shows, where, how long it waits, and every line it says | `src/_data/helper.json` |
 | Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
 | Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |
@@ -85,6 +86,16 @@ A skull turns up in the corner after a quiet moment with one line from **Shop he
 
 It shows on the desktop pages only by default, which keeps the booking pages clear; "Where it turns up" can move it to the catalog side or everywhere.
 
+### The sticker hunt and the coupon
+
+Six stickers hide one per department — Flash, Work, Paintings, Games, SpaceCraft, Store. Each sits at low opacity until you hover or tab onto it: findable if you're looking, invisible if you aren't, and always a real button so a keyboard can reach it. Finding one shows a running count; the footer carries the tally on every page. `/stickers/` is the sheet, and the sixth sticker unlocks a printable coupon.
+
+Progress and the coupon live in the visitor's own browser. **There is deliberately no server in this.** It can be copied, re-printed and shared, and that is the intended behaviour — a hundred printed coupons means a hundred people booking tattoos, and the minimum spend covers the setup either way.
+
+The coupon carries a code with its own issue date in it (`CT50-260912-A7F`), the issue and expiry dates spelled out, and a print stylesheet so only the coupon comes out of the printer. Write `{amount}`, `{min}` or `{days}` anywhere in the small print and the real numbers are filled in from the fields, so the terms can never disagree with the offer.
+
+Each sticker's artwork is a 256×256 PNG in `assets/icons/`. Leave the Artwork field empty and a plain stand-in is drawn instead, so the hunt works before the art exists.
+
 ### Scrapped crosses
 
 Any plant in **SpaceCraft genetics** can be ticked **Scrapped**, with a one-line reason. A scrapped plant leaves the roster and the star chart, stops counting towards the total, and turns up in the **recycle.bin** window on the SpaceCraft desktop instead — so "51 crosses made here" stays true while the ones that didn't work out are still on show. Three are in there now, out of the breeding log.
@@ -139,7 +150,9 @@ src/
   sitemap.njk       /sitemap.xml, robots.njk -> /robots.txt
   _includes/partials/meta.njk   canonical + share-preview tags + LocalBusiness JSON-LD
   _includes/partials/           signature.njk (view-source note), badges.njk (footer buttons),
-                                helper.njk (the skull), news.njk (the ticker)
+                                helper.njk (the skull), news.njk (the ticker),
+                                sticker-spot.njk (one hidden sticker)
+  stickers.njk      the sticker sheet and the printable coupon at /stickers/
   js/eggs.js        every easter egg, switched in the admin (src/_data/eggs.json)
   work.njk          all photos + lightbox
   book.njk          booking

@@ -35,6 +35,7 @@ eleventyComputed:
         </g>
       </svg>
       <div class="ticker"><span>&#9733; {{ eggs.construction.marquee }} &#9733; {{ eggs.construction.marquee }} &#9733; </span></div>
+{% set spotId = "store" %}{% include "partials/sticker-spot.njk" %}
     </div>
     {%- endif %}
     {%- if dept.images.length %}

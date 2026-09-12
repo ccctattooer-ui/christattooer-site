@@ -1,0 +1,15 @@
+{#- One hidden sticker. The host page sets spotId first:
+      {% set spotId = "flash" %}{% include "partials/sticker-spot.njk" %}
+    It sits at low opacity until hovered or focused — findable if you're looking, invisible if you
+    aren't — and stays a real button so a keyboard can reach it. eggs.js does the rest. -#}
+{%- if stickers.show %}
+{%- for s in stickers.items %}
+{%- if s.id == spotId %}
+<button type="button" class="sticker-spot" data-sticker="{{ s.id }}"
+        aria-label="A hidden sticker: {{ s.name }}. Click to collect it."
+        title="?" style="--spot:{{ s.colour }}">
+  <span aria-hidden="true">★</span>
+</button>
+{%- endif %}
+{%- endfor %}
+{%- endif %}

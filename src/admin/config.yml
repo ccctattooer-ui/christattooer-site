@@ -181,7 +181,7 @@ collections:
     fields:
       - { label: URL slug, name: slug, widget: string, hint: Do not change; it is the page address. }
       - { label: Name, name: name, widget: string }
-      - { label: Icon, name: icon, widget: image, hint: Any picture; it is shrunk for the desktop icon. }
+      - { label: Icon, name: icon, widget: image, media_folder: /assets/icons, public_folder: /assets/icons, hint: "The desktop icon. Upload the 128px version; the small one for the menubar strip is picked up automatically if it sits beside it as <name>-32.png." }
       - { label: Blurb, name: blurb, widget: text }
       - { label: Status, name: status, widget: string, hint: Shown in the window and the taskbar. }
       - { label: Order, name: order, widget: number, value_type: int }
@@ -378,6 +378,47 @@ collections:
               - { label: Tilt (degrees), name: tilt, widget: number, value_type: float, min: 0, max: 8, step: 0.5, hint: 0 = straight rows, 2 = a little crooked, 5 = messy desk. }
               - { label: Tape strips, name: tape, widget: boolean, default: true }
               - { label: Smallest piece width (px), name: columnWidth, widget: number, value_type: int, min: 100, max: 260, step: 10, hint: Smaller = more pieces per row. }
+
+  # -------------------------------------------------------------- sticker hunt
+  - name: hunt
+    label: Sticker hunt & coupon
+    files:
+      - name: stickers
+        label: The six hidden stickers
+        description: One sticker hides in each department. Find all six and the coupon below unlocks. Progress lives in each visitor's own browser — nothing is stored on the server.
+        file: src/_data/stickers.json
+        format: json
+        fields:
+          - { label: Run the hunt, name: show, widget: boolean, default: true, hint: Turn this off and the stickers, the footer tally and the coupon all disappear. }
+          - label: Stickers
+            name: items
+            widget: list
+            label_singular: Sticker
+            summary: '{{fields.name}} — hidden on {{fields.where}}'
+            fields:
+              - { label: ID, name: id, widget: string, hint: "Must stay as it is — this is what the hiding place on each page is keyed to. Changing it loses people's progress." }
+              - { label: Sticker name, name: name, widget: string, hint: Shown on the sheet once it's found. }
+              - { label: Page it hides on, name: where, widget: string, hint: 'e.g. /flash/ — used for the "go and look" link.' }
+              - { label: Hint, name: hint, widget: text, hint: The nudge shown on the sheet for one nobody has found yet. }
+              - { label: Colour, name: colour, widget: color, hint: Used for the sticker's backing on the sheet, and for the star while it's hidden. }
+              - { label: Artwork, name: image, widget: image, required: false, media_folder: /assets/icons, public_folder: /assets/icons, hint: A 256x256 PNG with a transparent background. Leave it empty and a plain stand-in is drawn instead. }
+      - name: coupon
+        label: The coupon
+        description: What people get for finding all six. It is generated in the visitor's browser and can be printed or copied freely — that is deliberate.
+        file: src/_data/coupon.json
+        format: json
+        fields:
+          - { label: Offer the coupon, name: show, widget: boolean, default: true, hint: Turn this off and finishing the hunt just fills in the sticker sheet. }
+          - { label: Amount off ($), name: amount, widget: number, value_type: int, min: 5, step: 5 }
+          - { label: Minimum spend ($), name: minimum, widget: number, value_type: int, min: 0, step: 25, hint: The tattoo has to come to at least this much. }
+          - { label: Good for (days), name: expiryDays, widget: number, value_type: int, min: 7, max: 730, hint: Counted from the day someone finds the sixth sticker. The date is printed on the coupon. }
+          - { label: Headline, name: headline, widget: string }
+          - { label: Sub-heading, name: subhead, widget: string }
+          - label: Small print
+            name: terms
+            widget: list
+            field: { label: Line, name: line, widget: string }
+            hint: "One line each, printed on the coupon. Write {amount}, {min} or {days} and the real numbers are filled in from the fields above, so the small print can never disagree with the offer."
 
   # --------------------------------------------------------------- shop helper
   - name: helper

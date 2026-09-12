@@ -1,0 +1,77 @@
+---
+layout: layouts/catalog.njk
+title: Sticker hunt
+description: Six stickers are hidden around the site. Find them all and a $50 coupon is yours.
+permalink: /stickers/
+---
+<main class="main" style="max-width:860px;margin:0 auto">
+  <div class="bar">
+    <h1>The sticker hunt</h1>
+    <span class="cnt"><span id="stick-count">0</span> of {{ stickers.items | length }} found</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch;margin:0 0 18px">Six stickers are hidden around this site, one in each department. They're small and they don't blink at you. Find all six and there's {{ coupon.amount | money }} off a tattoo in it for you.</p>
+
+  <div class="sheet" id="sheet">
+    {%- for s in stickers.items %}
+    <figure class="slot" data-slot="{{ s.id }}" style="--spot:{{ s.colour }}">
+      <div class="peel">
+        {%- if s.image %}
+        <img src="{{ s.image }}" alt="{{ s.name }} sticker" loading="lazy">
+        {%- else %}
+        <span class="stand" aria-hidden="true">{{ s.name | first }}</span>
+        {%- endif %}
+      </div>
+      <figcaption>
+        <b class="got">{{ s.name }}</b>
+        <b class="notyet">? ? ?</b>
+        <small class="hint">{{ s.hint }} <a href="{{ s.where }}">Go and look →</a></small>
+        <small class="found">Found it.</small>
+      </figcaption>
+    </figure>
+    {%- endfor %}
+  </div>
+
+  {%- if coupon.show %}
+  <section class="reward" id="reward" hidden>
+    <div class="pane">
+      <div class="pane-title"><span class="x" aria-hidden="true">×</span><b>coupon.print</b></div>
+      <div class="pane-body">
+        <div class="coupon" id="coupon">
+          <div class="coupon-edge" aria-hidden="true"></div>
+          <div class="coupon-main">
+            <p class="ck">{{ site.name | upper }} · {{ site.shop.name | upper }}</p>
+            <p class="camt">{{ coupon.amount | money }}<span>OFF</span></p>
+            <p class="chead">{{ coupon.headline }}</p>
+            <p class="csub">{{ coupon.subhead }}</p>
+            <p class="cmin">on any tattoo of <b>{{ coupon.minimum | money }}</b> or more</p>
+            <dl class="cmeta">
+              <dt>Code</dt><dd id="c-code">—</dd>
+              <dt>Issued</dt><dd id="c-issued">—</dd>
+              <dt>Expires</dt><dd id="c-expires">—</dd>
+            </dl>
+            <ul class="cterms">
+              {#- {amount}, {min} and {days} are filled in from the fields, so the small print can
+                  never disagree with the actual offer. -#}
+              {%- for t in coupon.terms %}<li>{{ t
+                    | replace("{amount}", coupon.amount | money)
+                    | replace("{min}", coupon.minimum | money)
+                    | replace("{days}", coupon.expiryDays) }}</li>{% endfor %}
+            </ul>
+            <p class="cfoot">{{ site.shop.address }} · {{ site.hoursShort }} · @{{ site.instagram }}</p>
+          </div>
+        </div>
+        <p class="row-acts">
+          <button class="btn-print" type="button" id="print-coupon">PRINT IT</button>
+          <a class="btn-book" href="/book/">BOOK SOMETHING →</a>
+        </p>
+        <p class="fine" style="margin:10px 0 0">Nothing here is stored anywhere but your own browser, so print it or screenshot it. Clearing your browsing data clears your stickers too.</p>
+      </div>
+    </div>
+  </section>
+  {%- endif %}
+
+  <p class="fine" id="stick-reset-wrap" style="margin:18px 0 0">
+    <button type="button" id="stick-reset" class="reset-link">Start the hunt over</button>
+  </p>
+</main>

@@ -1,0 +1,14 @@
+{
+  "show": true,
+  "amount": 50,
+  "minimum": 200,
+  "expiryDays": 90,
+  "headline": "FIFTY DOLLARS OFF",
+  "subhead": "for finding all six stickers",
+  "terms": [
+    "Good for {amount} off any tattoo of {min} or more.",
+    "One coupon per tattoo. Not combinable with other offers.",
+    "Print it or show it on your phone at the shop.",
+    "Expires {days} days from the date above."
+  ]
+}

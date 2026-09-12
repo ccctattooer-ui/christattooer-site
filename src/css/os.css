@@ -371,3 +371,16 @@ body:has(.newsbar) .win{margin-top:26px}
   .helper{transition:none}
   .newsbar-track span{animation:none;padding-left:0}
 }
+
+/* sticker spots on the desktop pages */
+.sticker-spot{position:absolute;width:28px;height:28px;padding:0;border:0;background:none;
+  color:var(--spot,var(--yellow));font-size:19px;line-height:1;opacity:.28;
+  transition:opacity .15s,transform .15s;z-index:6}
+.sticker-spot:hover,.sticker-spot:focus-visible{opacity:1;transform:scale(1.25) rotate(-8deg)}
+.sticker-spot.got{opacity:1;color:var(--green);cursor:default}
+.sticker-spot.got::after{content:"";position:absolute;inset:-3px;border:2px solid var(--green);border-radius:50%}
+.win .body{position:relative}
+.win .body>.sticker-spot{right:6px;bottom:6px}
+.board>.sticker-spot{right:10px;top:10px}
+.roadworks{position:relative}
+.roadworks>.sticker-spot{right:2px;top:-6px}

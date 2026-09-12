@@ -11,6 +11,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "assets/tattoos": "assets/tattoos" });
   eleventyConfig.addPassthroughCopy({ "assets/flash/web": "assets/flash/web" });
   eleventyConfig.addPassthroughCopy({ "assets/plants": "assets/plants" });
+  eleventyConfig.addPassthroughCopy({ "assets/icons": "assets/icons" });
   eleventyConfig.addPassthroughCopy({ "assets/favicon.png": "assets/favicon.png" });
   eleventyConfig.addPassthroughCopy({ "src/css": "css", "src/js": "js" });
   eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
