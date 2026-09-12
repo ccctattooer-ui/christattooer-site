@@ -426,3 +426,35 @@ dialog.wheelbox::backdrop{background:rgba(20,20,20,.82)}
 /* matching icon on the catalog-side window panes */
 .pane-title .pico,.drawer .pane-title .pico,dialog .pane-title .pico{width:16px;height:16px;flex:none;
   image-rendering:pixelated;margin-right:-4px}
+
+/* ================= the request basket ================= */
+/* Shown in the drawer and again on the booking page, so nobody sends a request without having
+   seen exactly what is on it and roughly what it costs. */
+.pick{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:10px;align-items:center;
+  padding:9px 0;border-bottom:1px dotted var(--rule)}
+.pick-art{width:48px;height:48px;object-fit:contain;border:1px solid var(--rule);background:#fff;padding:2px}
+.pick-none{display:grid;place-items:center;font-family:var(--mono);color:#aaa;font-size:18px}
+.pick-what{min-width:0}
+.pick-what b{display:block;font-size:14px;line-height:1.2;font-weight:700}
+.pick-what small{display:block;font-family:var(--mono);font-size:10.5px;color:#666;margin-top:2px}
+.pick-cost{font-family:var(--mono);font-weight:600;font-size:15px;white-space:nowrap}
+.pick-cost i{font-style:normal;font-size:11px;color:#777}
+.pick-rm{grid-column:3;justify-self:end;background:none;border:0;padding:3px 0 0;
+  font-size:11px;color:var(--red);text-decoration:underline;font-family:var(--body)}
+.pick-rm:hover{color:#fff;background:var(--red);text-decoration:none;padding-inline:5px}
+.pick-total{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding-top:10px;margin-top:2px;
+  border-top:2px solid var(--ink)}
+.pick-total span{font-family:var(--pixel);font-size:9px;letter-spacing:.1em;color:#555;align-self:center}
+.pick-total b{font-family:var(--disp);font-size:19px;text-align:right}
+.pick-total small{grid-column:1/-1;font-size:11.5px;color:#666;line-height:1.35;margin-top:3px}
+
+/* the booking page panel */
+.picked{border:2px solid var(--ink);background:var(--soft);padding:12px 14px;margin:0 0 14px}
+.picked h2{font-size:15px;margin:0 0 6px}
+.picked .pick{border-bottom-color:var(--rule-2)}
+.picked .empty{font-size:14px;color:#555}
+
+/* a design flashes when it goes on the request, so the click is never in doubt */
+@keyframes just-added{0%{box-shadow:inset 0 0 0 3px var(--green)}100%{box-shadow:inset 0 0 0 0 transparent}}
+.item.just-added{animation:just-added 1s ease-out}
+@media (prefers-reduced-motion:reduce){.item.just-added{animation:none}}

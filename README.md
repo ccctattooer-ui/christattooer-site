@@ -212,6 +212,16 @@ Three routes, all on `/book/`:
 
 Flash "Add to request" picks are remembered in the visitor's browser and included in the form as a `picks` field.
 
+The basket shows each picked design with its drawing, SKU, size and price, and a rough total —
+in the drawer, and again as a panel on the booking page under **What you're asking for**, so nobody
+sends a request without seeing exactly what is on it. Every row has a plain **Remove**.
+
+Prices and names are looked up by SKU at render time, never stored in the saved pick: a price
+changed in the admin can therefore never show up stale in a basket somebody left open last month.
+The shop minimum is applied per design rather than to the basket as a whole, since that is how it
+actually works, and anything with no listed price (custom work) is counted separately as "quoted
+after a chat" rather than silently as zero.
+
 ## Layout
 
 ```

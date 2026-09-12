@@ -82,6 +82,12 @@
   </form>
 </aside>
 
+{#- SKU -> thumbnail, price, size. The basket looks prices up here rather than remembering
+    them, so a price changed in the admin is never stale in someone's saved picks. -#}
+<script>window.FLASH_INFO = {
+{%- for f in flash %}"{{ f.sku }}":{"t":"{{ f.thumb or f.image }}","p":"{{ f.price }}","s":"{{ f.size }}","n":{{ f.name | dump | safe }}}{% if not loop.last %},{% endif %}
+{%- endfor %}};
+window.PRICING = {{ site.pricing | dump | safe }};</script>
 <script>window.EGGS = {{ eggs | dump | safe }}; window.HELPER = {{ helper | dump | safe }}; window.STICKERS = {{ stickers | dump | safe }}; window.COUPON = {{ coupon | dump | safe }}; window.GUESTBOOK = {{ guestbookPage | dump | safe }};</script>
 <script src="/js/catalog.js"></script>
 <script src="/js/eggs.js" defer></script>

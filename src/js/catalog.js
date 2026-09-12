@@ -9,20 +9,73 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const drawer = $('#drawer');
 
+  const INFO = window.FLASH_INFO || {};
+  const PRICING = window.PRICING || {};
+  const esc = (t) => String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  const money = (n) => "$" + Number(n || 0).toLocaleString("en-US");
+
+  // One row per picked design: the drawing, what it is, what it costs, and an obvious way out.
+  // Price and size are read from FLASH_INFO every time rather than from the saved pick, so a
+  // price changed in the admin can never show up stale in someone's basket.
+  function pickRow(p, i) {
+    const info = INFO[p.sku] || {};
+    const size = info.s || p.size || "";
+    return `<div class="pick">
+      ${info.t ? `<img class="pick-art" src="${esc(info.t)}" alt="" width="48" height="48" loading="lazy">` : '<span class="pick-art pick-none" aria-hidden="true">?</span>'}
+      <div class="pick-what">
+        <b>${esc(info.n || p.name)}</b>
+        <small>${esc(p.sku)}${size ? " · " + esc(size) : ""}</small>
+      </div>
+      <div class="pick-cost">${info.p ? money(info.p) : '<i>quoted</i>'}</div>
+      <button type="button" class="pick-rm" data-rm="${i}" aria-label="Take ${esc(info.n || p.name)} off the request">Remove</button>
+    </div>`;
+  }
+
+  // The shop minimum is per tattoo, not per basket, so it is applied to each design in turn.
+  // Anything with no listed price (custom work) is left out and called out separately.
+  function total() {
+    const min = Number(PRICING.shopMinimum) || 0;
+    let sum = 0, quoted = 0;
+    picks.forEach((p) => {
+      const price = Number((INFO[p.sku] || {}).p || 0);
+      if (price) sum += Math.max(price, min);
+      else quoted++;
+    });
+    return { sum, quoted };
+  }
+
+  function basketHTML(empty) {
+    if (!picks.length) return `<div class="empty">${empty}</div>`;
+    const { sum, quoted } = total();
+    const count = `${picks.length} design${picks.length > 1 ? "s" : ""}` +
+      (quoted ? `, ${quoted} quoted after a chat` : "");
+    const note = sum
+      ? "A rough total from the listed prices — I'll confirm once I've seen where it's going." +
+        (PRICING.deposit ? " " + money(PRICING.deposit) + " deposit holds the time." : "")
+      : "Nothing here has a listed price, so this one gets quoted after a chat.";
+    return picks.map(pickRow).join("") + `<div class="pick-total">
+      <span>${count}</span>
+      <b>${sum ? "about " + money(sum) : "quoted"}</b>
+      <small>${note}</small>
+    </div>`;
+  }
+
   function render() {
     const cnt = $('#cnt'); if (cnt) cnt.textContent = picks.length;
     document.body.classList.toggle('has-picks', picks.length > 0);
     const list = $('#list');
     if (list) {
-      list.innerHTML = picks.length
-        ? picks.map((p, i) => `<div><span>${p.name}${p.size ? ' · ' + p.size : ''}</span><span><span class="mono">${p.sku}</span> <button type="button" data-rm="${i}" aria-label="Remove">×</button></span></div>`).join('')
-        : '<div class="empty">Nothing added yet. Add flash from the catalog, or choose custom work.</div>';
+      list.innerHTML = basketHTML("Nothing added yet. Add flash from the catalog, or choose custom work.");
       $$('[data-rm]', list).forEach(b => b.onclick = () => { picks.splice(+b.dataset.rm, 1); save(); render(); syncButtons(); });
     }
     $$('#picks, #b-picks').forEach(h => h.value = picks.map(p => `${p.sku} ${p.name}${p.size ? ' (' + p.size + ')' : ''}`).join('; '));
     const summary = $('#picks-summary');
-    if (summary) summary.textContent = picks.length ? picks.map(p => p.name + (p.size ? ' · ' + p.size : '')).join(', ') : 'No flash picked yet. You can still describe a custom idea below.';
+    if (summary) {
+      summary.innerHTML = basketHTML("Nothing picked from the catalog yet — you can still describe a custom idea below.");
+      $$('[data-rm]', summary).forEach(b => b.onclick = () => { picks.splice(+b.dataset.rm, 1); save(); render(); syncButtons(); });
+    }
   }
+
   function syncButtons() {
     $$('.item[data-sku]').forEach(el => {
       const on = picks.some(p => p.sku === el.dataset.sku);
@@ -42,7 +95,13 @@
       const sku = el.dataset.sku, name = el.dataset.name;
       const i = picks.findIndex(p => p.sku === sku);
       if (i > -1) { picks.splice(i, 1); }
-      else { picks.push({ sku, name, size: el.dataset.size || '' }); openDrawer(); }
+      else {
+        picks.push({ sku, name, size: el.dataset.size || '' });
+        el.classList.remove('just-added');
+        void el.offsetWidth;            // restart the flash if they add two in a row
+        el.classList.add('just-added');
+        openDrawer();
+      }
       save(); render(); syncButtons();
     });
   });
