@@ -506,6 +506,32 @@ collections:
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: A fold-away drawing pad on the booking form. Whatever they draw arrives with the request as a picture, alongside any reference photos. }
               - { label: Fold-away label, name: label, widget: string }
+          - label: Boot screen on first visit
+            name: bios
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: A fake computer start-up screen before the TV, counting up everything on the site. Shown once per visitor, ever, and any key skips it. }
+              - { label: Title line, name: title, widget: string }
+          - label: Sparkle trail
+            name: sparkles
+            widget: object
+            fields:
+              - { label: Offer it, name: show, widget: boolean, default: true, hint: "Sparkles follow the mouse. It ships switched OFF: visitors turn it on themselves with a button in the footer, and their choice is remembered." }
+          - label: Draggable desktop icons
+            name: dragIcons
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: Lets people shove the department icons around the desktop and remembers where they left them. Mouse and big screens only; TIDY UP in the taskbar puts them back. }
+          - label: Webring
+            name: webring
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: false, hint: Buttons in the footer for a webring you have joined. Nothing appears until the Next address below is filled in. }
+              - { label: Ring name, name: name, widget: string, required: false, hint: 'e.g. Tattooers Webring.' }
+              - { label: Previous site, name: prev, widget: string, required: false }
+              - { label: Random site, name: random, widget: string, required: false }
+              - { label: Next site, name: next, widget: string, required: false, hint: The only one that is required — without it the buttons stay hidden. }
+              - { label: The ring's own page, name: home, widget: string, required: false }
           - label: Shop news ticker
             name: news
             widget: object

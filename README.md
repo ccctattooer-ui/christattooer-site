@@ -82,6 +82,10 @@ What's in there now:
 | Shop news ticker | A scrolling strip across the top of every page. Empty the text in the admin and the strip disappears. |
 | Spin the wheel | A button above the flash catalog opens a prize wheel of your designs. Claimed ones are left out, and it reshuffles between spins so everything can still come up. |
 | Sketch pad | A fold-away drawing pad on the booking form. |
+| Boot screen | A fake computer start-up on the landing page, counting up everything on the site from the real numbers. Once per visitor ever; any key skips it; never shown to anyone who asked for reduced motion. |
+| Sparkle trail | Sparkles follow the mouse. **Ships off** — visitors switch it on themselves in the footer and their choice sticks. |
+| Draggable icons | Shove the department icons around the desktop; they stay where they were left. Mouse and big screens only, with TIDY UP in the taskbar to reset. |
+| Webring | Prev / random / next buttons in the footer for a ring you've joined. Hidden until you fill the addresses in. |
 
 ### The wheel and the sketch pad
 

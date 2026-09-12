@@ -40,6 +40,7 @@
 <div class="taskbar">
   <a class="start" href="/">{{ site.shortName | upper }}</a>
   <div id="tasks"></div>
+  {%- if eggs.dragIcons.show %}<button class="tidy" type="button" id="tidy-icons" hidden title="Put the icons back">TIDY UP</button>{% endif %}
   <span class="clock">{{ dept.status | upper }}</span>
 </div>
 <script>window.EGGS = {{ eggs | dump | safe }}; window.HELPER = {{ helper | dump | safe }}; window.STICKERS = {{ stickers | dump | safe }}; window.COUPON = {{ coupon | dump | safe }}; window.EGGS_FLASH = {{ flash | spread(7, "image") | dump | safe }};</script>

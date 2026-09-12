@@ -1,0 +1,60 @@
+{#- A fake POST screen, shown once ever per visitor before the TV appears. Every number on it is a
+    real count from the site, so it is a boot screen and a table of contents at once. Any key or tap
+    skips it, it never shows twice, and anyone who asked for reduced motion never sees it at all. -#}
+{%- if eggs.bios.show %}
+{%- set workCount = (work | visible) | length %}
+<div class="bios" id="bios" hidden>
+  <pre id="bios-text" aria-live="polite"></pre>
+  <p class="bios-skip">press any key to continue</p>
+</div>
+<script>
+  (function () {
+    var LINES = [
+      { t: {{ eggs.bios.title | dump | safe }} },
+      { t: {{ (site.shop.name + " · " + site.shop.city) | dump | safe }} },
+      { t: "" },
+      { l: "Detecting machines",      v: "2 FOUND" },
+      { l: "Flash catalog",           v: "{{ flash | length }} DESIGNS" },
+      { l: "Healed work",             v: "{{ workCount }} PHOTOS" },
+      { l: "Paint board",             v: "{{ paintings | length }} PIECES" },
+      { l: "SpaceCraft genetics",     v: "{{ (genetics | whereNot('scrapped', true) | where('kind','spacecraft')) | length }} CROSSES" },
+      { l: "Game montages",           v: "{{ videos | length }} CLIPS" },
+      { l: "Mounting departments",    v: "OK" },
+      { l: "Booking",                 v: {{ site.booksStatus | upper | dump | safe }} },
+      { t: "" },
+      { t: "Tube-O-Vision ready." }
+    ];
+    var KEY = 'ct-booted';
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var seen = true;
+    try { seen = !!localStorage.getItem(KEY); } catch (e) {}
+    if (seen || reduce) return;
+
+    var box = document.getElementById('bios');
+    var out = document.getElementById('bios-text');
+    box.hidden = false;
+    document.body.classList.add('booting');
+
+    var i = 0, timer;
+    function pad(l, v) { var dots = Math.max(3, 30 - l.length); return l + ' ' + new Array(dots).join('.') + ' ' + v; }
+    function step() {
+      if (i >= LINES.length) { timer = setTimeout(done, 650); return; }
+      var row = LINES[i++];
+      out.textContent += (row.t !== undefined ? row.t : pad(row.l, row.v)) + '\n';
+      timer = setTimeout(step, row.t !== undefined ? 90 : 170);
+    }
+    function done() {
+      clearTimeout(timer);
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      box.classList.add('out');
+      document.body.classList.remove('booting');
+      setTimeout(function () { box.remove(); }, 420);
+      window.removeEventListener('keydown', done);
+      box.removeEventListener('click', done);
+    }
+    window.addEventListener('keydown', done);
+    box.addEventListener('click', done);
+    step();
+  })();
+</script>
+{%- endif %}

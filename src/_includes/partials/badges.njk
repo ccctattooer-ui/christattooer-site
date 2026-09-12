@@ -15,3 +15,9 @@
   <span class="b31 b-made">MADE IN<br>{{ site.shop.locality | upper }} {{ site.shop.region | upper }}</span>
 </div>
 {%- endif %}
+{% include "partials/webring.njk" %}
+{%- if eggs.sparkles.show %}
+<div class="knobs">
+  <button type="button" id="spark-toggle" aria-pressed="false" hidden>Sparkles: off</button>
+</div>
+{%- endif %}

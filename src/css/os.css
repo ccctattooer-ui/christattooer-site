@@ -384,3 +384,26 @@ body:has(.newsbar) .win{margin-top:26px}
 .board>.sticker-spot{right:10px;top:10px}
 .roadworks{position:relative}
 .roadworks>.sticker-spot{right:2px;top:-6px}
+
+/* ---- BIOS boot screen, first visit only ---- */
+body.booting{overflow:hidden}
+.bios{position:fixed;inset:0;z-index:5000;background:#07070c;color:#c8ffd4;padding:28px 22px;
+  font-family:var(--txt);font-size:clamp(15px,2.1vw,21px);line-height:1.35;overflow:hidden;cursor:pointer;
+  transition:opacity .4s}
+.bios[hidden]{display:none}
+.bios.out{opacity:0;pointer-events:none}
+.bios pre{margin:0;white-space:pre-wrap;font-family:inherit;font-size:inherit}
+.bios-skip{position:absolute;left:22px;bottom:22px;margin:0;font-family:var(--title);font-size:9px;
+  color:#5f7a66;animation:bios-blink 1.1s steps(2) infinite}
+@keyframes bios-blink{50%{opacity:.25}}
+
+/* ---- draggable desktop icons ---- */
+.icons.draggable .icon{cursor:grab;touch-action:none}
+.icons.draggable .icon.dragging{cursor:grabbing;z-index:20;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.5))}
+.icons.draggable .icon.dragging .box{transform:none}
+.taskbar .tidy{font-family:var(--title);font-size:9px;background:var(--bone);border:2px solid var(--ink);
+  padding:5px 8px;margin-left:8px;white-space:nowrap}
+.taskbar .tidy[hidden]{display:none}
+.taskbar .tidy:hover{background:var(--yellow)}
+
+@media (prefers-reduced-motion:reduce){.bios-skip{animation:none}.bios{transition:none}}

@@ -1,0 +1,13 @@
+{#- Webring buttons. Ships switched off with no links in it, because a ring needs joining first —
+    fill the four addresses in under Fun stuff and turn it on. -#}
+{%- if eggs.webring.show and eggs.webring.next %}
+<div class="webring">
+  <b>{{ eggs.webring.name or "Webring" }}</b>
+  <span class="ring-nav">
+    {%- if eggs.webring.prev %}<a href="{{ eggs.webring.prev }}" rel="external">←&nbsp;prev</a>{% endif %}
+    {%- if eggs.webring.random %}<a href="{{ eggs.webring.random }}" rel="external">random</a>{% endif %}
+    <a href="{{ eggs.webring.next }}" rel="external">next&nbsp;→</a>
+    {%- if eggs.webring.home %}<a href="{{ eggs.webring.home }}" rel="external">the ring</a>{% endif %}
+  </span>
+</div>
+{%- endif %}

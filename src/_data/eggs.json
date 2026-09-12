@@ -39,5 +39,23 @@
   "counter": {
     "show": true,
     "label": "VISITORS"
+  },
+  "bios": {
+    "show": true,
+    "title": "ParlorOS BIOS v1.9.2"
+  },
+  "sparkles": {
+    "show": true
+  },
+  "dragIcons": {
+    "show": true
+  },
+  "webring": {
+    "show": false,
+    "name": "",
+    "prev": "",
+    "random": "",
+    "next": "",
+    "home": ""
   }
 }

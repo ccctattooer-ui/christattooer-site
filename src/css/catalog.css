@@ -398,3 +398,26 @@ dialog.wheelbox::backdrop{background:rgba(20,20,20,.82)}
   border-top:1px dotted var(--rule);padding-top:7px}
 .gb-entry b{font-family:var(--disp);font-size:13px;color:var(--stencil)}
 .gb-entry span{font-family:var(--mono);font-size:10.5px;color:#777;text-transform:uppercase}
+
+/* ---- sparkle trail (off unless a visitor asks for it) ---- */
+.spark{position:fixed;z-index:4000;width:9px;height:9px;pointer-events:none;
+  background:var(--yellow);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);
+  animation:spark-out .75s ease-out forwards}
+@keyframes spark-out{
+  from{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}
+  to{opacity:0;transform:translate(calc(-50% + var(--dx,0)),calc(-50% + 22px)) scale(.25) rotate(var(--rot,90deg))}
+}
+.knobs{grid-column:1/-1;padding-top:10px}
+.knobs button{font-family:var(--pixel);font-size:8px;background:var(--bone);border:2px solid var(--ink);
+  padding:5px 8px;letter-spacing:.06em}
+.knobs button[aria-pressed="true"]{background:var(--yellow)}
+.knobs button[hidden]{display:none}
+
+/* ---- webring ---- */
+.webring{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;padding-top:12px}
+.webring b{font-family:var(--pixel);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#555}
+.ring-nav{display:flex;flex-wrap:wrap;gap:8px}
+.ring-nav a{font-family:var(--mono);font-size:11px;border:1px solid var(--ink);padding:3px 7px;
+  text-decoration:none;background:#fff}
+.ring-nav a:hover{background:var(--yellow)}
+@media (prefers-reduced-motion:reduce){.spark{display:none}}
