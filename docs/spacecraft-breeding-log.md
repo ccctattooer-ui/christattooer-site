@@ -81,14 +81,15 @@ Also Sep 2026: big outdoor breeding run "too many to name" **(Ask)**; BOLA BX (S
 
 The Eucharist · Sugarplum Skunk · Skunk Ooze · Splooze · Jerry Bears · Lemon Tree Kushy · Chem Pop (increase planned) · Pine line (Flagship Project #1).
 
-## Open questions
+## Answers from Chris (2026-09-11)
 
-1. LA Sour × LB and S. Dot × LB: kept, named, scrapped?
-2. Names for the Run 5 crosses other than Pinecake and Janet Kush.
-3. The 2026 outdoor run: mothers and pollen donor.
-4. Gushy Kush's father.
-5. Thunder Egg's mother: Dirty Unicorn vs Unicorn Poop S1.
-6. Was the extra Skunk Venom in the Gushy Kush tent seeded?
-7. Which male hit the Baby Yoda bagseed lowers?
-8. Seed counts on hand per line.
-9. Which Lime Bubble crosses leaned Black Lime dad vs Sour Bubble dad.
+1. LA Sour × LB: the "LA Sour" cut turned out to be Notso's Headband, so it is the same plant as Slimeline. S. Dot × LB: too few seeds to continue; scrapped.
+2. Run 5 names: Marrakesh × pine line = **Peach Pagoda**; Freezer Jam × pine line = **Pineberry Preserve**; AJ's Sour Diesel × pine line = **Lumbergas**; Jerry Bears × pine line = **Sticky Wok**; Splooze × pine line = **Sour Squeeze**; Stardawg × pine line = **Stargod**. The Lemon Tree Kushy × pine line cross was scrapped.
+3. Run 6, outdoor 2026: pollen from a **Pinecake** male. Mothers: Frozen Lemon (In House), Deluxe Sugarcane (In House), Blackout Lemonade (Soiltech), Stardawg Corey cut, AJ's Sour D, Freezer Jam, Not-So-Plum-Skunk "Wave" cut, Blueberry Cupcake, Urgam × Malana, Marrakesh. Pollinated, seed developing.
+4. Gushy Kush: mother Tiger Mint Kush F2 × Pure Michigan F3 (Soiltech), father Trufflez F2.
+5. Thunder Egg's mother: Dirty Unicorn, Dirty Bird Genetics' S1 of Unicorn Poop.
+6. The extra Skunk Venom in the Gushy Kush tent was not seeded.
+7. Baby Yoda bagseed lowers were hit with Pinecake pollen.
+8. Seed counts on hand: 100 to 2,000 per line.
+9. Lime Bubble crosses: every plant caught pollen from both males; each seed is a coin toss for the dad.
+

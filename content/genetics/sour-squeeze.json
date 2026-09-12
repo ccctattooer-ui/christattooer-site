@@ -1,16 +1,16 @@
 {
-  "id": "marrakesh-x-pine",
-  "name": "Marrakesh × pine line",
+  "id": "sour-squeeze",
+  "name": "Sour Squeeze",
   "kind": "spacecraft",
   "breeder": "SpaceCraft",
-  "mother": "marrakesh",
+  "mother": "splooze",
   "father": "pine-line",
   "run": 5,
   "year": "2026",
   "flagship": false,
-  "status": "unnamed",
+  "status": "new",
   "terps": "",
-  "notes": "",
+  "notes": "Third-generation SpaceCraft: both parents are SpaceCraft lines.",
   "source": "",
   "seedfinder": ""
 }

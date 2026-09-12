@@ -1,0 +1,16 @@
+{
+  "id": "urgam-x-malana-x-pinecake",
+  "name": "Urgam × Malana × Pinecake",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "urgam-x-malana",
+  "father": "pinecake",
+  "run": 6,
+  "year": "2026",
+  "flagship": false,
+  "status": "seeding",
+  "terps": "",
+  "notes": "Outdoor 2026 run: plants over six feet, pollinated with a Pinecake male; seeds developing as of September 2026.",
+  "source": "",
+  "seedfinder": ""
+}

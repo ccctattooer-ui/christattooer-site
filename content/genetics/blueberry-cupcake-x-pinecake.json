@@ -1,0 +1,16 @@
+{
+  "id": "blueberry-cupcake-x-pinecake",
+  "name": "Blueberry Cupcake × Pinecake",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "blueberry-cupcake",
+  "father": "pinecake",
+  "run": 6,
+  "year": "2026",
+  "flagship": false,
+  "status": "seeding",
+  "terps": "",
+  "notes": "Outdoor 2026 run: plants over six feet, pollinated with a Pinecake male; seeds developing as of September 2026.",
+  "source": "",
+  "seedfinder": ""
+}

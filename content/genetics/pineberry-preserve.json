@@ -1,16 +1,16 @@
 {
-  "id": "splooze-x-pine",
-  "name": "Splooze × pine line",
+  "id": "pineberry-preserve",
+  "name": "Pineberry Preserve",
   "kind": "spacecraft",
   "breeder": "SpaceCraft",
-  "mother": "splooze",
+  "mother": "freezer-jam",
   "father": "pine-line",
   "run": 5,
   "year": "2026",
   "flagship": false,
-  "status": "unnamed",
+  "status": "new",
   "terps": "",
-  "notes": "Third-generation SpaceCraft.",
+  "notes": "",
   "source": "",
   "seedfinder": ""
 }

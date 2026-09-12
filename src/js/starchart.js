@@ -4,7 +4,7 @@
   const data = window.GENETICS || []; if (!data.length) return;
   const byId = new Map(data.map((n) => [n.id, n]));
   const KIND = { spacecraft: 'SpaceCraft cross', cut: 'clone-only cut', seedline: 'seed line', landrace: 'landrace', bagseed: 'bagseed', homebrew: 'homebrew line', unknown: 'unknown' };
-  const RUNS = { 1: 'Run 1 · Charcuterie · 2024', 2: 'Run 2 · Lime Bubble · 2025', 3: 'Run 3 · Gushy Kush · 2025', 4: 'Side chucks · 2025', 5: 'Run 5 · pine line · 2026' };
+  const RUNS = { 1: 'Run 1 · Charcuterie · 2024', 2: 'Run 2 · Lime Bubble · 2025', 3: 'Run 3 · Gushy Kush · 2025', 4: 'Side chucks · 2025', 5: 'Run 5 · pine line · 2026', 6: 'Run 6 · outdoor · Pinecake male · 2026' };
 
   // ---- generations (longest path from the roots) and children
   const gen = new Map(), kids = new Map();

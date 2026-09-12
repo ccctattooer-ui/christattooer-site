@@ -1,0 +1,16 @@
+{
+  "id": "not-so-plum-skunk-x-pinecake",
+  "name": "The Wave × Pinecake",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "not-so-plum-skunk",
+  "father": "pinecake",
+  "run": 6,
+  "year": "2026",
+  "flagship": false,
+  "status": "seeding",
+  "terps": "",
+  "notes": "Outdoor 2026 run: plants over six feet, pollinated with a Pinecake male; seeds developing as of September 2026. The Wave is the SPS-leaning keeper cut of Not-So-Plum-Skunk.",
+  "source": "",
+  "seedfinder": ""
+}

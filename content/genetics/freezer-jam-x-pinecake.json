@@ -1,0 +1,16 @@
+{
+  "id": "freezer-jam-x-pinecake",
+  "name": "Freezer Jam × Pinecake",
+  "kind": "spacecraft",
+  "breeder": "SpaceCraft",
+  "mother": "freezer-jam",
+  "father": "pinecake",
+  "run": 6,
+  "year": "2026",
+  "flagship": false,
+  "status": "seeding",
+  "terps": "",
+  "notes": "Outdoor 2026 run: plants over six feet, pollinated with a Pinecake male; seeds developing as of September 2026.",
+  "source": "",
+  "seedfinder": ""
+}

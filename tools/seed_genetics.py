@@ -1,7 +1,7 @@
 """One-time seed of content/genetics/*.json from the compiled breeding log (docs/spacecraft-breeding-log.md).
 Each file is one plant: a SpaceCraft cross, an outside cut/seed line used as a parent, or an ancestor.
 Fields: id (file name), name, kind, breeder, mother, father (ids or ""), run, year, flagship, status, terps, notes, source, seedfinder.
-Re-running overwrites only the entries defined here; hand-edited extras are left alone.
+Re-running rewrites every file and removes any not defined here, so after the site goes live edit in the admin (or in the JSON) and keep this script as history.
 """
 import json, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,13 +21,13 @@ add("communion-s1", "Communion S1", "seedline", "Romulan Genetics", notes="(Grap
 add("mutant-communion", "Communion (mutant runt)", "cut", "Romulan Genetics", notes="Pseudo-duckfoot runt from the same Communion S1 seeds: zero stretch, abysmal yield, insane lemon pine. Kept only as a cut.")
 add("tropical-slushee", "Tropical Slushee", "seedline", "Cannarado", notes="Papaya × Snowman. Two phenos were seeded: a purple grape/funk pheno and a papaya yielder.")
 add("avalon-x-banner", "Avalon × Banner", "seedline", "Next Generation", notes="Outdoor project mother. Shrugged off bud rot in a wet October; spicy, peppery, skunky, citronella.")
-add("unicorn-poop-s1", "Unicorn Poop S1", "seedline", "Dirty Bird Genetics", notes="Listed as “Dirty Unicorn” in the first post. A root-bound bonsai used as a spot filler.")
+add("dirty-unicorn", "Dirty Unicorn", "seedline", "Dirty Bird Genetics", notes="Dirty Bird's S1 of Unicorn Poop. A root-bound bonsai used as a spot filler.")
 add("tahoe-og-bagseed", "“Tahoe OG” bagseed (CBS)", "bagseed", "unknown", notes="One of a few seeds in a batch of NorCal outdoor, ~2012–14. Lanky, low yield, extremely narcotic, zero herms across cuts of cuts. Pine-oil mops, lemongrass, onion.")
 add("pure-krush", "Pure Krush", "seedline", "Romulan Genetics", notes="Pure Kush (Topanga Canyon cut) × Romulan. Sandalwood, palo santo, cologne, warm sugar cookie. Chris's favorite mother of the first run.")
 add("island-sweet-skunk", "Island Sweet Skunk", "seedline", "Next Generation", notes="The stretcher pheno, 11–12 weeks, sour lemon pine foxtails, “could clear out a parking lot”. Oiliest bud handled in years.")
 add("black-lime-reserve", "Black Lime Reserve (Jodrey cut)", "cut", notes="Father side of Lime Bubble.")
 add("sour-bubble", "’04 BOG Sour Bubble BxC-2 F2", "seedline", "BOG Seeds", notes="Mother side of Lime Bubble.")
-add("lime-bubble", "Lime Bubble ♂♂", "seedline", "Golden Road Seed Co.", "sour-bubble", "black-lime-reserve", notes="Two males used together: a lanky Black Lime leaner with a sour stem rub and a compact Sour Bubble leaner with an incense rub, greasy with trichomes at the nodes. Every Run 2 cross carries one dad or the other.")
+add("lime-bubble", "Lime Bubble ♂♂", "seedline", "Golden Road Seed Co.", "sour-bubble", "black-lime-reserve", notes="Two males used together: a lanky Black Lime leaner with a sour stem rub and a compact Sour Bubble leaner with an incense rub, greasy with trichomes at the nodes. Every Run 2 plant caught pollen from both, so each seed is a coin toss for the dad. S. Dot (Sour Dubb × Orange Tahoe) was also seeded but made too few seeds to continue.")
 add("skunk-venom", "Skunk Venom", "cut", "Humboldt Seed Co.", notes="Cali Octane × Venom OG. Unreleased unicorn tester hunted at Wild Leaf; picked up at the 2024 Emerald Cup. Sour citrus, burnt rubber, woody pine, chemical skunk; stout and squat.", terps="sour citrus, burnt rubber, pine, chemical skunk")
 add("chem-4", "Chem 4 (SoCal cut)", "cut", notes="A friend's cut. Gassy; nap-inducing narcotic; wide Jurassic paddle leaves in early veg.")
 add("albert-walker", "Albert Walker", "cut", notes="Sourced from Cloney Soprano; “99% sure this is the real Albert”. Greasy, mature citrus cologne with sulfur and gas; old-school wide-leaf unruly build.")
@@ -36,10 +36,12 @@ add("blue-dream", "Blue Dream (Archive cut)", "cut", "Archive", notes="“100% d
 add("guava-tart", "Guava Tart (PCG cut)", "cut", "Purple City Genetics", notes="Emerald Cup 2024 pickup. Fresh tennis balls and Pez candy.")
 add("rickys-hashplant", "Ricky's Hashplant", "seedline", "BGS", notes="Tester from fem seed. Baby-poo lemons, garlicky pepper, serious pucker.")
 add("sweet-stinky-cheese", "Sweet Stinky Cheese", "seedline", "Humboldt CSI", notes="From fem seed.")
-add("notsos-headband", "Notso's Headband", "cut", notes="Headband cut from a friend. “Breeds like a champ.”")
-add("la-sour", "LA Sour (Grandmother cut)", "cut", notes="Vintage cut. Seeded in Run 2; outcome not recorded.")
-add("s-dot", "S. Dot (Archive cut)", "cut", "Archive", notes="Sour Dubb × Orange Tahoe. Smelled like jelly orange slices while seeding.")
-add("gushy-kush", "Gushy Kush ♂♂♂", "homebrew", "Soiltech (OverGrow)", notes="Untested F1 from Soiltech's swamp season. Mother side TMK × Pure Michigan; father not named. Three males used, all nute-burned at transplant and recovered.")
+add("notsos-headband", "Notso's Headband", "cut", notes="Headband cut from a friend. “Breeds like a champ.” The cut labelled “LA Sour” on the Run 2 roster turned out to be this same plant.")
+add("trufflez-f2", "Trufflez F2", "seedline", notes="Father of Gushy Kush.")
+add("tiger-mint-kush-f2", "Tiger Mint Kush F2", "seedline")
+add("pure-michigan-f3", "Pure Michigan F3", "seedline", "3rd Coast Genetics (line)", notes="Pure Michigan is Oreoz × Mendobreath F2.")
+add("tmk-x-pure-michigan", "Tiger Mint Kush F2 × Pure Michigan F3", "homebrew", "Soiltech (OverGrow)", "tiger-mint-kush-f2", "pure-michigan-f3", notes="The mother of Gushy Kush: second-best smoke of about 75 plants finished in Soiltech's swamp season; deep smokey meatiness.")
+add("gushy-kush", "Gushy Kush ♂♂♂", "homebrew", "Soiltech (OverGrow)", "tmk-x-pure-michigan", "trufflez-f2", notes="Untested F1 from Soiltech's swamp season. Three males used, all nute-burned at transplant and recovered.")
 add("solar-halo", "Solar Halo", "homebrew", "JonPott (OverGrow)", notes="Two mothers used: a stretcher/heavy feeder and a shorter easy-goer. Loud astringent pine-needle stem rub.")
 add("tpk-x-pink-kush", "TPK × Ultimate Pink Kush", "homebrew", "Kyumonryu (OverGrow)", notes="Topanga Pure Kush × Ultimate Pink Kush. Two mothers used; proper kush terps, smooth sandalwood.")
 add("banapinap-black", "BanaPinAp Black", "homebrew", "Trial-N-Error (OverGrow)", notes="Easy, strong, stout, above-average resin.")
@@ -61,7 +63,7 @@ add("gary-payton", "Gary Payton", "cut")
 add("the-eucharist", "The Eucharist", "spacecraft", SC, "communion-s1", "charcuterie", 1, 2024, True, "released", "grape and lemon-drop candy, dryer sheets; tart skunky smoke, lavender floral taste", "Blue Dream-like structure, heavy feeder, PM resistant, zero herms. Keeper: The Eucharist #2, used as a mother in Run 2. The pine-line males are Eucharist siblings.")
 add("tropical-wine", "Tropical Wine", "spacecraft", SC, "tropical-slushee", "charcuterie", 1, 2024, False, "released", "grape lemonade soda and gas", "Easy, non-fussy grower; green and purple phenos; yields well.")
 add("zenyatta", "Zenyatta", "spacecraft", SC, "avalon-x-banner", "charcuterie", 1, 2024, False, "released", "", "Made for outdoor resilience. Untested indoors so far.")
-add("thunder-egg", "Thunder Egg", "spacecraft", SC, "unicorn-poop-s1", "charcuterie", 1, 2024, False, "released", "floral, fruity, complex baked sweets", "Tiny seeds and few of them; handed out as a bonus with Crepe Krush.")
+add("thunder-egg", "Thunder Egg", "spacecraft", SC, "dirty-unicorn", "charcuterie", 1, 2024, False, "released", "floral, fruity, complex baked sweets", "Tiny seeds and few of them; handed out as a bonus with Crepe Krush.")
 add("telecast-kush", "Telecast Kush", "spacecraft", SC, "tahoe-og-bagseed", "charcuterie", 1, 2024, False, "released", "", "Others report sticky buds with a foul-rot back end; some phenos keep mom's Jurassic leaves.")
 add("crepe-krush", "Crepe Krush", "spacecraft", SC, "pure-krush", "charcuterie", 1, 2024, False, "released", "woody incense, marshmallow, creamy kush", "Progeny carry the paddle leaves.")
 add("sugarplum-skunk", "Sugarplum Skunk", "spacecraft", SC, "island-sweet-skunk", "charcuterie", 1, 2024, True, "released", "sour carbonated citrus, floral menthol, greasy; zooming hang-glider high", "Finishes in 8.5 weeks. Ran on a rec facility R&D table. Males from this line sired Splooze, Not-So-Plum-Skunk and the CuCu crosses.")
@@ -79,8 +81,6 @@ add("moose-fruit", "Moose Fruit", "spacecraft", SC, "rickys-hashplant", "lime-bu
 add("sage-derby", "Sage Derby", "spacecraft", SC, "sweet-stinky-cheese", "lime-bubble", 2, 2025, False, "released", "", "A tester has two ladies going.")
 add("slimeline", "Slimeline", "spacecraft", SC, "notsos-headband", "lime-bubble", 2, 2025, False, "released")
 add("lime-divine", "Lime Divine", "spacecraft", SC, "the-eucharist", "lime-bubble", 2, 2025, False, "released", "", "First second-generation SpaceCraft cross, from The Eucharist #2.")
-add("la-sour-x-lime-bubble", "LA Sour × Lime Bubble", "spacecraft", SC, "la-sour", "lime-bubble", 2, 2025, False, "unknown", "", "Seeded in Run 2 but never seen as a pack. Name and fate to confirm.")
-add("s-dot-x-lime-bubble", "S. Dot × Lime Bubble", "spacecraft", SC, "s-dot", "lime-bubble", 2, 2025, False, "unknown", "", "Seeded in Run 2 but never seen as a pack. Name and fate to confirm.")
 add("lime-bubble-f2", "Lime Bubble F2", "spacecraft", SC, "lime-bubble", "lime-bubble", 2, 2025, False, "stock", "Irish Spring soap, citrus", "A few q-tipped lowers on the female Lime Bubbles.")
 
 # ------------------------------------------------------------------ Run 3 · Gushy Kush · 2025
@@ -103,16 +103,26 @@ add("gary-payton-x-sps", "Gary Payton × Sugarplum Skunk", "homebrew", "a friend
 # ------------------------------------------------------------------ Run 5 · pine-line males · 2026
 add("pinecake", "Pinecake", "spacecraft", SC, "blueberry-cupcake", "pine-line", 5, 2026, False, "testing", "blueberry pie with sinister funk", "Tester at week 7: big yielder, fast finisher like mom. “Really, really impressed.”")
 add("janet-kush", "Janet Kush", "spacecraft", SC, "kush-crasher", "pine-line", 5, 2026, False, "testing", "strong kushy fuel", "One of the frostiest plants grown here; medium sturdy build; wash or squish candidate.")
-add("marrakesh-x-pine", "Marrakesh × pine line", "spacecraft", SC, "marrakesh", "pine-line", 5, 2026, False, "unnamed")
-add("freezer-jam-x-pine", "Freezer Jam × pine line", "spacecraft", SC, "freezer-jam", "pine-line", 5, 2026, False, "unnamed")
-add("ajs-sour-diesel-x-pine", "AJ's Sour Diesel × pine line", "spacecraft", SC, "ajs-sour-diesel", "pine-line", 5, 2026, False, "unnamed")
-add("stardawg-x-pine", "Stardawg × pine line", "spacecraft", SC, "stardawg-corey", "pine-line", 5, 2026, False, "unnamed")
-add("splooze-x-pine", "Splooze × pine line", "spacecraft", SC, "splooze", "pine-line", 5, 2026, False, "unnamed", "", "Third-generation SpaceCraft.")
-add("lemon-tree-kushy-x-pine", "Lemon Tree Kushy × pine line", "spacecraft", SC, "lemon-tree-kushy", "pine-line", 5, 2026, False, "unnamed")
-add("jerry-bears-x-pine", "Jerry Bears × pine line", "spacecraft", SC, "jerry-bears", "pine-line", 5, 2026, False, "unnamed", "", "From the orange gummy candy pheno.")
+add("peach-pagoda", "Peach Pagoda", "spacecraft", SC, "marrakesh", "pine-line", 5, 2026, False, "new")
+add("pineberry-preserve", "Pineberry Preserve", "spacecraft", SC, "freezer-jam", "pine-line", 5, 2026, False, "new")
+add("lumbergas", "Lumbergas", "spacecraft", SC, "ajs-sour-diesel", "pine-line", 5, 2026, False, "new")
+add("stargod", "Stargod", "spacecraft", SC, "stardawg-corey", "pine-line", 5, 2026, False, "new")
+add("sour-squeeze", "Sour Squeeze", "spacecraft", SC, "splooze", "pine-line", 5, 2026, False, "new", "", "Third-generation SpaceCraft: both parents are SpaceCraft lines.")
+add("sticky-wok", "Sticky Wok", "spacecraft", SC, "jerry-bears", "pine-line", 5, 2026, False, "new", "", "From the orange gummy candy Jerry Bears pheno.")
 add("pine-line-f2", "Pine line F2", "spacecraft", SC, "pine-line", "pine-line", 5, 2026, False, "stock", "grape candy and lemon pine; earthy incense pine", "Two stand-in females; where the mutant male will be found if it exists.")
 
+# ------------------------------------------------------------------ Run 6 · outdoor · Pinecake male · 2026
+add("frozen-lemon", "Frozen Lemon", "seedline", "In House Genetics")
+add("deluxe-sugarcane", "Deluxe Sugarcane", "seedline", "In House Genetics")
+add("blackout-lemonade", "Blackout Lemonade", "homebrew", "Soiltech (OverGrow)")
+add("urgam-x-malana", "Urgam × Malana", "landrace", notes="Himalayan landrace cross.")
+add("baby-yoda-bagseed", "Baby Yoda bagseed", "bagseed", notes="One seed found in a friend's half ounce of Baby Yoda; father unknown. Wicked smell, dark green waxy leaves.")
+for mid, mname in [("frozen-lemon", "Frozen Lemon"), ("deluxe-sugarcane", "Deluxe Sugarcane"), ("blackout-lemonade", "Blackout Lemonade"), ("stardawg-corey", "Stardawg"), ("ajs-sour-diesel", "AJ's Sour Diesel"), ("freezer-jam", "Freezer Jam"), ("not-so-plum-skunk", "The Wave"), ("blueberry-cupcake", "Blueberry Cupcake"), ("urgam-x-malana", "Urgam × Malana"), ("marrakesh", "Marrakesh"), ("baby-yoda-bagseed", "Baby Yoda bagseed")]:
+    add(mid + "-x-pinecake", mname + " × Pinecake", "spacecraft", SC, mid, "pinecake", 6, 2026, False, "seeding", "", "Outdoor 2026 run: plants over six feet, pollinated with a Pinecake male; seeds developing as of September 2026." + (" The Wave is the SPS-leaning keeper cut of Not-So-Plum-Skunk." if mid == "not-so-plum-skunk" else "") + (" A couple of lowers were hit, the rest grown for flower." if mid == "baby-yoda-bagseed" else ""))
+
 ids = {n["id"] for n in N}
+for f in os.listdir(OUT):
+    if f.endswith(".json") and f[:-5] not in ids: os.remove(os.path.join(OUT, f)); print("removed", f)
 for n in N:
     for k in ("mother", "father"):
         assert not n[k] or n[k] in ids, (n["id"], k, n[k])

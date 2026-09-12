@@ -1,6 +1,6 @@
 {
-  "id": "jerry-bears-x-pine",
-  "name": "Jerry Bears × pine line",
+  "id": "sticky-wok",
+  "name": "Sticky Wok",
   "kind": "spacecraft",
   "breeder": "SpaceCraft",
   "mother": "jerry-bears",
@@ -8,9 +8,9 @@
   "run": 5,
   "year": "2026",
   "flagship": false,
-  "status": "unnamed",
+  "status": "new",
   "terps": "",
-  "notes": "From the orange gummy candy pheno.",
+  "notes": "From the orange gummy candy Jerry Bears pheno.",
   "source": "",
   "seedfinder": ""
 }
