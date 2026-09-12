@@ -11,34 +11,13 @@
     "show": true,
     "message": "CHEAT MODE: the walls turned gold. Nice one."
   },
-  "badges": {
-    "show": true,
-    "own": "CHRIS|TATTOOER",
-    "books": "",
-    "space": "SPACECRAFT|GENETICS",
-    "eyes": "BEST VIEWED|WITH EYES",
-    "made": ""
-  },
-  "cursor": {
-    "show": true
-  },
-  "timeOfDay": {
-    "show": true
-  },
-  "viewSource": {
-    "show": true
-  },
-  "news": {
-    "show": true,
-    "text": "BOOKS OPEN ★ MONDAYS & TUESDAYS AT TATTOO PEACE ★ DM @CHRISTATTOOER TO GET ON THE LIST"
-  },
   "wheel": {
     "show": true,
-    "segments": 10,
     "label": "CAN'T DECIDE? SPIN THE WHEEL",
-    "intro": "Shops have been doing this forever. Give it a spin and take what you get.",
+    "segments": 10,
+    "intro": "Bored and uninspired? Give it a spin and take what you get.",
     "spinButton": "SPIN IT",
-    "idle": "The needle is at the top. Whatever it lands on is yours.",
+    "idle": "Gambling is FUN. Give it a spin and see where it lands!",
     "spinning": "Spinning…",
     "kicker": "THE WHEEL SAYS",
     "addButton": "ADD IT TO MY REQUEST",
@@ -48,14 +27,10 @@
   "paint": {
     "show": true,
     "label": "…or draw it instead",
-    "lead": "Can't put it in words? Scribble it. It arrives with your request as a picture — rough is completely fine, that's what it's for.",
-    "empty": "Nothing drawn yet — the pad is optional.",
+    "lead": "Can't put it in words? Scribble it down for me.",
+    "empty": "Nothing drawn yet",
     "attached": "Drawing attached. It'll come through with your request.",
     "unsupported": "Your browser can't attach the drawing. Describe it above instead."
-  },
-  "counter": {
-    "show": true,
-    "label": "VISITORS"
   },
   "bios": {
     "show": true,
@@ -86,5 +61,30 @@
     "random": "",
     "next": "",
     "home": ""
+  },
+  "news": {
+    "show": true,
+    "text": "BOOKS OPEN ★ MONDAYS & TUESDAYS AT TATTOO PEACE ★ DM @CHRISTATTOOER TO GET ON THE LIST"
+  },
+  "badges": {
+    "show": true,
+    "own": "CHRIS|TATTOOER",
+    "books": "",
+    "space": "SPACECRAFT|GENETICS",
+    "eyes": "BEST VIEWED|WITH EYES",
+    "made": ""
+  },
+  "cursor": {
+    "show": true
+  },
+  "timeOfDay": {
+    "show": true
+  },
+  "viewSource": {
+    "show": true
+  },
+  "counter": {
+    "label": "VISITORS",
+    "show": true
   }
 }
