@@ -8,10 +8,6 @@ lede: I love doing tattoos! I currently work at Tattoo Peace and specialize in b
 facts: true
 ---
 
-## The short version
+## Other things I make and do
 
-Write a few paragraphs here about how you got into tattooing, what you love to draw, and what a session with you is like. People read this page when they're deciding whether to book, so say the things you'd want a nervous first-timer to know.
-
-## Other things I make
-
-Tattoos are my main thing but not the only thing. I make [paintings](/paintings/), I play [games](/games/) competetively, I have a [store](/store/), and I love to breed stinky and sticky plants under the label [SpaceCraft](/spacecraft/) - Browse around!
+Tattoos are my main thing but not the only thing. I make [paintings](/paintings/), I play [games](/games/) competitively and I love to breed stinky and sticky plants under the label [SpaceCraft](/spacecraft/) - Browse around!
