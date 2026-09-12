@@ -8,7 +8,10 @@
 <link rel="icon" href="/assets/favicon.png">
 </head>
 <body>
-<a href="/admin/prices/" style="position:fixed;right:12px;bottom:12px;z-index:9999;background:#4B2E9C;color:#fff;font:700 13px system-ui,sans-serif;padding:8px 12px;border:2px solid #15121A;box-shadow:3px 3px 0 #15121A;text-decoration:none">Quick edit all designs ↗</a>
+<div style="position:fixed;right:12px;bottom:12px;z-index:9999;display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+  <a href="/admin/guestbook/" style="background:#15121A;color:#F0C22E;font:700 13px system-ui,sans-serif;padding:8px 12px;border:2px solid #15121A;box-shadow:3px 3px 0 #15121A;text-decoration:none">Guestbook to approve ↗</a>
+  <a href="/admin/prices/" style="background:#4B2E9C;color:#fff;font:700 13px system-ui,sans-serif;padding:8px 12px;border:2px solid #15121A;box-shadow:3px 3px 0 #15121A;text-decoration:none">Quick edit all designs ↗</a>
+</div>
 <div id="flash-tip" hidden style="position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:9999;background:#F0C22E;color:#15121A;font:600 13px system-ui,sans-serif;padding:8px 14px;border:2px solid #15121A;box-shadow:3px 3px 0 #15121A;white-space:nowrap">Editing prices, sizes or names for many designs? <a href="/admin/prices/" style="color:#4B2E9C">Use the quick edit grid ↗</a></div>
 <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 <script>

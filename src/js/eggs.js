@@ -181,6 +181,41 @@
     }
   }
 
+  // ---------------------------------------------------------------- visitor counter
+  // Counts visits, not page views: it only adds one on the first page of a browser session, so a
+  // read through six departments is one visitor. If the database isn't connected the box stays
+  // hidden and nothing on the page moves.
+  var hitbox = document.getElementById("hitbox");
+  if (on("counter") && hitbox) {
+    var SEEN = "ct-counted";
+    var fresh = false;
+    try { fresh = !sessionStorage.getItem(SEEN); } catch (e) {}
+    fetch("/api/hits", { method: fresh ? "POST" : "GET" })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.ok || typeof d.n !== "number") return;
+        try { sessionStorage.setItem(SEEN, "1"); } catch (e) {}
+        var digits = String(d.n).padStart(6, "0").split("");
+        var odo = document.getElementById("odo");
+        odo.innerHTML = "";
+        digits.forEach(function (ch) {
+          var cell = document.createElement("i");
+          cell.textContent = reduce ? ch : "0";
+          odo.appendChild(cell);
+        });
+        hitbox.hidden = false;
+        if (reduce) return;
+        Array.prototype.forEach.call(odo.children, function (cell, i) {
+          var target = digits[i], spin = 0;
+          var t = setInterval(function () {
+            cell.textContent = String(spin++ % 10);
+            if (spin > 8 + i * 2) { clearInterval(t); cell.textContent = target; }
+          }, 55);
+        });
+      })
+      .catch(function () { /* no counter, no noise */ });
+  }
+
   // ---------------------------------------------------------------- flash screensaver
   // Sixty seconds of nothing happening on a ParlorOS desktop and the drawings start bouncing.
   // Any key, click, touch or mouse move puts it away again.

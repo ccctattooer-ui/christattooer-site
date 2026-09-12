@@ -15,6 +15,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
 | Flash order (drag to sort) | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
 | SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
+| Guestbook page | the wording on /guestbook/ (entries themselves are approved at /admin/guestbook/) | `src/_data/guestbookPage.json` |
 | Sticker hunt & coupon | the six hidden stickers (name, hiding place, hint, colour, artwork) and the coupon (amount, minimum, how long it lasts, small print) | `src/_data/stickers.json`, `src/_data/coupon.json` |
 | Shop helper | the skull that pops up: whether it shows, where, how long it waits, and every line it says | `src/_data/helper.json` |
 | Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
@@ -110,6 +111,29 @@ Each sticker's artwork is a 256×256 PNG in `assets/icons/`. Leave the Artwork f
 
 Any plant in **SpaceCraft genetics** can be ticked **Scrapped**, with a one-line reason. A scrapped plant leaves the roster and the star chart, stops counting towards the total, and turns up in the **recycle.bin** window on the SpaceCraft desktop instead — so "51 crosses made here" stays true while the ones that didn't work out are still on show. Three are in there now, out of the breeding log.
 
+## The guestbook and the visitor counter
+
+These two are the only things on the site that need a database. **It is not switched on yet** — see below.
+
+**Nothing a visitor writes ever appears on its own.** Signatures land unapproved and stay invisible until you approve them at **/admin/guestbook/** (same username and password as the rest of the admin; there's a button for it in the corner of the admin). Approve, hide or delete in bulk. On top of that: a honeypot, hard length caps, and one signature per address per hour. Addresses are stored only as a salted hash — enough to rate-limit, useless for anything else.
+
+The counter counts *visits*, not page views: the page only adds one on the first page of a browser session, so someone reading through six departments counts once. Anything that doesn't run JavaScript never reaches it.
+
+### Switching the database on
+
+Everything is written and shipped, but the binding in `wrangler.jsonc` is **deliberately commented out**: a `database_id` that doesn't exist makes the Cloudflare deploy fail, which would stop the whole site updating. While it's off, `/api/hits` and `/api/guestbook` answer "not connected", the counter stays hidden and the guestbook page says it isn't open yet. Nothing breaks.
+
+To turn it on, once:
+
+```
+npx wrangler d1 create christattooer
+npx wrangler d1 execute christattooer --remote --file=migrations/0001_init.sql
+```
+
+Then paste the id the first command prints into the commented block in `wrangler.jsonc`, uncomment it, and push. Optionally set a `GUESTBOOK_SALT` secret (`npx wrangler secret put GUESTBOOK_SALT --name christattooer`) so the address hashes are unique to this site.
+
+For local work, `--local` instead of `--remote` sets up the copy `npx wrangler dev` uses.
+
 ## How the admin login works
 
 The admin is [Sveltia CMS](https://sveltiacms.app/). It talks to the GitHub repo, but you never see GitHub: `functions/admin/auth.js` shows a username/password form and, on success, hands the CMS a repo-scoped GitHub token. These secrets live on the Worker (Cloudflare dashboard → Workers & Pages → christattooer → Settings → Variables and Secrets), or `npx wrangler secret put NAME --name christattooer`:
@@ -165,11 +189,16 @@ src/
   stickers.njk      the sticker sheet and the printable coupon at /stickers/
   js/wheel.js       the prize wheel, loaded by /flash/ only
   js/pad.js         the sketch pad, loaded by /book/ only
+  guestbook.njk     /guestbook/ + js/guestbook.js
+  admin/guestbook/  the moderation screen (custom page, not part of the CMS)
+migrations/         the D1 schema, run once with wrangler
   js/eggs.js        every easter egg, switched in the admin (src/_data/eggs.json)
   work.njk          all photos + lightbox
   book.njk          booking
   department.njk    one page per department (paintings collage, games, store, spacecraft)
-functions/          server routes: admin/auth.js (login), admin/api/flash.js (price sheet), api/book.js (booking email)
+functions/          server routes: admin/auth.js (login), admin/api/flash.js (price sheet),
+                    admin/api/guestbook.js (moderation), api/book.js (booking email),
+                    api/guestbook.js, api/hits.js
 worker/index.js     Worker entry: routes those three paths, serves everything else from _site
 wrangler.jsonc      Cloudflare Worker config (assets dir, build command)
 assets/             web-ready images that ship with the site

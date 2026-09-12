@@ -379,6 +379,23 @@ collections:
               - { label: Tape strips, name: tape, widget: boolean, default: true }
               - { label: Smallest piece width (px), name: columnWidth, widget: number, value_type: int, min: 100, max: 260, step: 10, hint: Smaller = more pieces per row. }
 
+  # ----------------------------------------------------------------- guestbook
+  - name: guestbookpage
+    label: Guestbook page
+    files:
+      - name: guestbookpage
+        label: Wording on /guestbook/
+        description: "The words on the guestbook page. Entries themselves are approved on the moderation screen: /admin/guestbook/"
+        file: src/_data/guestbookPage.json
+        format: json
+        fields:
+          - { label: Show the guestbook, name: show, widget: boolean, default: true, hint: Turn this off to take the link out of the footer. }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro, name: blurb, widget: text }
+          - { label: Box placeholder, name: placeholder, widget: string }
+          - { label: Note under the button, name: note, widget: string }
+          - { label: When it is not connected yet, name: closed, widget: string, hint: Shown while the guestbook database has not been set up. }
+
   # -------------------------------------------------------------- sticker hunt
   - name: hunt
     label: Sticker hunt & coupon

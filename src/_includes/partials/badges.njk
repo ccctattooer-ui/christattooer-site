@@ -1,5 +1,11 @@
 {#- The 88x31 button wall: old-web furniture, drawn in CSS so there are no GIFs to host and they
     stay sharp on a phone. The first one is Chris's own, for other people to link to. -#}
+{%- if eggs.counter.show %}
+<div class="hitbox" id="hitbox" hidden>
+  <span class="hitlabel">{{ eggs.counter.label }}</span>
+  <span class="odo" id="odo" aria-label="Visitor counter"></span>
+</div>
+{%- endif %}
 {%- if eggs.badges.show %}
 <div class="b31wall" aria-label="Web buttons">
   <span class="b31 b-own"><b>CHRIS</b>TATTOOER</span>

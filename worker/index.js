@@ -3,8 +3,18 @@
 import * as auth from "../functions/admin/auth.js";
 import * as flash from "../functions/admin/api/flash.js";
 import * as book from "../functions/api/book.js";
+import * as hits from "../functions/api/hits.js";
+import * as guestbook from "../functions/api/guestbook.js";
+import * as gbAdmin from "../functions/admin/api/guestbook.js";
 
-const routes = { "/admin/auth": auth, "/admin/api/flash": flash, "/api/book": book };
+const routes = {
+  "/admin/auth": auth,
+  "/admin/api/flash": flash,
+  "/admin/api/guestbook": gbAdmin,
+  "/api/book": book,
+  "/api/hits": hits,
+  "/api/guestbook": guestbook,
+};
 
 // Static-asset serving ignores Range headers, and Safari (iPhone) refuses to play a video unless the
 // server honours them. So for media files we fetch the whole asset and slice it ourselves (206).

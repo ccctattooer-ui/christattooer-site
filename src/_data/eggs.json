@@ -35,5 +35,9 @@
   "paint": {
     "show": true,
     "label": "…or draw it instead"
+  },
+  "counter": {
+    "show": true,
+    "label": "VISITORS"
   }
 }
