@@ -15,6 +15,7 @@
 <style>:root{--stencil:{{ theme.catalog.stencil }};--yellow:{{ theme.catalog.yellow }};--red:{{ theme.catalog.red }};--green:{{ theme.catalog.green }};--ink:{{ theme.catalog.ink }}}@media (min-width:1001px){.grid{grid-template-columns:repeat({{ theme.catalog.columns }},minmax(0,1fr))}.wgrid{grid-template-columns:repeat({{ theme.catalog.workColumns }},minmax(0,1fr))}}</style>
 </head>
 <body>
+{% include "partials/signature.njk" %}
 <div class="topline">
   <span>{{ site.catalogLabel }} · Flash &amp; custom tattoo · {{ site.shop.name }}, {{ site.shop.city }}</span>
   <span>{{ site.hoursShort }} · {{ site.booksStatus }}</span>
@@ -49,6 +50,7 @@
   <div><b>Deposits</b>{{ site.pricing.deposit | money }} deposit. {{ site.pricing.depositNote }}</div>
   <div><b>Aftercare</b><a href="/aftercare/">Read the sheet</a>. Wash it, don't pick it, stay out of the sun.</div>
   <div><b>Elsewhere</b><a href="https://instagram.com/{{ site.instagram }}">Instagram</a> · <a href="{{ site.squareBooking }}">Square booking</a> · <a href="/spacecraft/">SpaceCraft</a><br>© 2026 {{ site.name }} · {{ site.shop.name }}</div>
+  {% include "partials/badges.njk" %}
 </footer>
 
 <aside class="drawer" id="drawer" aria-label="Booking request" hidden>
@@ -69,6 +71,8 @@
   </form>
 </aside>
 
+<script>window.EGGS = {{ eggs | dump | safe }};</script>
 <script src="/js/catalog.js"></script>
+<script src="/js/eggs.js" defer></script>
 </body>
 </html>

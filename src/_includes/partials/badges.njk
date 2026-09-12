@@ -1,0 +1,11 @@
+{#- The 88x31 button wall: old-web furniture, drawn in CSS so there are no GIFs to host and they
+    stay sharp on a phone. The first one is Chris's own, for other people to link to. -#}
+{%- if eggs.badges.show %}
+<div class="b31wall" aria-label="Web buttons">
+  <span class="b31 b-own"><b>CHRIS</b>TATTOOER</span>
+  <a class="b31 b-books" href="/book/"><i>{{ site.booksStatus | upper }}</i></a>
+  <a class="b31 b-space" href="/spacecraft/"><b>SPACECRAFT</b>GENETICS</a>
+  <span class="b31 b-eyes">BEST VIEWED<br>WITH EYES</span>
+  <span class="b31 b-made">MADE IN<br>{{ site.shop.locality | upper }} {{ site.shop.region | upper }}</span>
+</div>
+{%- endif %}

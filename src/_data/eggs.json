@@ -1,0 +1,26 @@
+{
+  "construction": {
+    "show": true,
+    "marquee": "STORE OPENING SOON ★ PRINTS ★ SHIRTS ★ STICKERS ★ DM @CHRISTATTOOER"
+  },
+  "screensaver": {
+    "show": true,
+    "idleSeconds": 60
+  },
+  "konami": {
+    "show": true,
+    "message": "CHEAT MODE: the walls turned gold. Nice one."
+  },
+  "badges": {
+    "show": true
+  },
+  "cursor": {
+    "show": true
+  },
+  "timeOfDay": {
+    "show": true
+  },
+  "viewSource": {
+    "show": true
+  }
+}

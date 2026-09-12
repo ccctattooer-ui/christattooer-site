@@ -377,6 +377,55 @@ collections:
               - { label: Tape strips, name: tape, widget: boolean, default: true }
               - { label: Smallest piece width (px), name: columnWidth, widget: number, value_type: int, min: 100, max: 260, step: 10, hint: Smaller = more pieces per row. }
 
+  # ---------------------------------------------------------------- fun stuff
+  - name: eggs
+    label: Fun stuff
+    files:
+      - name: eggs
+        label: Easter eggs and old-web bits
+        description: Every playful extra on the site, with an on/off switch for each. Turn anything off here and it disappears straight away — no need to ask.
+        file: src/_data/eggs.json
+        format: json
+        fields:
+          - label: Roadworks on unopened departments
+            name: construction
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: Barricade, digger and scrolling sign. Appears on any department whose Status still says soon, later or under construction — change the status and it retires itself. }
+              - { label: Sign text, name: marquee, widget: string, hint: The words that scroll across the sign. }
+          - label: Flash screensaver
+            name: screensaver
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: Your drawings bounce around the desktop after a spell of no activity. Desktop only, and off for anyone who asks for reduced motion. }
+              - { label: Wait before it starts (seconds), name: idleSeconds, widget: number, value_type: int, min: 10, max: 600, step: 5 }
+          - label: Konami code
+            name: konami
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: 'Up up down down left right left right B A turns the walls gold.' }
+              - { label: Message, name: message, widget: string, hint: The little note that pops up when someone gets it right. }
+          - label: Web buttons in the footer
+            name: badges
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: The strip of 88x31 buttons, including your own for other people to link to. }
+          - label: Tattoo machine pointer
+            name: cursor
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: Replaces the mouse pointer on the desktop pages. Mouse only, never on a phone. }
+          - label: Wallpaper follows the clock
+            name: timeOfDay
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: Warms the desktop at dawn and dusk and darkens it at night. Only ever a tint over the colour you picked in Look & colors. }
+          - label: Hidden note in the page source
+            name: viewSource
+            widget: object
+            fields:
+              - { label: Show, name: show, widget: boolean, default: true, hint: An ASCII skull and a hello for anyone who views the source. Invisible on the page itself. }
+
   # ------------------------------------------------------------ breeding runs
   - name: runs
     label: Breeding runs

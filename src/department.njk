@@ -18,6 +18,25 @@ eleventyComputed:
     <h1>{{ dept.name }}</h1>
     <p>{{ dept.blurb }}</p>
     <p class="status">Status: {{ dept.status }}</p>
+    {#- Roadworks show while a department's own status still says it is not open. Change the status
+        in the admin and they retire themselves. -#}
+    {%- set s = dept.status | lower %}
+    {%- set notOpen = ("soon" in s) or ("later" in s) or ("construction" in s) %}
+    {%- if eggs.construction.show and notOpen %}
+    <div class="roadworks" aria-label="This department is not open yet">
+      <div class="barricade"></div>
+      <svg class="digger" viewBox="0 0 52 44" role="img" aria-label="Digger">
+        <g shape-rendering="crispEdges">
+          <rect x="6" y="24" width="30" height="12" fill="var(--yellow)" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="12" y="14" width="14" height="10" fill="#8FD6FF" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M34 26l14-12" stroke="var(--ink)" stroke-width="4"/>
+          <path d="M44 10h8v8h-8z" fill="#7a7263" stroke="var(--ink)" stroke-width="2"/>
+          <circle cx="14" cy="38" r="5" fill="var(--ink)"/><circle cx="30" cy="38" r="5" fill="var(--ink)"/>
+        </g>
+      </svg>
+      <div class="ticker"><span>&#9733; {{ eggs.construction.marquee }} &#9733; {{ eggs.construction.marquee }} &#9733; </span></div>
+    </div>
+    {%- endif %}
     {%- if dept.images.length %}
     <p><a class="btn" href="#" data-open="w-gallery">OPEN PHOTOS</a> <a class="btn ghost" href="/flash/">BACK TO CATALOG</a></p>
     {%- else %}

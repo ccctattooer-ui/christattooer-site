@@ -15,6 +15,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 | Game montages | the YouTube playlist on /games/, one draggable list | `content/videos.json` |
 | Flash order (drag to sort) | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
 | SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
+| Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
 | Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |
 | Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
 | Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
@@ -53,6 +54,28 @@ Tapping any plant opens a tabbed readout:
 Outside plants get the same readout minus the run tab, and are labelled as outside genetics.
 
 The roster reads off `content/genetics/*.json`, so a new cross appears as soon as its file exists. Two fields are worth filling in for every cross, because the list shows them: **terps** (the line under each name — 24 of the 51 have one so far) and **status** (the pill on the right: released, testing, seeding, stock, new, unreleased).
+
+## The fun stuff
+
+Everything playful lives behind one switch each in **Fun stuff**, and one script: `src/js/eggs.js` (under 5 KB, deferred, loaded on the catalog and desktop pages). Turning something off in the admin makes it vanish — nothing is hardcoded on.
+
+Three house rules it sticks to, worth keeping if you add more:
+
+- **Nothing moves until it's invited.** The screensaver waits for real idle; nothing autoplays; nothing makes noise.
+- **Anything animated stops for `prefers-reduced-motion`**, and anything needing room (the screensaver) checks for a desktop-sized screen and a mouse first.
+- **The money pages stay clean.** Flash, Work and Book carry at most one playful thing each, and nothing that crowds the Add-to-request and Send-request buttons.
+
+What's in there now:
+
+| | What it does |
+| --- | --- |
+| Roadworks | Barricade, digger and scrolling sign on any department whose Status still says soon / later / under construction. Change the status and it retires itself — no code change. |
+| Screensaver | Your drawings bounce around the ParlorOS desktop after a spell of no activity (default 60s). Seven designs spread across the catalog, picked by the `spread` filter so the page doesn't ship all 71 paths. |
+| Konami code | ↑↑↓↓←→←→BA anywhere turns the walls gold and shows a note you can edit. Ignores keystrokes aimed at a form field. |
+| Footer buttons | Five 88×31 buttons drawn in CSS, including your own for other people to link to. The "books open" one blinks, unless reduced motion is on. |
+| Machine pointer | A tattoo machine as the mouse pointer, rotary on links. Mouse only. |
+| Clock wallpaper | Warms the desktop at dawn and dusk, darkens it after midnight. Only ever a tint *over* the colour in Look & colors, so your palette still wins. |
+| View-source note | An ASCII skull and a hello in the page source. Invisible on the page. |
 
 ## How the admin login works
 
@@ -103,6 +126,8 @@ src/
   404.njk           the page a wrong address lands on
   sitemap.njk       /sitemap.xml, robots.njk -> /robots.txt
   _includes/partials/meta.njk   canonical + share-preview tags + LocalBusiness JSON-LD
+  _includes/partials/           signature.njk (view-source note), badges.njk (footer buttons)
+  js/eggs.js        every easter egg, switched in the admin (src/_data/eggs.json)
   work.njk          all photos + lightbox
   book.njk          booking
   department.njk    one page per department (paintings collage, games, store, spacecraft)
