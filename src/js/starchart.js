@@ -77,8 +77,9 @@
   const unit = () => { const { w, h } = boxSize(); return Math.min(w / W, h / H); }; // svg units per viewBox unit
   function fit() { scale = 1; tx = 0; ty = 0; apply(); }
   function centerOn(id, s) {
-    const p = pos.get(id); if (!p) return; const { w, h } = boxSize(); const u = unit();
-    if (s) scale = s; tx = (w / u) / 2 - p.x * scale; ty = (h / u) / 2 - p.y * scale; apply();
+    // the viewBox is letterboxed and centred in the box, so its centre is (W/2, H/2) in viewBox units
+    const p = pos.get(id); if (!p) return;
+    if (s) scale = s; tx = W / 2 - p.x * scale; ty = H / 2 - p.y * scale; apply();
   }
   const svgPt = (cx, cy) => { const r = box.getBoundingClientRect(); const u = unit(); return { x: (cx - r.left - (r.width - W * u) / 2) / u, y: (cy - r.top - (r.height - H * u) / 2) / u }; };
   function zoomAt(f, cx, cy) { const p = svgPt(cx, cy); const ns2 = Math.min(6, Math.max(.3, scale * f)); tx = p.x - (p.x - tx) * (ns2 / scale); ty = p.y - (p.y - ty) * (ns2 / scale); scale = ns2; apply(); }
@@ -159,7 +160,7 @@
     if (mid) centerOn(mid.id, s); else fit();
   }
   fit(); initView();
-  document.querySelectorAll('[data-open="w-chart"]').forEach((b) => b.addEventListener('click', () => setTimeout(initView, 50)));
-  document.querySelectorAll('#tasks').forEach((t) => t.addEventListener('click', () => setTimeout(initView, 50)));
+  if (window.ResizeObserver) new ResizeObserver(() => initView()).observe(box);
+  document.querySelectorAll('[data-open="w-chart"]').forEach((b) => b.addEventListener('click', () => setTimeout(initView, 60)));
   window.addEventListener('resize', apply);
 })();
