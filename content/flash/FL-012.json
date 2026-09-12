@@ -1,11 +1,11 @@
 {
   "sku": "FL-012",
-  "name": "Bat & rose",
+  "name": "butterfly & roseswords",
   "category": "Animals",
   "image": "/assets/flash/web/flash-12.webp",
   "size": "5 in",
-  "hours": 2,
   "price": 300,
+  "hours": 2,
   "available": true,
   "notes": ""
 }
