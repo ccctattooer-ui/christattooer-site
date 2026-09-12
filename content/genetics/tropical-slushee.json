@@ -3,8 +3,8 @@
   "name": "Tropical Slushee",
   "kind": "seedline",
   "breeder": "Cannarado",
-  "mother": "",
-  "father": "",
+  "mother": "snowman",
+  "father": "papaya-oni",
   "run": 0,
   "year": "",
   "flagship": false,
@@ -12,5 +12,5 @@
   "terps": "",
   "notes": "Papaya × Snowman. Two phenos were seeded: a purple grape/funk pheno and a papaya yielder.",
   "source": "",
-  "seedfinder": ""
+  "seedfinder": "https://seedfinder.eu/en/strain-info/tropical-slushee/cannarado-genetics"
 }

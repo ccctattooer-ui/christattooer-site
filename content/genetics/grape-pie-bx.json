@@ -3,8 +3,8 @@
   "name": "Grape Pie bx",
   "kind": "seedline",
   "breeder": "Cannarado",
-  "mother": "",
-  "father": "",
+  "mother": "grape-pie",
+  "father": "grape-pie-x-doho",
   "run": 0,
   "year": "",
   "flagship": false,
@@ -12,5 +12,5 @@
   "terps": "",
   "notes": "Grape Pie backcrossed with Grape Pie × DoHo.",
   "source": "",
-  "seedfinder": ""
+  "seedfinder": "https://seedfinder.eu/en/strain-info/grape-pie-bx/cannarado-genetics"
 }

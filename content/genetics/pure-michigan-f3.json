@@ -3,14 +3,14 @@
   "name": "Pure Michigan F3",
   "kind": "seedline",
   "breeder": "3rd Coast Genetics (line)",
-  "mother": "",
-  "father": "",
+  "mother": "oreoz",
+  "father": "mendobreath-f2",
   "run": 0,
   "year": "",
   "flagship": false,
   "status": "",
   "terps": "",
-  "notes": "Pure Michigan is Oreoz × Mendobreath F2.",
+  "notes": "3rd Coast Genetics' Pure Michigan (Oreoz × Mendobreath F2), worked to F3 by Soiltech.",
   "source": "",
-  "seedfinder": ""
+  "seedfinder": "https://seedfinder.eu/en/strain-info/pure-michigan/3rd-coast-genetics/genealogy"
 }

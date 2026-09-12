@@ -1,0 +1,16 @@
+{
+  "id": "animal-mints",
+  "name": "Animal Mints",
+  "kind": "seedline",
+  "breeder": "Seed Junky",
+  "mother": "animal-cookies",
+  "father": "sinmint-cookies",
+  "run": 0,
+  "year": "",
+  "flagship": false,
+  "status": "",
+  "terps": "",
+  "notes": "",
+  "source": "",
+  "seedfinder": ""
+}

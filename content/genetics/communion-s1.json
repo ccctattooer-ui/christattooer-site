@@ -3,8 +3,8 @@
   "name": "Communion S1",
   "kind": "seedline",
   "breeder": "Romulan Genetics",
-  "mother": "",
-  "father": "",
+  "mother": "gso-x-durban",
+  "father": "romulan",
   "run": 0,
   "year": "",
   "flagship": false,
@@ -12,5 +12,5 @@
   "terps": "",
   "notes": "(Grapestomper OG × Durban Poison) × Romulan. Lanky, stacked, 9 weeks, a trimmer's dream. The Eucharist's mother.",
   "source": "",
-  "seedfinder": ""
+  "seedfinder": "https://seedfinder.eu/en/strain-info/communion/romulan-genetics"
 }

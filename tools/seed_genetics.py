@@ -3,7 +3,8 @@ Each file is one plant: a SpaceCraft cross, an outside cut/seed line used as a p
 Fields: id (file name), name, kind, breeder, mother, father (ids or ""), run, year, flagship, status, terps, notes, source, seedfinder.
 Re-running rewrites every file and removes any not defined here, so after the site goes live edit in the admin (or in the JSON) and keep this script as history.
 """
-import json, os
+import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "content", "genetics"); os.makedirs(OUT, exist_ok=True)
 
@@ -119,6 +120,14 @@ add("urgam-x-malana", "Urgam × Malana", "landrace", notes="Himalayan landrace c
 add("baby-yoda-bagseed", "Baby Yoda bagseed", "bagseed", notes="One seed found in a friend's half ounce of Baby Yoda; father unknown. Wicked smell, dark green waxy leaves.")
 for mid, mname in [("frozen-lemon", "Frozen Lemon"), ("deluxe-sugarcane", "Deluxe Sugarcane"), ("blackout-lemonade", "Blackout Lemonade"), ("stardawg-corey", "Stardawg"), ("ajs-sour-diesel", "AJ's Sour Diesel"), ("freezer-jam", "Freezer Jam"), ("not-so-plum-skunk", "The Wave"), ("blueberry-cupcake", "Blueberry Cupcake"), ("urgam-x-malana", "Urgam × Malana"), ("marrakesh", "Marrakesh"), ("baby-yoda-bagseed", "Baby Yoda bagseed")]:
     add(mid + "-x-pinecake", mname + " × Pinecake", "spacecraft", SC, mid, "pinecake", 6, 2026, False, "seeding", "", "Outdoor 2026 run: plants over six feet, pollinated with a Pinecake male; seeds developing as of September 2026." + (" The Wave is the SPS-leaning keeper cut of Not-So-Plum-Skunk." if mid == "not-so-plum-skunk" else "") + (" A couple of lowers were hit, the rest grown for flower." if mid == "baby-yoda-bagseed" else ""))
+
+# ------------------------------------------------------------------ deep ancestry (seedfinder research)
+def link(id, mother="", father="", **fields):
+    n = next(x for x in N if x["id"] == id)
+    if mother: n["mother"] = mother
+    if father: n["father"] = father
+    n.update(fields)
+import genetics_ancestors; genetics_ancestors.extend(add, link)
 
 ids = {n["id"] for n in N}
 for f in os.listdir(OUT):

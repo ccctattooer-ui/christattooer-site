@@ -18,7 +18,7 @@
   };
   data.forEach((n) => depth(n.id));
   const maxGen = Math.max(...gen.values());
-  const colLabel = (g) => g === 0 ? 'ANCESTORS' : g === maxGen && maxGen > 1 ? 'NEWEST' : (g === 1 ? 'STARTING STOCK' : 'GENERATION ' + g);
+  const colLabel = (g, col) => g === 0 ? 'ROOTS & LANDRACES' : col.some((n) => n.kind === 'spacecraft') ? 'SPACECRAFT' : 'ANCESTORS';
 
   // ---- layout: columns by generation, rows ordered by the average row of the parents
   const COLW = 250, ROWH = 36, PADX = 60, PADY = 70;
@@ -45,7 +45,7 @@
   const stars = el('g', { class: 'stars' }, view);
   for (let i = 0; i < 260; i++) el('circle', { cx: (rnd() * W).toFixed(0), cy: (rnd() * H).toFixed(0), r: (rnd() * 1.4 + .3).toFixed(1), opacity: (rnd() * .6 + .2).toFixed(2) }, stars);
   // column labels
-  cols.forEach((c, g) => { const t = el('text', { x: PADX + g * COLW, y: 30, class: 'col' }, view); t.textContent = colLabel(g); });
+  cols.forEach((c, g) => { const t = el('text', { x: PADX + g * COLW, y: 30, class: 'col' }, view); t.textContent = colLabel(g, c); });
   // edges
   const edges = el('g', { class: 'edges' }, view);
   const edgeEls = [];

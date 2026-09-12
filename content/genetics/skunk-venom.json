@@ -3,14 +3,14 @@
   "name": "Skunk Venom",
   "kind": "cut",
   "breeder": "Humboldt Seed Co.",
-  "mother": "",
-  "father": "",
+  "mother": "cali-octane",
+  "father": "venom-og",
   "run": 0,
   "year": "",
   "flagship": false,
   "status": "",
   "terps": "sour citrus, burnt rubber, pine, chemical skunk",
-  "notes": "Cali Octane × Venom OG. Unreleased unicorn tester hunted at Wild Leaf; picked up at the 2024 Emerald Cup. Sour citrus, burnt rubber, woody pine, chemical skunk; stout and squat.",
+  "notes": "Cali Octane × Venom OG per the HSC label (seedfinder has no entry to confirm). Unreleased unicorn tester hunted at Wild Leaf; picked up at the 2024 Emerald Cup. Sour citrus, burnt rubber, woody pine, chemical skunk; stout and squat.",
   "source": "",
   "seedfinder": ""
 }

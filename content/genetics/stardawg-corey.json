@@ -2,15 +2,15 @@
   "id": "stardawg-corey",
   "name": "Stardawg (Corey cut)",
   "kind": "cut",
-  "breeder": "Archive",
-  "mother": "",
-  "father": "",
+  "breeder": "Top Dawg Seeds",
+  "mother": "chem-4",
+  "father": "tres-dawg",
   "run": 0,
   "year": "",
   "flagship": false,
   "status": "",
   "terps": "",
-  "notes": "",
+  "notes": "The Corey Haim cut, selected from Top Dawg's Chem 4 × Tres Dawg. Archive's clone.",
   "source": "",
-  "seedfinder": ""
+  "seedfinder": "https://seedfinder.eu/en/strain-info/stardawg/top-dawg-seeds/genealogy"
 }

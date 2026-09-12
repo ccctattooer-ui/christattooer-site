@@ -1,6 +1,6 @@
 # SpaceCraft breeding log
 
-Compiled Sep 2026 from the OverGrow threads "Small scale breeding fun run - First attempt!" (t/154571) and "SpaceCraft Hub - Homebrew Breeding Hangout" (t/175179). Filed by pollen donor. **Flagship** = a SpaceCraft line later used as a parent. **Ask** = not answered in the threads. A designed version of this page lives at https://claude.ai/code/artifact/76e7bf5e-1fbc-4c2d-9c93-c139bc98ab5a
+Compiled Sep 2026 from the OverGrow threads "Small scale breeding fun run - First attempt!" (t/154571) and "SpaceCraft Hub - Homebrew Breeding Hangout" (t/175179). Filed by pollen donor. **Flagship** = a SpaceCraft line later used as a parent. **Ask** = not answered in the threads. A designed version of this page lives at https://claude.ai/code/artifact/76e7bf5e-1fbc-4c2d-9c93-c139bc98ab5a. The interactive star chart at https://christattooer.com/spacecraft/ is built from content/genetics/*.json (seeded by tools/seed_genetics.py + tools/genetics_ancestors.py, which carry the seedfinder.eu ancestry for every outside plant).
 
 ## Run 1 · summer 2024 · Charcuterie male
 

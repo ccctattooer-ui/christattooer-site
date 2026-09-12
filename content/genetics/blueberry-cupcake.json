@@ -2,9 +2,9 @@
   "id": "blueberry-cupcake",
   "name": "Blueberry Cupcake",
   "kind": "cut",
-  "breeder": "",
-  "mother": "",
-  "father": "",
+  "breeder": "Humboldt Seed Co. / HendRx",
+  "mother": "blueberry-muffin",
+  "father": "wedding-cake",
   "run": 0,
   "year": "",
   "flagship": false,
@@ -12,5 +12,5 @@
   "terps": "",
   "notes": "Blueberry Muffin × Wedding Cake, an Oregon rec cut personally hunted by a friend. Viney and lanky, tests high, complex blueberry, throws preflowers under 18/6, true 8-weeker.",
   "source": "",
-  "seedfinder": ""
+  "seedfinder": "https://seedfinder.eu/en/strain-info/blueberry-cupcake/humboldt-seed-company/genealogy"
 }

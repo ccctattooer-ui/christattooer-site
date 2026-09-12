@@ -3,14 +3,14 @@
   "name": "Sweet Stinky Cheese",
   "kind": "seedline",
   "breeder": "Humboldt CSI",
-  "mother": "",
-  "father": "",
+  "mother": "uk-cheese",
+  "father": "sweet-16",
   "run": 0,
   "year": "",
   "flagship": false,
   "status": "",
   "terps": "",
-  "notes": "From fem seed.",
+  "notes": "CSI Humboldt feminized: UK Cheese × reversed Sweet 16.",
   "source": "",
-  "seedfinder": ""
+  "seedfinder": "https://seedfinder.eu/en/strain-info/sweet-stinky-cheese/humboldt-csi/genealogy"
 }

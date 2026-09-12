@@ -2,15 +2,15 @@
   "id": "marrakesh",
   "name": "Marrakesh",
   "kind": "cut",
-  "breeder": "",
-  "mother": "",
-  "father": "",
+  "breeder": "Purple City Genetics",
+  "mother": "moroccan-peaches",
+  "father": "canal-street-runtz",
   "run": 0,
   "year": "",
   "flagship": false,
   "status": "",
   "terps": "",
-  "notes": "Oregon rec cut.",
+  "notes": "Oregon rec cut of PCG's Marrakesh: Moroccan Peaches × Canal Street Runtz.",
   "source": "",
-  "seedfinder": ""
+  "seedfinder": "https://seedfinder.eu/en/strain-info/marrakesh/purple-city-genetics/genealogy"
 }
