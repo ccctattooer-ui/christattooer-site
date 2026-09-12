@@ -29,6 +29,15 @@ permalink: /flash/
 
     <div class="bar"><h1>{{ home.catalogHeading }}</h1><span class="cnt">Showing <span id="shown">{{ flash | length }}</span> of {{ flash | length }}</span></div>
     <div class="grid" id="grid">
+      {%- if home.custom.show %}
+      <div class="item custom" data-sku="CU-000" data-name="Custom work" data-cat="Custom" data-button="{{ home.custom.button }}">
+        <div class="art">CUSTOM<br>WORK</div>
+        <div class="sku"><span>CU-000</span><i>Quoted</i></div>
+        <h3>{{ home.custom.title }}</h3>
+        <dl class="spec"><dt>Consult</dt><dd>free</dd><dt>Min</dt><dd>{{ site.pricing.shopMinimum | money }}</dd></dl>
+        <button class="add" type="button">{{ home.custom.button }}</button>
+      </div>
+      {%- endif %}
       {%- for f in flash %}
       <div class="item" data-sku="{{ f.sku }}" data-name="{{ f.name }}" data-cat="{{ f.category }}" data-size="{{ f.size }}">
         <div class="art"><img src="{{ f.image }}" alt="{{ f.name }} flash design" loading="lazy" width="520" height="520"></div>
@@ -39,15 +48,6 @@ permalink: /flash/
         <button class="add" type="button"{% if not f.available %} disabled{% endif %}>Add to request</button>
       </div>
       {%- endfor %}
-      {%- if home.custom.show %}
-      <div class="item custom" data-sku="CU-000" data-name="Custom work" data-cat="Custom" data-button="{{ home.custom.button }}">
-        <div class="art">CUSTOM<br>WORK</div>
-        <div class="sku"><span>CU-000</span><i>Quoted</i></div>
-        <h3>{{ home.custom.title }}</h3>
-        <dl class="spec"><dt>Consult</dt><dd>free</dd><dt>Min</dt><dd>{{ site.pricing.shopMinimum | money }}</dd></dl>
-        <button class="add" type="button">{{ home.custom.button }}</button>
-      </div>
-      {%- endif %}
     </div>
     <div class="nores" id="nores" hidden>Nothing matches that. Try another word, or <a href="/book/">request custom work</a>.</div>
 
