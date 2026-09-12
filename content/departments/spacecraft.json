@@ -4,18 +4,19 @@
   "icon": "/assets/plants/plant-007.jpg",
   "blurb": "SpaceCraft is the plant breeding side of things: crosses, grow logs, and seed drops when they happen.",
   "status": "Growing",
+  "order": 4,
   "images": [
     {
       "image": "/assets/plants/plant-001.jpg",
-      "caption": "Male 1"
+      "caption": "Pine Eucharist male"
     },
     {
       "image": "/assets/plants/plant-002.jpg",
-      "caption": "Male 2"
+      "caption": "Pine Eucharist male"
     },
     {
       "image": "/assets/plants/plant-003.jpg",
-      "caption": "Male 3"
+      "caption": "Pine Eucharist male"
     },
     {
       "image": "/assets/plants/plant-004.jpg",
@@ -31,8 +32,7 @@
     },
     {
       "image": "/assets/plants/plant-007.jpg",
-      "caption": "SpaceCraft"
+      "caption": "SpaceCraft logo"
     }
-  ],
-  "order": 4
+  ]
 }
