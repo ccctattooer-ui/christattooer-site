@@ -113,15 +113,13 @@ dialog.lb .meta{display:flex;justify-content:space-between;gap:12px;padding:10px
 dialog.lb .meta small{font-family:var(--mono);color:#555;font-size:11px;text-transform:uppercase}
 dialog.lb .meta a{font-weight:700}
 
-/* flash close-up: the card art is a button, and the big copy magnifies where you click */
+/* flash close-up: the card art is a button, and one click on the big copy closes it again */
 .item button.art{padding:0;display:block;width:100%;cursor:zoom-in;font:inherit;color:inherit}
 .item button.art:focus-visible{outline:2px solid var(--stencil);outline-offset:2px}
-dialog.fz .fz-stage{display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
-dialog.fz .fz-stage img{display:block;cursor:zoom-in;transition:transform .18s ease-out}
-dialog.fz .fz-stage.on img{transform:scale(var(--fz-scale,2));cursor:zoom-out}
+dialog.fz .fz-stage{display:flex;align-items:center;justify-content:center;background:#fff}
+dialog.fz .fz-stage img{display:block;cursor:zoom-out}
 dialog.fz .meta .add{margin:0;white-space:nowrap}
 dialog.fz .meta .add[hidden]{display:none}
-@media (prefers-reduced-motion:reduce){dialog.fz .fz-stage img{transition:none}}
 
 /* pane = window chrome, the second ParlorOS touch */
 .pane{border:2px solid var(--ink);background:#fff;margin-bottom:18px}

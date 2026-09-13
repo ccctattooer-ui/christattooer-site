@@ -34,7 +34,7 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 
 The landing page (`/`) is the ParlorOS "TV" intro; the flash catalog lives at `/flash/`. The intro montage is built by `python tools/build_intro.py` from the clips and photos in `AboutMe/` (raw, not in git): edit the cut list at the top of that script, run it, commit `assets/intro/`. Visitors who already clicked through in the current browser session skip straight to `/flash/`.
 
-Clicking any drawing in the flash catalog opens it in a close-up window; clicking the big copy magnifies where you clicked, and ADD TO REQUEST there presses the card's own button. The drawings shipped to the site are 520px tall, so the magnifier only goes as far as the file allows — newer uploads through the admin are up to 2000px and zoom properly.
+Clicking any drawing in the flash catalog opens it in a close-up window, and clicking it again closes it — two clicks, no zoom step in between. ADD TO REQUEST in that window presses the card's own button rather than adding anything itself.
 
 Saving in the admin commits to GitHub; Cloudflare Workers Builds rebuilds and the live site updates a minute or two later (free plan: 3,000 build minutes a month, plenty).
 
