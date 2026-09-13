@@ -330,7 +330,8 @@
 
   // ---------------------------------------------------------------- flash screensaver
   // Sixty seconds of nothing happening on a ParlorOS desktop and the drawings start bouncing.
-  // Any key, click, touch or mouse move puts it away again.
+  // Any key, click, touch or mouse move puts it away again, and a video window open on the
+  // desktop keeps it away for as long as it is open.
   (function () {
     var saverHost = document.querySelector(".wallpaper");
     var art = window.EGGS_FLASH || [];
@@ -366,8 +367,16 @@
         raf = requestAnimationFrame(step);
       }
 
+      // A montage can play for ten minutes with nobody touching the mouse, so the screensaver
+      // keeps out of the way while a window with a player in it is open — the gamer zone's
+      // montages and the Twitch window. Close them and the idle clock goes back to normal.
+      function watching() {
+        return !!document.querySelector(".win:not([hidden]) .player");
+      }
+
       function start() {
         if (layer) return;
+        if (watching()) { timer = setTimeout(start, idleMs); return; }
         build(); step();
         document.body.classList.add("saving");
       }

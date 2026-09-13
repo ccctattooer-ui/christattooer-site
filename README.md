@@ -34,6 +34,8 @@ Go to https://christattooer.com/admin/ and log in. Sections:
 
 The landing page (`/`) is the ParlorOS "TV" intro; the flash catalog lives at `/flash/`. The intro montage is built by `python tools/build_intro.py` from the clips and photos in `AboutMe/` (raw, not in git): edit the cut list at the top of that script, run it, commit `assets/intro/`. Visitors who already clicked through in the current browser session skip straight to `/flash/`.
 
+Clicking any drawing in the flash catalog opens it in a close-up window; clicking the big copy magnifies where you clicked, and ADD TO REQUEST there presses the card's own button. The drawings shipped to the site are 520px tall, so the magnifier only goes as far as the file allows — newer uploads through the admin are up to 2000px and zoom properly.
+
 Saving in the admin commits to GitHub; Cloudflare Workers Builds rebuilds and the live site updates a minute or two later (free plan: 3,000 build minutes a month, plenty).
 
 ## Being found and being shared
@@ -77,7 +79,7 @@ What's in there now:
 | | What it does |
 | --- | --- |
 | Roadworks | Barricade, digger and scrolling sign on any department whose Status still says soon / later / under construction. Change the status and it retires itself — no code change. |
-| Screensaver | Your drawings bounce around the ParlorOS desktop after a spell of no activity (default 60s). Seven designs spread across the catalog, picked by the `spread` filter so the page doesn't ship all 71 paths. |
+| Screensaver | Your drawings bounce around the ParlorOS desktop after a spell of no activity (default 60s). Seven designs spread across the catalog, picked by the `spread` filter so the page doesn't ship all 71 paths. It stays away entirely while a window with a video in it is open, so it can't cut across a montage nobody is touching the mouse during. |
 | Konami code | ↑↑↓↓←→←→BA anywhere turns the walls gold and shows a note you can edit. Ignores keystrokes aimed at a form field. |
 | Footer buttons | Five 88×31 buttons drawn in CSS, including your own for other people to link to. The "books open" one blinks, unless reduced motion is on. |
 | Machine pointer | A tattoo machine as the mouse pointer, rotary on links. Mouse only. |

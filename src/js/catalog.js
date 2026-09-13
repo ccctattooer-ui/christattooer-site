@@ -147,5 +147,59 @@
     lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
   }
 
+  // flash close-up: click a drawing to see it big, click the big one to magnify where you clicked.
+  // Nothing here knows about prices or picks of its own — it reads the card it came from, and the
+  // ADD TO REQUEST button presses that card's real one, so there is still only one way to add.
+  const fz = $('#fz');
+  if (fz) {
+    const stage = $('#fz-stage'), fimg = $('#fz-img'), fadd = $('#fz-add');
+    let card = null;
+
+    const unzoom = () => { stage.classList.remove('on'); fimg.style.transformOrigin = '50% 50%'; };
+    function aimAt(e) {
+      const r = fimg.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const pct = (v, lo, len) => Math.min(100, Math.max(0, ((v - lo) / len) * 100));
+      fimg.style.transformOrigin = pct(e.clientX, r.left, r.width) + '% ' + pct(e.clientY, r.top, r.height) + '%';
+    }
+
+    $$('.item[data-sku] button.art').forEach(b => b.addEventListener('click', () => {
+      card = b.closest('.item');
+      const status = $('.sku i', card);
+      fimg.src = b.dataset.full;
+      fimg.alt = (card.dataset.name || 'Flash') + ' flash design';
+      $('#fz-file').textContent = String(card.dataset.sku || 'flash').toLowerCase() + '.png';
+      $('#fz-title').textContent = card.dataset.name || '';
+      $('#fz-meta').textContent = [card.dataset.sku, card.dataset.cat, card.dataset.size,
+        card.dataset.price ? money(card.dataset.price) : '', status ? status.textContent : '']
+        .filter(Boolean).join(' · ');
+      const real = $('.add', card);
+      fadd.hidden = !real || real.disabled;
+      if (real) { fadd.textContent = real.textContent; fadd.classList.toggle('on', real.classList.contains('on')); }
+      unzoom();
+      fz.showModal();
+    }));
+
+    // Magnify on the click, not on hover — a drawing that lurches under the pointer is no use to
+    // anyone trying to look at it. How far it goes depends on the drawing: enough to show the file
+    // at its own pixels where there are pixels to show, and never so far that it turns to porridge.
+    fimg.addEventListener('click', e => {
+      if (stage.classList.contains('on')) { unzoom(); return; }
+      const shown = fimg.getBoundingClientRect().width;
+      const scale = shown ? Math.min(3, Math.max(1.8, fimg.naturalWidth / shown)) : 2;
+      stage.style.setProperty('--fz-scale', scale.toFixed(2));
+      aimAt(e); stage.classList.add('on');
+    });
+    stage.addEventListener('pointermove', e => {
+      if (e.pointerType === 'mouse' && stage.classList.contains('on')) aimAt(e);
+    });
+
+    // Adding closes the window first, so the request drawer it opens isn't stuck behind a modal.
+    fadd.addEventListener('click', () => { const real = card && $('.add', card); fz.close(); real?.click(); });
+    $('#fz-close')?.addEventListener('click', () => fz.close());
+    fz.addEventListener('click', e => { if (e.target === fz) fz.close(); });
+    fz.addEventListener('close', unzoom);
+  }
+
   render(); syncButtons();
 })();

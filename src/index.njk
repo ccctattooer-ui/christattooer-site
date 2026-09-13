@@ -45,7 +45,7 @@ permalink: /flash/
       {%- endif %}
       {%- for f in flash %}
       <div class="item" data-sku="{{ f.sku }}" data-name="{{ f.name }}" data-cat="{{ f.category }}" data-size="{{ f.size }}" data-price="{{ f.price }}">
-        <div class="art"><img src="{{ f.image }}" alt="{{ f.name }} flash design" loading="lazy" width="520" height="520"></div>
+        <button type="button" class="art" data-full="{{ f.image }}" aria-label="Look closer at {{ f.name }}"><img src="{{ f.image }}" alt="{{ f.name }} flash design" loading="lazy" width="520" height="520"></button>
         <div class="sku"><span>{{ f.sku }}</span>{% if f.available %}<i>Ready</i>{% else %}<i class="off">Claimed</i>{% endif %}</div>
         <h3>{{ f.name }}</h3>
         <dl class="spec"><dt>Category</dt><dd>{{ f.category }}</dd>{% if f.size %}<dt>Size</dt><dd>{{ f.size }}</dd>{% endif %}{% if f.hours %}<dt>Est. time</dt><dd>{{ f.hours | hrs }}</dd>{% endif %}<dt>Price</dt><dd>{{ f.price | money }}</dd></dl>
@@ -67,6 +67,17 @@ permalink: /flash/
     {%- endif %}
   </main>
 </div>
+
+{#- Click any drawing and it opens here at full size. Clicking the big one magnifies where you
+    clicked, so the linework can be read properly before anyone adds it to a request. -#}
+<dialog class="lb fz" id="fz" aria-label="Flash design close up">
+  <div class="pane-title"><img class="pico" src="/assets/icons/win-gallery-32.png" alt="" width="32" height="32"><button class="x" id="fz-close" type="button" aria-label="Close">×</button><b id="fz-file">flash.png</b></div>
+  <div class="fz-stage" id="fz-stage"><img id="fz-img" src="" alt=""></div>
+  <div class="meta">
+    <div><b id="fz-title"></b><br><small id="fz-meta"></small></div>
+    <button class="add" type="button" id="fz-add">Add to request</button>
+  </div>
+</dialog>
 
 {%- if eggs.wheel.show %}
 {#- The wheel lives in a dialog so the catalog itself stays uncluttered. It reads the cards already
