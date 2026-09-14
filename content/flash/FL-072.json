@@ -3,8 +3,9 @@
   "name": "Flaming panther head",
   "category": "Animals",
   "image": "/assets/flash/web/flash-72.webp",
-  "size": "4 in",
-  "price": 250,
-  "available": true,
-  "notes": ""
+  "size": "9 in",
+  "price": 450,
+  "available": false,
+  "notes": "",
+  "hours": ""
 }

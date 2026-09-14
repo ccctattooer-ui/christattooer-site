@@ -1,10 +1,11 @@
 {
   "sku": "FL-088",
-  "name": "Peony spray",
+  "name": "flowery funky",
   "category": "Flowers & plants",
   "image": "/assets/flash/web/flash-88.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "6 in",
+  "price": 320,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

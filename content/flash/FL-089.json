@@ -4,7 +4,8 @@
   "category": "Animals",
   "image": "/assets/flash/web/flash-89.webp",
   "size": "4 in",
-  "price": 250,
+  "price": 180,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

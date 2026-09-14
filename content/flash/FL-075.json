@@ -3,8 +3,9 @@
   "name": "Ornate urn",
   "category": "Symbols",
   "image": "/assets/flash/web/flash-75.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "6 in",
+  "price": 280,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

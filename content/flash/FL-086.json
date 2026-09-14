@@ -3,8 +3,9 @@
   "name": "Lady head",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-86.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "8 in",
+  "price": 350,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

@@ -1,10 +1,11 @@
 {
   "sku": "FL-080",
-  "name": "Skull and cherubs",
+  "name": "vision",
   "category": "Skulls & devils",
   "image": "/assets/flash/web/flash-80.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "9 in",
+  "price": 450,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

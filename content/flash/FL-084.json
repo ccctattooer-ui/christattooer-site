@@ -1,10 +1,11 @@
 {
   "sku": "FL-084",
-  "name": "Genie lamp",
+  "name": "seashell",
   "category": "Symbols",
   "image": "/assets/flash/web/flash-84.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "5 in",
+  "price": 260,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

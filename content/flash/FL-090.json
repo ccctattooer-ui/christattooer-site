@@ -3,8 +3,9 @@
   "name": "Bird on a branch",
   "category": "Animals",
   "image": "/assets/flash/web/flash-90.webp",
-  "size": "4 in",
+  "size": "5 in",
   "price": 250,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }
