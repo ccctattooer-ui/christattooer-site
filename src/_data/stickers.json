@@ -15,7 +15,7 @@
       "where": "/flash/",
       "hint": "Somewhere in the small print beside the catalog.",
       "colour": "#D3322A",
-      "image": ""
+      "image": "/assets/icons/sticker-flash.png"
     },
     {
       "id": "work",
@@ -23,7 +23,7 @@
       "where": "/work/",
       "hint": "Down by the photo count on the work page.",
       "colour": "#3BAA6E",
-      "image": ""
+      "image": "/assets/icons/sticker-work.png"
     },
     {
       "id": "paintings",
@@ -31,7 +31,7 @@
       "where": "/paintings/",
       "hint": "Pinned on the collage board with the paintings.",
       "colour": "#F0C22E",
-      "image": ""
+      "image": "/assets/icons/sticker-paintings.png"
     },
     {
       "id": "games",
@@ -39,7 +39,7 @@
       "where": "/games/",
       "hint": "Tucked in near the playlist.",
       "colour": "#8FD6FF",
-      "image": ""
+      "image": "/assets/icons/sticker-games.png"
     },
     {
       "id": "spacecraft",
@@ -47,7 +47,7 @@
       "where": "/spacecraft/",
       "hint": "On the SpaceCraft desktop, near the readout.",
       "colour": "#b9b0d6",
-      "image": ""
+      "image": "/assets/icons/sticker-spacecraft.png"
     },
     {
       "id": "store",
@@ -55,7 +55,7 @@
       "where": "/store/",
       "hint": "Behind the roadworks on the store page.",
       "colour": "#4B2E9C",
-      "image": ""
+      "image": "/assets/icons/sticker-store.png"
     }
   ]
 }
