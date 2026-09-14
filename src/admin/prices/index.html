@@ -6,44 +6,38 @@
 <meta name="robots" content="noindex">
 <title>Flash quick edit · Chris Tattooer admin</title>
 <link rel="icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/admin/admin.css">
 <style>
-  :root{--ink:#15121A;--bone:#EFEAD9;--stencil:#4B2E9C;--yellow:#F0C22E;--red:#D3322A;--green:#3BAA6E;--rule:#d9d2bd}
-  *{box-sizing:border-box}
-  body{margin:0;background:#fff;color:var(--ink);font:15px/1.4 system-ui,sans-serif;padding-inline:16px;padding-block:0 40px}
-  header{position:sticky;top:0;background:#fff;border-bottom:3px solid var(--ink);padding:12px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;z-index:5}
-  header h1{font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 auto 0 0}
-  header a{color:var(--stencil);font-size:13px}
-  button{font:inherit;font-weight:700;padding:8px 14px;border:2px solid var(--ink);background:var(--bone);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
-  button:disabled{opacity:.4;cursor:default;box-shadow:none}
-  button.primary{background:var(--stencil);color:#fff}
-  #status{font-size:13px;min-width:180px}
-  #status.ok{color:var(--green)} #status.err{color:var(--red)}
-  input[type=search]{font:inherit;padding:7px 10px;border:2px solid var(--ink);width:min(260px,100%)}
+  /* The editing grid. Everything else comes from /admin/admin.css. */
+  .bar{position:sticky;top:var(--headerH,96px);background:#fff;display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;padding:10px 0;border-bottom:2px solid var(--rule);z-index:4}
+  .bar input[type=search]{width:min(240px,100%)}
+  .bar #shown{font-size:13px;color:var(--quiet);margin-left:auto}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chips button{font-size:12px;font-weight:700;padding:5px 9px;box-shadow:2px 2px 0 var(--ink);background:#fff}
+  .chips button[aria-pressed=true]{background:var(--stencil);color:#fff}
+  .chips button .n{font-weight:400;opacity:.7}
+
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-top:14px}
   .row{border:2px solid var(--ink);background:#fff;padding:8px;display:grid;grid-template-columns:84px 1fr;gap:6px 10px;align-items:start}
-  .row.changed{background:#fff7d6;border-color:var(--stencil)}
+  .row.changed{background:#fff7d6;border-color:var(--stencil);box-shadow:3px 3px 0 var(--stencil)}
   .row.saved{background:#e9f7ee}
   .row.hidden{display:none}
   .row img{width:84px;height:84px;object-fit:contain;border:1px solid var(--rule);background:#fff;grid-row:span 5}
-  .row .sku{font-family:ui-monospace,monospace;font-size:11px;color:#5b5346;display:flex;justify-content:space-between;align-items:center}
+  .row .sku{font-family:ui-monospace,monospace;font-size:11px;color:var(--quiet);display:flex;justify-content:space-between;align-items:center;gap:8px}
   .row .sku a{color:var(--stencil);font-family:system-ui,sans-serif}
   .top{display:grid;grid-template-columns:3fr 2fr;gap:6px}
   .top input,.top select{width:100%;font:inherit;padding:5px 6px;border:2px solid var(--ink);background:#fff}
-  .top label,.notes label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#5b5346;display:block}
+  .row label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--quiet);display:block}
   .notes input{width:100%;font:inherit;padding:5px 6px;border:2px solid var(--ink)}
   .fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-  .fields label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#5b5346;display:block}
   .fields input{width:100%;font:inherit;padding:5px 6px;border:2px solid var(--ink)}
-  .fields .money{position:relative}.fields .money::before{content:"$";position:absolute;left:7px;top:26px;font-size:13px}
+  .fields .money{position:relative}
+  .fields .money::before{content:"$";position:absolute;left:7px;top:26px;font-size:13px}
   .fields .money input{padding-left:18px}
-  .actions{display:flex;justify-content:space-between;align-items:center;gap:8px}
-  .actions label{font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer}
+  .actions{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--rule);padding-top:7px}
+  .actions label{font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink);display:flex;align-items:center;gap:6px;cursor:pointer}
+  .actions label input{accent-color:var(--green);width:16px;height:16px}
   .actions button{padding:5px 12px;font-size:13px}
-  form.login{max-width:360px;margin:60px auto;background:var(--bone);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:22px 24px}
-  form.login label{display:block;font-size:13px;font-weight:700;margin:10px 0 4px}
-  form.login input{width:100%;font:inherit;padding:9px 10px;border:2px solid var(--ink);background:#fff}
-  form.login button{margin-top:16px;width:100%}
-  .err{background:var(--red);color:#fff;padding:8px 10px;font-size:13px;margin-bottom:8px}
   @media (max-width:420px){.fields{grid-template-columns:1fr 1fr}}
 </style>
 </head>
@@ -52,16 +46,20 @@
 <script>
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
+  const all = (s, r = document) => [...r.querySelectorAll(s)];
   const CATS = ['Faces & characters', 'Skulls & devils', 'Symbols', 'Flowers & plants', 'Animals', 'Lettering'];
   const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const app = $('#app');
-  const KEY = 'ct-admin-basic';
+  // Same credential as the guestbook screen, under the same key, so one login covers both.
+  const KEY = 'ct-admin-auth';
   let auth = ''; try { auth = sessionStorage.getItem(KEY) || ''; } catch (e) {}
-  let rows = [], dirty = new Set();
+  let rows = [], dirty = new Set(), cat = '';
 
   function login(err) {
-    app.innerHTML = `<form class="login"><h1 style="font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px">Flash quick edit · Log in</h1>${err ? `<div class="err">${err}</div>` : ''}
-      <label for="u">Username</label><input id="u" autocomplete="username" required autofocus>
+    app.innerHTML = `<form class="login"><h1>Flash quick edit</h1>
+      <p class="sub">Same username and password as the rest of the admin.</p>
+      ${err ? `<div class="err">${err}</div>` : ''}
+      <label for="u">Username</label><input id="u" type="text" autocomplete="username" required autofocus>
       <label for="p">Password</label><input id="p" type="password" autocomplete="current-password" required>
       <button class="primary" type="submit">Log in</button></form>`;
     $('form').onsubmit = (e) => { e.preventDefault(); auth = btoa($('#u').value + ':' + $('#p').value); try { sessionStorage.setItem(KEY, auth); } catch (x) {} load(); };
@@ -75,32 +73,71 @@
   }
 
   function render() {
-    app.innerHTML = `<header><h1>Flash quick edit · ${rows.length} designs</h1>
-      <input type="search" id="q" placeholder="Filter by name, SKU, category">
-      <span id="status"></span>
-      <button class="primary" id="saveall" disabled>Save all changes</button>
-      <a href="/admin/#/collections/flash/new" title="Upload a new drawing">+ New design</a>
-      <a href="/admin/">← Full admin</a></header>
-      <div class="grid">${rows.map((f) => `
+    const counts = CATS.map((c) => [c, rows.filter((f) => f.category === c).length]);
+    app.innerHTML = `<header id="hdr">
+      <div class="titlebar">
+        <h1>Flash quick edit <span class="count">· ${rows.length} designs</span></h1>
+        <span id="status"></span>
+        <button class="primary" id="saveall" disabled>Save all changes</button>
+      </div>
+      <nav class="tabs">
+        <a href="/admin/">Everything else</a>
+        <a href="/admin/prices/" aria-current="page">Flash quick edit</a>
+        <a href="/admin/guestbook/">Guestbook</a>
+        <a class="out" href="/admin/#/collections/flash/new" title="Upload a new drawing">+ New design ↗</a>
+      </nav>
+    </header>
+    <div class="bar">
+      <input type="search" id="q" placeholder="Search name or SKU">
+      <div class="chips" id="chips">
+        <button type="button" data-cat="" aria-pressed="true">All <span class="n">${rows.length}</span></button>
+        ${counts.map(([c, n]) => `<button type="button" data-cat="${esc(c)}" aria-pressed="false">${c} <span class="n">${n}</span></button>`).join('')}
+      </div>
+      <span id="shown"></span>
+    </div>
+    <div class="grid">${rows.map((f) => `
       <div class="row" data-sku="${f.sku}">
-        <img src="${f.image}" alt="">
+        <img src="${f.image}" alt="" loading="lazy">
         <div class="sku"><span>${f.sku}</span><a href="/admin/#/collections/flash/entries/${f.sku}" title="Change the drawing or delete this design">drawing…</a></div>
         <div class="top">
           <div><label>Name</label><input name="name" value="${esc(f.name)}" maxlength="80"></div>
           <div><label>Category</label><select name="category">${CATS.map((c) => `<option${c === f.category ? ' selected' : ''}>${c}</option>`).join('')}</select></div>
         </div>
         <div class="fields">
-          <div><label>Size</label><input name="size" value="${f.size ?? ''}" placeholder="3 in"></div>
+          <div><label>Size</label><input name="size" value="${esc(f.size)}" placeholder="3 in"></div>
           <div><label>Hours</label><input name="hours" type="number" step="0.5" min="0" value="${f.hours ?? ''}"></div>
           <div class="money"><label>Price</label><input name="price" type="number" step="5" min="0" value="${f.price ?? ''}"></div>
         </div>
         <div class="notes"><label>Notes (one short line on the card)</label><input name="notes" value="${esc(f.notes)}" maxlength="200"></div>
         <div class="actions"><label><input type="checkbox" name="available" ${f.available ? 'checked' : ''}> Ready</label><button class="save" disabled>Save</button></div>
       </div>`).join('')}</div>`;
-    $('#q').oninput = () => { const t = $('#q').value.trim().toLowerCase(); document.querySelectorAll('.row').forEach((el) => { const hay = (el.dataset.sku + ' ' + $('[name=name]', el).value + ' ' + $('[name=category]', el).value).toLowerCase(); el.classList.toggle('hidden', !!t && !hay.includes(t)); }); };
-    bind();
-    $('#saveall').onclick = () => save([...document.querySelectorAll('.row.changed')]);
+
+    $('#q').oninput = filter;
+    all('#chips button').forEach((b) => b.onclick = () => {
+      cat = b.dataset.cat;
+      all('#chips button').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      filter();
+    });
+    // The filter bar sits directly under the sticky header, whatever height it is.
+    const fit = () => document.documentElement.style.setProperty('--headerH', $('#hdr').offsetHeight + 'px');
+    fit(); window.addEventListener('resize', fit);
+    bind(); filter();
+    $('#saveall').onclick = () => save(all('.row.changed'));
   }
+
+  // Category chip and search box narrow the grid together.
+  function filter() {
+    const t = $('#q').value.trim().toLowerCase();
+    let shown = 0;
+    all('.row').forEach((el) => {
+      const hay = (el.dataset.sku + ' ' + $('[name=name]', el).value).toLowerCase();
+      const hit = (!t || hay.includes(t)) && (!cat || $('[name=category]', el).value === cat);
+      el.classList.toggle('hidden', !hit);
+      if (hit) shown++;
+    });
+    $('#shown').textContent = shown === rows.length ? '' : `showing ${shown} of ${rows.length}`;
+  }
+
   function current(el) { return { sku: el.dataset.sku, name: $('[name=name]', el).value.trim(), category: $('[name=category]', el).value, notes: $('[name=notes]', el).value.trim(), size: $('[name=size]', el).value.trim(), hours: $('[name=hours]', el).value, price: $('[name=price]', el).value, available: $('[name=available]', el).checked }; }
   function refreshAll() { const b = $('#saveall'); b.disabled = !dirty.size; b.textContent = dirty.size ? `Save all changes (${dirty.size})` : 'Save all changes'; }
   function status(msg, cls) { const s = $('#status'); s.textContent = msg; s.className = cls || ''; }
@@ -130,7 +167,7 @@
   }
   // attach change tracking to every unbound row; the values at bind time are the baseline
   function bind() {
-    document.querySelectorAll('.row').forEach((el) => {
+    all('.row').forEach((el) => {
       if (el.dataset.bound === '1') return; el.dataset.bound = '1';
       const orig = current(el);
       el.addEventListener('input', () => {

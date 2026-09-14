@@ -6,78 +6,91 @@
 <meta name="robots" content="noindex">
 <title>Guestbook · Chris Tattooer admin</title>
 <link rel="icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/admin/admin.css">
 <style>
-  :root{--ink:#15121A;--bone:#EFEAD9;--stencil:#4B2E9C;--yellow:#F0C22E;--red:#D3322A;--green:#3BAA6E;--rule:#d9d2bd}
-  *{box-sizing:border-box}
-  body{margin:0;background:#fff;color:var(--ink);font:15px/1.45 system-ui,sans-serif;padding-inline:16px;padding-block:0 40px}
-  header{position:sticky;top:0;background:#fff;border-bottom:3px solid var(--ink);padding:12px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;z-index:5}
-  header h1{font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 auto 0 0}
-  header a{color:var(--stencil);font-size:13px}
-  button{font:inherit;font-weight:700;padding:8px 14px;border:2px solid var(--ink);background:var(--bone);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
-  button:disabled{opacity:.4;cursor:default;box-shadow:none}
-  button.go{background:var(--green);color:#fff}
-  button.hide{background:var(--yellow)}
-  button.kill{background:var(--red);color:#fff}
-  #status{font-size:13px;min-width:170px}
-  #status.ok{color:var(--green)} #status.err{color:var(--red)}
-  .login{max-width:330px;margin:60px auto;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:20px;background:var(--bone)}
-  .login label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 4px}
-  .login input{width:100%;font:inherit;padding:9px;border:2px solid var(--ink)}
-  .login button{width:100%;margin-top:16px;background:var(--stencil);color:#fff}
-  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 0;border-bottom:2px solid var(--rule)}
+  /* The moderation list. Everything else comes from /admin/admin.css. */
+  .bar{position:sticky;top:var(--headerH,96px);background:#fff;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 0;border-bottom:2px solid var(--rule);z-index:4}
   .bar .count{font-size:13px;color:#666;margin-right:auto}
-  ul{list-style:none;margin:0;padding:0}
+  .bar .count b{color:var(--ink)}
+  section{margin-top:22px}
+  section h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0;padding:7px 10px;border:2px solid var(--ink);display:inline-block}
+  section.waiting h2{background:var(--yellow)}
+  section.live h2{background:#cfe8d4}
+  section h2 .n{font-weight:400}
+  section > p.empty{margin:8px 0 0}
+  ul{list-style:none;margin:6px 0 0;padding:0}
   li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--rule)}
-  li.waiting{background:#fffbe9}
-  li input[type=checkbox]{width:20px;height:20px;margin-top:3px}
+  li.pick{background:#f3efff}
+  li input[type=checkbox]{width:20px;height:20px;margin-top:3px;accent-color:var(--stencil)}
   .msg{margin:0 0 5px;white-space:pre-wrap;overflow-wrap:anywhere}
   .who{font-size:12px;color:#666}
   .who b{color:var(--stencil)}
   .tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 7px;border:2px solid var(--ink);white-space:nowrap}
   .tag.up{background:#cfe8d4}
   .tag.wait{background:var(--yellow)}
-  .empty{padding:30px 0;color:#666}
-  .note{background:#fff3c4;border:2px solid var(--ink);padding:10px 12px;font-size:13px;margin:14px 0}
+  @media (max-width:520px){.bar .count{width:100%;margin-bottom:2px}}
 </style>
 </head>
 <body>
 
 <div class="login" id="login">
-  <h1 style="font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px">Guestbook</h1>
-  <p style="font-size:13px;color:#555;margin:0">Same username and password as the rest of the admin.</p>
-  <label for="u">Username</label><input id="u" autocomplete="username">
+  <h1>Guestbook</h1>
+  <p class="sub">Same username and password as the rest of the admin.</p>
+  <label for="u">Username</label><input id="u" type="text" autocomplete="username">
   <label for="p">Password</label><input id="p" type="password" autocomplete="current-password">
   <button id="go" type="button">Log in</button>
   <p id="loginerr" style="color:var(--red);font-size:13px;margin:10px 0 0"></p>
 </div>
 
 <div id="app" hidden>
-  <header>
-    <h1>Guestbook</h1>
-    <span id="status"></span>
-    <a href="/admin/">← back to the admin</a>
+  <header id="hdr">
+    <div class="titlebar">
+      <h1>Guestbook <span class="count" id="count"></span></h1>
+      <span id="status"></span>
+    </div>
+    <nav class="tabs">
+      <a href="/admin/">Everything else</a>
+      <a href="/admin/prices/">Flash quick edit</a>
+      <a href="/admin/guestbook/" aria-current="page">Guestbook</a>
+      <a class="out" href="/guestbook/" target="_blank" rel="noopener">See the live page ↗</a>
+    </nav>
   </header>
 
   <p class="note">Nothing a visitor writes shows on the site until you approve it here. Hiding one puts it back out of sight; deleting is forever.</p>
 
   <div class="bar">
-    <span class="count" id="count"></span>
-    <button type="button" id="all">Select all waiting</button>
-    <button type="button" id="none">Clear</button>
-    <button type="button" class="go" id="approve" disabled>Approve</button>
-    <button type="button" class="hide" id="hide" disabled>Hide</button>
-    <button type="button" class="kill" id="del" disabled>Delete</button>
+    <span class="count" id="picked">Tick the ones you want to deal with.</span>
+    <div class="acts">
+      <button type="button" id="all">Select all waiting</button>
+      <button type="button" id="none">Clear</button>
+      <button type="button" class="go" id="approve" data-word="Approve" disabled>Approve</button>
+      <button type="button" class="hide" id="hide" data-word="Hide" disabled>Hide</button>
+      <button type="button" class="kill" id="del" data-word="Delete" disabled>Delete</button>
+    </div>
   </div>
 
-  <ul id="list"></ul>
+  <section class="waiting" id="sec-waiting" hidden>
+    <h2>Waiting on you <span class="n" id="n-waiting"></span></h2>
+    <ul id="list-waiting"></ul>
+  </section>
+
+  <section class="live" id="sec-live" hidden>
+    <h2>On the site <span class="n" id="n-live"></span></h2>
+    <ul id="list-live"></ul>
+  </section>
+
+  <p class="empty" id="nothing" hidden>Nothing in the book yet.</p>
 </div>
 
 <script>
 (function () {
+  // Same credential as the flash quick edit, under the same key, so one login covers both.
+  var KEY = "ct-admin-auth";
   var auth = "", entries = [];
   var $ = function (s) { return document.querySelector(s); };
+  var all = function (s) { return [].slice.call(document.querySelectorAll(s)); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
-  var when = function (ms) { return new Date(Number(ms)).toLocaleString(); };
+  var when = function (ms) { return new Date(Number(ms)).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" }); };
 
   function say(msg, bad) {
     var el = $("#status");
@@ -94,27 +107,47 @@
   }
 
   function picked() {
-    return [].slice.call(document.querySelectorAll("#list input:checked")).map(function (c) { return Number(c.value); });
+    return all("#app input[type=checkbox]:checked").map(function (c) { return Number(c.value); });
   }
   function syncButtons() {
     var n = picked().length;
-    ["#approve", "#hide", "#del"].forEach(function (s) { $(s).disabled = !n; });
+    ["#approve", "#hide", "#del"].forEach(function (s) {
+      var b = $(s);
+      b.disabled = !n;
+      b.textContent = b.dataset.word + (n ? " (" + n + ")" : "");
+    });
+    $("#picked").textContent = n ? n + (n === 1 ? " entry" : " entries") + " ticked" : "Tick the ones you want to deal with.";
+    all("#app input[type=checkbox]").forEach(function (c) { c.closest("li").classList.toggle("pick", c.checked); });
+    $("#all").disabled = !document.querySelector("#list-waiting input");
   }
 
+  function row(e) {
+    return '<li>' +
+      '<input type="checkbox" value="' + e.id + '" aria-label="Select this entry">' +
+      '<div><p class="msg">' + esc(e.message) + "</p>" +
+      '<p class="who"><b>' + esc(e.name) + "</b> · " + when(e.created_at) + "</p></div>" +
+      '<span class="tag ' + (e.approved ? "up" : "wait") + '">' + (e.approved ? "on the site" : "waiting") + "</span></li>";
+  }
+
+  // Waiting entries first, in their own bucket — the approved ones are just a record.
   function paint() {
-    var waiting = entries.filter(function (e) { return !e.approved; }).length;
-    $("#count").textContent = entries.length + " total · " + waiting + " waiting on you";
-    if (!entries.length) { $("#list").innerHTML = '<p class="empty">Nothing in the book yet.</p>'; return; }
-    $("#list").innerHTML = entries.map(function (e) {
-      return '<li class="' + (e.approved ? "" : "waiting") + '">' +
-        '<input type="checkbox" value="' + e.id + '" aria-label="Select this entry">' +
-        '<div><p class="msg">' + esc(e.message) + "</p>" +
-        '<p class="who"><b>' + esc(e.name) + "</b> · " + when(e.created_at) + "</p></div>" +
-        '<span class="tag ' + (e.approved ? "up" : "wait") + '">' + (e.approved ? "on the site" : "waiting") + "</span></li>";
-    }).join("");
-    [].slice.call(document.querySelectorAll("#list input")).forEach(function (c) {
-      c.addEventListener("change", syncButtons);
-    });
+    var waiting = entries.filter(function (e) { return !e.approved; });
+    var live = entries.filter(function (e) { return e.approved; });
+
+    $("#count").textContent = entries.length
+      ? "· " + waiting.length + " waiting on you, " + live.length + " on the site"
+      : "";
+    $("#nothing").hidden = entries.length > 0;
+
+    $("#sec-waiting").hidden = !waiting.length;
+    $("#n-waiting").textContent = waiting.length ? "· " + waiting.length : "";
+    $("#list-waiting").innerHTML = waiting.map(row).join("");
+
+    $("#sec-live").hidden = !live.length;
+    $("#n-live").textContent = live.length ? "· " + live.length : "";
+    $("#list-live").innerHTML = live.map(row).join("");
+
+    all("#app input[type=checkbox]").forEach(function (c) { c.addEventListener("change", syncButtons); });
     syncButtons();
   }
 
@@ -140,35 +173,39 @@
       .catch(function (e) { say(e.message, true); });
   }
 
+  function enter() {
+    $("#login").hidden = true; $("#app").hidden = false;
+    // The sticky action bar has to sit directly under the sticky header, whatever height it is.
+    var fit = function () { document.documentElement.style.setProperty("--headerH", $("#hdr").offsetHeight + "px"); };
+    fit(); window.addEventListener("resize", fit);
+  }
+
   $("#go").addEventListener("click", function () {
     auth = btoa($("#u").value + ":" + $("#p").value);
     $("#loginerr").textContent = "";
     load().then(function () {
-      $("#login").hidden = true; $("#app").hidden = false;
-      try { sessionStorage.setItem("ct-gb-auth", auth); } catch (e) {}
+      enter();
+      try { sessionStorage.setItem(KEY, auth); } catch (e) {}
     }).catch(function (e) { $("#loginerr").textContent = e.message; });
   });
   $("#p").addEventListener("keydown", function (e) { if (e.key === "Enter") $("#go").click(); });
 
   $("#all").addEventListener("click", function () {
-    [].slice.call(document.querySelectorAll("#list li.waiting input")).forEach(function (c) { c.checked = true; });
+    all("#list-waiting input").forEach(function (c) { c.checked = true; });
     syncButtons();
   });
   $("#none").addEventListener("click", function () {
-    [].slice.call(document.querySelectorAll("#list input")).forEach(function (c) { c.checked = false; });
+    all("#app input[type=checkbox]").forEach(function (c) { c.checked = false; });
     syncButtons();
   });
   $("#approve").addEventListener("click", function () { act("approve", "Approved"); });
   $("#hide").addEventListener("click", function () { act("hide", "Hidden"); });
   $("#del").addEventListener("click", function () { act("delete", "Deleted"); });
 
-  // carry the login across a refresh, same as the price sheet
+  // carry the login across a refresh, and over from the flash quick edit
   try {
-    var saved = sessionStorage.getItem("ct-gb-auth");
-    if (saved) {
-      auth = saved;
-      load().then(function () { $("#login").hidden = true; $("#app").hidden = false; }).catch(function () {});
-    }
+    var saved = sessionStorage.getItem(KEY);
+    if (saved) { auth = saved; load().then(enter).catch(function () {}); }
   } catch (e) {}
 })();
 </script>

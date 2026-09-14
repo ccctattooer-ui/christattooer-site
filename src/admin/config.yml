@@ -30,9 +30,12 @@ media_libraries:
           optimize: true
 
 collections:
-  # ---------------------------------------------------------------- catalog
+
+  # ---------------------------------------------- Tattoo work — the day-to-day
+
   - name: flash
     label: Flash designs
+    icon: draw
     label_singular: Flash design
     description: One entry per design in the catalog. New designs need a SKU (FL-072, FL-073…), a drawing, a size and a price.
     folder: content/flash
@@ -57,8 +60,25 @@ collections:
       - { label: Available, name: available, widget: boolean, default: true, hint: Off marks it Claimed and disables the Add button. }
       - { label: Notes, name: notes, widget: text, required: false, hint: One short line shown on the card. }
 
+  - name: ordering
+    label: Catalog order
+    icon: sort
+    description: The order the designs appear in on the flash page. Drag to sort; anything you don't list goes on the end in SKU order.
+    files:
+      - name: order
+        label: Flash catalog order
+        file: src/_data/order.json
+        format: json
+        fields:
+          - label: Flash catalog
+            name: flash
+            widget: list
+            hint: Drag to reorder the catalog. Anything not listed goes at the end in SKU order.
+            field: { label: Design, name: design, widget: relation, collection: flash, value_field: "{{slug}}", display_fields: ["{{sku}} {{name}}"], search_fields: [sku, name] }
+
   - name: work
     label: Healed & recent work
+    icon: photo_library
     label_singular: Photo
     description: Photos on the Work page. Featured photos also show on the home page (first 8 by default) and get a star.
     folder: content/work
@@ -83,149 +103,15 @@ collections:
       - { label: Hidden, name: hidden, widget: boolean, default: false, required: false }
       - { label: Original file, name: source, widget: hidden, required: false }
 
-  # ---------------------------------------------------------------- departments
-  - name: paintings
-    label: Paintings
-    description: The collage board in the Paintings department. Drag rows to reorder (top = top-left of the board); click a row to edit it; use the + button to add a piece.
-    media_folder: /assets/paintings
-    public_folder: /assets/paintings
-    files:
-      - name: board
-        label: Collage board
-        file: content/paintings.json
-        format: json
-        media_folder: /assets/paintings
-        public_folder: /assets/paintings
-        fields:
-          - label: Pieces
-            name: pieces
-            widget: list
-            collapsed: true
-            thumbnail: image
-            summary: "{{fields.title}} · {{fields.kind}}"
-            fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Photo, name: image, widget: image, hint: JPG or PNG. Phone photos are shrunk automatically. }
-              - { label: Kind, name: kind, widget: select, options: [{ label: Flash sheet, value: flash }, { label: Painting, value: painting }], default: painting }
-              - { label: Year, name: year, widget: string, required: false }
-              - { label: Hidden, name: hidden, widget: boolean, default: false, required: false }
-              - { label: Notes, name: notes, widget: text, required: false }
+  # A line in the sidebar between this bucket and the one above.
+  - divider: true
 
-  - name: videos
-    label: Game montages
-    description: The YouTube playlist in the Games department. Drag rows to reorder; the featured one plays first.
-    files:
-      - name: playlist
-        label: Playlist
-        file: content/videos.json
-        format: json
-        fields:
-          - label: Videos
-            name: videos
-            widget: list
-            collapsed: true
-            summary: "{{fields.title}} ({{fields.game}})"
-            fields:
-              - { label: YouTube video ID, name: id, widget: string, hint: 'The part after v= in the link, e.g. 6h6MYeb7vA0.' }
-              - { label: Title, name: title, widget: string }
-              - { label: Game, name: game, widget: string, hint: Used for the filter chips. Spell it the same way every time. }
-              - { label: Tag, name: tag, widget: string, required: false, hint: Character, mode, whatever. }
-              - { label: Year, name: year, widget: string, required: false }
-              - { label: Featured, name: featured, widget: boolean, default: false, required: false, hint: Plays first when the page opens. }
-
-  - name: genetics
-    label: SpaceCraft genetics
-    label_singular: Plant
-    description: Every plant on the star chart. Add a cross and pick its mother and father from the list; generations are worked out automatically.
-    folder: content/genetics
-    format: json
-    extension: json
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    identifier_field: name
-    summary: "{{name}} · {{kind}}"
-    sortable_fields: [name, kind, run, flagship]
-    fields:
-      - { label: Name, name: name, widget: string, hint: "Use ♂ / ♀ in the name if it helps, e.g. Charcuterie ♂." }
-      - { label: Kind, name: kind, widget: select, options: [{ label: SpaceCraft cross, value: spacecraft }, { label: Clone-only cut, value: cut }, { label: Seed line, value: seedline }, { label: Homebrew line (someone else's), value: homebrew }, { label: Landrace, value: landrace }, { label: Bagseed, value: bagseed }, { label: Unknown, value: unknown }], default: spacecraft }
-      - { label: Breeder / source, name: breeder, widget: string, required: false }
-      - { label: Mother, name: mother, widget: relation, collection: genetics, value_field: "{{slug}}", display_fields: ["{{name}}"], search_fields: [name], required: false }
-      - { label: Father, name: father, widget: relation, collection: genetics, value_field: "{{slug}}", display_fields: ["{{name}}"], search_fields: [name], required: false, hint: For an F2 pick the same line as both parents. }
-      - { label: Run, name: run, widget: select, options: [{ label: none (outside plant), value: 0 }, { label: "1 · Charcuterie 2024", value: 1 }, { label: "2 · Lime Bubble 2025", value: 2 }, { label: "3 · Gushy Kush 2025", value: 3 }, { label: "4 · side chucks 2025", value: 4 }, { label: "5 · pine line 2026", value: 5 }, { label: "6 · outdoor, Pinecake male 2026", value: 6 }], default: 0 }
-      - { label: Year, name: year, widget: string, required: false }
-      - { label: Flagship, name: flagship, widget: boolean, default: false, required: false, hint: A SpaceCraft line you bred with again. Shows as a gold star. }
-      - { label: Status, name: status, widget: string, required: false, hint: "released, unreleased, testing, stock, unnamed, unknown…" }
-      - { label: Terps, name: terps, widget: string, required: false }
-      - { label: Notes, name: notes, widget: text, required: false }
-      - { label: Source note, name: source, widget: string, required: false }
-      - { label: Seedfinder link, name: seedfinder, widget: string, required: false }
-      - { label: Scrapped, name: scrapped, widget: boolean, default: false, required: false, hint: Tick this and the plant leaves the roster and the star chart and moves into the Recycle Bin instead. It stops counting towards your total. }
-      - { label: Why it was scrapped, name: scrapNote, widget: string, required: false, hint: One line, shown in red in the bin. e.g. Made too few seeds to carry on with. }
-      - { label: Photo, name: image, widget: image, required: false, media_folder: /assets/plants, public_folder: /assets/plants, hint: Shown in the plant's dossier on the star chart. }
-
-  - name: departments
-    label: Departments
-    label_singular: Department
-    description: The ParlorOS desktop icons and their windows (Paintings, Games, Store, SpaceCraft).
-    folder: content/departments
-    format: json
-    extension: json
-    create: false
-    delete: false
-    slug: "{{slug}}"
-    identifier_field: name
-    summary: "{{order}} · {{name}} · {{status}}"
-    media_folder: /assets/plants
-    public_folder: /assets/plants
-    fields:
-      - { label: URL slug, name: slug, widget: string, hint: Do not change; it is the page address. }
-      - { label: Name, name: name, widget: string }
-      - { label: Icon, name: icon, widget: image, media_folder: /assets/icons, public_folder: /assets/icons, hint: "The desktop icon. Upload the 128px version; the small one for the menubar strip is picked up automatically if it sits beside it as <name>-32.png." }
-      - { label: Blurb, name: blurb, widget: text }
-      - { label: Status, name: status, widget: string, hint: Shown in the window and the taskbar. }
-      - { label: Order, name: order, widget: number, value_type: int }
-      - label: Photos
-        name: images
-        widget: list
-        required: false
-        summary: "{{fields.caption}}"
-        hint: Only used by departments without their own window (SpaceCraft). Paintings and Games have their own sections above.
-        fields:
-          - { label: Photo, name: image, widget: image }
-          - { label: Caption, name: caption, widget: string }
-
-  # ---------------------------------------------------------------- pages & copy
-  - name: pages
-    label: Pages
-    files:
-      - name: about
-        label: About page
-        file: src/about.md
-        fields:
-          - { label: Layout, name: layout, widget: hidden, default: layouts/page.njk }
-          - { label: Address, name: permalink, widget: hidden, default: /about/ }
-          - { label: Tab title, name: title, widget: string }
-          - { label: Search description, name: description, widget: string }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Opening line, name: lede, widget: text, required: false }
-          - { label: Show shop facts box, name: facts, widget: boolean, default: true }
-          - { label: Body, name: body, widget: markdown }
-      - name: aftercare
-        label: Aftercare page
-        file: src/aftercare.md
-        fields:
-          - { label: Layout, name: layout, widget: hidden, default: layouts/page.njk }
-          - { label: Address, name: permalink, widget: hidden, default: /aftercare/ }
-          - { label: Tab title, name: title, widget: string }
-          - { label: Search description, name: description, widget: string }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Opening line, name: lede, widget: text, required: false }
-          - { label: Show shop facts box, name: facts, widget: boolean, default: false }
-          - { label: Body, name: body, widget: markdown }
+  # ---------------------------------------------- Pages and their wording
 
   - name: home
     label: Home page
+    icon: home
+    description: The boxes down the front page — how to order, the catalog heading, the custom-work card and the recent-work strip.
     files:
       - name: home
         label: Home page sections
@@ -258,6 +144,8 @@ collections:
 
   - name: landing
     label: Landing page (TV)
+    icon: tv
+    description: The television screen people land on before the catalog, and the words on it.
     files:
       - name: landing
         label: Landing page text
@@ -278,6 +166,8 @@ collections:
 
   - name: booking
     label: Booking page
+    icon: calendar_month
+    description: The three ways to book, the wording on the request form, and the thank-you page after someone sends one.
     files:
       - name: booking
         label: Booking page copy
@@ -326,62 +216,39 @@ collections:
               - { label: Heading, name: heading, widget: string }
               - { label: Text, name: text, widget: text }
 
-  # ---------------------------------------------------------------- ordering
-  - name: ordering
-    label: Flash order (drag to sort)
+  - name: pages
+    label: About & Aftercare
+    icon: description
+    description: The two written pages. Everything else with words of its own has its own section.
     files:
-      - name: order
-        label: Flash catalog order
-        file: src/_data/order.json
-        format: json
+      - name: about
+        label: About page
+        file: src/about.md
         fields:
-          - label: Flash catalog
-            name: flash
-            widget: list
-            hint: Drag to reorder the catalog. Anything not listed goes at the end in SKU order.
-            field: { label: Design, name: design, widget: relation, collection: flash, value_field: "{{slug}}", display_fields: ["{{sku}} {{name}}"], search_fields: [sku, name] }
-
-  # ---------------------------------------------------------------- look
-  - name: theme
-    label: Look & colors
-    files:
-      - name: theme
-        label: Colors, columns, collage
-        file: src/_data/theme.json
-        format: json
+          - { label: Layout, name: layout, widget: hidden, default: layouts/page.njk }
+          - { label: Address, name: permalink, widget: hidden, default: /about/ }
+          - { label: Tab title, name: title, widget: string }
+          - { label: Search description, name: description, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Opening line, name: lede, widget: text, required: false }
+          - { label: Show shop facts box, name: facts, widget: boolean, default: true }
+          - { label: Body, name: body, widget: markdown }
+      - name: aftercare
+        label: Aftercare page
+        file: src/aftercare.md
         fields:
-          - label: Catalog (tattoo pages)
-            name: catalog
-            widget: object
-            fields:
-              - { label: Brand purple, name: stencil, widget: color, hint: Logo block, links, category highlight. }
-              - { label: Yellow, name: yellow, widget: color, hint: Search and Add buttons. }
-              - { label: Red, name: red, widget: color, hint: Booking button. }
-              - { label: Green, name: green, widget: color, hint: '"Ready" dot.' }
-              - { label: Ink, name: ink, widget: color, hint: Text and rules. }
-              - { label: Flash columns (desktop), name: columns, widget: number, value_type: int, min: 2, max: 6 }
-              - { label: Work-photo columns (desktop), name: workColumns, widget: number, value_type: int, min: 2, max: 8 }
-          - label: ParlorOS (other departments)
-            name: os
-            widget: object
-            fields:
-              - { label: Wallpaper, name: wall, widget: color }
-              - { label: Purple, name: stencil, widget: color }
-              - { label: Bone (window color), name: bone, widget: color }
-              - { label: Yellow, name: yellow, widget: color }
-              - { label: Red, name: red, widget: color }
-              - { label: Green, name: green, widget: color }
-          - label: Paintings collage
-            name: collage
-            widget: object
-            fields:
-              - { label: Tilt (degrees), name: tilt, widget: number, value_type: float, min: 0, max: 8, step: 0.5, hint: 0 = straight rows, 2 = a little crooked, 5 = messy desk. }
-              - { label: Tape strips, name: tape, widget: boolean, default: true }
-              - { label: Smallest piece width (px), name: columnWidth, widget: number, value_type: int, min: 100, max: 260, step: 10, hint: Smaller = more pieces per row. }
+          - { label: Layout, name: layout, widget: hidden, default: layouts/page.njk }
+          - { label: Address, name: permalink, widget: hidden, default: /aftercare/ }
+          - { label: Tab title, name: title, widget: string }
+          - { label: Search description, name: description, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Opening line, name: lede, widget: text, required: false }
+          - { label: Show shop facts box, name: facts, widget: boolean, default: false }
+          - { label: Body, name: body, widget: markdown }
 
-  # ----------------------------------------------------------------- guestbook
   - name: guestbookpage
     label: Guestbook page
+    icon: menu_book
     files:
       - name: guestbookpage
         label: Wording on /guestbook/
@@ -401,9 +268,255 @@ collections:
           - { label: If they leave it blank, name: writeFirst, widget: string }
           - { label: When nobody has signed yet, name: empty, widget: string }
 
-  # -------------------------------------------------------------- sticker hunt
+  - name: notfound
+    label: Wrong address page
+    icon: link_off
+    files:
+      - name: notfound
+        label: What people see at a bad link
+        description: The page shown when someone follows a link that no longer exists.
+        file: src/_data/notFound.json
+        format: json
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Opening line, name: lede, widget: text }
+          - { label: Before the list, name: intro, widget: string }
+          - label: Where to send them
+            name: links
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - { label: Text, name: label, widget: string }
+              - { label: Address, name: url, widget: string }
+          - { label: Closing line, name: outro, widget: string, hint: Your Instagram handle is added after this. }
+
+  # A line in the sidebar between this bucket and the one above.
+  - divider: true
+
+  # ---------------------------------------------- ParlorOS departments
+
+  - name: departments
+    label: Departments
+    icon: desktop_windows
+    label_singular: Department
+    description: The ParlorOS desktop icons and their windows (Paintings, Games, Store, SpaceCraft).
+    folder: content/departments
+    format: json
+    extension: json
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{order}} · {{name}} · {{status}}"
+    media_folder: /assets/plants
+    public_folder: /assets/plants
+    fields:
+      - { label: URL slug, name: slug, widget: string, hint: Do not change; it is the page address. }
+      - { label: Name, name: name, widget: string }
+      - { label: Icon, name: icon, widget: image, media_folder: /assets/icons, public_folder: /assets/icons, hint: "The desktop icon. Upload the 128px version; the small one for the menubar strip is picked up automatically if it sits beside it as <name>-32.png." }
+      - { label: Blurb, name: blurb, widget: text }
+      - { label: Status, name: status, widget: string, hint: Shown in the window and the taskbar. }
+      - { label: Order, name: order, widget: number, value_type: int }
+      - label: Photos
+        name: images
+        widget: list
+        required: false
+        summary: "{{fields.caption}}"
+        hint: Only used by departments without their own window (SpaceCraft). Paintings and Games have their own sections above.
+        fields:
+          - { label: Photo, name: image, widget: image }
+          - { label: Caption, name: caption, widget: string }
+
+  - name: paintings
+    label: Paintings
+    icon: palette
+    description: The collage board in the Paintings department. Drag rows to reorder (top = top-left of the board); click a row to edit it; use the + button to add a piece.
+    media_folder: /assets/paintings
+    public_folder: /assets/paintings
+    files:
+      - name: board
+        label: Collage board
+        file: content/paintings.json
+        format: json
+        media_folder: /assets/paintings
+        public_folder: /assets/paintings
+        fields:
+          - label: Pieces
+            name: pieces
+            widget: list
+            collapsed: true
+            thumbnail: image
+            summary: "{{fields.title}} · {{fields.kind}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Photo, name: image, widget: image, hint: JPG or PNG. Phone photos are shrunk automatically. }
+              - { label: Kind, name: kind, widget: select, options: [{ label: Flash sheet, value: flash }, { label: Painting, value: painting }], default: painting }
+              - { label: Year, name: year, widget: string, required: false }
+              - { label: Hidden, name: hidden, widget: boolean, default: false, required: false }
+              - { label: Notes, name: notes, widget: text, required: false }
+
+  - name: videos
+    label: Game montages
+    icon: videogame_asset
+    description: The YouTube playlist in the Games department. Drag rows to reorder; the featured one plays first.
+    files:
+      - name: playlist
+        label: Playlist
+        file: content/videos.json
+        format: json
+        fields:
+          - label: Videos
+            name: videos
+            widget: list
+            collapsed: true
+            summary: "{{fields.title}} ({{fields.game}})"
+            fields:
+              - { label: YouTube video ID, name: id, widget: string, hint: 'The part after v= in the link, e.g. 6h6MYeb7vA0.' }
+              - { label: Title, name: title, widget: string }
+              - { label: Game, name: game, widget: string, hint: Used for the filter chips. Spell it the same way every time. }
+              - { label: Tag, name: tag, widget: string, required: false, hint: Character, mode, whatever. }
+              - { label: Year, name: year, widget: string, required: false }
+              - { label: Featured, name: featured, widget: boolean, default: false, required: false, hint: Plays first when the page opens. }
+
+  - name: gameswords
+    label: Gamer Zone wording
+    icon: text_fields
+    files:
+      - name: gameswords
+        label: The words on the Gamer Zone desktop
+        description: >-
+          The writing around the games section. The clips themselves are under Game montages, and
+          the department's name, blurb and status are under Departments.
+        file: src/_data/gamesWords.json
+        format: json
+        fields:
+          - { label: Montages window name, name: windowMontages, widget: string, hint: The title along the top of the video window. The count is added automatically. }
+          - { label: Arcade window name, name: windowArcade, widget: string }
+          - { label: Readme window name, name: windowReadme, widget: string }
+          - { label: "\"All\" filter button", name: filterAll, widget: string }
+          - { label: Montages button, name: buttonMontages, widget: string }
+          - { label: Twitch button, name: buttonTwitch, widget: string }
+          - { label: Arcade button, name: buttonArcade, widget: string }
+          - { label: Back-to-catalog button, name: backButton, widget: string }
+          - { label: YouTube line, name: youtubeLine, widget: string, hint: Your handle is added after this as a link. }
+          - { label: Twitch line, name: twitchLine, widget: string }
+          - { label: Twitch link text, name: twitchFollow, widget: string }
+          - { label: Arcade heading, name: arcadeHeading, widget: string }
+          - { label: Arcade blurb, name: arcadeBlurb, widget: text }
+
+  # A line in the sidebar between this bucket and the one above.
+  - divider: true
+
+  # ---------------------------------------------- SpaceCraft
+
+  - name: genetics
+    label: SpaceCraft genetics
+    icon: potted_plant
+    label_singular: Plant
+    description: Every plant on the star chart. Add a cross and pick its mother and father from the list; generations are worked out automatically.
+    folder: content/genetics
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}} · {{kind}}"
+    sortable_fields: [name, kind, run, flagship]
+    fields:
+      - { label: Name, name: name, widget: string, hint: "Use ♂ / ♀ in the name if it helps, e.g. Charcuterie ♂." }
+      - { label: Kind, name: kind, widget: select, options: [{ label: SpaceCraft cross, value: spacecraft }, { label: Clone-only cut, value: cut }, { label: Seed line, value: seedline }, { label: Homebrew line (someone else's), value: homebrew }, { label: Landrace, value: landrace }, { label: Bagseed, value: bagseed }, { label: Unknown, value: unknown }], default: spacecraft }
+      - { label: Breeder / source, name: breeder, widget: string, required: false }
+      - { label: Mother, name: mother, widget: relation, collection: genetics, value_field: "{{slug}}", display_fields: ["{{name}}"], search_fields: [name], required: false }
+      - { label: Father, name: father, widget: relation, collection: genetics, value_field: "{{slug}}", display_fields: ["{{name}}"], search_fields: [name], required: false, hint: For an F2 pick the same line as both parents. }
+      - { label: Run, name: run, widget: select, options: [{ label: none (outside plant), value: 0 }, { label: "1 · Charcuterie 2024", value: 1 }, { label: "2 · Lime Bubble 2025", value: 2 }, { label: "3 · Gushy Kush 2025", value: 3 }, { label: "4 · side chucks 2025", value: 4 }, { label: "5 · pine line 2026", value: 5 }, { label: "6 · outdoor, Pinecake male 2026", value: 6 }], default: 0 }
+      - { label: Year, name: year, widget: string, required: false }
+      - { label: Flagship, name: flagship, widget: boolean, default: false, required: false, hint: A SpaceCraft line you bred with again. Shows as a gold star. }
+      - { label: Status, name: status, widget: string, required: false, hint: "released, unreleased, testing, stock, unnamed, unknown…" }
+      - { label: Terps, name: terps, widget: string, required: false }
+      - { label: Notes, name: notes, widget: text, required: false }
+      - { label: Source note, name: source, widget: string, required: false }
+      - { label: Seedfinder link, name: seedfinder, widget: string, required: false }
+      - { label: Scrapped, name: scrapped, widget: boolean, default: false, required: false, hint: Tick this and the plant leaves the roster and the star chart and moves into the Recycle Bin instead. It stops counting towards your total. }
+      - { label: Why it was scrapped, name: scrapNote, widget: string, required: false, hint: One line, shown in red in the bin. e.g. Made too few seeds to carry on with. }
+      - { label: Photo, name: image, widget: image, required: false, media_folder: /assets/plants, public_folder: /assets/plants, hint: Shown in the plant's dossier on the star chart. }
+
+  - name: runs
+    label: Breeding runs
+    icon: science
+    files:
+      - name: runs
+        label: The six runs
+        description: One entry per run. This is what the "THE RUN" tab on each cross reads, and what names the filters on the bred-in-house board.
+        file: src/_data/runs.json
+        format: json
+        fields:
+          - label: Runs
+            name: runs
+            widget: list
+            label_singular: Run
+            summary: 'Run {{fields.n}} · {{fields.name}} · {{fields.season}}'
+            fields:
+              - { label: Run number, name: n, widget: number, value_type: int, min: 1, hint: Must match the Run picked on each plant. }
+              - { label: Short name, name: name, widget: string, hint: 'The male that carried it, e.g. Lime Bubble.' }
+              - { label: When, name: season, widget: string, hint: 'e.g. Jan–Mar 2025.' }
+              - { label: Year, name: year, widget: string }
+              - { label: Pollen donor, name: donor, widget: string, hint: 'The male, with the breeder in brackets.' }
+              - { label: About the male, name: donorNote, widget: text, required: false, hint: What it was, why it was picked, what it threw. }
+              - { label: Dates, name: dates, widget: text, required: false, hint: 'Flip, pollen, chop, pack — the line of dates under the story.' }
+              - { label: The story, name: story, widget: text, required: false, hint: One or two lines on what this run was. }
+
+  - name: bin
+    label: Scrapped crosses
+    icon: delete
+    files:
+      - name: bin
+        label: The recycle bin on the SpaceCraft desktop
+        description: >-
+          The window holding the crosses that did not work out. Which plants appear in it is set
+          per plant — tick "Scrapped" on any plant under SpaceCraft genetics and it moves out of
+          the roster and the star chart and into here, with the reason you give. This page is the
+          wording around them.
+        file: src/_data/bin.json
+        format: json
+        fields:
+          - { label: Show the bin, name: show, widget: boolean, default: true, hint: Turn this off and the bin button and window disappear. Scrapped plants stay out of the roster either way. }
+          - { label: Button text, name: button, widget: string, hint: On the SpaceCraft readme window. The count is added automatically. }
+          - { label: Window name, name: window, widget: string, hint: The title along the top of the window, e.g. recycle.bin }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro, name: blurb, widget: text, hint: The line under the heading, next to the bin. }
+
+  - name: spacecraftwords
+    label: SpaceCraft wording
+    icon: text_fields
+    files:
+      - name: spacecraftwords
+        label: The words on the SpaceCraft desktop
+        description: >-
+          The writing around the plant breeding section. The plants themselves are under
+          SpaceCraft genetics, the runs under Breeding runs, and the bin under Scrapped crosses.
+        file: src/_data/spacecraftWords.json
+        format: json
+        fields:
+          - { label: Next to the big number, name: tally, widget: string, hint: 'Reads as "51 <this> 9 flagships 6 runs".' }
+          - { label: Intro, name: intro, widget: text, hint: 'Write {outside} and the number of outside plants is filled in.' }
+          - { label: Footnote, name: footnote, widget: text, hint: The small print at the bottom of the readme window. }
+          - { label: Roster heading, name: rosterHeading, widget: string, hint: 'Follows the big number. Write {runs} for the number of runs.' }
+          - { label: Roster intro, name: rosterLede, widget: text }
+          - { label: Star chart hint, name: chartHint, widget: text, hint: The line under the chart. The gold and blue key is added after it. }
+          - { label: Roster button, name: buttonMade, widget: string }
+          - { label: Chart button, name: buttonChart, widget: string }
+          - { label: Photos button, name: buttonPhotos, widget: string }
+          - { label: Roster search box, name: searchPlaceholder, widget: string }
+
+  # A line in the sidebar between this bucket and the one above.
+  - divider: true
+
+  # ---------------------------------------------- Extras, each with its own switch
+
   - name: hunt
     label: Sticker hunt & coupon
+    icon: local_activity
     files:
       - name: stickers
         label: The six hidden stickers
@@ -450,9 +563,9 @@ collections:
             field: { label: Line, name: line, widget: string }
             hint: "One line each, printed on the coupon. Write {amount}, {min} or {days} and the real numbers are filled in from the fields above, so the small print can never disagree with the offer."
 
-  # --------------------------------------------------------------- shop helper
   - name: helper
     label: Shop helper
+    icon: support_agent
     files:
       - name: helper
         label: The skull that pops up
@@ -478,9 +591,9 @@ collections:
             field: { label: Line, name: line, widget: string }
             hint: One is picked at random, and ANOTHER moves through the rest. Drag to reorder.
 
-  # ---------------------------------------------------------------- fun stuff
   - name: eggs
     label: Fun stuff
+    icon: celebration
     files:
       - name: eggs
         label: Easter eggs and old-web bits
@@ -600,125 +713,54 @@ collections:
             fields:
               - { label: Show, name: show, widget: boolean, default: true, hint: An ASCII skull and a hello for anyone who views the source. Invisible on the page itself. }
 
-  # ------------------------------------------------------- wrong-address page
-  - name: notfound
-    label: Wrong address page
+  # A line in the sidebar between this bucket and the one above.
+  - divider: true
+
+  # ---------------------------------------------- Setup
+
+  - name: theme
+    label: Look & colors
+    icon: color_lens
+    description: Colors, how many columns the grids use, and how crooked the paintings collage sits.
     files:
-      - name: notfound
-        label: What people see at a bad link
-        description: The page shown when someone follows a link that no longer exists.
-        file: src/_data/notFound.json
+      - name: theme
+        label: Colors, columns, collage
+        file: src/_data/theme.json
         format: json
         fields:
-          - { label: Heading, name: heading, widget: string }
-          - { label: Opening line, name: lede, widget: text }
-          - { label: Before the list, name: intro, widget: string }
-          - label: Where to send them
-            name: links
-            widget: list
-            summary: '{{fields.label}}'
+          - label: Catalog (tattoo pages)
+            name: catalog
+            widget: object
             fields:
-              - { label: Text, name: label, widget: string }
-              - { label: Address, name: url, widget: string }
-          - { label: Closing line, name: outro, widget: string, hint: Your Instagram handle is added after this. }
-
-  # ----------------------------------------------------------- gamer zone words
-  - name: gameswords
-    label: Gamer Zone wording
-    files:
-      - name: gameswords
-        label: The words on the Gamer Zone desktop
-        description: >-
-          The writing around the games section. The clips themselves are under Game montages, and
-          the department's name, blurb and status are under Departments.
-        file: src/_data/gamesWords.json
-        format: json
-        fields:
-          - { label: Montages window name, name: windowMontages, widget: string, hint: The title along the top of the video window. The count is added automatically. }
-          - { label: Arcade window name, name: windowArcade, widget: string }
-          - { label: Readme window name, name: windowReadme, widget: string }
-          - { label: "\"All\" filter button", name: filterAll, widget: string }
-          - { label: Montages button, name: buttonMontages, widget: string }
-          - { label: Twitch button, name: buttonTwitch, widget: string }
-          - { label: Arcade button, name: buttonArcade, widget: string }
-          - { label: Back-to-catalog button, name: backButton, widget: string }
-          - { label: YouTube line, name: youtubeLine, widget: string, hint: Your handle is added after this as a link. }
-          - { label: Twitch line, name: twitchLine, widget: string }
-          - { label: Twitch link text, name: twitchFollow, widget: string }
-          - { label: Arcade heading, name: arcadeHeading, widget: string }
-          - { label: Arcade blurb, name: arcadeBlurb, widget: text }
-
-  # ------------------------------------------------------ spacecraft wording
-  - name: spacecraftwords
-    label: SpaceCraft wording
-    files:
-      - name: spacecraftwords
-        label: The words on the SpaceCraft desktop
-        description: >-
-          The writing around the plant breeding section. The plants themselves are under
-          SpaceCraft genetics, the runs under Breeding runs, and the bin under Scrapped crosses.
-        file: src/_data/spacecraftWords.json
-        format: json
-        fields:
-          - { label: Next to the big number, name: tally, widget: string, hint: 'Reads as "51 <this> 9 flagships 6 runs".' }
-          - { label: Intro, name: intro, widget: text, hint: 'Write {outside} and the number of outside plants is filled in.' }
-          - { label: Footnote, name: footnote, widget: text, hint: The small print at the bottom of the readme window. }
-          - { label: Roster heading, name: rosterHeading, widget: string, hint: 'Follows the big number. Write {runs} for the number of runs.' }
-          - { label: Roster intro, name: rosterLede, widget: text }
-          - { label: Star chart hint, name: chartHint, widget: text, hint: The line under the chart. The gold and blue key is added after it. }
-          - { label: Roster button, name: buttonMade, widget: string }
-          - { label: Chart button, name: buttonChart, widget: string }
-          - { label: Photos button, name: buttonPhotos, widget: string }
-          - { label: Roster search box, name: searchPlaceholder, widget: string }
-
-  # -------------------------------------------------------------- recycle bin
-  - name: bin
-    label: Scrapped crosses (the bin)
-    files:
-      - name: bin
-        label: The recycle bin on the SpaceCraft desktop
-        description: >-
-          The window holding the crosses that did not work out. Which plants appear in it is set
-          per plant — tick "Scrapped" on any plant under SpaceCraft genetics and it moves out of
-          the roster and the star chart and into here, with the reason you give. This page is the
-          wording around them.
-        file: src/_data/bin.json
-        format: json
-        fields:
-          - { label: Show the bin, name: show, widget: boolean, default: true, hint: Turn this off and the bin button and window disappear. Scrapped plants stay out of the roster either way. }
-          - { label: Button text, name: button, widget: string, hint: On the SpaceCraft readme window. The count is added automatically. }
-          - { label: Window name, name: window, widget: string, hint: The title along the top of the window, e.g. recycle.bin }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Intro, name: blurb, widget: text, hint: The line under the heading, next to the bin. }
-
-  # ------------------------------------------------------------ breeding runs
-  - name: runs
-    label: Breeding runs
-    files:
-      - name: runs
-        label: The six runs
-        description: One entry per run. This is what the "THE RUN" tab on each cross reads, and what names the filters on the bred-in-house board.
-        file: src/_data/runs.json
-        format: json
-        fields:
-          - label: Runs
-            name: runs
-            widget: list
-            label_singular: Run
-            summary: 'Run {{fields.n}} · {{fields.name}} · {{fields.season}}'
+              - { label: Brand purple, name: stencil, widget: color, hint: Logo block, links, category highlight. }
+              - { label: Yellow, name: yellow, widget: color, hint: Search and Add buttons. }
+              - { label: Red, name: red, widget: color, hint: Booking button. }
+              - { label: Green, name: green, widget: color, hint: '"Ready" dot.' }
+              - { label: Ink, name: ink, widget: color, hint: Text and rules. }
+              - { label: Flash columns (desktop), name: columns, widget: number, value_type: int, min: 2, max: 6 }
+              - { label: Work-photo columns (desktop), name: workColumns, widget: number, value_type: int, min: 2, max: 8 }
+          - label: ParlorOS (other departments)
+            name: os
+            widget: object
             fields:
-              - { label: Run number, name: n, widget: number, value_type: int, min: 1, hint: Must match the Run picked on each plant. }
-              - { label: Short name, name: name, widget: string, hint: 'The male that carried it, e.g. Lime Bubble.' }
-              - { label: When, name: season, widget: string, hint: 'e.g. Jan–Mar 2025.' }
-              - { label: Year, name: year, widget: string }
-              - { label: Pollen donor, name: donor, widget: string, hint: 'The male, with the breeder in brackets.' }
-              - { label: About the male, name: donorNote, widget: text, required: false, hint: What it was, why it was picked, what it threw. }
-              - { label: Dates, name: dates, widget: text, required: false, hint: 'Flip, pollen, chop, pack — the line of dates under the story.' }
-              - { label: The story, name: story, widget: text, required: false, hint: One or two lines on what this run was. }
+              - { label: Wallpaper, name: wall, widget: color }
+              - { label: Purple, name: stencil, widget: color }
+              - { label: Bone (window color), name: bone, widget: color }
+              - { label: Yellow, name: yellow, widget: color }
+              - { label: Red, name: red, widget: color }
+              - { label: Green, name: green, widget: color }
+          - label: Paintings collage
+            name: collage
+            widget: object
+            fields:
+              - { label: Tilt (degrees), name: tilt, widget: number, value_type: float, min: 0, max: 8, step: 0.5, hint: 0 = straight rows, 2 = a little crooked, 5 = messy desk. }
+              - { label: Tape strips, name: tape, widget: boolean, default: true }
+              - { label: Smallest piece width (px), name: columnWidth, widget: number, value_type: int, min: 100, max: 260, step: 10, hint: Smaller = more pieces per row. }
 
-  # ---------------------------------------------------------------- identity
   - name: settings
     label: Site settings
+    icon: settings
+    description: Your name, the shop, hours, prices and links. These feed every page, so a change here shows up all over.
     files:
       - name: site
         label: Identity, hours, pricing, links

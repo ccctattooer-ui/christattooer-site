@@ -6,13 +6,43 @@
 <meta name="robots" content="noindex">
 <title>Admin · Chris Tattooer</title>
 <link rel="icon" href="/assets/favicon.png">
+<style>
+  /* The two screens that are not part of the CMS live in a dock in the corner, out of
+     Sveltia's way. Everything is prefixed ct- so nothing collides with the CMS's own styles. */
+  .ct-dock{position:fixed;right:12px;bottom:12px;z-index:9999;width:224px;font:13px/1.35 system-ui,sans-serif;
+    background:#EFEAD9;border:2px solid #15121A;box-shadow:4px 4px 0 #15121A}
+  .ct-dock summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+    padding:7px 10px;background:#15121A;color:#F0C22E;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+  .ct-dock summary::-webkit-details-marker{display:none}
+  .ct-dock summary::after{content:"▾";margin-left:auto;font-size:12px;transition:transform .15s}
+  .ct-dock[open] summary::after{transform:rotate(180deg)}
+  .ct-dock .ct-body{padding:8px;display:flex;flex-direction:column;gap:6px}
+  .ct-dock a{display:block;padding:7px 9px;color:#15121A;background:#fff;
+    border:2px solid #15121A;font-weight:700;text-decoration:none!important}
+  .ct-dock a:hover{background:#F0C22E}
+  .ct-dock a .ct-sub{display:block;font-weight:400;font-size:11px;color:#5b5346;margin-top:2px}
+  .ct-dock a:hover .ct-sub{color:#15121A}
+  .ct-dock :focus-visible{outline:3px solid #4B2E9C;outline-offset:2px}
+
+  .ct-tip{position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:9999;max-width:calc(100vw - 24px);
+    background:#F0C22E;color:#15121A;font:600 13px/1.35 system-ui,sans-serif;padding:8px 14px;
+    border:2px solid #15121A;box-shadow:3px 3px 0 #15121A}
+  .ct-tip a{color:#4B2E9C}
+
+  @media (max-width:640px){.ct-dock{width:auto;left:12px}}
+</style>
 </head>
 <body>
-<div style="position:fixed;right:12px;bottom:12px;z-index:9999;display:flex;flex-direction:column;gap:6px;align-items:flex-end">
-  <a href="/admin/guestbook/" style="background:#15121A;color:#F0C22E;font:700 13px system-ui,sans-serif;padding:8px 12px;border:2px solid #15121A;box-shadow:3px 3px 0 #15121A;text-decoration:none">Guestbook to approve ↗</a>
-  <a href="/admin/prices/" style="background:#4B2E9C;color:#fff;font:700 13px system-ui,sans-serif;padding:8px 12px;border:2px solid #15121A;box-shadow:3px 3px 0 #15121A;text-decoration:none">Quick edit all designs ↗</a>
-</div>
-<div id="flash-tip" hidden style="position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:9999;background:#F0C22E;color:#15121A;font:600 13px system-ui,sans-serif;padding:8px 14px;border:2px solid #15121A;box-shadow:3px 3px 0 #15121A;white-space:nowrap">Editing prices, sizes or names for many designs? <a href="/admin/prices/" style="color:#4B2E9C">Use the quick edit grid ↗</a></div>
+<details class="ct-dock" id="ct-dock" open>
+  <summary>Shortcuts</summary>
+  <div class="ct-body">
+    <a href="/admin/prices/">Flash quick edit ↗<span class="ct-sub">Names, sizes, prices and Ready, all on one grid</span></a>
+    <a href="/admin/guestbook/">Guestbook ↗<span class="ct-sub">Approve, hide or delete what visitors wrote</span></a>
+  </div>
+</details>
+
+<div class="ct-tip" id="ct-tip" hidden>Editing prices, sizes or names for lots of designs? <a href="/admin/prices/">Use the quick edit grid ↗</a></div>
+
 <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 <script>
   // Sveltia's stock login button says "Sign in with GitHub". Ours opens the username/password box
@@ -20,15 +50,27 @@
   (function () {
     var relabel = function () {
       document.querySelectorAll('button, a').forEach(function (el) {
-        var t = (el.textContent || '').trim();
+        if (el.closest('.ct-dock')) return;
+        // Sveltia writes the label as "Sign In with <FSI>GitHub<PDI>" — invisible Unicode
+        // bidi isolates (U+2068/U+2069) sit either side of the provider name, so a plain
+        // "sign in with github" never matches. Drop format characters, then the padding.
+        var t = (el.textContent || '').replace(/\p{Cf}/gu, '').replace(/\s+/g, ' ').trim();
         if (/sign in with github/i.test(t)) el.textContent = 'Log in';
         else if (/access token/i.test(t)) el.style.display = 'none';
       });
     };
     new MutationObserver(relabel).observe(document.documentElement, { childList: true, subtree: true });
     relabel();
+
+    // Remember whether the dock is folded away, so it stays out of the way once it has been shut.
+    var dock = document.getElementById('ct-dock');
+    try { dock.open = localStorage.getItem('ct-dock') !== 'shut'; } catch (e) {}
+    dock.addEventListener('toggle', function () {
+      try { localStorage.setItem('ct-dock', dock.open ? 'open' : 'shut'); } catch (e) {}
+    });
+
     // Point to the quick-edit grid whenever the Flash designs list is open.
-    var tip = function () { document.getElementById('flash-tip').hidden = !/collections\/flash\/?$/.test(location.hash); };
+    var tip = function () { document.getElementById('ct-tip').hidden = !/collections\/flash\/?$/.test(location.hash); };
     window.addEventListener('hashchange', tip); tip();
   })();
 </script>

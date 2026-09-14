@@ -4,33 +4,74 @@ Static site built with [Eleventy](https://www.11ty.dev/), hosted on Cloudflare (
 
 ## Editing in the admin
 
-Go to https://christattooer.com/admin/ and log in. Sections:
+Go to https://christattooer.com/admin/ and log in.
+
+Two screens are not part of the CMS and are reached from the **Shortcuts** dock in the
+corner of the admin (or directly, same username and password):
+
+| Screen | What it does | Where it lives |
+| --- | --- | --- |
+| Flash quick edit (`/admin/prices/`) | one grid of every flash design with editable name, category, size, hours, price, Ready and notes, filtered by category chip or search; per-row Save or Save-all commits the changed files in one commit. New drawings and deletions still happen in Flash designs. | `functions/admin/api/flash.js`, `src/admin/prices/` |
+| Guestbook (`/admin/guestbook/`) | approve, hide or delete what visitors signed, waiting ones bucketed first | `functions/admin/api/guestbook.js`, `src/admin/guestbook/` |
+
+Everything else is a section in the CMS sidebar. They are grouped, in this order, with a
+line between each bucket:
+
+**Tattoo work — the day-to-day**
 
 | Admin section | What it changes | Where it lives |
 | --- | --- | --- |
 | Flash designs | every design: name, category, drawing, size, price, hours, Ready/Claimed, notes. "New" uploads a new design. | `content/flash/FL-###.json` + `assets/flash/web/` |
-| Quick edit (/admin/prices/) | one grid of every flash design with editable name, category, size, hours, price, Ready and notes; per-row Save or Save-all commits the changed files in one commit. New drawings and deletions still happen in Flash designs. | `functions/admin/api/flash.js`, `src/admin/prices/` |
+| Catalog order | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
 | Healed & recent work | photos on /work/, titles, featured, hidden | `content/work/*.json` + `assets/tattoos/` |
-| Paintings | the collage board: one draggable list, each row = title, photo, kind (flash sheet / painting), hidden | `content/paintings.json` + `assets/paintings/` |
-| Game montages | the YouTube playlist in the Gamer Zone, one draggable list | `content/videos.json` |
-| Flash order (drag to sort) | drag-and-drop order of the flash catalog; anything not listed goes last in SKU order | `src/_data/order.json` |
-| SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
-| Guestbook page | the wording on /guestbook/ (entries themselves are approved at /admin/guestbook/) | `src/_data/guestbookPage.json` |
-| Sticker hunt & coupon | the six hidden stickers (name, hiding place, hint, colour, artwork) and the coupon (amount, minimum, how long it lasts, small print) | `src/_data/stickers.json`, `src/_data/coupon.json` |
-| Shop helper | the skull that pops up: whether it shows, where, how long it waits, and every line it says | `src/_data/helper.json` |
-| Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
-| Scrapped crosses (the bin) | the wording around the recycle bin on the SpaceCraft desktop | `src/_data/bin.json` |
-| Gamer Zone wording | the writing around the games section: window names, buttons, the arcade blurb | `src/_data/gamesWords.json` |
-| SpaceCraft wording | the writing around the plant section: intro, footnote, roster heading, chart hint, button labels | `src/_data/spacecraftWords.json` |
-| Wrong address page | the 404 page: heading, opening line, and where to send people | `src/_data/notFound.json` |
-| Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |
-| Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
-| Pages | About and Aftercare text (Markdown) | `src/about.md`, `src/aftercare.md` |
+
+**Pages and their wording**
+
+| Admin section | What it changes | Where it lives |
+| --- | --- | --- |
 | Home page | how-to box, headings, custom card, recent-work strip, on/off switches | `src/_data/home.json` |
 | Landing page (TV) | channel number, screen label, welcome text, captions, button, boot messages, on/off | `src/_data/landing.json` |
 | Booking page | the three routes, form placeholders, thank-you page | `src/_data/booking.json` |
+| About & Aftercare | the two written pages (Markdown) | `src/about.md`, `src/aftercare.md` |
+| Guestbook page | the wording on /guestbook/ (entries themselves are approved at /admin/guestbook/) | `src/_data/guestbookPage.json` |
+| Wrong address page | the 404 page: heading, opening line, and where to send people | `src/_data/notFound.json` |
+
+**ParlorOS departments**
+
+| Admin section | What it changes | Where it lives |
+| --- | --- | --- |
+| Departments | desktop icons, blurbs, status, SpaceCraft photos | `content/departments/*.json` |
+| Paintings | the collage board: one draggable list, each row = title, photo, kind (flash sheet / painting), hidden | `content/paintings.json` + `assets/paintings/` |
+| Game montages | the YouTube playlist in the Gamer Zone, one draggable list | `content/videos.json` |
+| Gamer Zone wording | the writing around the games section: window names, buttons, the arcade blurb | `src/_data/gamesWords.json` |
+
+**SpaceCraft**
+
+| Admin section | What it changes | Where it lives |
+| --- | --- | --- |
+| SpaceCraft genetics | every plant on the star chart: kind, mother, father (dropdowns), run, flagship, terps, notes, seedfinder link | `content/genetics/*.json` |
+| Breeding runs | the six runs: the male that carried each one, the dates, the story. Feeds the "THE RUN" tab and the filters on the bred-in-house board. | `src/_data/runs.json` |
+| Scrapped crosses | the wording around the recycle bin on the SpaceCraft desktop | `src/_data/bin.json` |
+| SpaceCraft wording | the writing around the plant section: intro, footnote, roster heading, chart hint, button labels | `src/_data/spacecraftWords.json` |
+
+**Extras, each with its own switch**
+
+| Admin section | What it changes | Where it lives |
+| --- | --- | --- |
+| Sticker hunt & coupon | the six hidden stickers (name, hiding place, hint, colour, artwork) and the coupon (amount, minimum, how long it lasts, small print) | `src/_data/stickers.json`, `src/_data/coupon.json` |
+| Shop helper | the skull that pops up: whether it shows, where, how long it waits, and every line it says | `src/_data/helper.json` |
+| Fun stuff | every playful extra with an on/off switch each: roadworks, screensaver, Konami code, footer buttons, machine pointer, clock wallpaper, view-source note | `src/_data/eggs.json` |
+
+**Setup**
+
+| Admin section | What it changes | Where it lives |
+| --- | --- | --- |
 | Look & colors | brand colors for both looks, grid columns, collage tilt / tape / piece size | `src/_data/theme.json` |
 | Site settings | name, hours, books status, shop address, Instagram, Square link, minimum, deposit, the share picture and the Google opening hours | `src/_data/site.json` |
+
+The buckets, the order and the little icon on each section all come from `src/admin/config.yml`
+— `icon:` is a [Material Symbols](https://fonts.google.com/icons) name, and `- divider: true`
+draws the line between buckets.
 
 The landing page (`/`) is the ParlorOS "TV" intro; the flash catalog lives at `/flash/`. The intro montage is built by `python tools/build_intro.py` from the clips and photos in `AboutMe/` (raw, not in git): edit the cut list at the top of that script, run it, commit `assets/intro/`. Visitors who already clicked through in the current browser session skip straight to `/flash/`.
 
@@ -79,7 +120,7 @@ What's in there now:
 | | What it does |
 | --- | --- |
 | Roadworks | Barricade, digger and scrolling sign on any department whose Status still says soon / later / under construction. Change the status and it retires itself — no code change. |
-| Screensaver | Your drawings bounce around the ParlorOS desktop after a spell of no activity (default 60s). Seven designs spread across the catalog, picked by the `spread` filter so the page doesn't ship all 71 paths. It stays away entirely while a window with a video in it is open, so it can't cut across a montage nobody is touching the mouse during. |
+| Screensaver | Your drawings bounce around the ParlorOS desktop after a spell of no activity (default 60s). Seven designs spread across the catalog, picked by the `spread` filter so the page doesn't ship every design's path. It stays away entirely while a window with a video in it is open, so it can't cut across a montage nobody is touching the mouse during. |
 | Konami code | ↑↑↓↓←→←→BA anywhere turns the walls gold and shows a note you can edit. Ignores keystrokes aimed at a form field. |
 | Footer buttons | Five 88×31 buttons drawn in CSS, including your own for other people to link to. The "books open" one blinks, unless reduced motion is on. |
 | Machine pointer | A tattoo machine as the mouse pointer, rotary on links. Mouse only. |
@@ -125,7 +166,7 @@ Any plant in **SpaceCraft genetics** can be ticked **Scrapped**, with a one-line
 
 These two are the only things on the site that need a database. **It is not switched on yet** — see below.
 
-**Nothing a visitor writes ever appears on its own.** Signatures land unapproved and stay invisible until you approve them at **/admin/guestbook/** (same username and password as the rest of the admin; there's a button for it in the corner of the admin). Approve, hide or delete in bulk. On top of that: a honeypot, hard length caps, and one signature per address per hour. Addresses are stored only as a salted hash — enough to rate-limit, useless for anything else.
+**Nothing a visitor writes ever appears on its own.** Signatures land unapproved and stay invisible until you approve them at **/admin/guestbook/** (same username and password as the rest of the admin; there's a Shortcuts dock for it in the corner of the admin). Approve, hide or delete in bulk. On top of that: a honeypot, hard length caps, and one signature per address per hour. Addresses are stored only as a salted hash — enough to rate-limit, useless for anything else.
 
 The counter counts *visits*, not page views: the page only adds one on the first page of a browser session, so someone reading through six departments counts once. Anything that doesn't run JavaScript never reaches it.
 
@@ -234,7 +275,8 @@ src/
     catalog.njk     white catalog frame (tattoo pages)
     os.njk          ParlorOS desktop frame (other departments)
     page.njk        About / Aftercare wrapper
-  admin/            Sveltia CMS (index.html + config.yml)
+  admin/            Sveltia CMS (index.html + config.yml) + the Shortcuts dock
+  admin/admin.css   the shell shared by the two custom admin screens
   intro.njk         landing page (CRT TV + montage) at /
   index.njk         flash catalog at /flash/
   404.njk           the page a wrong address lands on
@@ -248,6 +290,7 @@ src/
   js/pad.js         the sketch pad, loaded by /book/ only
   guestbook.njk     /guestbook/ + js/guestbook.js
   admin/guestbook/  the moderation screen (custom page, not part of the CMS)
+  admin/prices/     the flash quick-edit grid (custom page, not part of the CMS)
 migrations/         the D1 schema, run once with wrangler
   js/eggs.js        every easter egg, switched in the admin (src/_data/eggs.json)
   work.njk          all photos + lightbox

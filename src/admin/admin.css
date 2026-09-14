@@ -1,0 +1,64 @@
+/* The shell shared by the two custom admin screens (/admin/prices/ and /admin/guestbook/).
+   The CMS at /admin/ is Sveltia's own UI and does not use this file. Page-specific rules
+   (the price grid, the guestbook list) stay in each page. */
+
+:root{--ink:#15121A;--bone:#EFEAD9;--stencil:#4B2E9C;--yellow:#F0C22E;--red:#D3322A;--green:#3BAA6E;--rule:#d9d2bd;--quiet:#5b5346}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:15px/1.45 system-ui,sans-serif;padding-inline:16px;padding-block:0 40px}
+
+/* ------------------------------------------------------------------ header */
+header{position:sticky;top:0;background:#fff;border-bottom:3px solid var(--ink);padding:10px 0 0;z-index:5}
+.titlebar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-bottom:10px}
+/* min-width:0 everywhere a flex item holds text, or a long title pushes the whole
+   page wider than a phone screen and every row below it overflows. */
+header h1{font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0 auto 0 0;min-width:0}
+header h1 .count{font-weight:400;letter-spacing:0;text-transform:none;color:var(--quiet)}
+#status{font-size:13px;text-align:right;min-width:0}
+#status.ok{color:var(--green)}
+#status.err{color:var(--red)}
+/* Room reserved for the status line only where there is room to reserve. */
+@media (min-width:600px){#status{min-width:170px}}
+
+/* The same three tabs on every screen, so you always know where the other two are. */
+/* Each tab's 3px bottom edge lands exactly on the header's own rule, so the line runs
+   unbroken under the tabs you are not on and opens up white under the one you are. */
+nav.tabs{display:flex;flex-wrap:wrap;align-items:flex-end;gap:4px;margin-bottom:-3px;position:relative}
+nav.tabs a{font-size:13px;font-weight:700;text-decoration:none;color:var(--ink);padding:7px 12px;
+  border:2px solid var(--ink);border-bottom:3px solid var(--ink);background:var(--bone)}
+nav.tabs a:hover{background:#fff}
+nav.tabs a[aria-current=page]{background:#fff;border-bottom-color:#fff;color:var(--stencil)}
+nav.tabs a.out{background:transparent;border-color:transparent;color:var(--stencil);font-weight:400;
+  margin-left:auto;align-self:center;padding-bottom:9px;padding-inline:0}
+nav.tabs a.out:hover{background:transparent;text-decoration:underline}
+
+/* ----------------------------------------------------------------- buttons */
+button{font:inherit;font-weight:700;padding:8px 14px;border:2px solid var(--ink);background:var(--bone);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+button:hover:not(:disabled){transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
+button:active:not(:disabled){transform:translate(3px,3px);box-shadow:none}
+button:disabled{opacity:.4;cursor:default;box-shadow:none}
+button.primary{background:var(--stencil);color:#fff}
+button.go{background:var(--green);color:#fff}
+button.hide{background:var(--yellow)}
+button.kill{background:var(--red);color:#fff}
+:focus-visible{outline:3px solid var(--stencil);outline-offset:2px}
+
+/* ------------------------------------------------------------------- forms */
+input[type=search],input[type=text],input[type=password],input[type=number],select{font:inherit;padding:7px 10px;border:2px solid var(--ink);background:#fff;color:var(--ink)}
+label{color:var(--ink)}
+
+/* ------------------------------------------------------------------- login */
+.login{max-width:360px;margin:60px auto;background:var(--bone);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:22px 24px}
+.login h1{font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+.login .sub{font-size:13px;color:#555;margin:0 0 6px}
+.login label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin:10px 0 4px}
+.login input{width:100%;font:inherit;padding:9px 10px;border:2px solid var(--ink);background:#fff}
+.login button{width:100%;margin-top:16px;background:var(--stencil);color:#fff}
+.err{background:var(--red);color:#fff;padding:8px 10px;font-size:13px;margin-bottom:8px}
+
+/* -------------------------------------------------------------------- misc */
+.note{background:#fff3c4;border:2px solid var(--ink);padding:10px 12px;font-size:13px;margin:14px 0}
+.empty{padding:30px 0;color:#666}
+
+/* --------------------------------------------------------- toolbar buttons */
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.acts button{white-space:nowrap}
