@@ -1,0 +1,10 @@
+{
+  "sku": "FL-122",
+  "name": "Snake and flower",
+  "category": "Animals",
+  "image": "/assets/flash/web/flash-122.webp",
+  "size": "4 in",
+  "price": 250,
+  "available": true,
+  "notes": ""
+}

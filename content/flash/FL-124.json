@@ -1,0 +1,10 @@
+{
+  "sku": "FL-124",
+  "name": "Wolf head",
+  "category": "Animals",
+  "image": "/assets/flash/web/flash-124.webp",
+  "size": "4 in",
+  "price": 250,
+  "available": true,
+  "notes": ""
+}

@@ -1,0 +1,10 @@
+{
+  "sku": "FL-095",
+  "name": "Beetle",
+  "category": "Animals",
+  "image": "/assets/flash/web/flash-95.webp",
+  "size": "4 in",
+  "price": 250,
+  "available": true,
+  "notes": ""
+}

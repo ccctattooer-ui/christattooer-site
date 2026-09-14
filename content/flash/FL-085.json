@@ -1,0 +1,10 @@
+{
+  "sku": "FL-085",
+  "name": "Butterfly",
+  "category": "Animals",
+  "image": "/assets/flash/web/flash-85.webp",
+  "size": "4 in",
+  "price": 250,
+  "available": true,
+  "notes": ""
+}
