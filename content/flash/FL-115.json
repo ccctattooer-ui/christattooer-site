@@ -1,10 +1,11 @@
 {
   "sku": "FL-115",
-  "name": "Screaming flame skull",
+  "name": "books n skull",
   "category": "Skulls & devils",
   "image": "/assets/flash/web/flash-115.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "6 in",
+  "price": 350,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

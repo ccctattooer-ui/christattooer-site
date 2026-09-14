@@ -1,10 +1,11 @@
 {
   "sku": "FL-121",
-  "name": "Eyes and lips",
+  "name": "paranoid man",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-121.webp",
-  "size": "4 in",
+  "size": "5 in",
   "price": 250,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

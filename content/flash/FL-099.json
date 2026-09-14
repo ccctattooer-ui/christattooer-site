@@ -3,8 +3,9 @@
   "name": "Cross and rose",
   "category": "Symbols",
   "image": "/assets/flash/web/flash-99.webp",
-  "size": "4 in",
+  "size": "5 in",
   "price": 250,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

@@ -3,8 +3,9 @@
   "name": "Scorpion",
   "category": "Animals",
   "image": "/assets/flash/web/flash-126.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "5 in",
+  "price": 280,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

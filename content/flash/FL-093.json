@@ -1,10 +1,11 @@
 {
   "sku": "FL-093",
-  "name": "Graffiti tag",
-  "category": "Lettering",
+  "name": "lightning  and stars",
+  "category": "Symbols",
   "image": "/assets/flash/web/flash-93.webp",
-  "size": "4 in",
+  "size": "5 in",
   "price": 250,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

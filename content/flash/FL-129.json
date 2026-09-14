@@ -3,8 +3,9 @@
   "name": "Woman and parrot",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-129.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "9 in",
+  "price": 600,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

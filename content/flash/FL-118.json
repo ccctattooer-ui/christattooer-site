@@ -1,10 +1,11 @@
 {
   "sku": "FL-118",
-  "name": "Skull in a feather headdress",
+  "name": "Skull and feather",
   "category": "Skulls & devils",
   "image": "/assets/flash/web/flash-118.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "6 in",
+  "price": 350,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }
