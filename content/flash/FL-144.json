@@ -1,10 +1,11 @@
 {
   "sku": "FL-144",
-  "name": "Branch and sun",
+  "name": "peace pipe",
   "category": "Flowers & plants",
   "image": "/assets/flash/web/flash-144.webp",
   "size": "4 in",
   "price": 250,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }
