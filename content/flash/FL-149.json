@@ -1,10 +1,11 @@
 {
   "sku": "FL-149",
-  "name": "Butterfly in purple",
+  "name": "Butterfly cutey",
   "category": "Animals",
   "image": "/assets/flash/web/flash-149.webp",
   "size": "4 in",
   "price": 250,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }

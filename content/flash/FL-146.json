@@ -1,10 +1,11 @@
 {
   "sku": "FL-146",
-  "name": "Dancing man",
+  "name": "karate onion man",
   "category": "Faces & characters",
   "image": "/assets/flash/web/flash-146.webp",
-  "size": "4 in",
-  "price": 250,
+  "size": "6 in",
+  "price": 280,
   "available": true,
-  "notes": ""
+  "notes": "",
+  "hours": ""
 }
