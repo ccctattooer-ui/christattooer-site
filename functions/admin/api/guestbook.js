@@ -2,6 +2,7 @@
 //   GET                          — every entry, waiting ones first.
 //   POST {action, ids:[...]}     — approve, hide or delete them.
 // Secrets: ADMIN_USER, ADMIN_PASSWORD_SHA256. Needs the D1 binding DB.
+import { isWeakPassword } from "../weak-passwords.js";
 
 const enc = new TextEncoder();
 const sha256 = async (s) => new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(s)));
@@ -17,6 +18,7 @@ async function authorized(request, env) {
   const h = request.headers.get("authorization") || "";
   if (!h.startsWith("Basic ") || !env.ADMIN_USER || !env.ADMIN_PASSWORD_SHA256) return false;
   const [user = "", pass = ""] = atob(h.slice(6)).split(/:(.*)/s);
+  if (isWeakPassword(pass)) return false;
   return same(await sha256(user), await sha256(env.ADMIN_USER)) &&
          same(await sha256(pass), hex(env.ADMIN_PASSWORD_SHA256));
 }

@@ -2,6 +2,7 @@
 // Speaks the same popup protocol as a GitHub OAuth client so the CMS never sees GitHub: on success it
 // hands the CMS the repo-scoped GitHub token in the GITHUB_TOKEN secret.
 // Secrets: ADMIN_USER, ADMIN_PASSWORD_SHA256 (hex sha256 of the password), GITHUB_TOKEN.
+import { isWeakPassword } from "./weak-passwords.js";
 
 const enc = new TextEncoder();
 const sha256 = async (s) => new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(s)));
@@ -37,7 +38,8 @@ export async function onRequest({ request, env }) {
   if (request.method !== "POST") return form();
   const data = await request.formData();
   const user = String(data.get("username") || ""), pass = String(data.get("password") || "");
-  const ok = same(await sha256(user), await sha256(ADMIN_USER)) && same(await sha256(pass), hex(ADMIN_PASSWORD_SHA256));
+  const ok = !isWeakPassword(pass) &&
+    same(await sha256(user), await sha256(ADMIN_USER)) && same(await sha256(pass), hex(ADMIN_PASSWORD_SHA256));
   if (!ok) { await new Promise((r) => setTimeout(r, 1500)); return form("Wrong username or password."); }
   const payload = JSON.stringify({ provider: "github", token: GITHUB_TOKEN });
   return page(`<form><h1>Logged in</h1><p>Handing you back to the admin…</p></form>
