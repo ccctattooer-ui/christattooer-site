@@ -14,20 +14,13 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
-  // ---------------------------------------------------------------------------------------------
-  // Guestbook + visitor counter storage. Left commented out on purpose: a database_id that does not
-  // exist makes the deploy fail, which would stop the whole site updating. Nothing breaks while it
-  // is off — /api/hits and /api/guestbook just answer "not connected" and the pages stay quiet.
-  //
-  // To switch it on, once:
-  //   npx wrangler d1 create christattooer
+  // Guestbook + visitor counter storage (created 2026-09-15). The schema lives in
+  // migrations/0001_init.sql; rerun it with
   //   npx wrangler d1 execute christattooer --remote --file=migrations/0001_init.sql
-  // then paste the id it prints below and uncomment the block.
-  //
-  // "d1_databases": [
-  //   { "binding": "DB", "database_name": "christattooer", "database_id": "PASTE_THE_ID_HERE" }
-  // ],
-  // ---------------------------------------------------------------------------------------------
+  // if the tables ever need rebuilding (every statement is IF NOT EXISTS, so it is safe to repeat).
+  "d1_databases": [
+    { "binding": "DB", "database_name": "christattooer", "database_id": "fb2230c4-bd7e-4998-9a74-b0855907c684" }
+  ],
 
   "observability": { "enabled": true }
 }
